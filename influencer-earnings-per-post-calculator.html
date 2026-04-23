@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Influencer Earnings Per Post Calculator 2025 - Rate Card | SuperCalc</title>
+<meta name="description" content="Calculate how much to charge per sponsored post as an influencer. Get your rate card based on followers, engagement rate and platform. Used by 200,000+ creators.">
+<meta name="keywords" content="influencer earnings per post calculator, how much to charge for sponsored post, influencer rate card calculator, sponsored content pricing, influencer fee calculator 2025, how much do influencers charge">
+<link rel="canonical" href="https://supercalc.online/influencer-earnings-per-post-calculator.html">
+<meta property="og:title" content="Influencer Earnings Per Post Calculator 2025 - Rate Card | SuperCalc">
+<meta property="og:description" content="Calculate how much to charge per sponsored post as an influencer. Get your rate card based on followers, engagement rate and platform. Used by 200,000+ creators.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/influencer-earnings-per-post-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Influencer Earnings Per Post Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Influencer Earnings Per Post Calculator","description":"Calculate how much to charge per sponsored post as an influencer. Get your rate card based on followers, engagement rate, and platform.","url":"https://supercalc.online/influencer-earnings-per-post-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#ff6b35,#f7c59f)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">Social Media</a> <i class="bi bi-chevron-right"></i><span>Influencer Earnings Per Post Calculator</span></nav>
+  <h1 class="calc-page-title">&#128176; Influencer Earnings Per Post Calculator</h1>
+  <p class="calc-page-subtitle">Calculate how much to charge per sponsored post as an influencer. Get your rate card based on followers, engagement rate, and platform.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#128176; Influencer Earnings Per Post Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">Platform</label>
+    <select class="form-control" id="platform">
+      <option value="1.0">Instagram Feed Post</option>
+      <option value="1.3">Instagram Reel</option>
+      <option value="0.6">Instagram Story</option>
+      <option value="1.2">YouTube Integration</option>
+      <option value="0.8">TikTok Video</option>
+      <option value="0.7">Twitter/X Tweet</option>
+      <option value="0.9">LinkedIn Post</option>
+    </select>
+  </div>
+  <div class="col-md-6"><label class="form-label">Followers</label><input type="number" class="form-control" id="followers" placeholder="e.g. 50000"></div>
+  <div class="col-md-6"><label class="form-label">Engagement Rate (%)</label><input type="number" class="form-control" id="eng" placeholder="e.g. 4" step="0.1"></div>
+  <div class="col-md-6"><label class="form-label">Niche</label>
+    <select class="form-control" id="niche">
+      <option value="2.5">Finance / Business</option>
+      <option value="2.0">Technology</option>
+      <option value="1.8">Health / Fitness</option>
+      <option value="1.5">Fashion / Beauty</option>
+      <option value="1.3">Food / Travel</option>
+      <option value="1.0">Entertainment</option>
+      <option value="1.2">Parenting / Family</option>
+    </select>
+  </div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Get My Rate</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">Suggested Rate</div><div class="result-value" id="rate">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Rate Range</div><div class="result-value" id="range">-</div></div>
+    <div class="col-6"><div class="result-label">Monthly Potential</div><div class="result-value" id="monthly">-</div></div>
+    <div class="col-6"><div class="result-label">Influencer Tier</div><div class="result-value" id="tier">-</div></div>
+  </div>
+</div>
+</div>
+<div class="info-box">
+<h2>What is a Influencer Earnings Per Post Calculator?</h2>
+<p>Social media metrics are the key performance indicators that measure how effectively your content connects with your target audience. Tracking these metrics consistently is essential for growing your online presence and maximizing your monetization opportunities.</p>
+<p>Whether you're a brand, content creator, or marketer, understanding your social media performance data helps you optimize your strategy, identify what content resonates, and demonstrate ROI to clients or stakeholders.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Track metrics consistently over time — weekly snapshots give better insight than single measurements</li>
+<li>Engagement rate is more valuable than raw follower count for brand deals</li>
+<li>Set specific, measurable goals before creating content (e.g., 5% ER, 10% monthly growth)</li>
+<li>Analyze your best-performing content to identify patterns and replicate success</li>
+<li>Benchmark your metrics against competitors in your niche for context</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">Why should I track social media metrics? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Tracking social media metrics helps you understand what content works, who your audience is, when they're most active, and how to grow effectively. It also helps you justify your value to brands, optimize your content strategy, and identify problems early (like declining engagement) before they become serious.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the difference between reach and impressions? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Reach is the number of unique accounts that saw your content. Impressions is the total number of times your content was displayed (including multiple views by the same person). A post with 1,000 reach and 1,500 impressions means 500 people viewed it more than once.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How often should I review my social media analytics? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Review weekly for trend identification, monthly for strategy adjustments, and quarterly for comprehensive performance reviews. Daily checks can cause 'metric anxiety' from normal fluctuations. Focus on 30-90 day trends rather than day-to-day variations.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What tools help track social media performance? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Free tools: Meta Business Suite (Facebook/Instagram), TikTok Studio, YouTube Studio. Paid tools: Sprout Social, Hootsuite, Later, Buffer, Brandwatch. For influencers, Klear, HypeAuditor, and Modash provide detailed audience analytics including authenticity scores.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="instagram-engagement-rate-calculator.html" class="related-item text-decoration-none">&#128247; Instagram Engagement Rate</a>
+<a href="youtube-money-calculator.html" class="related-item text-decoration-none">&#128176; YouTube Money Calculator</a>
+<a href="tiktok-earnings-calculator.html" class="related-item text-decoration-none">&#127925; TikTok Earnings</a>
+<a href="social-media-roi-calculator.html" class="related-item text-decoration-none">&#128200; Social Media ROI</a>
+<a href="influencer-earnings-per-post-calculator.html" class="related-item text-decoration-none">&#128176; Influencer Earnings</a>
+<a href="virality-score-calculator.html" class="related-item text-decoration-none">&#128293; Virality Score</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){
+  var platform=parseFloat(document.getElementById('platform').value)||1;
+  var f=parseFloat(document.getElementById('followers').value)||0;
+  var eng=parseFloat(document.getElementById('eng').value)||1;
+  var niche=parseFloat(document.getElementById('niche').value)||1;
+  if(!f){alert('Enter follower count');return;}
+  var base=(f/1000)*10*niche*platform*(1+(eng-1)*0.08);
+  var low=Math.round(base*0.65);
+  var high=Math.round(base*1.5);
+  var monthly=Math.round(base*4);
+  var tier=f<1000?'Nano':f<10000?'Micro':f<100000?'Mid-Tier':f<500000?'Macro':'Mega';
+  document.getElementById('rate').textContent='$'+Math.round(base).toLocaleString();
+  document.getElementById('range').textContent='$'+low.toLocaleString()+'-$'+high.toLocaleString();
+  document.getElementById('monthly').textContent='$'+monthly.toLocaleString();
+  document.getElementById('tier').textContent=tier;
+  document.getElementById('resultBox').style.display='block';
+}
+</script>
+</body>
+</html>

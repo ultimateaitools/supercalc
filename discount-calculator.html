@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discount Calculator - Calculate Sale Price & Savings | SuperCalc</title>
+  <meta name="description" content="Free discount calculator. Quickly find the discounted price, savings amount, and discount percentage. Great for shopping, sales, and business pricing.">
+  <meta name="keywords" content="discount calculator, percentage off calculator, sale price calculator, how much is 20% off, discount percentage calculator, savings calculator">
+  <link rel="canonical" href="https://supercalc.online/discount-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#e74c3c,#c0392b)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Discount Calculator</span></nav>
+  <h1 class="calc-page-title">🏷️ Discount Calculator</h1>
+  <p class="calc-page-subtitle">Instantly calculate sale price, savings & discount percentage</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <!-- Mode toggle -->
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('disc',this)">💰 Price → Discounted Price</button>
+        <button class="cat-pill" onclick="setMode('pct',this)">📊 Find Discount %</button>
+        <button class="cat-pill" onclick="setMode('orig',this)">🔍 Find Original Price</button>
+      </div>
+
+      <div class="calc-box" id="modeDisc">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Original Price</label><div class="input-group"><span class="input-group-text">$</span><input type="number" class="form-control" id="origPrice" value="1000" step="10" placeholder="e.g. 1000"></div></div>
+          <div class="col-md-6"><label class="form-label">Discount</label><div class="input-group"><input type="number" class="form-control" id="discPct" value="20" step="1" min="0" max="100"><span class="input-group-text">%</span></div><input type="range" class="form-range mt-2" id="discSlider" min="0" max="100" step="1" value="20"><div style="text-align:center;font-size:0.72rem;color:var(--text-muted)" id="discDisplay">20% Off</div></div>
+          <div class="col-md-6"><label class="form-label">Additional Discount (if any)</label><div class="input-group"><input type="number" class="form-control" id="addDisc" value="0" step="1" min="0" max="100"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-6"><label class="form-label">Currency</label><select class="form-select" id="currency"><option value="$">$ USD</option><option value="₹">₹ INR</option><option value="€">€ EUR</option><option value="£">£ GBP</option><option value="¥">¥ JPY</option></select></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcDiscount()"><i class="bi bi-tag me-2"></i>Calculate Discount</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Final Sale Price</div><div class="result-value" id="salePrice">$0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">You Save</div><div class="r-value" style="color:var(--accent)" id="savings">$0</div></div>
+            <div class="result-item"><div class="r-label">Savings %</div><div class="r-value" id="savingsPct">0%</div></div>
+            <div class="result-item"><div class="r-label">Original Price</div><div class="r-value text-primary" id="origOut">$0</div></div>
+            <div class="result-item"><div class="r-label">Discount Applied</div><div class="r-value" id="discApplied">0%</div></div>
+          </div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+
+      <!-- Quick Discount Table -->
+      <div class="calc-box mb-4">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem">⚡ Quick Discount Table — <span id="qLabel">₹1000</span></h3>
+        <div id="quickTable"></div>
+      </div>
+
+      <div class="info-box">
+        <h2>How to Calculate Discount?</h2>
+        <div class="formula-box">Sale Price = Original Price × (1 – Discount%/100)<br>Savings = Original Price × Discount%/100<br>Discount% = (Savings / Original Price) × 100</div>
+        <h3>Real Life Examples</h3>
+        <ul>
+          <li>₹2000 item at 30% off → 2000×0.70 = <strong>₹1400</strong> (save ₹600)</li>
+          <li>Item bought at $80, original $100 → Discount = (20/100)×100 = <strong>20% off</strong></li>
+          <li>After 20% off + 10% additional → effective = 100×0.80×0.90 = <strong>28% off</strong> (not 30%!)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p><p><a href="index.html">Home</a></p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function setMode(m,btn){document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');}
+['discPct','discSlider'].forEach((id,i)=>{document.getElementById(id).addEventListener('input',function(){document.getElementById(['discSlider','discPct'][i]).value=this.value;document.getElementById('discDisplay').textContent=this.value+'% Off';calcDiscount();});});
+document.getElementById('origPrice').addEventListener('input',calcDiscount);
+document.getElementById('addDisc').addEventListener('input',calcDiscount);
+
+function calcDiscount(){
+  const orig=+document.getElementById('origPrice').value;
+  const disc1=+document.getElementById('discPct').value;
+  const disc2=+document.getElementById('addDisc').value;
+  const sym=document.getElementById('currency').value;
+  const after1=orig*(1-disc1/100);
+  const final=after1*(1-disc2/100);
+  const saved=orig-final;
+  const effPct=(saved/orig)*100;
+
+  document.getElementById('salePrice').textContent=sym+final.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('savings').textContent=sym+saved.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('savingsPct').textContent=effPct.toFixed(1)+'%';
+  document.getElementById('origOut').textContent=sym+orig.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('discApplied').textContent=disc2>0?`${disc1}% + ${disc2}%`:`${disc1}%`;
+  document.getElementById('resultBox').classList.add('show');
+
+  // Quick table
+  document.getElementById('qLabel').textContent=sym+orig;
+  const percs=[5,10,15,20,25,30,40,50,60,70];
+  document.getElementById('quickTable').innerHTML=`<div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)"><thead><tr style="background:var(--bg-input)"><th>Discount</th><th>Sale Price</th><th>You Save</th></tr></thead><tbody>${percs.map(p=>`<tr${p==disc1?' style="background:var(--primary);color:white"':''}><td>${p}% off</td><td>${sym}${(orig*(1-p/100)).toFixed(0)}</td><td>${sym}${(orig*p/100).toFixed(0)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function getText(){return `Discount Result:\nSale Price: ${document.getElementById('salePrice').textContent}\nYou Save: ${document.getElementById('savings').textContent} (${document.getElementById('savingsPct').textContent})`;}
+document.addEventListener('DOMContentLoaded',()=>calcDiscount());
+</script>
+</body>
+</html>

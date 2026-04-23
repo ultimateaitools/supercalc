@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Zone Converter - World Clock | SuperCalc</title>
+  <meta name="description" content="Free time zone converter and world clock. Convert time between any cities — New York, London, Dubai, Mumbai, Tokyo, Sydney. See meeting time across time zones.">
+  <meta name="keywords" content="time zone converter, world clock, time zone calculator, UTC converter, IST to EST, meeting time calculator, international time converter">
+  <link rel="canonical" href="https://supercalc.online/time-zone-converter.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#37474f,#546e7a,#78909c)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Time Zone Converter</span></nav>
+  <h1 class="calc-page-title">🌍 Time Zone Converter</h1>
+  <p class="calc-page-subtitle">Convert time between any cities and time zones worldwide</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <!-- Live World Clock -->
+      <div class="calc-box mb-4">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:0.75rem">🕒 Live World Clock</h3>
+        <div id="worldClock" class="row g-2"></div>
+      </div>
+
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">From Timezone</label>
+            <select class="form-select" id="fromTZ"></select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">To Timezone</label>
+            <select class="form-select" id="toTZ"></select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" id="convDate">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Time</label>
+            <input type="time" class="form-control" id="convTime" value="09:00">
+          </div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="convertTZ()"><i class="bi bi-clock me-2"></i>Convert Time</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label" id="resLabel">Converted Time</div><div class="result-value" id="resValue">—</div></div>
+          <div class="result-grid" id="resGrid"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(document.getElementById('resValue').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Time Zone Converter?</h2>
+<p>Unit converters help you quickly and accurately convert between different measurement systems used worldwide. Whether you need to convert metric to imperial, or between scientific units, accurate conversions are essential in science, engineering, cooking, and everyday life.</p>
+<p>These converters use exact conversion factors from international standards (SI units, ISO definitions) to ensure maximum accuracy.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>The metric system (SI units) is used by 95% of the world — learning key conversions helps in international contexts</li>
+<li>Temperature conversions: °C to °F: multiply by 9/5 then add 32</li>
+<li>For cooking: 1 cup = 240 mL, 1 tablespoon = 15 mL, 1 teaspoon = 5 mL</li>
+<li>1 mile = 1.60934 km, 1 kg = 2.20462 lbs, 1 inch = 2.54 cm</li>
+<li>When precision matters, use the exact conversion factor, not a rounded approximation</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">What is the metric system? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The metric system (International System of Units or SI) is the globally standard system of measurement. It's based on multiples of 10, making calculations straightforward. Used by scientists worldwide and by most countries for everyday measurements. The US is one of only three countries (with Myanmar and Liberia) not officially using metric.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I remember conversion factors? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Key tricks: 'King Henry Died By Drinking Cold Milk' for kilo-hecto-deca-base-deci-centi-milli. For temp: 'Multiply by 2 and add 30' gives a quick Celsius-to-Fahrenheit approximation (exact: ×1.8 + 32). For km to miles, multiply by 0.6 (exact: ×0.621371).</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Why does the US still use imperial units? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The US officially adopted the metric system in 1866 but never mandated its use in daily life. Switching would require updating infrastructure, education, and cultural habits at enormous cost. However, US science, medicine, military, and international trade widely use metric. The Metric Conversion Act of 1975 made metric the preferred system.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What's the most common conversion mistake? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The most common mistake is confusing mass and weight (kilograms vs. pounds), especially for international shipping. Also: confusing fluid ounces (volume) with ounces (weight), and using the wrong temperature scale (°C vs °F). Always specify units in international communications.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="unit-converter.html" class="related-item text-decoration-none">&#128208; Unit Converter</a>
+<a href="temperature-converter.html" class="related-item text-decoration-none">&#127777; Temperature Converter</a>
+<a href="length-converter.html" class="related-item text-decoration-none">&#128208; Length Converter</a>
+<a href="weight-converter.html" class="related-item text-decoration-none">&#9878; Weight Converter</a>
+<a href="speed-converter.html" class="related-item text-decoration-none">&#128663; Speed Converter</a>
+<a href="energy-converter.html" class="related-item text-decoration-none">&#9889; Energy Converter</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+const zones=[
+  {name:'Mumbai / Delhi (IST)',tz:'Asia/Kolkata',flag:'🇮🇳'},
+  {name:'Dubai (GST)',tz:'Asia/Dubai',flag:'🇦🇪'},
+  {name:'London (GMT/BST)',tz:'Europe/London',flag:'🇬🇧'},
+  {name:'New York (EST/EDT)',tz:'America/New_York',flag:'🇺🇸'},
+  {name:'Los Angeles (PST/PDT)',tz:'America/Los_Angeles',flag:'🇺🇸'},
+  {name:'Chicago (CST)',tz:'America/Chicago',flag:'🇺🇸'},
+  {name:'Tokyo (JST)',tz:'Asia/Tokyo',flag:'🇯🇵'},
+  {name:'Singapore (SGT)',tz:'Asia/Singapore',flag:'🇸🇬'},
+  {name:'Sydney (AEDT)',tz:'Australia/Sydney',flag:'🇦🇺'},
+  {name:'Paris / Berlin (CET)',tz:'Europe/Paris',flag:'🇪🇺'},
+  {name:'Moscow (MSK)',tz:'Europe/Moscow',flag:'🇷🇺'},
+  {name:'Beijing / Shanghai (CST)',tz:'Asia/Shanghai',flag:'🇨🇳'},
+  {name:'Seoul (KST)',tz:'Asia/Seoul',flag:'🇰🇷'},
+  {name:'Hong Kong (HKT)',tz:'Asia/Hong_Kong',flag:'🇭🇰'},
+  {name:'Karachi (PKT)',tz:'Asia/Karachi',flag:'🇵🇰'},
+  {name:'Dhaka (BST)',tz:'Asia/Dhaka',flag:'🇧🇩'},
+  {name:'Riyadh (AST)',tz:'Asia/Riyadh',flag:'🇸🇦'},
+  {name:'Cairo (EET)',tz:'Africa/Cairo',flag:'🇪🇬'},
+  {name:'Toronto (EST)',tz:'America/Toronto',flag:'🇨🇦'},
+  {name:'UTC',tz:'UTC',flag:'🌐'},
+  {name:'São Paulo (BRT)',tz:'America/Sao_Paulo',flag:'🇧🇷'},
+  {name:'Nairobi (EAT)',tz:'Africa/Nairobi',flag:'🇰🇪'},
+  {name:'Auckland (NZDT)',tz:'Pacific/Auckland',flag:'🇳🇿'},
+  {name:'Bangkok (ICT)',tz:'Asia/Bangkok',flag:'🇹🇭'},
+  {name:'Kuala Lumpur (MYT)',tz:'Asia/Kuala_Lumpur',flag:'🇲🇾'},
+  {name:'Istanbul (TRT)',tz:'Europe/Istanbul',flag:'🇹🇷'}
+];
+
+function buildSelects(){
+  const f=document.getElementById('fromTZ'),t=document.getElementById('toTZ');
+  zones.forEach((z,i)=>{const o=`<option value="${z.tz}">${z.flag} ${z.name}</option>`;f.insertAdjacentHTML('beforeend',o);t.insertAdjacentHTML('beforeend',o);});
+  f.value='Asia/Kolkata';t.value='America/New_York';
+}
+
+function buildWorldClock(){
+  const major=['Asia/Kolkata','America/New_York','Europe/London','Asia/Dubai','Asia/Tokyo','Asia/Singapore'];
+  const now=new Date();
+  document.getElementById('worldClock').innerHTML=major.map(tz=>{
+    const z=zones.find(z=>z.tz===tz);
+    const time=now.toLocaleTimeString('en-US',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const date=now.toLocaleDateString('en-US',{timeZone:tz,weekday:'short',month:'short',day:'numeric'});
+    return`<div class="col-md-4"><div style="background:var(--bg-input);border-radius:var(--radius-md);padding:0.75rem;text-align:center"><div style="font-size:1.2rem">${z?.flag||'🌍'}</div><div style="font-size:0.72rem;color:var(--text-muted)">${z?.name?.split('(')[0]?.trim()||tz}</div><div style="font-size:1.1rem;font-weight:700;font-family:monospace;color:var(--text)">${time}</div><div style="font-size:0.7rem;color:var(--text-secondary)">${date}</div></div></div>`;
+  }).join('');
+}
+
+function convertTZ(){
+  const from=document.getElementById('fromTZ').value;const to=document.getElementById('toTZ').value;
+  const date=document.getElementById('convDate').value;const time=document.getElementById('convTime').value;
+  if(!date||!time){alert('Please enter date and time');return;}
+  // Create date in 'from' timezone
+  const dt=new Date(`${date}T${time}:00`);
+  // Convert by getting offset strings
+  const fromTime=new Intl.DateTimeFormat('en-US',{timeZone:from,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(dt);
+  const toTime=new Intl.DateTimeFormat('en-US',{timeZone:to,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(dt);
+  const toDate=new Intl.DateTimeFormat('en-US',{timeZone:to,weekday:'long',year:'numeric',month:'long',day:'numeric'}).format(dt);
+  const fromZ=zones.find(z=>z.tz===from);const toZ=zones.find(z=>z.tz===to);
+  document.getElementById('resLabel').textContent=`${fromZ?.flag||''} ${fromZ?.name||from} → ${toZ?.flag||''} ${toZ?.name||to}`;
+  document.getElementById('resValue').textContent=toTime;
+  document.getElementById('resGrid').innerHTML=`<div class="result-item"><div class="r-label">Date</div><div class="r-value text-primary" style="font-size:0.85rem">${toDate}</div></div><div class="result-item"><div class="r-label">Your Input (${from})</div><div class="r-value">${time}</div></div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  buildSelects();
+  const now=new Date();document.getElementById('convDate').value=now.toISOString().split('T')[0];
+  buildWorldClock();setInterval(buildWorldClock,1000);
+});
+</script>
+</body>
+</html>

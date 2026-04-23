@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Currency Inflation Calculator | SuperCalc</title>
+<meta name="description" content="Calculate the impact of inflation on purchasing power over time. See what a past amount is worth today.">
+<meta name="keywords" content="inflation calculator, purchasing power calculator, currency inflation, what is X worth today, CPI calculator">
+<link rel="canonical" href="https://supercalc.online/currency-inflation-calculator.html">
+<meta property="og:title" content="Currency Inflation Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#b71c1c,#c62828)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Currency Inflation Calculator</span></nav>
+  <h1 class="calc-page-title">&#128178; Currency Inflation Calculator</h1>
+  <p class="calc-page-subtitle">Calculate the impact of inflation on purchasing power over time. See what a past amount is worth today.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box"><h2 class="calc-title">Inflation & Purchasing Power Calculator</h2><div class="row g-3">
+<div class="col-md-6"><label class="form-label">Original Amount ($)</label><input type="number" class="form-control" id="f1" value="1000" step="100"></div>
+<div class="col-md-6"><label class="form-label">Annual Inflation Rate (%)</label><input type="number" class="form-control" id="f2" value="6" step="0.1"></div>
+<div class="col-md-6"><label class="form-label">Number of Years</label><input type="number" class="form-control" id="f3" value="10" step="1"></div>
+</div><button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate Inflation</button><div class="result-box" id="resultBox"><div class="row g-3 text-center"><div class="col-6"><div class="result-label">Future Value (same buying power)</div><div class="result-value" id="r1">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div><div class="col-6"><div class="result-label">Purchasing Power Lost</div><div class="result-value" id="r2">-</div></div><div class="col-6"><div class="result-label">Real Value Today</div><div class="result-value" id="r3">-</div></div><div class="col-6"><div class="result-label">Loss Percentage</div><div class="result-value" id="r4">-</div></div></div></div></div>
+<div class="info-box">
+<h2>What is a Currency Inflation Calculator?</h2>
+<p>Financial calculators help you make informed money decisions by running complex calculations instantly. From investments to loans, taxes to savings, having accurate financial projections is key to achieving your financial goals.</p>
+<p>Using this calculator, you can quickly model different scenarios to find the best financial strategy for your specific situation.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Always compare multiple scenarios before making major financial decisions</li>
+<li>Account for inflation when projecting long-term returns (typically 6-7% nominal - 3% inflation = 3-4% real return)</li>
+<li>Tax implications significantly affect actual returns — consider post-tax calculations</li>
+<li>Emergency fund (3-6 months expenses) should be established before investing</li>
+<li>Diversification reduces risk without necessarily reducing expected returns</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How accurate are online financial calculators? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Online financial calculators provide estimates based on the inputs you provide and standard financial formulas. They're highly accurate for fixed scenarios but cannot account for market volatility, tax law changes, or unexpected events. Use them as planning tools rather than guaranteed projections.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Should I pay off debt or invest first? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The standard advice: if your debt interest rate is higher than your expected investment return, pay off debt first. Credit card debt (18-24%) should almost always be paid first. If your debt rate is low (below 6-7%), investing simultaneously may make mathematical sense. Emergency fund always comes first.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the rule of 72? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The Rule of 72 is a quick way to estimate how long it takes to double your money. Divide 72 by your annual interest rate. Example: at 8% annual return, your money doubles in 72÷8 = 9 years. At 6%, it doubles in 12 years. This works well for rates between 5-15%.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How much should I save each month? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Financial experts recommend saving at least 20% of your income (50/30/20 rule: 50% needs, 30% wants, 20% savings/debt). For retirement, aim to save 15% of gross income. Start with what you can — even 5-10% is better than nothing and can be increased over time.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="emi-calculator.html" class="related-item text-decoration-none">&#127968; EMI Calculator</a>
+<a href="sip-calculator.html" class="related-item text-decoration-none">&#128200; SIP Calculator</a>
+<a href="compound-interest-calculator.html" class="related-item text-decoration-none">&#128185; Compound Interest</a>
+<a href="income-tax-calculator.html" class="related-item text-decoration-none">&#129534; Income Tax</a>
+<a href="gst-calculator.html" class="related-item text-decoration-none">&#128202; GST Calculator</a>
+<a href="roi-calculator.html" class="related-item text-decoration-none">&#128202; ROI Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){const P=+document.getElementById('f1').value,r=+document.getElementById('f2').value/100,n=+document.getElementById('f3').value;const fv=P*Math.pow(1+r,n),real=P/Math.pow(1+r,n),loss=P-real;document.getElementById('r1').textContent='$'+fv.toFixed(2);document.getElementById('r2').textContent='$'+loss.toFixed(2);document.getElementById('r3').textContent='$'+real.toFixed(2);document.getElementById('r4').textContent=(loss/P*100).toFixed(1)+'%';document.getElementById('resultBox').classList.add('show');}
+</script>
+</body>
+</html>

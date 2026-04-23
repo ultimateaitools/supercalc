@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Reels Earnings Calculator - Monetize Your Reels | SuperCalc</title>
+<meta name="description" content="Calculate how much you can earn from Instagram Reels. Estimate Reels brand deal rates and Play Bonus income based on views, followers, and engagement rate.">
+<meta name="keywords" content="instagram reels earnings calculator, instagram reels monetization, how much instagram reels pay, reels play bonus calculator, instagram reels views to money">
+<link rel="canonical" href="https://supercalc.online/instagram-reels-earnings-calculator.html">
+<meta property="og:title" content="Instagram Reels Earnings Calculator - Monetize Your Reels | SuperCalc">
+<meta property="og:description" content="Calculate how much you can earn from Instagram Reels. Estimate Reels brand deal rates and Play Bonus income based on views, followers, and engagement rate.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/instagram-reels-earnings-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Instagram Reels Earnings Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Instagram Reels Earnings Calculator","description":"Calculate how much you can earn from Instagram Reels. Estimate Reels Play Bonus and brand deal rates based on views and engagement.","url":"https://supercalc.online/instagram-reels-earnings-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#c13584,#833ab4)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">Social Media</a> <i class="bi bi-chevron-right"></i><span>Instagram Reels Earnings Calculator</span></nav>
+  <h1 class="calc-page-title">&#127909; Instagram Reels Earnings Calculator</h1>
+  <p class="calc-page-subtitle">Calculate how much you can earn from Instagram Reels. Estimate Reels Play Bonus and brand deal rates based on views and engagement.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#127909; Instagram Reels Earnings Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">Average Reel Views</label><input type="number" class="form-control" id="views" placeholder="e.g. 50000"></div>
+  <div class="col-md-6"><label class="form-label">Total Followers</label><input type="number" class="form-control" id="followers" placeholder="e.g. 25000"></div>
+  <div class="col-md-6"><label class="form-label">Engagement Rate (%)</label><input type="number" class="form-control" id="engRate" placeholder="e.g. 4.5" step="0.1" value="4"></div>
+  <div class="col-md-6"><label class="form-label">Reels Per Month</label><input type="number" class="form-control" id="reelsPerMonth" placeholder="e.g. 12" value="10"></div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate Earnings</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">Est. Brand Deal/Reel</div><div class="result-value" id="brandDeal">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Monthly Brand Income</div><div class="result-value" id="monthly">-</div></div>
+    <div class="col-6"><div class="result-label">Reels Play Bonus Est.</div><div class="result-value" id="bonus">-</div></div>
+    <div class="col-6"><div class="result-label">Views/Follower Ratio</div><div class="result-value" id="vfRatio">-</div></div>
+  </div>
+</div>
+</div>
+<div class="info-box">
+<h2>What is a Instagram Reels Earnings Calculator?</h2>
+<p>This Instagram calculator helps you track and improve key performance metrics for your Instagram account. Instagram's algorithm rewards accounts with strong, consistent engagement, making it essential to monitor these numbers regularly.</p>
+<p>Whether you're an influencer, brand, or content creator, understanding your Instagram metrics helps you grow your audience, attract sponsorships, and maximize your content's reach.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Post consistently — 3-7 times per week is ideal for feed posts</li>
+<li>Reels get 2-3x more organic reach than static feed posts in 2025</li>
+<li>Use 5-15 relevant hashtags (avoid generic ones with billions of posts)</li>
+<li>Post at peak times for your audience (check Instagram Insights)</li>
+<li>Engage with comments within the first 60 minutes after posting</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">What metrics matter most for Instagram growth? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The most important Instagram metrics are: engagement rate (likes + comments + saves + shares ÷ followers), reach rate, follower growth rate, and profile visits. Instagram's algorithm prioritizes Reels, so watch time and replay rate are increasingly important. Saves are weighted heavily as they signal long-term content value.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How often should I post on Instagram? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">For optimal growth, post 3-5 feed posts and 3-7 Reels per week. Stories should be posted daily (3-10 per day). Consistency matters more than frequency — a regular schedule trains the algorithm and your audience. Quality always trumps quantity.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Does follower count affect Instagram engagement rate? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Yes, generally as follower count increases, engagement rate decreases. Nano influencers (under 1K) see 5-10%+ ER, while mega influencers (1M+) often see 1-2%. This is why brands increasingly prefer micro and nano influencers for their higher authentic engagement despite smaller audiences.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I see my Instagram analytics? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Switch to a Creator or Business account to access Instagram Insights. You can view reach, impressions, engagement, follower demographics, and content performance. For deeper analytics, third-party tools like Sprout Social, Hootsuite, or Later provide more detailed reporting.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="instagram-engagement-rate-calculator.html" class="related-item text-decoration-none">&#128247; Instagram Engagement Rate</a>
+<a href="instagram-growth-rate-calculator.html" class="related-item text-decoration-none">&#128200; Instagram Growth Rate</a>
+<a href="instagram-influencer-earnings-calculator.html" class="related-item text-decoration-none">&#128176; Instagram Influencer Earnings</a>
+<a href="tiktok-engagement-rate-calculator.html" class="related-item text-decoration-none">&#127925; TikTok Engagement Rate</a>
+<a href="social-media-roi-calculator.html" class="related-item text-decoration-none">&#128200; Social Media ROI</a>
+<a href="virality-score-calculator.html" class="related-item text-decoration-none">&#128293; Virality Score</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){
+  var views=parseFloat(document.getElementById('views').value)||0;
+  var followers=parseFloat(document.getElementById('followers').value)||1;
+  var eng=parseFloat(document.getElementById('engRate').value)||1;
+  var rpm=parseFloat(document.getElementById('reelsPerMonth').value)||10;
+  var base=followers/1000*12*(1+(eng-1)*0.08);
+  var bonus=(views/1000)*0.015;
+  var monthly=base*rpm;
+  var vfr=(views/followers*100).toFixed(1);
+  document.getElementById('brandDeal').textContent='$'+Math.round(base).toLocaleString();
+  document.getElementById('monthly').textContent='$'+Math.round(monthly).toLocaleString();
+  document.getElementById('bonus').textContent='$'+bonus.toFixed(2)+'/1K views';
+  document.getElementById('vfRatio').textContent=vfr+'%';
+  document.getElementById('resultBox').style.display='block';
+}
+</script>
+</body>
+</html>

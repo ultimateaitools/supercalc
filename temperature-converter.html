@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter - Celsius, Fahrenheit, Kelvin | SuperCalc</title>
+  <meta name="description" content="Free temperature converter. Convert between Celsius, Fahrenheit, Kelvin, and Rankine. Instant conversion with common temperature reference points.">
+  <meta name="keywords" content="temperature converter, celsius to fahrenheit, fahrenheit to celsius, kelvin converter, temperature conversion calculator, degrees converter">
+  <link rel="canonical" href="https://supercalc.online/temperature-converter.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#b71c1c,#ef5350,#ff8a65)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Temperature Converter</span></nav>
+  <h1 class="calc-page-title">🌡️ Temperature Converter</h1>
+  <p class="calc-page-subtitle">Convert between Celsius, Fahrenheit, Kelvin & Rankine instantly</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill" onclick="setTemp(-273.15,'c',this)">0 K</button>
+        <button class="cat-pill" onclick="setTemp(0,'c',this)">0°C</button>
+        <button class="cat-pill" onclick="setTemp(20,'c',this)">20°C</button>
+        <button class="cat-pill active" onclick="setTemp(37,'c',this)">37°C Body</button>
+        <button class="cat-pill" onclick="setTemp(100,'c',this)">100°C Boiling</button>
+        <button class="cat-pill" onclick="setTemp(212,'f',this)">212°F</button>
+      </div>
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Celsius (°C)</label><div class="input-group"><input type="number" class="form-control" id="tempC" value="37" step="0.1" oninput="convertFrom('c')"><span class="input-group-text">°C</span></div></div>
+          <div class="col-md-6"><label class="form-label">Fahrenheit (°F)</label><div class="input-group"><input type="number" class="form-control" id="tempF" value="98.6" step="0.1" oninput="convertFrom('f')"><span class="input-group-text">°F</span></div></div>
+          <div class="col-md-6"><label class="form-label">Kelvin (K)</label><div class="input-group"><input type="number" class="form-control" id="tempK" value="310.15" step="0.1" oninput="convertFrom('k')"><span class="input-group-text">K</span></div></div>
+          <div class="col-md-6"><label class="form-label">Rankine (°R)</label><div class="input-group"><input type="number" class="form-control" id="tempR" value="558.27" step="0.1" oninput="convertFrom('r')"><span class="input-group-text">°R</span></div></div>
+        </div>
+        <div id="tempContext" class="mt-4"></div>
+        <div class="action-btns mt-3"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Temperature Reference Guide</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Description</th><th>°C</th><th>°F</th><th>K</th></tr></thead>
+          <tbody>
+            <tr><td>Absolute Zero</td><td>-273.15</td><td>-459.67</td><td>0</td></tr>
+            <tr><td>Water Freezing Point</td><td>0</td><td>32</td><td>273.15</td></tr>
+            <tr><td>Room Temperature</td><td>20-25</td><td>68-77</td><td>293-298</td></tr>
+            <tr><td>Human Body Temperature</td><td>37</td><td>98.6</td><td>310.15</td></tr>
+            <tr><td>Water Boiling Point</td><td>100</td><td>212</td><td>373.15</td></tr>
+            <tr><td>Gold Melting Point</td><td>1064</td><td>1947</td><td>1337</td></tr>
+          </tbody>
+        </table></div>
+        <div class="formula-box">°F = (°C × 9/5) + 32 | K = °C + 273.15 | °R = (°C + 273.15) × 9/5</div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function convertFrom(unit){
+  let c;const v={c:+document.getElementById('tempC').value,f:+document.getElementById('tempF').value,k:+document.getElementById('tempK').value,r:+document.getElementById('tempR').value};
+  if(unit==='c')c=v.c;else if(unit==='f')c=(v.f-32)*5/9;else if(unit==='k')c=v.k-273.15;else c=(v.r-491.67)*5/9;
+  const f=c*9/5+32,k=c+273.15,r=(c+273.15)*9/5;
+  if(unit!=='c')document.getElementById('tempC').value=c.toFixed(4);
+  if(unit!=='f')document.getElementById('tempF').value=f.toFixed(4);
+  if(unit!=='k')document.getElementById('tempK').value=k.toFixed(4);
+  if(unit!=='r')document.getElementById('tempR').value=r.toFixed(4);
+  let ctx='';if(c<-50)ctx='🧊 Extremely cold — polar temperatures';else if(c<0)ctx='❄️ Below freezing — water will ice';else if(c<10)ctx='🥶 Very cold — wear heavy clothes';else if(c<20)ctx='😊 Cool — comfortable with jacket';else if(c<30)ctx='☀️ Warm — comfortable weather';else if(c<40)ctx='🌡️ Hot — summer heat';else if(c<60)ctx='🔥 Very hot — dangerous without cooling';else if(c<100)ctx='♨️ Extremely hot — boiling zone';else ctx='💨 Above water boiling point (100°C)';
+  document.getElementById('tempContext').innerHTML=`<div class="highlight-box" style="font-size:0.88rem">${ctx}</div>`;
+}
+function setTemp(v,unit,btn){document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');if(unit==='c')document.getElementById('tempC').value=v;else if(unit==='f')document.getElementById('tempF').value=v;convertFrom(unit);}
+function getText(){return `Temperature Conversion:\n°C: ${document.getElementById('tempC').value}\n°F: ${document.getElementById('tempF').value}\nK: ${document.getElementById('tempK').value}`;}
+document.addEventListener('DOMContentLoaded',()=>convertFrom('c'));
+</script>
+</body>
+</html>

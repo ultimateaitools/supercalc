@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Number Generator - Generate Random Numbers & Lists | SuperCalc</title>
+  <meta name="description" content="Free random number generator. Generate single or multiple random numbers within any range. Also includes lucky number picker, random password, dice roller, and coin flip.">
+  <meta name="keywords" content="random number generator, random number picker, lucky number generator, random password generator, dice roller, coin flip, random list generator">
+  <link rel="canonical" href="https://supercalc.online/random-number-generator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#4a148c,#7b1fa2)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Random Generator</span></nav>
+  <h1 class="calc-page-title">🎲 Random Number Generator</h1>
+  <p class="calc-page-subtitle">Generate random numbers, passwords, dice rolls & more</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <!-- Quick tools -->
+      <div class="row g-3 mb-4">
+        <div class="col-4"><button class="btn w-100 py-3" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--text)" onclick="rollDice()"><div style="font-size:2rem" id="diceEmoji">🎲</div><div style="font-size:0.78rem;margin-top:0.25rem">Roll Dice</div><div style="font-size:1.3rem;font-weight:800;color:var(--primary)" id="diceResult">?</div></button></div>
+        <div class="col-4"><button class="btn w-100 py-3" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--text)" onclick="flipCoin()"><div style="font-size:2rem" id="coinEmoji">🪙</div><div style="font-size:0.78rem;margin-top:0.25rem">Flip Coin</div><div style="font-size:1.1rem;font-weight:800;color:var(--primary)" id="coinResult">?</div></button></div>
+        <div class="col-4"><button class="btn w-100 py-3" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);color:var(--text)" onclick="luckyNum()"><div style="font-size:2rem">🍀</div><div style="font-size:0.78rem;margin-top:0.25rem">Lucky Pick</div><div style="font-size:1.3rem;font-weight:800;color:var(--primary)" id="luckyResult">?</div></button></div>
+      </div>
+
+      <!-- Main generator -->
+      <div class="calc-box">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🔢 Random Number Generator</h3>
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Minimum</label><input type="number" class="form-control" id="min" value="1"></div>
+          <div class="col-md-4"><label class="form-label">Maximum</label><input type="number" class="form-control" id="max" value="100"></div>
+          <div class="col-md-4"><label class="form-label">Count</label><input type="number" class="form-control" id="count" value="1" min="1" max="100"></div>
+          <div class="col-md-4"><label class="form-label">Options</label><div class="form-check"><input type="checkbox" class="form-check-input" id="unique" checked><label class="form-check-label" style="font-size:0.82rem">Unique (no repeats)</label></div><div class="form-check"><input type="checkbox" class="form-check-input" id="sorted"><label class="form-check-label" style="font-size:0.82rem">Sort results</label></div></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="generate()"><i class="bi bi-shuffle me-2"></i>Generate</button>
+        <div class="result-box" id="numResult" style="display:none">
+          <div id="generatedNums" style="font-size:1.5rem;font-weight:800;color:var(--primary);text-align:center;word-break:break-all;letter-spacing:0.1em"></div>
+          <div class="action-btns mt-3"><button class="btn-action" onclick="copyResult(document.getElementById('generatedNums').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <!-- Password generator -->
+      <div class="calc-box mt-4">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🔐 Random Password Generator</h3>
+        <div class="row g-2 mb-3">
+          <div class="col-md-4"><label class="form-label">Length</label><input type="number" class="form-control" id="passLen" value="16" min="4" max="64" oninput="genPassword()"></div>
+          <div class="col-md-8">
+            <label class="form-label">Include</label>
+            <div class="d-flex gap-3 flex-wrap">
+              <div class="form-check"><input type="checkbox" class="form-check-input" id="incUpper" checked onchange="genPassword()"><label class="form-check-label" style="font-size:0.82rem">A-Z (Uppercase)</label></div>
+              <div class="form-check"><input type="checkbox" class="form-check-input" id="incLower" checked onchange="genPassword()"><label class="form-check-label" style="font-size:0.82rem">a-z (Lowercase)</label></div>
+              <div class="form-check"><input type="checkbox" class="form-check-input" id="incNum" checked onchange="genPassword()"><label class="form-check-label" style="font-size:0.82rem">0-9 (Numbers)</label></div>
+              <div class="form-check"><input type="checkbox" class="form-check-input" id="incSym" checked onchange="genPassword()"><label class="form-check-label" style="font-size:0.82rem">!@#$ (Symbols)</label></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--bg-input);border-radius:var(--radius-md);padding:1rem;font-family:monospace;font-size:1rem;word-break:break-all;position:relative">
+          <span id="passOutput">—</span>
+          <button onclick="genPassword()" style="position:absolute;right:0.5rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1.2rem" title="Regenerate">🔄</button>
+        </div>
+        <div id="strength" class="mt-2"></div>
+        <button class="btn-action mt-2" onclick="copyResult(document.getElementById('passOutput').textContent)"><i class="bi bi-clipboard"></i> Copy Password</button>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Random Number Generator?</h2>
+<p>Mathematical calculators provide instant, accurate solutions to complex calculations that would otherwise take significant time and effort. These tools are essential for students, engineers, scientists, and professionals.</p>
+<p>Whether you're solving equations, converting units, or performing statistical analysis, our calculators use verified mathematical formulas to deliver precise results.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Double-check inputs carefully — garbage in, garbage out applies to all calculators</li>
+<li>For complex calculations, break the problem into smaller steps</li>
+<li>Always verify results against known benchmarks when possible</li>
+<li>Understanding the formula behind the calculation helps you spot errors</li>
+<li>Use significant figures appropriate to your data's precision</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">Why do online calculators sometimes give different answers? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Differences can occur due to: rounding at different stages of calculation, different formula interpretations, significant figure handling, and edge case assumptions. For critical calculations, always cross-check with at least one other source or method.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the order of operations? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The order of operations is PEMDAS/BODMAS: Parentheses/Brackets, Exponents/Orders, Multiplication and Division (left to right), Addition and Subtraction (left to right). This universal rule ensures mathematical expressions have one correct interpretation.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I know if my calculation result is reasonable? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Use estimation to sanity-check results. Round numbers and do a quick mental calculation. If your precise answer is wildly different from your estimate, recheck the inputs. Dimensional analysis (checking that units work out correctly) is also very useful for catching errors.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Are there limitations to calculator accuracy? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Yes. Calculators use floating-point arithmetic which can introduce tiny rounding errors in complex calculations. For most practical purposes, these are negligible. However, for financial, scientific, or engineering calculations requiring high precision, specialized tools may be needed.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="percentage-calculator.html" class="related-item text-decoration-none">&#128290; Percentage Calculator</a>
+<a href="age-calculator.html" class="related-item text-decoration-none">&#127874; Age Calculator</a>
+<a href="scientific-calculator.html" class="related-item text-decoration-none">&#129518; Scientific Calculator</a>
+<a href="square-root-calculator.html" class="related-item text-decoration-none">&#8730; Square Root Calculator</a>
+<a href="statistics-calculator.html" class="related-item text-decoration-none">&#128202; Statistics Calculator</a>
+<a href="unit-converter.html" class="related-item text-decoration-none">&#128208; Unit Converter</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function randInt(a,b){return Math.floor(Math.random()*(b-a+1))+a;}
+function rollDice(){const n=randInt(1,6);const emojis=['','⚀','⚁','⚂','⚃','⚄','⚅'];document.getElementById('diceEmoji').textContent=emojis[n];document.getElementById('diceResult').textContent=n;}
+function flipCoin(){const h=Math.random()<0.5;document.getElementById('coinEmoji').textContent=h?'🌕':'🌑';document.getElementById('coinResult').textContent=h?'Heads':'Tails';}
+function luckyNum(){document.getElementById('luckyResult').textContent=randInt(1,49);}
+function generate(){
+  const min=+document.getElementById('min').value,max=+document.getElementById('max').value;const count=Math.min(+document.getElementById('count').value,max-min+1);const unique=document.getElementById('unique').checked;const sorted=document.getElementById('sorted').checked;
+  if(min>max){alert('Min must be less than Max');return;}
+  let nums=[];
+  if(unique){const pool=Array.from({length:max-min+1},(_,i)=>i+min);for(let i=0;i<count;i++){const j=Math.floor(Math.random()*(pool.length));nums.push(pool.splice(j,1)[0]);}}
+  else{for(let i=0;i<count;i++)nums.push(randInt(min,max));}
+  if(sorted)nums.sort((a,b)=>a-b);
+  document.getElementById('generatedNums').textContent=nums.join(count>1?'  —  ':' ');document.getElementById('numResult').style.display='block';document.getElementById('numResult').classList.add('show');
+}
+function genPassword(){
+  let chars='';if(document.getElementById('incUpper').checked)chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';if(document.getElementById('incLower').checked)chars+='abcdefghijklmnopqrstuvwxyz';if(document.getElementById('incNum').checked)chars+='0123456789';if(document.getElementById('incSym').checked)chars+='!@#$%^&*()_+-=[]{}|;:,.<>?';if(!chars){document.getElementById('passOutput').textContent='Select at least one option';return;}
+  const len=+document.getElementById('passLen').value;let pass='';for(let i=0;i<len;i++)pass+=chars[randInt(0,chars.length-1)];
+  document.getElementById('passOutput').textContent=pass;
+  const strength=len>=16&&chars.length>=70?'🟢 Very Strong':len>=12&&chars.length>=50?'🟡 Strong':len>=8?'🟠 Medium':'🔴 Weak';
+  document.getElementById('strength').innerHTML=`<span style="font-size:0.8rem;color:var(--text-secondary)">Strength: ${strength} | Entropy: ~${Math.round(len*Math.log2(chars.length))} bits</span>`;
+}
+document.addEventListener('DOMContentLoaded',genPassword);
+</script>
+</body>
+</html>

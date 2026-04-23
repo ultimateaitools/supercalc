@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Interest & Payoff Calculator | SuperCalc</title>
+  <meta name="description" content="Free credit card interest calculator. Calculate monthly interest charges, minimum payment trap, and payoff time. See how long to pay off your credit card debt.">
+  <meta name="keywords" content="credit card interest calculator, credit card payoff calculator, credit card debt calculator, minimum payment calculator, credit card EMI calculator">
+  <link rel="canonical" href="https://supercalc.online/credit-card-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#c62828,#e53935)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Credit Card Calculator</span></nav>
+  <h1 class="calc-page-title">💳 Credit Card Calculator</h1>
+  <p class="calc-page-subtitle">Calculate interest charges, minimum payment trap & payoff plan</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="highlight-box mb-4" style="border-color:#e53935;background:rgba(229,57,53,0.08)">⚠️ Credit card interest in India ranges from <strong>36-42% per year</strong> (3-3.5%/month). Paying only minimum dues is very costly!</div>
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Outstanding Balance</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="balance" value="50000" step="1000"></div></div>
+          <div class="col-md-4"><label class="form-label">Annual Interest Rate</label><div class="input-group"><input type="number" class="form-control" id="rate" value="42" step="0.5"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-4"><label class="form-label">Minimum Payment (% or ₹)</label><select class="form-select" id="minType"><option value="pct">% of balance</option><option value="fixed">Fixed ₹ amount</option></select></div>
+          <div class="col-md-4"><label class="form-label">Minimum Payment Value</label><input type="number" class="form-control" id="minVal" value="5" step="0.5"></div>
+          <div class="col-md-4"><label class="form-label">Your Monthly Payment</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="myPayment" value="5000" step="500"></div></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcCard()"><i class="bi bi-credit-card me-2"></i>Calculate</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Monthly Interest (on ₹50K)</div><div class="r-value" style="color:#ef5350" id="monthlyInt">₹0</div></div>
+            <div class="result-item"><div class="r-label">Minimum Payment Due</div><div class="r-value text-primary" id="minPayment">₹0</div></div>
+          </div>
+          <div id="minPayScenario" class="mt-3"></div>
+          <div id="myPayScenario" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Credit Card Tips to Avoid Interest</h2>
+        <ul>
+          <li><strong>Always pay full dues</strong> by due date to avoid interest charges</li>
+          <li>Credit cards have <strong>interest-free period of 18-55 days</strong> only if full amount is paid</li>
+          <li>Minimum payment traps you — even ₹50K could take <strong>10+ years</strong> with minimum payment!</li>
+          <li>Consider converting large purchases to <strong>0% EMI</strong> at point of sale</li>
+          <li>If already in debt, get a <strong>personal loan at 12-15%</strong> to pay off 42% credit card debt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function simulatePayoff(balance,monthlyRate,payment){let bal=balance,months=0,totalInt=0;while(bal>0&&months<600){const int=bal*monthlyRate;totalInt+=int;bal=bal+int-payment;if(payment<=bal*monthlyRate)return{stuck:true,months,totalInt};months++;}return{stuck:false,months,totalInt};}
+function calcCard(){
+  const bal=+document.getElementById('balance').value;const rate=+document.getElementById('rate').value/100/12;const minType=document.getElementById('minType').value;const minVal=+document.getElementById('minVal').value;const myPay=+document.getElementById('myPayment').value;
+  const monthlyInt=Math.round(bal*rate);const minPay=minType==='pct'?Math.max(Math.round(bal*minVal/100),250):minVal;
+  document.getElementById('monthlyInt').textContent='₹'+monthlyInt.toLocaleString('en-IN')+'/month';document.getElementById('minPayment').textContent='₹'+minPay.toLocaleString('en-IN');
+  const fmt=v=>'₹'+Math.round(v).toLocaleString('en-IN');
+  // Min payment scenario
+  const minSim=simulatePayoff(bal,rate,minPay);
+  if(minSim.stuck){document.getElementById('minPayScenario').innerHTML=`<div class="highlight-box" style="border-color:#e53935;background:rgba(229,57,53,0.08)"><strong>😱 Minimum Payment Only:</strong> Your balance will NEVER be paid off! Monthly interest (${fmt(monthlyInt)}) is higher than your payment (${fmt(minPay)}). Increase your payment immediately!</div>`;}
+  else{const yrs=Math.floor(minSim.months/12);const mons=minSim.months%12;document.getElementById('minPayScenario').innerHTML=`<div class="highlight-box" style="border-color:#e53935;background:rgba(229,57,53,0.08)"><strong>⚠️ Paying Minimum Only (${fmt(minPay)}/month):</strong> Takes <strong>${yrs} years ${mons} months</strong> to pay off. Total interest paid: <strong>${fmt(minSim.totalInt)}</strong>!</div>`;}
+  // My payment scenario
+  if(myPay>monthlyInt){const mySim=simulatePayoff(bal,rate,myPay);const yrs2=Math.floor(mySim.months/12);const mons2=mySim.months%12;const saved=minSim.stuck?'∞':fmt(minSim.totalInt-mySim.totalInt);document.getElementById('myPayScenario').innerHTML=`<div class="highlight-box" style="border-color:var(--accent);background:rgba(0,229,160,0.08)"><strong>✅ Paying ${fmt(myPay)}/month:</strong> Paid off in <strong>${yrs2} years ${mons2} months</strong>. Total interest: ${fmt(mySim.totalInt)}. ${saved!=='∞'?'You save: <strong>'+saved+'</strong>!':''}</div>`;}
+  else{document.getElementById('myPayScenario').innerHTML=`<div class="highlight-box" style="border-color:#ff9800">⚠️ Payment (${fmt(myPay)}) must be higher than monthly interest (${fmt(monthlyInt)}) to reduce balance.</div>`;}
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Credit Card Balance: ₹${document.getElementById('balance').value}\nMonthly Interest: ${document.getElementById('monthlyInt').textContent}\nMin Payment: ${document.getElementById('minPayment').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcCard);
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistics Calculator - Mean, Median, Mode, Standard Deviation | SuperCalc</title>
+  <meta name="description" content="Free statistics calculator. Calculate mean, median, mode, range, variance, standard deviation, quartiles, and more from any dataset. Perfect for students and researchers.">
+  <meta name="keywords" content="statistics calculator, mean median mode calculator, standard deviation calculator, variance calculator, quartile calculator, descriptive statistics">
+  <link rel="canonical" href="https://supercalc.online/statistics-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1a237e,#3949ab)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Statistics Calculator</span></nav>
+  <h1 class="calc-page-title">📊 Statistics Calculator</h1>
+  <p class="calc-page-subtitle">Mean, Median, Mode, Standard Deviation, Quartiles & more</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <label class="form-label">Enter Numbers (comma, space, or newline separated)</label>
+        <textarea class="form-control" id="dataInput" rows="4" placeholder="e.g. 10, 20, 30, 25, 15, 10, 40, 35">10, 20, 30, 25, 15, 10, 40, 35, 22, 18</textarea>
+        <div class="category-pills mt-3">
+          <button class="cat-pill" onclick="loadSample('test')">📝 Test Scores</button>
+          <button class="cat-pill" onclick="loadSample('sales')">📊 Sales Data</button>
+          <button class="cat-pill" onclick="loadSample('temp')">🌡️ Temperatures</button>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcStats()"><i class="bi bi-bar-chart me-2"></i>Calculate Statistics</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-grid" id="statsGrid"></div>
+          <div id="fullStats" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getStatsText())"><i class="bi bi-clipboard"></i> Copy All</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Statistics Terms Explained</h2>
+        <ul>
+          <li><strong>Mean:</strong> Sum of all values ÷ Count (average)</li>
+          <li><strong>Median:</strong> Middle value when sorted</li>
+          <li><strong>Mode:</strong> Most frequently occurring value</li>
+          <li><strong>Range:</strong> Max – Min</li>
+          <li><strong>Variance:</strong> Average of squared differences from mean</li>
+          <li><strong>Standard Deviation:</strong> Square root of variance (spread of data)</li>
+          <li><strong>Q1/Q3:</strong> 25th and 75th percentile values</li>
+          <li><strong>IQR:</strong> Q3 – Q1 (interquartile range)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+const samples={test:'45, 78, 62, 90, 55, 82, 76, 48, 91, 70, 65, 88, 52, 73, 69',sales:'12500, 18900, 14200, 22000, 16500, 19800, 21000, 13700, 25000, 17300',temp:'28.5, 30.2, 27.8, 32.1, 29.4, 33.6, 26.9, 31.0, 28.8, 30.7'};
+function loadSample(k){document.getElementById('dataInput').value=samples[k];calcStats();}
+function calcStats(){
+  const raw=document.getElementById('dataInput').value.split(/[\s,;]+/).map(Number).filter(n=>!isNaN(n)&&n!==undefined);
+  if(raw.length<2){alert('Please enter at least 2 numbers');return;}
+  const n=raw.length;const sorted=[...raw].sort((a,b)=>a-b);
+  const sum=raw.reduce((a,b)=>a+b,0);const mean=sum/n;
+  const median=n%2===0?(sorted[n/2-1]+sorted[n/2])/2:sorted[Math.floor(n/2)];
+  const freq={};raw.forEach(v=>freq[v]=(freq[v]||0)+1);const maxF=Math.max(...Object.values(freq));const modes=Object.keys(freq).filter(k=>freq[k]===maxF).map(Number);
+  const variance=raw.reduce((a,v)=>a+(v-mean)**2,0)/n;const stdDev=Math.sqrt(variance);const sampleVar=raw.reduce((a,v)=>a+(v-mean)**2,0)/(n-1);const sampleSD=Math.sqrt(sampleVar);
+  const q1=sorted[Math.floor(n/4)];const q3=sorted[Math.floor(3*n/4)];const iqr=q3-q1;
+  const skew=raw.reduce((a,v)=>a+((v-mean)/stdDev)**3,0)/n;const kurt=raw.reduce((a,v)=>a+((v-mean)/stdDev)**4,0)/n-3;
+  const stats=[{l:'Count (n)',v:n},{l:'Sum',v:sum.toFixed(4)},{l:'Mean (Average)',v:mean.toFixed(4)},{l:'Median',v:median.toFixed(4)},{l:'Mode',v:modes.length===raw.length?'No mode':modes.join(', ')},{l:'Min',v:sorted[0]},{l:'Max',v:sorted[n-1]},{l:'Range',v:(sorted[n-1]-sorted[0]).toFixed(4)},{l:'Variance (Population)',v:variance.toFixed(4)},{l:'Std Dev (Population)',v:stdDev.toFixed(4)},{l:'Variance (Sample)',v:sampleVar.toFixed(4)},{l:'Std Dev (Sample)',v:sampleSD.toFixed(4)},{l:'Q1 (25th percentile)',v:q1},{l:'Q3 (75th percentile)',v:q3},{l:'IQR',v:iqr.toFixed(4)},{l:'Skewness',v:skew.toFixed(4)},{l:'Kurtosis (Excess)',v:kurt.toFixed(4)}];
+  document.getElementById('statsGrid').innerHTML=stats.slice(0,8).map(s=>`<div class="result-item"><div class="r-label">${s.l}</div><div class="r-value text-primary">${s.v}</div></div>`).join('');
+  document.getElementById('fullStats').innerHTML=`<h4 style="font-size:0.85rem;font-weight:700;margin-bottom:0.5rem">📈 Full Statistics</h4><div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)"><thead><tr style="background:var(--bg-input)"><th>Measure</th><th>Value</th></tr></thead><tbody>${stats.map(s=>`<tr><td>${s.l}</td><td><strong>${s.v}</strong></td></tr>`).join('')}</tbody></table></div><div style="font-size:0.78rem;color:var(--text-muted)">Data sorted: [${sorted.join(', ')}]</div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getStatsText(){return document.querySelectorAll('.result-item').length?[...document.querySelectorAll('.result-item')].map(el=>`${el.querySelector('.r-label').textContent}: ${el.querySelector('.r-value').textContent}`).join('\n'):'';}
+document.addEventListener('DOMContentLoaded',calcStats);
+</script>
+</body>
+</html>

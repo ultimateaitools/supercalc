@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator 2025 - Body Mass Index Check | SuperCalc</title>
+  <meta name="description" content="Calculate your BMI instantly with our free BMI calculator. Find your Body Mass Index, weight category (underweight/normal/overweight/obese) and ideal weight range.">
+  <meta name="keywords" content="BMI calculator, body mass index calculator, BMI check online, calculate BMI free, BMI for adults, healthy BMI range, body mass index 2025">
+  <link rel="canonical" href="https://supercalc.online/bmi-calculator.html">
+  <meta property="og:title" content="BMI Calculator 2025 - Body Mass Index Check | SuperCalc">
+  <meta property="og:description" content="Calculate your BMI instantly with our free BMI calculator. Find your Body Mass Index, weight category (underweight/normal/overweight/obese) and ideal weight range.">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto ms-3"><li><a class="nav-link" href="index.html#health">🏥 Health</a></li><li><a class="nav-link" href="index.html#finance">💰 Finance</a></li></ul>
+      <div class="d-flex gap-2"><div class="search-wrapper d-none d-lg-block"><i class="bi bi-search search-icon"></i><input type="search" class="search-input" placeholder="Search calculators..."><div class="search-dropdown"></div></div><button class="theme-toggle" id="themeToggle"><i class="bi bi-moon-fill" id="themeIcon"></i></button></div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#10B981,#06B6D4)">
+  <div class="container">
+    <nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#health">Health</a> <i class="bi bi-chevron-right"></i><span>BMI Calculator</span></nav>
+    <h1 class="calc-page-title">⚖️ BMI Calculator</h1>
+    <p class="calc-page-subtitle">Check your Body Mass Index — Know if you're at a healthy weight</p>
+  </div>
+</div>
+
+<div class="container mt-3"><div class="ad-banner"><span class="ad-label">Advertisement</span><span>[ Ad Banner 728x90 ]</span></div></div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="category-pills mb-4">
+          <button class="cat-pill active" onclick="setUnit('metric',this)">📏 Metric (kg/cm)</button>
+          <button class="cat-pill" onclick="setUnit('imperial',this)">🇺🇸 Imperial (lb/ft)</button>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Age</label>
+            <div class="input-group"><input type="number" class="form-control" id="age" value="25" min="2" max="120"><span class="input-group-text">yrs</span></div>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Gender</label>
+            <select class="form-select" id="gender"><option value="male">Male</option><option value="female">Female</option></select>
+          </div>
+          <div class="col-md-4">
+            <label class="form-label" id="weightLabel">Weight (kg)</label>
+            <div class="input-group"><input type="number" class="form-control" id="weight" value="70" step="0.1"><span class="input-group-text" id="weightUnit">kg</span></div>
+          </div>
+          <div class="col-md-6" id="heightMetric">
+            <label class="form-label">Height (cm)</label>
+            <div class="input-group"><input type="number" class="form-control" id="heightCm" value="170" step="1"><span class="input-group-text">cm</span></div>
+          </div>
+          <div class="col-md-6" id="heightImperial" style="display:none">
+            <label class="form-label">Height</label>
+            <div class="row g-2">
+              <div class="col-6"><div class="input-group"><input type="number" class="form-control" id="heightFt" value="5" placeholder="ft"><span class="input-group-text">ft</span></div></div>
+              <div class="col-6"><div class="input-group"><input type="number" class="form-control" id="heightIn" value="7" placeholder="in"><span class="input-group-text">in</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-calculate mt-4" onclick="calculateBMI()"><i class="bi bi-calculator me-2"></i>Calculate BMI</button>
+
+        <div class="result-box" id="resultBox">
+          <div class="result-primary">
+            <div class="result-label">Your BMI</div>
+            <div class="result-value" id="bmiValue" style="font-size:3rem">0.0</div>
+            <div id="bmiCategory" style="font-size:1rem;font-weight:700;margin-top:0.5rem"></div>
+          </div>
+
+          <!-- BMI Scale -->
+          <div class="mt-3 p-3" style="background:var(--bg-input);border-radius:var(--radius-md)">
+            <div style="font-size:0.8rem;font-weight:600;margin-bottom:0.5rem;color:var(--text-secondary)">BMI Scale</div>
+            <div style="display:flex;height:12px;border-radius:6px;overflow:hidden;margin-bottom:0.5rem">
+              <div style="flex:1;background:#3B82F6" title="Underweight"></div>
+              <div style="flex:1;background:#10B981" title="Normal"></div>
+              <div style="flex:1;background:#F59E0B" title="Overweight"></div>
+              <div style="flex:1;background:#EF4444" title="Obese"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:0.68rem;color:var(--text-muted)">
+              <span>< 18.5<br>Underweight</span><span>18.5-24.9<br>Normal</span><span>25-29.9<br>Overweight</span><span>> 30<br>Obese</span>
+            </div>
+          </div>
+
+          <div class="result-grid mt-3">
+            <div class="result-item"><div class="r-label">Healthy Weight Range</div><div class="r-value" id="healthyRange">-</div></div>
+            <div class="result-item"><div class="r-label">Weight to Lose/Gain</div><div class="r-value" id="weightDiff">-</div></div>
+            <div class="result-item"><div class="r-label">BMI Prime</div><div class="r-value" id="bmiPrime">-</div></div>
+            <div class="result-item"><div class="r-label">Ponderal Index</div><div class="r-value" id="ponderalIndex">-</div></div>
+          </div>
+
+          <div id="bmiAdvice" class="highlight-box mt-3" style="font-size:0.875rem;color:var(--text-secondary)"></div>
+
+          <div class="action-btns">
+            <button class="btn-action" onclick="copyResult(getBMIText())"><i class="bi bi-clipboard"></i> Copy Result</button>
+            <button class="btn-action whatsapp" onclick="shareWhatsApp(getBMIText())"><i class="bi bi-whatsapp"></i> Share</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>What is BMI?</h2>
+        <p><strong>Body Mass Index (BMI)</strong> is a numerical value calculated from a person's weight and height. It is a screening tool used to categorize weight status and identify potential health risks associated with being underweight, overweight, or obese.</p>
+        <h3>BMI Formula</h3>
+        <div class="formula-box">
+          BMI (Metric) = Weight (kg) ÷ Height² (m²)<br><br>
+          BMI (Imperial) = (Weight (lbs) ÷ Height² (inches²)) × 703
+        </div>
+        <h3>BMI Categories (WHO Standards)</h3>
+        <div class="table-responsive">
+          <table class="table table-sm" style="font-size:0.85rem;color:var(--text)">
+            <thead><tr style="background:var(--bg-input)"><th>BMI Range</th><th>Category</th><th>Health Risk</th></tr></thead>
+            <tbody>
+              <tr><td>Below 18.5</td><td style="color:#3B82F6"><strong>Underweight</strong></td><td>Malnutrition, osteoporosis risk</td></tr>
+              <tr><td>18.5 – 24.9</td><td style="color:#10B981"><strong>Normal weight</strong></td><td>Lowest health risk</td></tr>
+              <tr><td>25.0 – 29.9</td><td style="color:#F59E0B"><strong>Overweight</strong></td><td>Moderate health risk</td></tr>
+              <tr><td>30.0 – 34.9</td><td style="color:#EF4444"><strong>Obese Class I</strong></td><td>High health risk</td></tr>
+              <tr><td>35.0 – 39.9</td><td style="color:#EF4444"><strong>Obese Class II</strong></td><td>Very high health risk</td></tr>
+              <tr><td>40.0 and above</td><td style="color:#DC2626"><strong>Obese Class III</strong></td><td>Extremely high risk</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Limitations of BMI</h3>
+        <ul>
+          <li>BMI does not distinguish between fat and muscle mass</li>
+          <li>Athletes may have high BMI due to muscle, not fat</li>
+          <li>BMI may not be accurate for elderly, pregnant women, or children</li>
+          <li>Asian populations may face health risks at lower BMI thresholds</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><button class="faq-question">What is a healthy BMI for adults? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">For adults aged 20 and older, a BMI between 18.5 and 24.9 is considered healthy. BMI below 18.5 is underweight, 25-29.9 is overweight, and 30 or above is obese. For Asian populations, the risk threshold starts at BMI 23.</div></div></div>
+        <div class="faq-item"><button class="faq-question">Is BMI accurate for everyone? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">BMI is a useful screening tool but has limitations. It does not account for muscle mass, bone density, body fat distribution, or ethnic differences. Athletes, bodybuilders, pregnant women, and the elderly may get inaccurate results from BMI alone.</div></div></div>
+        <div class="faq-item"><button class="faq-question">How can I reduce my BMI? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">To reduce BMI: (1) Create a caloric deficit through diet, (2) Exercise regularly (150+ minutes/week of moderate activity), (3) Eat more protein and fiber, (4) Reduce processed foods and sugar, (5) Stay hydrated, (6) Get adequate sleep (7-9 hours).</div></div></div>
+        <div class="faq-item"><button class="faq-question">What BMI is considered obese? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">A BMI of 30 or above is classified as obese according to WHO standards. Class I obesity is 30-34.9, Class II is 35-39.9, and Class III (morbid obesity) is 40 and above. For South Asians, the obesity threshold is often set at BMI 27.5.</div></div></div>
+      </div>
+
+      <div class="info-box"><h3 style="margin-top:0">Related Calculators</h3>
+        <div class="related-grid">
+          <a href="calorie-calculator.html" class="related-item text-decoration-none">🍎 Calorie Calculator</a>
+          <a href="bmr-calculator.html" class="related-item text-decoration-none">🔥 BMR Calculator</a>
+          <a href="ideal-weight-calculator.html" class="related-item text-decoration-none">🎯 Ideal Weight</a>
+          <a href="body-fat-calculator.html" class="related-item text-decoration-none">📏 Body Fat %</a>
+          <a href="water-intake-calculator.html" class="related-item text-decoration-none">💧 Water Intake</a>
+          <a href="macro-calculator.html" class="related-item text-decoration-none">🥗 Macro Calculator</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-4"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+      <div class="calc-box mb-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem">📊 BMI Quick Reference</h3>
+        <div style="font-size:0.82rem">
+          <div class="d-flex justify-content-between py-2" style="border-bottom:1px solid var(--border);color:#3B82F6"><span>Underweight</span><strong>< 18.5</strong></div>
+          <div class="d-flex justify-content-between py-2" style="border-bottom:1px solid var(--border);color:#10B981"><span>Normal weight</span><strong>18.5 – 24.9</strong></div>
+          <div class="d-flex justify-content-between py-2" style="border-bottom:1px solid var(--border);color:#F59E0B"><span>Overweight</span><strong>25.0 – 29.9</strong></div>
+          <div class="d-flex justify-content-between py-2" style="color:#EF4444"><span>Obese</span><strong>> 30.0</strong></div>
+        </div>
+      </div>
+      <div class="sidebar-ad mt-3"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom"><p>© 2025 supercalc.online — Free BMI Calculator</p></div>
+  </div>
+</footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calc-engine.js"></script>
+<script>
+let unitMode = 'metric';
+
+function setUnit(mode, btn) {
+  unitMode = mode;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('heightMetric').style.display   = mode === 'metric'   ? 'block' : 'none';
+  document.getElementById('heightImperial').style.display = mode === 'imperial' ? 'block' : 'none';
+  document.getElementById('weightLabel').textContent = mode === 'metric' ? 'Weight (kg)' : 'Weight (lbs)';
+  document.getElementById('weightUnit').textContent  = mode === 'metric' ? 'kg' : 'lbs';
+  if (mode === 'imperial') { document.getElementById('weight').value = 154; }
+  else { document.getElementById('weight').value = 70; }
+}
+
+function calculateBMI() {
+  let weightKg, heightM;
+  if (unitMode === 'metric') {
+    weightKg = +document.getElementById('weight').value;
+    heightM  = +document.getElementById('heightCm').value / 100;
+  } else {
+    const lbs = +document.getElementById('weight').value;
+    const ft  = +document.getElementById('heightFt').value;
+    const inch = +document.getElementById('heightIn').value;
+    weightKg = lbs * 0.453592;
+    heightM  = (ft * 12 + inch) * 0.0254;
+  }
+
+  if (!weightKg || !heightM) return;
+
+  const result = CalcEngine.bmi(weightKg, heightM);
+  const bmi = result.bmi;
+
+  document.getElementById('bmiValue').textContent = bmi.toFixed(1);
+  document.getElementById('bmiValue').style.color = result.color;
+  document.getElementById('bmiCategory').textContent = result.category;
+  document.getElementById('bmiCategory').style.color = result.color;
+
+  const minHealthy = 18.5 * heightM * heightM;
+  const maxHealthy = 24.9 * heightM * heightM;
+  document.getElementById('healthyRange').textContent = `${minHealthy.toFixed(1)} - ${maxHealthy.toFixed(1)} kg`;
+
+  const diff = weightKg < minHealthy ? minHealthy - weightKg : weightKg > maxHealthy ? weightKg - maxHealthy : 0;
+  const diffAction = weightKg < minHealthy ? 'gain' : weightKg > maxHealthy ? 'lose' : 'maintain';
+  document.getElementById('weightDiff').textContent = diff > 0 ? `${diff.toFixed(1)} kg to ${diffAction}` : 'At healthy weight! ✓';
+  document.getElementById('weightDiff').style.color = diff > 0 ? 'var(--warning)' : 'var(--accent)';
+
+  document.getElementById('bmiPrime').textContent = (bmi / 25).toFixed(2);
+  document.getElementById('ponderalIndex').textContent = (weightKg / Math.pow(heightM, 3)).toFixed(1);
+
+  const advices = {
+    'Underweight': '⚠️ You are underweight. Consider consulting a nutritionist to develop a healthy weight gain plan with calorie-rich, nutritious foods.',
+    'Normal weight': '✅ Great! Your weight is in the healthy range. Maintain it with regular exercise and a balanced diet.',
+    'Overweight': '⚠️ You are slightly overweight. A combination of a calorie-controlled diet and regular physical activity can help.',
+    'Obese': '🚨 Your BMI indicates obesity. Please consult a healthcare professional for a personalized weight management plan.'
+  };
+  document.getElementById('bmiAdvice').textContent = advices[result.category] || '';
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function getBMIText() {
+  return `BMI Calculator Result:\nBMI: ${document.getElementById('bmiValue').textContent}\nCategory: ${document.getElementById('bmiCategory').textContent}\nHealthy Range: ${document.getElementById('healthyRange').textContent}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(calculateBMI, 300));
+</script>
+</body>
+</html>
+
+

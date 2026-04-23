@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Area Calculator - Area of All Shapes | SuperCalc</title>
+  <meta name="description" content="Free area calculator for all shapes. Calculate area of circle, rectangle, triangle, square, parallelogram, rhombus, trapezoid, ellipse and more with formulas.">
+  <meta name="keywords" content="area calculator, area of circle, area of triangle, area of rectangle, area formula calculator, geometric shape area, surface area calculator">
+  <link rel="canonical" href="https://supercalc.online/area-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#4a148c,#7e57c2)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Area Calculator</span></nav>
+  <h1 class="calc-page-title">⬛ Area Calculator</h1>
+  <p class="calc-page-subtitle">Calculate area of any geometric shape with formulas</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4" style="flex-wrap:wrap">
+        <button class="cat-pill active" onclick="setShape('rect',this)">⬜ Rectangle</button>
+        <button class="cat-pill" onclick="setShape('circle',this)">⭕ Circle</button>
+        <button class="cat-pill" onclick="setShape('triangle',this)">🔺 Triangle</button>
+        <button class="cat-pill" onclick="setShape('square',this)">▪️ Square</button>
+        <button class="cat-pill" onclick="setShape('parallelogram',this)">◻️ Parallelogram</button>
+        <button class="cat-pill" onclick="setShape('ellipse',this)">🫙 Ellipse</button>
+        <button class="cat-pill" onclick="setShape('sector',this)">🍕 Sector</button>
+        <button class="cat-pill" onclick="setShape('pentagon',this)">⬠ Pentagon</button>
+      </div>
+      <div class="calc-box">
+        <div id="shapeForm"></div>
+        <button class="btn-calculate mt-4" onclick="calcArea()"><i class="bi bi-bounding-box me-2"></i>Calculate Area</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Area</div><div class="result-value" id="areaResult">—</div></div>
+          <div id="perimResult" class="mt-2" style="font-size:0.88rem;color:var(--text-secondary)"></div>
+          <div id="formulaUsed" class="mt-2"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Area Calculator?</h2>
+<p>This calculator provides instant, accurate calculations to help you make better decisions. Built with the latest standards and best practices, it delivers reliable results for everyday use.</p>
+<p>Simply enter your values, click calculate, and get precise results instantly. Share your results or use the copy function to save them for later reference.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Enter values carefully — results are only as accurate as your inputs</li>
+<li>Use the copy button to save your results for reference</li>
+<li>Bookmark this page for quick access next time</li>
+<li>Share results with the WhatsApp button for easy collaboration</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How accurate is this calculator? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">This calculator uses standard mathematical formulas and provides results accurate to standard precision. For critical financial or medical decisions, always verify with a professional. The formulas are based on widely accepted industry standards.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Can I use this on my mobile phone? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Yes! This calculator is fully responsive and works on all devices — smartphones, tablets, and desktops. No app download required. Simply open the page in your mobile browser for instant access.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Is this calculator free to use? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Yes, completely free with no registration required. SuperCalc provides all calculators free of charge for personal and commercial use.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I share my calculation results? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Use the Share button to share via WhatsApp, or the Copy button to copy results to clipboard. You can also print results using the Print button for physical records.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="emi-calculator.html" class="related-item text-decoration-none">&#127968; EMI Calculator</a>
+<a href="bmi-calculator.html" class="related-item text-decoration-none">&#9878; BMI Calculator</a>
+<a href="percentage-calculator.html" class="related-item text-decoration-none">&#128290; Percentage Calculator</a>
+<a href="age-calculator.html" class="related-item text-decoration-none">&#127874; Age Calculator</a>
+<a href="gst-calculator.html" class="related-item text-decoration-none">&#128202; GST Calculator</a>
+<a href="sip-calculator.html" class="related-item text-decoration-none">&#128200; SIP Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let shape='rect';
+const forms={
+  rect:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Length (l)</label><input type="number" class="form-control" id="v1" value="10" step="any"></div><div class="col-md-6"><label class="form-label">Width (w)</label><input type="number" class="form-control" id="v2" value="5" step="any"></div></div>',calc:(v)=>({area:v[0]*v[1],perim:2*(v[0]+v[1]),formula:`A = l × w = ${v[0]} × ${v[1]}`})},
+  circle:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Radius (r)</label><input type="number" class="form-control" id="v1" value="7" step="any"></div></div>',calc:(v)=>({area:Math.PI*v[0]**2,perim:2*Math.PI*v[0],formula:`A = π × r² = π × ${v[0]}²`})},
+  triangle:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Base (b)</label><input type="number" class="form-control" id="v1" value="10" step="any"></div><div class="col-md-6"><label class="form-label">Height (h)</label><input type="number" class="form-control" id="v2" value="6" step="any"></div></div>',calc:(v)=>({area:0.5*v[0]*v[1],formula:`A = ½ × b × h = ½ × ${v[0]} × ${v[1]}`})},
+  square:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Side (a)</label><input type="number" class="form-control" id="v1" value="8" step="any"></div></div>',calc:(v)=>({area:v[0]**2,perim:4*v[0],formula:`A = a² = ${v[0]}²`})},
+  parallelogram:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Base (b)</label><input type="number" class="form-control" id="v1" value="12" step="any"></div><div class="col-md-6"><label class="form-label">Height (h)</label><input type="number" class="form-control" id="v2" value="5" step="any"></div></div>',calc:(v)=>({area:v[0]*v[1],formula:`A = b × h = ${v[0]} × ${v[1]}`})},
+  ellipse:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Semi-axis a</label><input type="number" class="form-control" id="v1" value="8" step="any"></div><div class="col-md-6"><label class="form-label">Semi-axis b</label><input type="number" class="form-control" id="v2" value="5" step="any"></div></div>',calc:(v)=>({area:Math.PI*v[0]*v[1],formula:`A = π × a × b = π × ${v[0]} × ${v[1]}`})},
+  sector:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Radius (r)</label><input type="number" class="form-control" id="v1" value="10" step="any"></div><div class="col-md-6"><label class="form-label">Angle (degrees)</label><input type="number" class="form-control" id="v2" value="90" step="any"></div></div>',calc:(v)=>({area:(v[1]/360)*Math.PI*v[0]**2,formula:`A = (θ/360) × π × r² = (${v[1]}/360) × π × ${v[0]}²`})},
+  pentagon:{html:'<div class="row g-3"><div class="col-md-6"><label class="form-label">Side length (a)</label><input type="number" class="form-control" id="v1" value="6" step="any"></div></div>',calc:(v)=>({area:0.25*Math.sqrt(5*(5+2*Math.sqrt(5)))*v[0]**2,perim:5*v[0],formula:`A = ¼ × √(5(5+2√5)) × a² where a=${v[0]}`})}
+};
+function setShape(s,btn){shape=s;document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('shapeForm').innerHTML=forms[s].html;}
+function getVals(){const r=[+document.getElementById('v1')?.value||0];const v2=document.getElementById('v2');if(v2)r.push(+v2.value||0);return r;}
+function calcArea(){const res=forms[shape].calc(getVals());document.getElementById('areaResult').textContent=res.area.toFixed(4)+' sq units';if(res.perim!==undefined)document.getElementById('perimResult').textContent='Perimeter / Circumference: '+res.perim.toFixed(4)+' units';document.getElementById('formulaUsed').innerHTML=`<div class="formula-box">${res.formula} = <strong>${res.area.toFixed(4)}</strong></div>`;document.getElementById('resultBox').classList.add('show');}
+function getText(){return `Area: ${document.getElementById('areaResult').textContent}`;}
+document.addEventListener('DOMContentLoaded',()=>{setShape('rect',document.querySelector('.cat-pill'));});
+</script>
+</body>
+</html>

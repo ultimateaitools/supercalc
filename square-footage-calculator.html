@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Square Footage Calculator - Area Calculator for Any Shape | SuperCalc</title>
+  <meta name="description" content="Free square footage calculator. Calculate area in sq ft, sq m, sq yards for rectangle, circle, triangle, trapezoid and L-shapes. Convert between area units.">
+  <meta name="keywords" content="square footage calculator, area calculator, sq ft calculator, square meter calculator, room area calculator, floor area calculator, land area calculator">
+  <link rel="canonical" href="https://supercalc.online/square-footage-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#827717,#afb42b)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Square Footage</span></nav>
+  <h1 class="calc-page-title">📐 Square Footage Calculator</h1>
+  <p class="calc-page-subtitle">Calculate area in sq ft, sq m, sq yards for any shape</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setShape('rect',this)">⬜ Rectangle</button>
+        <button class="cat-pill" onclick="setShape('circle',this)">⭕ Circle</button>
+        <button class="cat-pill" onclick="setShape('triangle',this)">🔺 Triangle</button>
+        <button class="cat-pill" onclick="setShape('trap',this)">◻️ Trapezoid</button>
+        <button class="cat-pill" onclick="setShape('lshape',this)">🔲 L-Shape</button>
+      </div>
+      <div class="calc-box">
+        <div class="row g-3 mb-3">
+          <div class="col-md-4"><label class="form-label">Unit</label><select class="form-select" id="unit" onchange="calcArea()"><option value="ft">Feet (ft)</option><option value="m" selected>Metres (m)</option><option value="in">Inches (in)</option><option value="yd">Yards (yd)</option><option value="cm">Centimetres (cm)</option></select></div>
+        </div>
+        <div id="shapeInputs"></div>
+        <button class="btn-calculate mt-4" onclick="calcArea()"><i class="bi bi-bounding-box me-2"></i>Calculate Area</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Area</div><div class="result-value" id="areaM2">0 m²</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Square Feet</div><div class="r-value text-primary" id="areaSqFt">0 sq ft</div></div>
+            <div class="result-item"><div class="r-label">Square Yards</div><div class="r-value" id="areaSqYd">0 sq yd</div></div>
+            <div class="result-item"><div class="r-label">Square Centimetres</div><div class="r-value" id="areaSqCm">0 cm²</div></div>
+            <div class="result-item"><div class="r-label">Acres</div><div class="r-value" id="areaAcres">0 acres</div></div>
+          </div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <!-- Multi-room total -->
+      <div class="calc-box mt-4">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🏠 Total Floor Area (Multi-Room)</h3>
+        <div id="rooms"><div class="room-row d-flex gap-2 mb-2"><input type="text" class="form-control" placeholder="Room name" style="max-width:140px"><input type="number" class="form-control" placeholder="Length (m)" step="0.1" oninput="calcTotal()"><input type="number" class="form-control" placeholder="Width (m)" step="0.1" oninput="calcTotal()"></div></div>
+        <button class="btn btn-sm btn-outline-primary mt-2" onclick="addRoom()"><i class="bi bi-plus"></i> Add Room</button>
+        <div id="totalResult" class="mt-3" style="font-size:0.9rem;font-weight:600;color:var(--text)"></div>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Square Footage Calculator?</h2>
+<p>Construction and home improvement calculators help homeowners, contractors, and DIY enthusiasts accurately estimate materials and costs before starting projects. Accurate material estimation prevents costly overbuying or frustrating shortages mid-project.</p>
+<p>These calculators use standard construction formulas to give you reliable estimates. Always add a 10-15% waste factor to material quantities to account for cuts, mistakes, and breakage.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Always add 10-15% extra to material orders for waste and breakage</li>
+<li>Measure twice, cut once — accurate measurements save money and time</li>
+<li>Consider material delivery costs when budgeting (can add 10-20% to material costs)</li>
+<li>Check local building codes before starting any structural project</li>
+<li>Get at least 3 contractor quotes for large projects to ensure fair pricing</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How much should I add for waste factor in construction? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Standard waste factors by material: Tile/flooring: 10-15% extra. Paint: 10% for one coat. Lumber: 10-15%. Brick/block: 5-10%. Roofing shingles: 10-15%. For complex patterns, irregular shapes, or less experienced DIYers, add an additional 5%.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I calculate square footage for a room? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">For a rectangular room, multiply length × width. For L-shaped rooms, divide into rectangles and add areas. For circular spaces, use π × radius². For irregular shapes, divide into simple geometric shapes and sum them. Always measure at the widest points.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Should I do DIY or hire a contractor? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">DIY is suitable for painting, minor repairs, flooring installation, and simple landscaping if you have the skills and tools. Hire professionals for electrical work, plumbing, structural changes, roofing, and anything requiring permits. Compare DIY cost (materials + your time at hourly rate) vs contractor quote.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I estimate labor costs for construction? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Labor is typically 40-60% of total project cost. As a rough guide: general contractor markup is 15-25% above subcontractor costs. Labor rates vary widely by region — US averages: carpenter $50-100/hr, electrician $50-100/hr, plumber $45-200/hr, painter $20-50/hr. Get multiple quotes.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="square-footage-calculator.html" class="related-item text-decoration-none">&#127968; Square Footage Calculator</a>
+<a href="paint-calculator.html" class="related-item text-decoration-none">&#127912; Paint Calculator</a>
+<a href="tile-calculator.html" class="related-item text-decoration-none">&#127968; Tile Calculator</a>
+<a href="concrete-calculator.html" class="related-item text-decoration-none">&#127959; Concrete Calculator</a>
+<a href="roof-pitch-calculator.html" class="related-item text-decoration-none">&#127968; Roof Pitch Calculator</a>
+<a href="flooring-calculator.html" class="related-item text-decoration-none">&#127968; Flooring Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let currentShape='rect';
+const shapeInputDefs={
+  rect:'<div class="col-md-6"><label class="form-label">Length</label><input type="number" class="form-control" id="d1" value="5" step="0.1" oninput="calcArea()"></div><div class="col-md-6"><label class="form-label">Width</label><input type="number" class="form-control" id="d2" value="4" step="0.1" oninput="calcArea()"></div>',
+  circle:'<div class="col-md-6"><label class="form-label">Radius</label><input type="number" class="form-control" id="d1" value="3" step="0.1" oninput="calcArea()"></div>',
+  triangle:'<div class="col-md-4"><label class="form-label">Base</label><input type="number" class="form-control" id="d1" value="6" step="0.1" oninput="calcArea()"></div><div class="col-md-4"><label class="form-label">Height</label><input type="number" class="form-control" id="d2" value="4" step="0.1" oninput="calcArea()"></div>',
+  trap:'<div class="col-md-4"><label class="form-label">Side A (parallel)</label><input type="number" class="form-control" id="d1" value="5" step="0.1" oninput="calcArea()"></div><div class="col-md-4"><label class="form-label">Side B (parallel)</label><input type="number" class="form-control" id="d2" value="3" step="0.1" oninput="calcArea()"></div><div class="col-md-4"><label class="form-label">Height</label><input type="number" class="form-control" id="d3" value="2" step="0.1" oninput="calcArea()"></div>',
+  lshape:'<div class="col-md-6"><label class="form-label">Outer Length (A)</label><input type="number" class="form-control" id="d1" value="8" step="0.1" oninput="calcArea()"></div><div class="col-md-6"><label class="form-label">Outer Width (B)</label><input type="number" class="form-control" id="d2" value="6" step="0.1" oninput="calcArea()"></div><div class="col-md-6"><label class="form-label">Inner Cut Length (C)</label><input type="number" class="form-control" id="d3" value="4" step="0.1" oninput="calcArea()"></div><div class="col-md-6"><label class="form-label">Inner Cut Width (D)</label><input type="number" class="form-control" id="d4" value="3" step="0.1" oninput="calcArea()"></div>'
+};
+function setShape(s,btn){currentShape=s;document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('shapeInputs').innerHTML=`<div class="row g-3">${shapeInputDefs[s]}</div>`;calcArea();}
+function toM2(v,u){const f={ft:0.0929,m:1,in:0.00064516,yd:0.836127,cm:0.0001};return v*(f[u]||1);}
+function getD(id){return +(document.getElementById(id)?.value)||0;}
+function calcArea(){
+  const u=document.getElementById('unit').value;let aRaw=0;
+  if(currentShape==='rect')aRaw=getD('d1')*getD('d2');
+  else if(currentShape==='circle')aRaw=Math.PI*getD('d1')**2;
+  else if(currentShape==='triangle')aRaw=0.5*getD('d1')*getD('d2');
+  else if(currentShape==='trap')aRaw=0.5*(getD('d1')+getD('d2'))*getD('d3');
+  else if(currentShape==='lshape')aRaw=getD('d1')*getD('d2')-getD('d3')*getD('d4');
+  const aM2=toM2(aRaw,u);
+  document.getElementById('areaM2').textContent=aM2.toFixed(2)+' m²';
+  document.getElementById('areaSqFt').textContent=(aM2*10.7639).toFixed(2)+' sq ft';
+  document.getElementById('areaSqYd').textContent=(aM2*1.196).toFixed(2)+' sq yd';
+  document.getElementById('areaSqCm').textContent=Math.round(aM2*10000).toLocaleString('en-IN')+' cm²';
+  document.getElementById('areaAcres').textContent=(aM2*0.000247105).toFixed(6)+' acres';
+  document.getElementById('resultBox').classList.add('show');
+}
+function addRoom(){document.getElementById('rooms').insertAdjacentHTML('beforeend',`<div class="room-row d-flex gap-2 mb-2"><input type="text" class="form-control" placeholder="Room name" style="max-width:140px"><input type="number" class="form-control" placeholder="Length (m)" step="0.1" oninput="calcTotal()"><input type="number" class="form-control" placeholder="Width (m)" step="0.1" oninput="calcTotal()"></div>`);}
+function calcTotal(){let total=0;document.querySelectorAll('.room-row').forEach(r=>{const[n,l,w]=r.querySelectorAll('input');total+=(+l.value||0)*(+w.value||0);});document.getElementById('totalResult').textContent=`Total: ${total.toFixed(2)} m² = ${(total*10.7639).toFixed(2)} sq ft`;}
+function getText(){return `Area: ${document.getElementById('areaM2').textContent}\nSq Ft: ${document.getElementById('areaSqFt').textContent}`;}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('shapeInputs').innerHTML=`<div class="row g-3">${shapeInputDefs.rect}</div>`;calcArea();});
+</script>
+</body>
+</html>

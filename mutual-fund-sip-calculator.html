@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mutual Fund SIP Calculator - SIP Returns Calculator 2025 | SuperCalc</title>
+  <meta name="description" content="Free SIP mutual fund calculator. Calculate SIP returns, ELSS tax savings, lump sum vs SIP comparison. Calculate corpus for ₹1 crore, ₹5 crore goals.">
+  <meta name="keywords" content="mutual fund SIP calculator, SIP calculator, SIP returns calculator, ELSS calculator, lump sum vs SIP, mutual fund returns, SIP monthly investment calculator">
+  <link rel="canonical" href="https://supercalc.online/mutual-fund-sip-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1a237e,#3949ab)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>SIP Calculator</span></nav>
+  <h1 class="calc-page-title">📈 Mutual Fund SIP Calculator</h1>
+  <p class="calc-page-subtitle">Calculate SIP returns, target corpus & compare lump sum vs SIP</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('sip',this)">📅 Monthly SIP</button>
+        <button class="cat-pill" onclick="setMode('lump',this)">💰 Lump Sum</button>
+        <button class="cat-pill" onclick="setMode('target',this)">🎯 Target Corpus</button>
+        <button class="cat-pill" onclick="setMode('compare',this)">⚖️ SIP vs Lump</button>
+      </div>
+
+      <div class="calc-box">
+        <div id="sipBox" class="input-mode">
+          <div class="row g-3">
+            <div class="col-md-4"><label class="form-label">Monthly SIP Amount</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="sipAmt" value="10000" step="500"></div></div>
+            <div class="col-md-4"><label class="form-label">Expected Annual Return</label><div class="input-group"><input type="number" class="form-control" id="sipRate" value="12" step="0.5"><span class="input-group-text">%</span></div></div>
+            <div class="col-md-4"><label class="form-label">Investment Period</label><div class="input-group"><input type="number" class="form-control" id="sipYrs" value="10" step="1"><span class="input-group-text">yrs</span></div></div>
+            <div class="col-md-6"><label class="form-label">Step-Up SIP (%/year)</label><select class="form-select" id="stepUp"><option value="0">No Step-Up</option><option value="5">5% annually</option><option value="10" selected>10% annually</option><option value="15">15% annually</option></select></div>
+          </div>
+          <div class="category-pills mt-3">
+            <button class="cat-pill" onclick="setSIP(5000,12,5)">₹5K × 5yr</button>
+            <button class="cat-pill active" onclick="setSIP(10000,12,10)">₹10K × 10yr</button>
+            <button class="cat-pill" onclick="setSIP(10000,15,15)">₹10K × 15yr</button>
+            <button class="cat-pill" onclick="setSIP(10000,12,20)">₹10K × 20yr</button>
+          </div>
+        </div>
+        <div class="d-none" id="lumpBox">
+          <div class="row g-3">
+            <div class="col-md-4"><label class="form-label">Lump Sum Amount</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="lumpAmt" value="100000" step="10000"></div></div>
+            <div class="col-md-4"><label class="form-label">Expected Return</label><div class="input-group"><input type="number" class="form-control" id="lumpRate" value="12" step="0.5"><span class="input-group-text">%</span></div></div>
+            <div class="col-md-4"><label class="form-label">Years</label><input type="number" class="form-control" id="lumpYrs" value="10" step="1"></div>
+          </div>
+        </div>
+        <div class="d-none" id="targetBox">
+          <div class="row g-3">
+            <div class="col-md-4"><label class="form-label">Target Amount</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="targetAmt" value="10000000" step="100000"></div></div>
+            <div class="col-md-4"><label class="form-label">Expected Return</label><div class="input-group"><input type="number" class="form-control" id="targetRate" value="12" step="0.5"><span class="input-group-text">%</span></div></div>
+            <div class="col-md-4"><label class="form-label">Years to Goal</label><input type="number" class="form-control" id="targetYrs" value="15" step="1"></div>
+          </div>
+          <div class="category-pills mt-3">
+            <button class="cat-pill" onclick="setTarget(1000000,12,10)">₹10 Lakh</button>
+            <button class="cat-pill active" onclick="setTarget(10000000,12,15)">₹1 Crore</button>
+            <button class="cat-pill" onclick="setTarget(50000000,12,20)">₹5 Crore</button>
+          </div>
+        </div>
+        <div class="d-none" id="compareBox">
+          <div class="row g-3">
+            <div class="col-md-4"><label class="form-label">Monthly SIP / Lump Sum</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="cmpAmt" value="10000" step="500"></div></div>
+            <div class="col-md-4"><label class="form-label">Return Rate</label><div class="input-group"><input type="number" class="form-control" id="cmpRate" value="12" step="0.5"><span class="input-group-text">%</span></div></div>
+            <div class="col-md-4"><label class="form-label">Years</label><input type="number" class="form-control" id="cmpYrs" value="10" step="1"></div>
+          </div>
+        </div>
+
+        <button class="btn-calculate mt-4" onclick="calcMF()"><i class="bi bi-graph-up me-2"></i>Calculate Returns</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label" id="mainLabel">Maturity Amount</div><div class="result-value" id="mainValue">₹0</div></div>
+          <div class="result-grid" id="resultGrid"></div>
+          <div class="chart-container"><canvas id="mfChart"></canvas></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Mutual Fund SIP Calculator?</h2>
+<p>Financial calculators help you make informed money decisions by running complex calculations instantly. From investments to loans, taxes to savings, having accurate financial projections is key to achieving your financial goals.</p>
+<p>Using this calculator, you can quickly model different scenarios to find the best financial strategy for your specific situation.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Always compare multiple scenarios before making major financial decisions</li>
+<li>Account for inflation when projecting long-term returns (typically 6-7% nominal - 3% inflation = 3-4% real return)</li>
+<li>Tax implications significantly affect actual returns — consider post-tax calculations</li>
+<li>Emergency fund (3-6 months expenses) should be established before investing</li>
+<li>Diversification reduces risk without necessarily reducing expected returns</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How accurate are online financial calculators? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Online financial calculators provide estimates based on the inputs you provide and standard financial formulas. They're highly accurate for fixed scenarios but cannot account for market volatility, tax law changes, or unexpected events. Use them as planning tools rather than guaranteed projections.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Should I pay off debt or invest first? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The standard advice: if your debt interest rate is higher than your expected investment return, pay off debt first. Credit card debt (18-24%) should almost always be paid first. If your debt rate is low (below 6-7%), investing simultaneously may make mathematical sense. Emergency fund always comes first.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the rule of 72? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The Rule of 72 is a quick way to estimate how long it takes to double your money. Divide 72 by your annual interest rate. Example: at 8% annual return, your money doubles in 72÷8 = 9 years. At 6%, it doubles in 12 years. This works well for rates between 5-15%.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How much should I save each month? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Financial experts recommend saving at least 20% of your income (50/30/20 rule: 50% needs, 30% wants, 20% savings/debt). For retirement, aim to save 15% of gross income. Start with what you can — even 5-10% is better than nothing and can be increased over time.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="emi-calculator.html" class="related-item text-decoration-none">&#127968; EMI Calculator</a>
+<a href="sip-calculator.html" class="related-item text-decoration-none">&#128200; SIP Calculator</a>
+<a href="compound-interest-calculator.html" class="related-item text-decoration-none">&#128185; Compound Interest</a>
+<a href="income-tax-calculator.html" class="related-item text-decoration-none">&#129534; Income Tax</a>
+<a href="gst-calculator.html" class="related-item text-decoration-none">&#128202; GST Calculator</a>
+<a href="roi-calculator.html" class="related-item text-decoration-none">&#128202; ROI Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let mfChart=null;let currentMode='sip';
+const fmt=v=>'₹'+Math.round(v).toLocaleString('en-IN');
+function setMode(m,btn){currentMode=m;document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');['sipBox','lumpBox','targetBox','compareBox'].forEach(id=>document.getElementById(id).classList.add('d-none'));document.getElementById(m+'Box').classList.remove('d-none');calcMF();}
+function setSIP(a,r,y){document.getElementById('sipAmt').value=a;document.getElementById('sipRate').value=r;document.getElementById('sipYrs').value=y;calcMF();}
+function setTarget(a,r,y){document.getElementById('targetAmt').value=a;document.getElementById('targetRate').value=r;document.getElementById('targetYrs').value=y;calcMF();}
+
+function calcSIP(m,r,n,step){let corpus=0,invest=0,sip=m;for(let yr=1;yr<=n;yr++){if(yr>1&&step>0)sip=sip*(1+step/100);const rm=r/100/12;corpus=(corpus+sip*12)*(1+r/100);invest+=sip*12;}return{corpus,invest};}
+
+function calcMF(){
+  const mode=currentMode;let mainLabel,mainVal,grid=[],invest,corpus;
+  if(mode==='sip'){
+    const m=+document.getElementById('sipAmt').value,r=+document.getElementById('sipRate').value,n=+document.getElementById('sipYrs').value,step=+document.getElementById('stepUp').value;
+    const res=calcSIP(m,r,n,step);corpus=res.corpus;invest=res.invest;mainLabel='SIP Maturity Amount';mainVal=corpus;
+    grid=[{l:'Total Invested',v:fmt(invest)},{l:'Returns Earned',v:fmt(corpus-invest)},{l:'Wealth Ratio',v:(corpus/invest).toFixed(2)+'x'},{l:'CAGR',v:r+'%'}];
+  } else if(mode==='lump'){
+    const a=+document.getElementById('lumpAmt').value,r=+document.getElementById('lumpRate').value,n=+document.getElementById('lumpYrs').value;
+    corpus=a*Math.pow(1+r/100,n);invest=a;mainLabel='Lump Sum Maturity';mainVal=corpus;
+    grid=[{l:'Invested',v:fmt(a)},{l:'Returns',v:fmt(corpus-a)},{l:'Multiplier',v:(corpus/a).toFixed(2)+'x'},{l:'CAGR',v:r+'%'}];
+  } else if(mode==='target'){
+    const t=+document.getElementById('targetAmt').value,r=+document.getElementById('targetRate').value,n=+document.getElementById('targetYrs').value;
+    const rm=r/100/12;const sipNeeded=t*rm/(Math.pow(1+rm,n*12)-1);const lumpNeeded=t/Math.pow(1+r/100,n);
+    mainLabel='Monthly SIP Needed';mainVal=sipNeeded;invest=sipNeeded*n*12;corpus=t;
+    grid=[{l:'Monthly SIP Required',v:fmt(sipNeeded)},{l:'Or Invest Lump Sum',v:fmt(lumpNeeded)},{l:'Total via SIP',v:fmt(invest)},{l:'Goal Amount',v:fmt(t)}];
+  } else {// compare
+    const a=+document.getElementById('cmpAmt').value,r=+document.getElementById('cmpRate').value,n=+document.getElementById('cmpYrs').value;
+    const sipRes=calcSIP(a,r,n,0);const lumpCorpus=a*12*Math.pow(1+r/100,n);// lump sum = same total as first year SIP
+    const sipCorpus=sipRes.corpus;
+    mainLabel='SIP vs Lump Sum Comparison';mainVal=sipCorpus;invest=sipRes.invest;corpus=sipCorpus;
+    grid=[{l:'SIP Returns ('+n+' yrs)',v:fmt(sipCorpus)},{l:'Lump Sum (1st yr amt)',v:fmt(a*12*Math.pow(1+r/100,n))},{l:'SIP Total Invested',v:fmt(invest)},{l:'Difference',v:fmt(sipCorpus-a*12*Math.pow(1+r/100,n))}];
+  }
+  document.getElementById('mainLabel').textContent=mainLabel;document.getElementById('mainValue').textContent=fmt(mainVal);
+  document.getElementById('resultGrid').innerHTML=grid.map(g=>`<div class="result-item"><div class="r-label">${g.l}</div><div class="r-value">${g.v}</div></div>`).join('');
+  // Chart
+  const ctx=document.getElementById('mfChart').getContext('2d');if(mfChart)mfChart.destroy();
+  mfChart=new Chart(ctx,{type:'doughnut',data:{labels:['Total Invested','Returns'],datasets:[{data:[invest,corpus-invest],backgroundColor:['rgba(108,59,255,0.7)','rgba(0,229,160,0.8)'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>`${c.label}: ${fmt(c.parsed)}`}}}}});
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Mutual Fund / SIP\n${document.getElementById('mainLabel').textContent}: ${document.getElementById('mainValue').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcMF);
+</script>
+</body>
+</html>

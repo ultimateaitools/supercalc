@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carbon Footprint Calculator | SuperCalc</title>
+<meta name="description" content="Calculate your personal carbon footprint from home energy, transport, diet, and consumption. Offset recommendations included.">
+<meta name="keywords" content="carbon footprint calculator, CO2 calculator, personal carbon calculator, greenhouse gas calculator, climate change">
+<link rel="canonical" href="https://supercalc.online/carbon-footprint-calculator.html">
+<meta property="og:title" content="Carbon Footprint Calculator | SuperCalc">
+<meta property="og:description" content="Calculate your personal carbon footprint from home energy, transport, diet, and consumption. Offset recommendations included.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Carbon Footprint Calculator","url":"https://supercalc.online/carbon-footprint-calculator.html","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0"}}</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Carbon Footprint Calculator</span></nav>
+  <h1 class="calc-page-title">&#127807; Carbon Footprint Calculator</h1>
+  <p class="calc-page-subtitle">Calculate your personal carbon footprint from home energy, transport, diet, and consumption. Offset recommendations included.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box"><h2 class="calc-title">Carbon Footprint Calculator</h2><div class="row g-3">
+<div class="col-md-6"><label class="form-label">Car Miles Per Year</label><input type="number" class="form-control" id="f1" value="12000" step="500"></div>
+<div class="col-md-6"><label class="form-label">Car Fuel Economy (mpg)</label><input type="number" class="form-control" id="f2" value="28" step="1"></div>
+<div class="col-md-6"><label class="form-label">Short Haul Flights/Year</label><input type="number" class="form-control" id="f3" value="2" min="0"></div>
+<div class="col-md-6"><label class="form-label">Long Haul Flights/Year</label><input type="number" class="form-control" id="f4" value="1" min="0"></div>
+<div class="col-md-6"><label class="form-label">Monthly Electric Bill ($)</label><input type="number" class="form-control" id="f5" value="100" step="10"></div>
+<div class="col-md-6"><label class="form-label">Diet Type</label>
+<select class="form-select" id="f6">
+<option value="0.5">Vegan</option>
+<option value="1.0">Vegetarian</option>
+<option value="1.8" selected>Average Omnivore</option>
+<option value="2.5">Heavy Meat Eater</option>
+</select></div>
+</div><button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate Footprint</button><div class="result-box" id="resultBox"><div class="row g-3 text-center"><div class="col-6"><div class="result-label">Annual CO₂ (tons)</div><div class="result-value" id="r1">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div><div class="col-6"><div class="result-label">vs. World Average</div><div class="result-value" id="r2">-</div></div><div class="col-6"><div class="result-label">Trees to Offset</div><div class="result-value" id="r3">-</div></div><div class="col-6"><div class="result-label">Carbon Cost ($20/ton)</div><div class="result-value" id="r4">-</div></div></div></div></div>
+<div class="info-box">
+<h2>What is a Carbon Footprint Calculator?</h2>
+<p>Travel and fuel calculators help you plan trips efficiently by estimating fuel costs, travel times, and budgets. Whether planning a road trip or calculating mileage reimbursement, accurate travel calculations help you budget and plan effectively.</p>
+<p>These calculators help you compare travel options, optimize routes for fuel efficiency, and track transportation expenses.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Regular vehicle maintenance improves fuel efficiency by up to 15%</li>
+<li>Optimal highway speed for fuel efficiency is typically 55-65 mph (88-104 km/h)</li>
+<li>Tire pressure affects fuel economy — properly inflated tires improve MPG by 0.5-3%</li>
+<li>Carpooling can cut per-person fuel costs dramatically while reducing carbon footprint</li>
+<li>Gas prices vary significantly by location — apps like GasBuddy help find the cheapest fuel nearby</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How do I calculate fuel cost for a road trip? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Formula: Trip Cost = (Distance ÷ Fuel Efficiency) × Fuel Price. Example: 500 miles, 30 MPG, $3.50/gallon = (500÷30) × $3.50 = $58.33 in fuel. Add 10% for extra driving (detours, traffic) and divide by number of passengers for per-person cost.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What affects vehicle fuel efficiency? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Key factors: driving speed (efficiency peaks at 55-65 mph), acceleration patterns (smooth acceleration saves fuel), air conditioning usage (increases consumption 5-25%), tire pressure, vehicle load weight, route type (highway vs city), vehicle maintenance condition, and weather (cold reduces efficiency 10-20%).</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the IRS standard mileage rate? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The IRS standard mileage rate for 2025 is 67 cents per mile for business use of a personal vehicle. This rate is used to calculate tax deductions for business travel or reimbursements. The rate is adjusted annually and may change mid-year during extraordinary fuel price changes.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I calculate carbon footprint for travel? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Average car CO2 emissions: 0.21 kg CO2 per kilometer (small car), 0.27 kg/km (medium), 0.35 kg/km (large SUV). Flying emits approximately 0.255 kg CO2 per passenger per km (economy class). Train travel averages 0.041 kg CO2/km, making it 6x more environmentally friendly than flying.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="fuel-cost-calculator.html" class="related-item text-decoration-none">&#9981; Fuel Cost Calculator</a>
+<a href="fuel-efficiency-calculator.html" class="related-item text-decoration-none">&#128663; Fuel Efficiency Calculator</a>
+<a href="carbon-footprint-calculator.html" class="related-item text-decoration-none">&#127807; Carbon Footprint</a>
+<a href="tip-calculator.html" class="related-item text-decoration-none">&#128176; Tip Calculator</a>
+<a href="currency-converter.html" class="related-item text-decoration-none">&#128178; Currency Converter</a>
+<a href="travel-budget-calculator.html" class="related-item text-decoration-none">&#9992; Travel Budget</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online &mdash; Free Online Calculators</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a> &bull; <a href="about.html">About</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){const miles=+document.getElementById('f1').value,mpg=+document.getElementById('f2').value,sh=+document.getElementById('f3').value,lh=+document.getElementById('f4').value,elec=+document.getElementById('f5').value,diet=+document.getElementById('f6').value;const car=miles/mpg*8.89/1000,fly=sh*0.5+lh*2.0,energy=elec*12*0.0005,food=diet;const total=car+fly+energy+food;const world=4.7,trees=total*45;document.getElementById('r1').textContent=total.toFixed(2)+' tons CO₂';document.getElementById('r2').textContent=total>world?'+'+(total-world).toFixed(1)+'t above avg':'Under world avg';document.getElementById('r3').textContent=Math.round(trees)+' trees/year';document.getElementById('r4').textContent='$'+(total*20).toFixed(0)+'/year';document.getElementById('resultBox').classList.add('show');}
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok Engagement Rate Calculator 2025 - Free Analytics Tool | SuperCalc</title>
+<meta name="description" content="Calculate your TikTok engagement rate from likes, comments, shares and views. Compare to industry benchmarks. Free TikTok analytics tool for creators and brands.">
+<meta name="keywords" content="tiktok engagement rate calculator, tiktok engagement rate 2025, how to calculate tiktok engagement rate, tiktok analytics tool, tiktok creator metrics, what is a good tiktok engagement rate">
+<link rel="canonical" href="https://supercalc.online/tiktok-engagement-rate-calculator.html">
+<meta property="og:title" content="TikTok Engagement Rate Calculator 2025 - Free Analytics Tool | SuperCalc">
+<meta property="og:description" content="Calculate your TikTok engagement rate from likes, comments, shares and views. Compare to industry benchmarks. Free TikTok analytics tool for creators and brands.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/tiktok-engagement-rate-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TikTok Engagement Rate Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"TikTok Engagement Rate Calculator","description":"Calculate your TikTok engagement rate from likes, comments, shares, and views. See if your engagement is above average for TikTok creators.","url":"https://supercalc.online/tiktok-engagement-rate-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#010101,#ff0050)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">TikTok</a> <i class="bi bi-chevron-right"></i><span>TikTok Engagement Rate Calculator</span></nav>
+  <h1 class="calc-page-title">&#127925; TikTok Engagement Rate Calculator</h1>
+  <p class="calc-page-subtitle">Calculate your TikTok engagement rate from likes, comments, shares, and views. See if your engagement is above average for TikTok creators.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#127925; TikTok Engagement Rate Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">Total Views</label><input type="number" class="form-control" id="views" placeholder="e.g. 100000"></div>
+  <div class="col-md-6"><label class="form-label">Total Likes</label><input type="number" class="form-control" id="likes" placeholder="e.g. 8000"></div>
+  <div class="col-md-6"><label class="form-label">Total Comments</label><input type="number" class="form-control" id="comments" placeholder="e.g. 300"></div>
+  <div class="col-md-6"><label class="form-label">Total Shares</label><input type="number" class="form-control" id="shares" placeholder="e.g. 500"></div>
+  <div class="col-md-6"><label class="form-label">Followers</label><input type="number" class="form-control" id="followers" placeholder="e.g. 25000"></div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate TikTok Engagement</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">View-Based ER</div><div class="result-value" id="viewER">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Follower-Based ER</div><div class="result-value" id="follER">-</div></div>
+    <div class="col-6"><div class="result-label">Viral Score</div><div class="result-value" id="viral">-</div></div>
+    <div class="col-6"><div class="result-label">Rating</div><div class="result-value" id="rating">-</div></div>
+  </div>
+</div>
+</div>
+<div class="info-box">
+<h2>What is a TikTok Engagement Rate Calculator?</h2>
+<p>This TikTok calculator helps creators and brands measure performance and estimate earnings on the world's fastest-growing social media platform. TikTok's unique algorithm gives even new accounts the chance to go viral, making it one of the best platforms for organic reach in 2025.</p>
+<p>With over 1 billion monthly active users, TikTok offers massive monetization potential through the Creator Fund, Creativity Program, brand partnerships, live gifts, and product promotions.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>TikTok's algorithm shows your video to a test audience first — high early engagement = wider distribution</li>
+<li>Post 1-3 times daily for maximum growth (TikTok rewards high-frequency posting)</li>
+<li>Use trending sounds and hashtags to increase discovery</li>
+<li>Videos 21-34 seconds get the highest completion rate</li>
+<li>The first 1-3 seconds must hook viewers — front-load your most compelling moment</li>
+<li>Duets, stitches, and reactions help you piggyback on viral content</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How does TikTok's algorithm work? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">TikTok's recommendation system (For You Page) analyzes: video completion rate, replay rate, likes, comments, shares, and account performance. Every video gets shown to a small test group first. If engagement is high, it's pushed to a larger audience. This is why new creators can go viral without existing followers.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What content does well on TikTok? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Top-performing TikTok content includes: educational and how-to videos (learn something new in 60 seconds), entertainment and humor, trending challenges with original twists, behind-the-scenes content, transformation videos, and storytelling. Authenticity consistently outperforms highly produced content on TikTok.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How many followers do I need to go live on TikTok? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">You need at least 1,000 followers to go live on TikTok. Going live is a powerful monetization tool — viewers can send you virtual gifts that convert to real money. Top TikTok live streamers can earn thousands of dollars per session from gifts alone.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Is TikTok available worldwide? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">TikTok is available in 150+ countries and 75 languages. However, the Creator Fund and Creativity Program are only available in select countries (US, UK, Germany, France, Italy, Spain, and a few others). Creators in other countries can still earn through brand deals and live gifts regardless of their location.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="tiktok-earnings-calculator.html" class="related-item text-decoration-none">&#128176; TikTok Earnings Calculator</a>
+<a href="tiktok-virality-score-calculator.html" class="related-item text-decoration-none">&#128293; TikTok Virality Score</a>
+<a href="tiktok-growth-rate-calculator.html" class="related-item text-decoration-none">&#128200; TikTok Growth Rate</a>
+<a href="instagram-engagement-rate-calculator.html" class="related-item text-decoration-none">&#128247; Instagram Engagement Rate</a>
+<a href="youtube-money-calculator.html" class="related-item text-decoration-none">&#128176; YouTube Money Calculator</a>
+<a href="micro-influencer-rate-calculator.html" class="related-item text-decoration-none">&#128247; Micro Influencer Rate</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){
+  var v=parseFloat(document.getElementById('views').value)||1;
+  var l=parseFloat(document.getElementById('likes').value)||0;
+  var c=parseFloat(document.getElementById('comments').value)||0;
+  var s=parseFloat(document.getElementById('shares').value)||0;
+  var f=parseFloat(document.getElementById('followers').value)||1;
+  var total=l+c+s;
+  var viewER=(total/v)*100;
+  var follER=(total/f)*100;
+  var viralScore=(v/f*100).toFixed(1);
+  var rating=viewER<3?'Below Avg':viewER<6?'Average':viewER<10?'Good':'Viral';
+  document.getElementById('viewER').textContent=viewER.toFixed(2)+'%';
+  document.getElementById('follER').textContent=follER.toFixed(2)+'%';
+  document.getElementById('viral').textContent=viralScore+'%';
+  document.getElementById('rating').textContent=rating;
+  document.getElementById('resultBox').style.display='block';
+}
+</script>
+</body>
+</html>

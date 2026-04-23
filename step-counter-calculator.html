@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steps to Calories Calculator - How Many Calories Do Steps Burn? | SuperCalc</title>
+  <meta name="description" content="Free steps to calories calculator. Find out how many calories you burn walking 1000, 5000, 8000 or 10000 steps. Calculate distance walked and calories burned by steps.">
+  <meta name="keywords" content="steps to calories calculator, calories burned walking, 10000 steps calories, pedometer calculator, steps counter calories, walking calorie calculator">
+  <link rel="canonical" href="https://supercalc.online/step-counter-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#00897b,#4db6ac)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#health">Health</a> <i class="bi bi-chevron-right"></i><span>Steps Calculator</span></nav>
+  <h1 class="calc-page-title">👣 Steps to Calories Calculator</h1>
+  <p class="calc-page-subtitle">Calculate calories burned and distance from your daily step count</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill" onclick="setSteps(1000,this)">1,000</button>
+        <button class="cat-pill" onclick="setSteps(5000,this)">5,000</button>
+        <button class="cat-pill" onclick="setSteps(7500,this)">7,500</button>
+        <button class="cat-pill active" onclick="setSteps(10000,this)">10,000 🎯</button>
+        <button class="cat-pill" onclick="setSteps(15000,this)">15,000</button>
+        <button class="cat-pill" onclick="setSteps(20000,this)">20,000</button>
+      </div>
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Steps Count</label><input type="number" class="form-control" id="steps" value="10000" step="500" min="0" oninput="calcSteps()"></div>
+          <div class="col-md-4"><label class="form-label">Your Weight (kg)</label><input type="number" class="form-control" id="weight" value="70" step="1" oninput="calcSteps()"></div>
+          <div class="col-md-4"><label class="form-label">Height (cm)</label><input type="number" class="form-control" id="height" value="170" step="1" oninput="calcSteps()"></div>
+          <div class="col-md-6"><label class="form-label">Walking Pace</label><select class="form-select" id="pace" onchange="calcSteps()"><option value="slow">🐢 Slow (60-80 steps/min)</option><option value="normal" selected>🚶 Normal (80-100 steps/min)</option><option value="brisk">🏃 Brisk (100-120 steps/min)</option><option value="fast">⚡ Fast (120+ steps/min)</option></select></div>
+          <div class="col-md-6"><label class="form-label">Gender</label><select class="form-select" id="gender" onchange="calcSteps()"><option value="male">Male</option><option value="female">Female</option></select></div>
+        </div>
+        <div class="result-box show mt-4" style="display:block" id="resultBox">
+          <div class="result-primary"><div class="result-label">Calories Burned</div><div class="result-value" id="calories">0 kcal</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Distance Walked</div><div class="r-value text-primary" id="distance">0 km</div></div>
+            <div class="result-item"><div class="r-label">Time Taken</div><div class="r-value" id="duration">0 min</div></div>
+            <div class="result-item"><div class="r-label">Fat Burned (approx)</div><div class="r-value" style="color:var(--accent)" id="fatBurned">0g</div></div>
+            <div class="result-item"><div class="r-label">Steps to Lose 1kg</div><div class="r-value" style="color:var(--warning)" id="stepsPerKg">0</div></div>
+          </div>
+          <!-- Progress bar to 10,000 -->
+          <div class="mt-3">
+            <div class="d-flex justify-content-between mb-1" style="font-size:0.8rem"><span>Progress to 10,000 steps goal</span><span id="pctLabel">0%</span></div>
+            <div class="progress" style="height:16px;border-radius:8px"><div class="progress-bar" id="stepBar" style="background:linear-gradient(90deg,var(--primary),var(--accent));transition:width 0.5s ease"></div></div>
+          </div>
+          <div class="action-btns mt-3"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Health Benefits of 10,000 Steps/Day</h2>
+        <ul>
+          <li>Burns approximately <strong>300-500 calories</strong> (varies by weight and pace)</li>
+          <li>Covers roughly <strong>7-8 km</strong> of distance</li>
+          <li>Takes about <strong>90-100 minutes</strong> at normal pace</li>
+          <li>WHO recommends <strong>150 minutes of moderate activity</strong> per week — 10,000 steps/day fulfills this</li>
+          <li>Reduces risk of heart disease, type 2 diabetes, and depression</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function setSteps(n,btn){document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('steps').value=n;calcSteps();}
+function calcSteps(){
+  const steps=+document.getElementById('steps').value;const weight=+document.getElementById('weight').value;
+  const height=+document.getElementById('height').value;const gender=document.getElementById('gender').value;const pace=document.getElementById('pace').value;
+  // Stride length (approx 0.41*height for men, 0.413*height for women)
+  const strideFactor=gender==='male'?0.415:0.413;const strideCm=height*strideFactor;
+  const distM=steps*strideCm/100;const distKm=distM/1000;
+  // Pace spm and speed
+  const spm={slow:70,normal:90,brisk:110,fast:130}[pace];const speedKmh=distKm/(steps/spm/60);
+  const MET={slow:2.5,normal:3.5,brisk:4.5,fast:6.0}[pace];
+  const cal=Math.round(MET*weight*(steps/spm/60)/60);
+  const durationMin=Math.round(steps/spm);const fatG=(cal/7700*1000).toFixed(1);
+  const stepsPerKg=Math.round(7700000/(MET*weight/60));
+  const pct=Math.min(100,(steps/10000*100)).toFixed(0);
+  document.getElementById('calories').textContent=cal+' kcal';
+  document.getElementById('distance').textContent=distKm.toFixed(2)+' km ('+Math.round(distM)+' m)';
+  document.getElementById('duration').textContent=Math.floor(durationMin/60)>0?Math.floor(durationMin/60)+'h '+durationMin%60+'min':durationMin+'min';
+  document.getElementById('fatBurned').textContent=fatG+' g of fat';
+  document.getElementById('stepsPerKg').textContent=stepsPerKg.toLocaleString('en-IN')+' steps';
+  document.getElementById('stepBar').style.width=pct+'%';document.getElementById('pctLabel').textContent=pct+'%';
+}
+function getText(){return `Steps: ${document.getElementById('steps').value}\nCalories: ${document.getElementById('calories').textContent}\nDistance: ${document.getElementById('distance').textContent}\nTime: ${document.getElementById('duration').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcSteps);
+</script>
+</body>
+</html>

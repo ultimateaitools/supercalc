@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary, Decimal, Hex & Octal Converter | SuperCalc</title>
+  <meta name="description" content="Free binary to decimal converter. Convert between binary, decimal, hexadecimal and octal number systems instantly. Also supports binary arithmetic (add, subtract, multiply).">
+  <meta name="keywords" content="binary converter, binary to decimal, decimal to binary, hex converter, hexadecimal to decimal, octal converter, number base converter">
+  <link rel="canonical" href="https://supercalc.online/binary-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#0d47a1,#1976d2)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Binary Converter</span></nav>
+  <h1 class="calc-page-title">🔢 Binary / Hex Converter</h1>
+  <p class="calc-page-subtitle">Convert between binary, decimal, hexadecimal & octal</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🔄 Number Base Converter</h3>
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Decimal (Base 10)</label><input type="number" class="form-control" id="dec" placeholder="Enter decimal number" oninput="fromDec()"></div>
+          <div class="col-md-6"><label class="form-label">Binary (Base 2)</label><input type="text" class="form-control" id="bin" placeholder="e.g. 1010" oninput="fromBin()"></div>
+          <div class="col-md-6"><label class="form-label">Hexadecimal (Base 16)</label><input type="text" class="form-control" id="hex" placeholder="e.g. FF" oninput="fromHex()"></div>
+          <div class="col-md-6"><label class="form-label">Octal (Base 8)</label><input type="text" class="form-control" id="oct" placeholder="e.g. 17" oninput="fromOct()"></div>
+        </div>
+        <div class="action-btns mt-3"><button class="btn-action" onclick="copyResult('Dec: '+document.getElementById('dec').value+' | Bin: '+document.getElementById('bin').value+' | Hex: '+document.getElementById('hex').value)"><i class="bi bi-clipboard"></i> Copy All</button></div>
+      </div>
+
+      <div class="calc-box mt-4">
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🧮 Binary Arithmetic</h3>
+        <div class="row g-3">
+          <div class="col-md-5"><label class="form-label">Binary Number A</label><input type="text" class="form-control" id="binA" value="1010" placeholder="e.g. 1010"></div>
+          <div class="col-md-2"><label class="form-label">Operation</label><select class="form-select" id="binOp"><option>+</option><option>-</option><option>×</option><option>AND</option><option>OR</option><option>XOR</option></select></div>
+          <div class="col-md-5"><label class="form-label">Binary Number B</label><input type="text" class="form-control" id="binB" value="0110" placeholder="e.g. 0110"></div>
+        </div>
+        <button class="btn-calculate mt-3 py-2" onclick="calcBinary()"><i class="bi bi-calculator me-2"></i>Calculate Binary</button>
+        <div class="result-box" id="binResult">
+          <div class="result-primary"><div class="result-label" id="binResLabel">Result (Binary)</div><div class="result-value" id="binResVal" style="font-family:monospace">—</div></div>
+          <div id="binResExtra" class="mt-3"></div>
+        </div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Quick Reference</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Decimal</th><th>Binary</th><th>Hex</th><th>Octal</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>0000</td><td>0</td><td>0</td></tr>
+            <tr><td>5</td><td>0101</td><td>5</td><td>5</td></tr>
+            <tr><td>10</td><td>1010</td><td>A</td><td>12</td></tr>
+            <tr><td>15</td><td>1111</td><td>F</td><td>17</td></tr>
+            <tr><td>16</td><td>10000</td><td>10</td><td>20</td></tr>
+            <tr><td>255</td><td>11111111</td><td>FF</td><td>377</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function update(n){document.getElementById('dec').value=n;document.getElementById('bin').value=n.toString(2);document.getElementById('hex').value=n.toString(16).toUpperCase();document.getElementById('oct').value=n.toString(8);}
+function fromDec(){const v=parseInt(document.getElementById('dec').value);if(!isNaN(v)&&v>=0)update(v);}
+function fromBin(){const v=parseInt(document.getElementById('bin').value,2);if(!isNaN(v))update(v);}
+function fromHex(){const v=parseInt(document.getElementById('hex').value,16);if(!isNaN(v))update(v);}
+function fromOct(){const v=parseInt(document.getElementById('oct').value,8);if(!isNaN(v))update(v);}
+function calcBinary(){
+  const a=parseInt(document.getElementById('binA').value,2);const b=parseInt(document.getElementById('binB').value,2);const op=document.getElementById('binOp').value;
+  let res;const ops={'+':a+b,'-':a-b,'×':a*b,'AND':a&b,'OR':a|b,'XOR':a^b};res=ops[op];
+  document.getElementById('binResLabel').textContent='Result ('+op+')';document.getElementById('binResVal').textContent=res>=0?res.toString(2):'Negative ('+res+')';
+  document.getElementById('binResExtra').innerHTML=`<div class="result-grid"><div class="result-item"><div class="r-label">Decimal</div><div class="r-value text-primary">${res}</div></div><div class="result-item"><div class="r-label">Hex</div><div class="r-value">${res>=0?res.toString(16).toUpperCase():'N/A'}</div></div></div>`;
+  document.getElementById('binResult').classList.add('show');
+}
+document.addEventListener('DOMContentLoaded',()=>update(42));
+</script>
+</body>
+</html>

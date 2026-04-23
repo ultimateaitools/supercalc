@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPA Calculator - Calculate Semester & Cumulative GPA | SuperCalc</title>
+  <meta name="description" content="Free GPA calculator online. Calculate semester GPA, cumulative GPA, and CGPA. Supports 4.0 and 10.0 grading scales. Easy to use for US, India & international students.">
+  <meta name="keywords" content="GPA calculator, semester GPA calculator, cumulative GPA calculator, CGPA calculator, grade point average, 4.0 GPA scale, college GPA calculator">
+  <link rel="canonical" href="https://supercalc.online/gpa-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#2980b9,#8e44ad)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#education">Education</a> <i class="bi bi-chevron-right"></i><span>GPA Calculator</span></nav>
+  <h1 class="calc-page-title">🎓 GPA Calculator</h1>
+  <p class="calc-page-subtitle">Calculate semester GPA, cumulative CGPA — 4.0 & 10.0 scale</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('semester',this)">📚 Semester GPA</button>
+        <button class="cat-pill" onclick="setMode('cumulative',this)">📊 Cumulative GPA</button>
+        <button class="cat-pill" onclick="setMode('convert',this)">🔄 CGPA ↔ Percentage</button>
+      </div>
+
+      <!-- Semester GPA -->
+      <div class="calc-box" id="semBox">
+        <div class="row g-2 mb-3">
+          <div class="col-md-6"><label class="form-label">Grading Scale</label><select class="form-select" id="scale"><option value="4">4.0 Scale (US/Canada)</option><option value="10" selected>10.0 Scale (India/VTU/Anna/SPPU)</option></select></div>
+          <div class="col-md-6"><label class="form-label">Grade Type</label><select class="form-select" id="gradeType"><option value="letter">Letter Grades (A, B, C...)</option><option value="marks" selected>Marks / Percentage</option><option value="points">Grade Points Direct</option></select></div>
+        </div>
+        <div id="subjectRows"></div>
+        <button class="btn btn-outline-primary btn-sm mt-2" onclick="addSubject()"><i class="bi bi-plus"></i> Add Subject</button>
+        <button class="btn-calculate mt-4" onclick="calcGPA()"><i class="bi bi-calculator me-2"></i>Calculate GPA</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">GPA / SGPA</div><div class="result-value" id="gpaResult">0.00</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Grade Category</div><div class="r-value text-primary" id="gradeCategory">—</div></div>
+            <div class="result-item"><div class="r-label">Equivalent %</div><div class="r-value" id="eqPct">—</div></div>
+            <div class="result-item"><div class="r-label">Total Credits</div><div class="r-value" id="totalCredits">—</div></div>
+          </div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <!-- Convert -->
+      <div class="calc-box d-none" id="convertBox">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">CGPA (10 point scale)</label><input type="number" class="form-control" id="cgpaIn" value="8.5" step="0.01" min="0" max="10"></div>
+          <div class="col-md-6"><label class="form-label">University Formula</label>
+            <select class="form-select" id="univFormula">
+              <option value="9.5">Anna University (CGPA × 9.5)</option>
+              <option value="9">VTU (CGPA × 9)</option>
+              <option value="9.5">Mumbai University (CGPA × 9.5)</option>
+              <option value="10">SPPU (CGPA × 10 - 7.5)</option>
+              <option value="general">General ((CGPA-0.75) × 10)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-calculate mt-3" onclick="convertGPA()"><i class="bi bi-arrow-left-right me-2"></i>Convert</button>
+        <div class="result-box" id="convertResult">
+          <div class="result-primary"><div class="result-label">Percentage Equivalent</div><div class="result-value" id="convertOut">—</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">4.0 Scale</div><div class="r-value text-primary" id="scale4">—</div></div>
+            <div class="result-item"><div class="r-label">Class</div><div class="r-value" id="classOut">—</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Grading Scale Reference</h2>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h4 style="font-size:0.9rem;font-weight:700">10.0 Scale (India)</h4>
+            <div class="table-responsive"><table class="table table-sm" style="font-size:0.78rem;color:var(--text)">
+              <thead><tr style="background:var(--bg-input)"><th>Marks%</th><th>Grade</th><th>Points</th></tr></thead>
+              <tbody>
+                <tr><td>≥90</td><td>O (Outstanding)</td><td>10</td></tr>
+                <tr><td>80-89</td><td>A+ (Excellent)</td><td>9</td></tr>
+                <tr><td>70-79</td><td>A (Very Good)</td><td>8</td></tr>
+                <tr><td>60-69</td><td>B+ (Good)</td><td>7</td></tr>
+                <tr><td>55-59</td><td>B (Above Average)</td><td>6</td></tr>
+                <tr><td>50-54</td><td>C (Average)</td><td>5</td></tr>
+                <tr><td>&lt;50</td><td>F (Fail)</td><td>0</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+          <div class="col-md-6">
+            <h4 style="font-size:0.9rem;font-weight:700">4.0 Scale (US)</h4>
+            <div class="table-responsive"><table class="table table-sm" style="font-size:0.78rem;color:var(--text)">
+              <thead><tr style="background:var(--bg-input)"><th>Grade</th><th>Points</th><th>%</th></tr></thead>
+              <tbody>
+                <tr><td>A/A+</td><td>4.0</td><td>90-100</td></tr>
+                <tr><td>A-</td><td>3.7</td><td>87-89</td></tr>
+                <tr><td>B+</td><td>3.3</td><td>83-86</td></tr>
+                <tr><td>B</td><td>3.0</td><td>80-82</td></tr>
+                <tr><td>B-</td><td>2.7</td><td>77-79</td></tr>
+                <tr><td>C+</td><td>2.3</td><td>73-76</td></tr>
+                <tr><td>C</td><td>2.0</td><td>70-72</td></tr>
+                <tr><td>D</td><td>1.0</td><td>60-69</td></tr>
+                <tr><td>F</td><td>0.0</td><td>&lt;60</td></tr>
+              </tbody>
+            </table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let subjects=[];
+
+function setMode(m,btn){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');
+  document.getElementById('semBox').classList.toggle('d-none',m!=='semester');
+  document.getElementById('convertBox').classList.toggle('d-none',m!=='convert');
+}
+
+function addSubject(name='',credits=4,marks=75){
+  subjects.push({name,credits,marks});renderSubjects();
+}
+
+function renderSubjects(){
+  document.getElementById('subjectRows').innerHTML=subjects.map((s,i)=>`
+    <div class="row g-2 mb-2 align-items-center">
+      <div class="col-md-4"><input type="text" class="form-control form-control-sm" placeholder="Subject name" value="${s.name}" onchange="subjects[${i}].name=this.value" style="font-size:0.82rem"></div>
+      <div class="col-md-3"><div class="input-group input-group-sm"><input type="number" class="form-control" placeholder="Marks %" value="${s.marks}" min="0" max="100" onchange="subjects[${i}].marks=+this.value"><span class="input-group-text">%</span></div></div>
+      <div class="col-md-3"><div class="input-group input-group-sm"><input type="number" class="form-control" placeholder="Credits" value="${s.credits}" min="1" max="6" onchange="subjects[${i}].credits=+this.value"><span class="input-group-text">Cr</span></div></div>
+      <div class="col-md-2"><button onclick="subjects.splice(${i},1);renderSubjects()" style="background:none;border:1px solid var(--danger);border-radius:6px;padding:4px 8px;color:var(--danger);cursor:pointer;font-size:0.75rem">✕</button></div>
+    </div>`).join('');
+}
+
+function marksToGP(marks,scale){
+  if(scale===10){
+    if(marks>=90)return 10;if(marks>=80)return 9;if(marks>=70)return 8;
+    if(marks>=60)return 7;if(marks>=55)return 6;if(marks>=50)return 5;return 0;
+  } else {
+    if(marks>=90)return 4.0;if(marks>=87)return 3.7;if(marks>=83)return 3.3;
+    if(marks>=80)return 3.0;if(marks>=77)return 2.7;if(marks>=73)return 2.3;
+    if(marks>=70)return 2.0;if(marks>=60)return 1.0;return 0;
+  }
+}
+
+function calcGPA(){
+  const scale=+document.getElementById('scale').value;
+  let totalCredit=0,weightedSum=0;
+  for(const s of subjects){const gp=marksToGP(s.marks,scale);weightedSum+=gp*s.credits;totalCredit+=s.credits;}
+  const gpa=totalCredit>0?weightedSum/totalCredit:0;
+  const pct=scale===10?gpa*9.5:gpa*25;
+  let cat,catColor;
+  if(scale===10){if(gpa>=9){cat='Outstanding';catColor='var(--accent)';}else if(gpa>=8){cat='Excellent';catColor='var(--primary)';}else if(gpa>=7){cat='Very Good';catColor='var(--secondary)';}else if(gpa>=6){cat='Good';catColor='var(--warning)';}else{cat='Needs Improvement';catColor='var(--danger)';}}
+  else{if(gpa>=3.7){cat="Dean's List (A)";catColor='var(--accent)';}else if(gpa>=3.0){cat='Good Standing (B)';catColor='var(--primary)';}else if(gpa>=2.0){cat='Satisfactory (C)';catColor='var(--warning)';}else{cat='Academic Probation';catColor='var(--danger)';}}
+  document.getElementById('gpaResult').textContent=gpa.toFixed(2);
+  document.getElementById('gradeCategory').textContent=cat;document.getElementById('gradeCategory').style.color=catColor;
+  document.getElementById('eqPct').textContent=pct.toFixed(1)+'%';
+  document.getElementById('totalCredits').textContent=totalCredit+' credits';
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function convertGPA(){
+  const cgpa=+document.getElementById('cgpaIn').value;
+  const formula=document.getElementById('univFormula').value;
+  let pct;
+  if(formula==='general'){pct=(cgpa-0.75)*10;}else if(formula==='10'){pct=cgpa*10-7.5;}else{pct=cgpa*+formula;}
+  const scale4=(cgpa/10)*4;
+  let cls;if(pct>=75)cls='First Class with Distinction';else if(pct>=60)cls='First Class';else if(pct>=50)cls='Second Class';else cls='Pass Class';
+  document.getElementById('convertOut').textContent=pct.toFixed(2)+'%';
+  document.getElementById('scale4').textContent=scale4.toFixed(2);
+  document.getElementById('classOut').textContent=cls;
+  document.getElementById('convertResult').classList.add('show');
+}
+
+function getText(){return `GPA: ${document.getElementById('gpaResult').textContent}\nGrade: ${document.getElementById('gradeCategory').textContent}\nPercentage: ${document.getElementById('eqPct').textContent}`;}
+
+// Init with 6 subjects
+document.addEventListener('DOMContentLoaded',()=>{
+  const initSubs=[['Mathematics',4,85],['Physics',3,78],['Chemistry',3,72],['English',2,88],['Programming',4,91],['Electronics',3,76]];
+  initSubs.forEach(([n,c,m])=>addSubject(n,c,m));
+  calcGPA();
+});
+</script>
+</body>
+</html>

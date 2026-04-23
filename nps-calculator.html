@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPS Calculator - National Pension Scheme Calculator 2025 | SuperCalc</title>
+  <meta name="description" content="Free NPS calculator. Calculate your NPS maturity amount, monthly pension, and tax benefits under National Pension Scheme. NPS Tier 1 pension calculation 2025.">
+  <meta name="keywords" content="NPS calculator, national pension scheme calculator, NPS maturity calculator, NPS pension calculator, NPS tax benefit, NPS Tier 1 calculator India">
+  <link rel="canonical" href="https://supercalc.online/nps-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#bf360c,#e64a19)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>NPS Calculator</span></nav>
+  <h1 class="calc-page-title">🏛️ NPS Calculator</h1>
+  <p class="calc-page-subtitle">National Pension Scheme — Calculate maturity corpus and monthly pension</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Current Age</label><input type="number" class="form-control" id="age" value="30" min="18" max="65"></div>
+          <div class="col-md-4"><label class="form-label">Retirement Age</label><input type="number" class="form-control" id="retAge" value="60" min="40" max="75"></div>
+          <div class="col-md-4"><label class="form-label">Monthly Contribution</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="monthly" value="5000" step="500"></div></div>
+          <div class="col-md-4"><label class="form-label">Expected Annual Return</label><div class="input-group"><input type="number" class="form-control" id="rate" value="10" step="0.5"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-4"><label class="form-label">Annuity Rate (pension)</label><div class="input-group"><input type="number" class="form-control" id="annuity" value="6" step="0.5"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-4"><label class="form-label">Annuity Purchase (%)</label><select class="form-select" id="annuityPct"><option value="0.40">40% (minimum)</option><option value="0.60" selected>60%</option><option value="0.80">80%</option><option value="1.0">100% (max pension)</option></select></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcNPS()"><i class="bi bi-bank me-2"></i>Calculate NPS</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Total NPS Corpus at Retirement</div><div class="result-value" id="corpus">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Lump Sum (Tax-Free 60%)</div><div class="r-value text-primary" id="lumpSum">₹0</div></div>
+            <div class="result-item"><div class="r-label">Monthly Pension</div><div class="r-value" style="color:var(--accent)" id="pension">₹0/month</div></div>
+            <div class="result-item"><div class="r-label">Total Investment</div><div class="r-value" style="color:var(--warning)" id="totalInvest">₹0</div></div>
+            <div class="result-item"><div class="r-label">Total Returns Earned</div><div class="r-value" id="totalReturn">₹0</div></div>
+          </div>
+          <div class="chart-container"><canvas id="npsChart"></canvas></div>
+          <div class="highlight-box mt-3" style="border-color:#e64a19;background:rgba(230,74,25,0.08)"><strong>💰 Tax Benefits:</strong> Up to ₹1.5L under 80C + additional ₹50,000 under 80CCD(1B) = <strong>Total ₹2L tax deduction</strong> per year!</div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>NPS Key Features 2025</h2>
+        <ul>
+          <li><strong>Tax Deduction:</strong> ₹1.5L (80C) + ₹50,000 (80CCD(1B)) = ₹2L total per year</li>
+          <li><strong>Withdrawal at 60:</strong> 60% lump sum (tax-free) + 40% minimum annuity for monthly pension</li>
+          <li><strong>Lock-in Period:</strong> Till age 60 (partial withdrawal allowed after 3 years)</li>
+          <li><strong>Partial Withdrawal:</strong> Up to 25% after 3 years for specific purposes</li>
+          <li><strong>Historical Returns:</strong> Equity (E) fund ~12%, Government (G) fund ~8%, Corporate (C) fund ~9%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let npsChart=null;
+function calcNPS(){
+  const age=+document.getElementById('age').value,ret=+document.getElementById('retAge').value;const months=(ret-age)*12;
+  const m=+document.getElementById('monthly').value;const r=+document.getElementById('rate').value/100/12;
+  const annuityR=+document.getElementById('annuity').value/100/12;const annuityPct=+document.getElementById('annuityPct').value;
+  const corpus=m*((Math.pow(1+r,months)-1)/r)*(1+r);
+  const annuityCorpus=corpus*annuityPct;const lumpSum=corpus*(1-annuityPct);
+  const pension=annuityCorpus*annuityR;const totalInvest=m*months;const totalReturn=corpus-totalInvest;
+  const fmt=v=>'₹'+Math.round(v).toLocaleString('en-IN');
+  document.getElementById('corpus').textContent=fmt(corpus);
+  document.getElementById('lumpSum').textContent=fmt(lumpSum)+' (tax-free)';
+  document.getElementById('pension').textContent=fmt(pension)+'/month';
+  document.getElementById('totalInvest').textContent=fmt(totalInvest);
+  document.getElementById('totalReturn').textContent=fmt(totalReturn);
+  const ctx=document.getElementById('npsChart').getContext('2d');if(npsChart)npsChart.destroy();
+  npsChart=new Chart(ctx,{type:'doughnut',data:{labels:['Total Investment','Returns Generated'],datasets:[{data:[totalInvest,totalReturn],backgroundColor:['rgba(108,59,255,0.7)','rgba(0,229,160,0.8)'],borderWidth:0}]},options:{responsive:true,cutout:'60%',plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>`${c.label}: ${fmt(c.parsed)}`}}}}});
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `NPS Calculation\nTotal Corpus: ${document.getElementById('corpus').textContent}\nLump Sum: ${document.getElementById('lumpSum').textContent}\nMonthly Pension: ${document.getElementById('pension').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcNPS);
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Countdown Timer Calculator | SuperCalc</title>
+<meta name="description" content="Calculate exact time remaining until any future date or event. Days, hours, minutes, and seconds countdown.">
+<meta name="keywords" content="countdown calculator, days until calculator, time remaining calculator, event countdown, deadline calculator">
+<link rel="canonical" href="https://supercalc.online/countdown-calculator.html">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#0d47a1,#1565c0)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Countdown Timer Calculator</span></nav>
+  <h1 class="calc-page-title">&#9200; Countdown Timer Calculator</h1>
+  <p class="calc-page-subtitle">Calculate exact time remaining until any future date or event. Days, hours, minutes, and seconds countdown.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class='calc-box'><h2 class='calc-title'>Countdown Calculator</h2><div class='row g-3'><div class='col-md-6'><label class='form-label'>Event Name</label><input type='text' class='form-control' id='evName' value='New Year 2026' placeholder='Event name'></div><div class='col-md-6'><label class='form-label'>Event Date &amp; Time</label><input type='datetime-local' class='form-control' id='evDate'></div></div><button class='btn-calculate mt-4' onclick='calc()'><i class='bi bi-stopwatch me-2'></i>Calculate Countdown</button><div class='result-box' id='resultBox'><div class='row g-3 text-center'><div class='col-6'><div class='result-label'>Days</div><div class='result-value' id='r1'>-</div></div><div class='col-6'><div class='result-label'>Hours</div><div class='result-value' id='r2'>-</div></div><div class='col-6'><div class='result-label'>Minutes</div><div class='result-value' id='r3'>-</div></div><div class='col-6'><div class='result-label'>Total Hours</div><div class='result-value' id='r4'>-</div></div></div></div></div>
+<div class="info-box">
+<h2>What is a Countdown Timer Calculator?</h2>
+<p>Date and time calculators help you compute the difference between dates, add or subtract time periods, and plan around specific dates. These tools are invaluable for project management, event planning, age calculation, and deadline tracking.</p>
+<p>All calculations account for leap years, varying month lengths, and timezone considerations for accurate results.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Leap years occur every 4 years (divisible by 4), except for years divisible by 100, unless also divisible by 400</li>
+<li>Time zone differences can shift event dates — always specify timezone for international planning</li>
+<li>Working days calculators exclude weekends; for accurate business deadlines, also subtract public holidays</li>
+<li>The ISO 8601 date format (YYYY-MM-DD) is the international standard and avoids DD/MM vs MM/DD confusion</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How do leap years affect date calculations? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Leap years add an extra day (February 29) every 4 years, making that year 366 days. This matters for anniversary calculations, age calculations around late February birthdays, and any calculation spanning multiple years. Years divisible by 100 skip leap year UNLESS also divisible by 400 (e.g., 2000 was a leap year, 1900 was not).</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the difference between calendar days and business days? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Calendar days count every day including weekends and holidays. Business days (also called working days) count only Monday-Friday, excluding weekends. Some countries also exclude national public holidays. For financial and legal deadlines, whether 'days' means calendar or business days is critically important.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How accurate are online date calculators? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Date calculators are extremely accurate for standard Gregorian calendar calculations. The main variable is whether to include/exclude the start and end dates in the count. Different contexts use different conventions — courts often use 'counting from the day after' while age calculations typically use 'from the birthday itself'.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is Unix timestamp? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">A Unix timestamp (also called POSIX time or Epoch time) counts the number of seconds elapsed since January 1, 1970, 00:00:00 UTC. It's the standard way computers store and transmit date/time information. Converting between Unix timestamps and human-readable dates is a common programming task.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="age-calculator.html" class="related-item text-decoration-none">&#127874; Age Calculator</a>
+<a href="date-calculator.html" class="related-item text-decoration-none">&#128197; Date Calculator</a>
+<a href="days-until-calculator.html" class="related-item text-decoration-none">&#128197; Days Until Calculator</a>
+<a href="working-days-calculator.html" class="related-item text-decoration-none">&#128197; Working Days Calculator</a>
+<a href="time-zone-converter.html" class="related-item text-decoration-none">&#127760; Time Zone Converter</a>
+<a href="add-days-calculator.html" class="related-item text-decoration-none">&#128197; Add Days Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>const ny=new Date();ny.setFullYear(ny.getFullYear()+1);ny.setMonth(0);ny.setDate(1);ny.setHours(0,0,0);document.getElementById('evDate').value=ny.toISOString().slice(0,16);function calc(){const ev=new Date(document.getElementById('evDate').value),now=new Date(),ms=ev-now;if(ms<0){document.getElementById('r1').textContent='Event passed';return;}const days=Math.floor(ms/86400000),hrs=Math.floor((ms%86400000)/3600000),mins=Math.floor((ms%3600000)/60000),totalH=Math.floor(ms/3600000);document.getElementById('r1').textContent=days.toLocaleString();document.getElementById('r2').textContent=hrs;document.getElementById('r3').textContent=mins;document.getElementById('r4').textContent=totalH.toLocaleString();document.getElementById('resultBox').classList.add('show');}</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "SuperCalc - Free Online Calculators",
+  "short_name": "SuperCalc",
+  "description": "250+ free online calculators for finance, health, math & more",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#4F46E5",
+  "orientation": "any",
+  "icons": [
+    { "src": "images/icon-72.png",   "sizes": "72x72",   "type": "image/png" },
+    { "src": "images/icon-96.png",   "sizes": "96x96",   "type": "image/png" },
+    { "src": "images/icon-128.png",  "sizes": "128x128", "type": "image/png" },
+    { "src": "images/icon-144.png",  "sizes": "144x144", "type": "image/png" },
+    { "src": "images/icon-152.png",  "sizes": "152x152", "type": "image/png" },
+    { "src": "images/icon-192.png",  "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "images/icon-384.png",  "sizes": "384x384", "type": "image/png" },
+    { "src": "images/icon-512.png",  "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    { "name": "EMI Calculator",  "url": "/emi-calculator.html",        "description": "Calculate loan EMI" },
+    { "name": "GST Calculator",  "url": "/gst-calculator.html",        "description": "Calculate GST" },
+    { "name": "BMI Calculator",  "url": "/bmi-calculator.html",        "description": "Check your BMI" },
+    { "name": "Age Calculator",  "url": "/age-calculator.html",        "description": "Calculate your age" }
+  ],
+  "categories": ["finance", "utilities", "productivity"],
+  "lang": "en"
+}
+

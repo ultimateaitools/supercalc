@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator 2025 - Calculate Exact Age Online Free | SuperCalc</title>
+  <meta name="description" content="Free age calculator online. Calculate your exact age in years, months, days, hours & minutes from date of birth. Find days until next birthday & more.">
+  <meta name="keywords" content="age calculator, calculate age, date of birth calculator, exact age calculator, age in days, birthday calculator, how old am I">
+  <link rel="canonical" href="https://supercalc.online/age-calculator.html">
+  <meta property="og:title" content="Age Calculator - Calculate Exact Age Online | SuperCalc">
+  <meta property="og:description" content="Calculate your exact age in years, months, days from date of birth.">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Age Calculator","url":"https://supercalc.online/age-calculator.html","description":"Calculate exact age from date of birth","applicationCategory":"UtilityApplication","offers":{"@type":"Offer","price":"0"}}
+  </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto ms-3"><li><a class="nav-link" href="index.html#math">📐 Math</a></li><li><a class="nav-link" href="index.html#finance">💰 Finance</a></li></ul>
+      <div class="d-flex gap-2"><div class="search-wrapper d-none d-lg-block"><i class="bi bi-search search-icon"></i><input type="search" class="search-input" placeholder="Search..."><div class="search-dropdown"></div></div><button class="theme-toggle" id="themeToggle"><i class="bi bi-moon-fill" id="themeIcon"></i></button></div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#8B5CF6,#EC4899)">
+  <div class="container">
+    <nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#math">Math</a> <i class="bi bi-chevron-right"></i><span>Age Calculator</span></nav>
+    <h1 class="calc-page-title">🎂 Age Calculator</h1>
+    <p class="calc-page-subtitle">Calculate your exact age in years, months, days, hours & minutes</p>
+  </div>
+</div>
+
+<div class="container mt-3"><div class="ad-banner"><span class="ad-label">Advertisement</span><span>[ Ad Banner 728x90 ]</span></div></div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="dob" max="">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Age at Date (Optional)</label>
+            <input type="date" class="form-control" id="ageAt">
+            <small style="font-size:0.75rem;color:var(--text-muted)">Leave empty to calculate age as of today</small>
+          </div>
+        </div>
+
+        <button class="btn-calculate mt-4" onclick="calculateAge()"><i class="bi bi-calculator me-2"></i>Calculate Age</button>
+
+        <div class="result-box" id="resultBox">
+          <div class="result-primary">
+            <div class="result-label">Your Age</div>
+            <div class="result-value" id="ageMain" style="font-size:2rem">0 Years</div>
+            <div id="ageExact" style="font-size:1rem;color:var(--text-secondary);margin-top:0.5rem"></div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Total Days</div><div class="r-value text-primary" id="totalDays">0</div></div>
+            <div class="result-item"><div class="r-label">Total Weeks</div><div class="r-value" id="totalWeeks">0</div></div>
+            <div class="result-item"><div class="r-label">Total Months</div><div class="r-value" id="totalMonths">0</div></div>
+            <div class="result-item"><div class="r-label">Total Hours</div><div class="r-value" id="totalHours">0</div></div>
+            <div class="result-item"><div class="r-label">Next Birthday</div><div class="r-value" style="color:var(--accent)" id="nextBirthday">-</div></div>
+            <div class="result-item"><div class="r-label">Day of Birth</div><div class="r-value" id="dayOfBirth">-</div></div>
+          </div>
+
+          <div class="highlight-box mt-3" id="birthdayFact" style="font-size:0.875rem"></div>
+
+          <div class="action-btns">
+            <button class="btn-action" onclick="copyResult(getAgeText())"><i class="bi bi-clipboard"></i> Copy</button>
+            <button class="btn-action whatsapp" onclick="shareWhatsApp(getAgeText())"><i class="bi bi-whatsapp"></i> Share</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fun Facts about Your Age -->
+      <div class="calc-box" id="funFactsBox" style="display:none">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem">🌟 Fun Facts About Your Age</h3>
+        <div class="row g-2" id="funFacts"></div>
+      </div>
+
+      <div class="info-box">
+        <h2>How to Calculate Age?</h2>
+        <p>Age is calculated as the difference between the current date and the date of birth. Our calculator accounts for leap years and different month lengths to give you the exact age in years, months, and days.</p>
+        <h3>Age Calculation Formula</h3>
+        <div class="formula-box">
+          Age = Current Date − Date of Birth<br><br>
+          Exact Age = Years + Months + Days (accounting for leap years)
+        </div>
+        <h3>Uses of Age Calculator</h3>
+        <ul>
+          <li>Government documents & applications require exact age</li>
+          <li>Medical age calculations for treatments & vaccines</li>
+          <li>School/college admissions age verification</li>
+          <li>Retirement planning calculations</li>
+          <li>Passport & visa age requirements</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><button class="faq-question">How to calculate exact age from date of birth? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">To calculate exact age: Subtract birth year from current year to get years. Subtract birth month from current month. If current month < birth month, subtract 1 year and add 12 months. Then handle days similarly. Our calculator does all this automatically.</div></div></div>
+        <div class="faq-item"><button class="faq-question">Does the age calculator account for leap years? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Yes, our age calculator fully accounts for leap years. February 29 birthdays are handled correctly, and leap days are included in the total day count.</div></div></div>
+        <div class="faq-item"><button class="faq-question">Can I calculate age for a past or future date? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Yes! Use the "Age at Date" field to calculate what your age was or will be on any specific date. This is useful for filling forms that require age at a particular date.</div></div></div>
+      </div>
+
+      <div class="info-box"><h3 style="margin-top:0">Related Calculators</h3>
+        <div class="related-grid">
+          <a href="date-calculator.html" class="related-item text-decoration-none">📅 Date Difference</a>
+          <a href="days-until-calculator.html" class="related-item text-decoration-none">⏳ Days Until</a>
+          <a href="working-days-calculator.html" class="related-item text-decoration-none">📆 Working Days</a>
+          <a href="retirement-calculator.html" class="related-item text-decoration-none">🌴 Retirement Calc</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-4"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+      <div class="calc-box mb-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem">📅 Today's Date</h3>
+        <div style="font-size:1.5rem;font-weight:800;color:var(--primary)" id="todayDate"></div>
+        <div style="font-size:0.85rem;color:var(--text-muted);margin-top:0.25rem" id="todayDay"></div>
+      </div>
+      <div class="sidebar-ad mt-3"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 supercalc.online — Free Age Calculator</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calc-engine.js"></script>
+<script>
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+// Set today & default
+const today = new Date();
+document.getElementById('todayDate').textContent = today.toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'});
+document.getElementById('todayDay').textContent  = days[today.getDay()];
+document.getElementById('dob').max = today.toISOString().split('T')[0];
+document.getElementById('ageAt').max = '2100-12-31';
+document.getElementById('ageAt').value = today.toISOString().split('T')[0];
+
+// Default DOB
+const defaultDOB = new Date(today.getFullYear() - 25, today.getMonth(), today.getDate());
+document.getElementById('dob').value = defaultDOB.toISOString().split('T')[0];
+
+function calculateAge() {
+  const dobVal  = document.getElementById('dob').value;
+  const ageAtVal = document.getElementById('ageAt').value || today.toISOString().split('T')[0];
+  if (!dobVal) return;
+
+  const result = CalcEngine.ageCalc(dobVal, ageAtVal);
+  const dob = new Date(dobVal);
+  const ageAt = new Date(ageAtVal);
+
+  document.getElementById('ageMain').textContent = `${result.years} Years`;
+  document.getElementById('ageExact').textContent = `${result.years} years, ${result.months} months, ${result.days} days`;
+  document.getElementById('totalDays').textContent   = result.totalDays.toLocaleString('en-IN');
+  document.getElementById('totalWeeks').textContent  = result.totalWeeks.toLocaleString('en-IN');
+  document.getElementById('totalMonths').textContent = (result.years * 12 + result.months).toLocaleString('en-IN');
+  document.getElementById('totalHours').textContent  = (result.totalDays * 24).toLocaleString('en-IN');
+  document.getElementById('nextBirthday').textContent = `in ${result.daysToNext} days`;
+  document.getElementById('dayOfBirth').textContent = days[dob.getDay()];
+
+  document.getElementById('birthdayFact').innerHTML = `🎉 You were born on a <strong>${days[dob.getDay()]}</strong>, ${months[dob.getMonth()]} ${dob.getDate()}, ${dob.getFullYear()}. Your next birthday is in <strong>${result.daysToNext} days</strong>!`;
+
+  // Fun facts
+  const heartbeats = result.totalDays * 24 * 60 * 70;
+  const breaths    = result.totalDays * 24 * 60 * 15;
+  const funFactsHTML = `
+    <div class="col-6"><div class="result-item"><div class="r-label">Heartbeats</div><div class="r-value" style="font-size:0.9rem">${(heartbeats/1000000).toFixed(0)}M</div></div></div>
+    <div class="col-6"><div class="result-item"><div class="r-label">Breaths Taken</div><div class="r-value" style="font-size:0.9rem">${(breaths/1000000).toFixed(0)}M</div></div></div>
+    <div class="col-6"><div class="result-item"><div class="r-label">Hours Slept (avg)</div><div class="r-value" style="font-size:0.9rem">${(result.totalDays * 8).toLocaleString('en-IN')}</div></div></div>
+    <div class="col-6"><div class="result-item"><div class="r-label">Zodiac Sign</div><div class="r-value" style="font-size:0.9rem">${getZodiac(dob)}</div></div></div>
+  `;
+  document.getElementById('funFacts').innerHTML = funFactsHTML;
+  document.getElementById('funFactsBox').style.display = 'block';
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function getZodiac(date) {
+  const m = date.getMonth() + 1, d = date.getDate();
+  if ((m === 3 && d >= 21) || (m === 4 && d <= 19)) return '♈ Aries';
+  if ((m === 4 && d >= 20) || (m === 5 && d <= 20)) return '♉ Taurus';
+  if ((m === 5 && d >= 21) || (m === 6 && d <= 20)) return '♊ Gemini';
+  if ((m === 6 && d >= 21) || (m === 7 && d <= 22)) return '♋ Cancer';
+  if ((m === 7 && d >= 23) || (m === 8 && d <= 22)) return '♌ Leo';
+  if ((m === 8 && d >= 23) || (m === 9 && d <= 22)) return '♍ Virgo';
+  if ((m === 9 && d >= 23) || (m === 10 && d <= 22)) return '♎ Libra';
+  if ((m === 10 && d >= 23) || (m === 11 && d <= 21)) return '♏ Scorpio';
+  if ((m === 11 && d >= 22) || (m === 12 && d <= 21)) return '♐ Sagittarius';
+  if ((m === 12 && d >= 22) || (m === 1 && d <= 19)) return '♑ Capricorn';
+  if ((m === 1 && d >= 20) || (m === 2 && d <= 18)) return '♒ Aquarius';
+  return '♓ Pisces';
+}
+
+function getAgeText() {
+  return `Age Calculator Result:\nAge: ${document.getElementById('ageExact').textContent}\nTotal Days: ${document.getElementById('totalDays').textContent}\nNext Birthday: ${document.getElementById('nextBirthday').textContent}`;
+}
+
+// Fix ageCalc for optional date param
+const _ageCalc = CalcEngine.ageCalc;
+CalcEngine.ageCalc = function(birthDate, atDate) {
+  const birth = new Date(birthDate);
+  const at    = atDate ? new Date(atDate) : new Date();
+  let years = at.getFullYear() - birth.getFullYear();
+  let months = at.getMonth() - birth.getMonth();
+  let daysLeft = at.getDate() - birth.getDate();
+  if (daysLeft < 0) { months--; daysLeft += new Date(at.getFullYear(), at.getMonth(), 0).getDate(); }
+  if (months < 0) { years--; months += 12; }
+  const totalDays  = Math.floor((at - birth) / (24*60*60*1000));
+  const totalWeeks = Math.floor(totalDays / 7);
+  const nextBday   = new Date(at.getFullYear(), birth.getMonth(), birth.getDate());
+  if (nextBday <= at) nextBday.setFullYear(at.getFullYear() + 1);
+  const daysToNext = Math.floor((nextBday - at) / (24*60*60*1000));
+  return { years, months, days: daysLeft, totalDays, totalWeeks, daysToNext };
+};
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(calculateAge, 300));
+</script>
+</body>
+</html>
+
+

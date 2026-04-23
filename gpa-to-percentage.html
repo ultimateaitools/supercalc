@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPA to Percentage Calculator | SuperCalc</title>
+<meta name="description" content="Convert GPA to percentage and letter grade. Supports 4.0 scale, 10-point scale, and custom GPA systems.">
+<meta name="keywords" content="GPA to percentage, 4.0 GPA calculator, GPA converter, grade point average to percentage, letter grade calculator">
+<link rel="canonical" href="https://supercalc.online/gpa-to-percentage.html">
+<meta property="og:title" content="GPA to Percentage Calculator | SuperCalc">
+<meta property="og:description" content="Convert GPA to percentage and letter grade. Supports 4.0 scale, 10-point scale, and custom GPA systems.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"GPA to Percentage Calculator","url":"https://supercalc.online/gpa-to-percentage.html","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0"}}</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#880e4f,#ad1457)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>GPA to Percentage Calculator</span></nav>
+  <h1 class="calc-page-title">&#127979; GPA to Percentage Calculator</h1>
+  <p class="calc-page-subtitle">Convert GPA to percentage and letter grade. Supports 4.0 scale, 10-point scale, and custom GPA systems.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box"><h2 class="calc-title">GPA to Percentage Converter</h2><div class="row g-3">
+<div class="col-md-6"><label class="form-label">Your GPA</label><input type="number" class="form-control" id="f1" value="3.5" step="0.01" min="0"></div>
+<div class="col-md-6"><label class="form-label">GPA Scale</label>
+<select class="form-select" id="f2">
+<option value="4">4.0 Scale (US)</option>
+<option value="10">10.0 Scale (India)</option>
+<option value="5">5.0 Scale</option>
+<option value="7">7.0 Scale</option>
+</select></div>
+</div><button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Convert GPA</button><div class="result-box" id="resultBox"><div class="row g-3 text-center"><div class="col-6"><div class="result-label">Percentage</div><div class="result-value" id="r1">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div><div class="col-6"><div class="result-label">Letter Grade</div><div class="result-value" id="r2">-</div></div><div class="col-6"><div class="result-label">Class/Division</div><div class="result-value" id="r3">-</div></div><div class="col-6"><div class="result-label">GPA Percentile</div><div class="result-value" id="r4">-</div></div></div></div></div>
+<div class="info-box">
+<h2>What is a GPA to Percentage Calculator?</h2>
+<p>Academic calculators help students, educators, and parents track academic performance, plan study schedules, and understand grading systems across different educational institutions.</p>
+<p>Whether you're calculating GPA, grade percentages, or planning how many study hours you need, these tools help you stay on track academically.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Most US universities require a GPA of 2.0+ to maintain good academic standing</li>
+<li>Weighted GPA (considering AP/IB courses) is often more relevant for college admissions than unweighted GPA</li>
+<li>Consistent studying (1-2 hours daily) beats marathon cramming sessions for long-term retention</li>
+<li>A 1% daily improvement compounds — studying 1% better each day leads to 37x improvement over a year</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">What is a good GPA? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">GPA scales vary by institution. On a 4.0 scale: 3.7-4.0 = Excellent (A range), 3.0-3.6 = Good (B+ to A-), 2.0-2.9 = Average (C to B), below 2.0 may risk academic probation. For university admissions, competitive schools typically look for 3.5+ unweighted GPA. Graduate school admissions often require 3.0-3.5+.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How is percentage converted to GPA? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">In the US 4.0 scale: 93-100% = 4.0 (A), 90-92% = 3.7 (A-), 87-89% = 3.3 (B+), 83-86% = 3.0 (B), 80-82% = 2.7 (B-), 77-79% = 2.3 (C+), 73-76% = 2.0 (C). Indian system: CGPA × 9.5 ≈ percentage (for most universities using 10-point CGPA scale).</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How many study hours per day is optimal? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Research suggests 3-5 focused study hours per day for students is optimal. The Pomodoro Technique (25 min study + 5 min break, repeated 4 times, then 30 min break) helps maintain concentration. Quality matters more than quantity — eliminate distractions during study sessions for maximum effectiveness.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the difference between CGPA and GPA? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">GPA (Grade Point Average) is calculated for a specific term/semester. CGPA (Cumulative GPA) is the average across all terms completed to date. CGPA provides a comprehensive view of academic performance over time, while GPA shows current semester performance. Most Indian universities use CGPA on a 10-point scale.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="gpa-calculator.html" class="related-item text-decoration-none">&#127891; GPA Calculator</a>
+<a href="grade-calculator.html" class="related-item text-decoration-none">&#127891; Grade Calculator</a>
+<a href="cgpa-to-percentage-calculator.html" class="related-item text-decoration-none">&#127891; CGPA to Percentage</a>
+<a href="study-hours-calculator.html" class="related-item text-decoration-none">&#128218; Study Hours Calculator</a>
+<a href="percentage-calculator.html" class="related-item text-decoration-none">&#128290; Percentage Calculator</a>
+<a href="reading-time-calculator.html" class="related-item text-decoration-none">&#128218; Reading Time Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online &mdash; Free Online Calculators</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a> &bull; <a href="about.html">About</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){const gpa=+document.getElementById('f1').value,scale=+document.getElementById('f2').value;const pct=scale===4?gpa/4*100:scale===10?gpa*9.5:gpa/scale*100;let grade,cls;if(pct>=90)grade='A+ / O',cls='Distinction';else if(pct>=80)grade='A',cls='First Class';else if(pct>=70)grade='B+',cls='First Class';else if(pct>=60)grade='B',cls='Second Class';else if(pct>=50)grade='C',cls='Second Class';else if(pct>=40)grade='D',cls='Pass';else grade='F',cls='Fail';const pctile=pct>=90?'Top 5%':pct>=80?'Top 15%':pct>=70?'Top 35%':'Average';document.getElementById('r1').textContent=pct.toFixed(1)+'%';document.getElementById('r2').textContent=grade;document.getElementById('r3').textContent=cls;document.getElementById('r4').textContent=pctile;document.getElementById('resultBox').classList.add('show');}
+</script>
+</body>
+</html>

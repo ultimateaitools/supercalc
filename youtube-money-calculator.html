@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Money Calculator 2025 - How Much Does YouTube Pay? | SuperCalc</title>
+<meta name="description" content="Calculate how much money your YouTube channel makes. Estimate daily, monthly and yearly YouTube earnings based on views, CPM and niche. The most accurate YouTube earnings calculator.">
+<meta name="keywords" content="youtube money calculator, youtube earnings calculator 2025, how much does youtube pay per view, youtube revenue calculator, how much do youtubers make, youtube income calculator, youtube salary calculator">
+<link rel="canonical" href="https://supercalc.online/youtube-money-calculator.html">
+<meta property="og:title" content="YouTube Money Calculator 2025 - How Much Does YouTube Pay? | SuperCalc">
+<meta property="og:description" content="Calculate how much money your YouTube channel makes. Estimate daily, monthly and yearly YouTube earnings based on views, CPM and niche. The most accurate YouTube earnings calculator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/youtube-money-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YouTube Money Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"YouTube Money Calculator","description":"Calculate how much money a YouTube channel makes based on views, CPM, and RPM. Estimate monthly and yearly YouTube earnings.","url":"https://supercalc.online/youtube-money-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#FF0000,#ff6b35)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">YouTube</a> <i class="bi bi-chevron-right"></i><span>YouTube Money Calculator</span></nav>
+  <h1 class="calc-page-title">&#128176; YouTube Money Calculator</h1>
+  <p class="calc-page-subtitle">Calculate how much money a YouTube channel makes based on views, CPM, and RPM. Estimate monthly and yearly YouTube earnings.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#128176; YouTube Money Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">Daily Video Views</label><input type="number" class="form-control" id="dailyViews" placeholder="e.g. 10000"></div>
+  <div class="col-md-6"><label class="form-label">CPM Rate ($ per 1000 views)</label><input type="number" class="form-control" id="cpm" placeholder="e.g. 4.00" value="4" step="0.1"></div>
+  <div class="col-md-6"><label class="form-label">Click-Through Rate (%)</label><input type="number" class="form-control" id="ctr" placeholder="e.g. 45" value="45" step="1">
+    <small class="text-muted">% of views that are monetized (typically 40-60%)</small>
+  </div>
+  <div class="col-md-6"><label class="form-label">Content Niche</label>
+    <select class="form-control" id="niche">
+      <option value="2">Finance / Business ($6-15 CPM)</option>
+      <option value="1.5">Technology ($4-10 CPM)</option>
+      <option value="1.2" selected>General / Entertainment ($2-5 CPM)</option>
+      <option value="1">Gaming ($1-4 CPM)</option>
+      <option value="1.3">Health / Fitness ($3-7 CPM)</option>
+      <option value="1.8">Education ($5-12 CPM)</option>
+    </select>
+  </div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate YouTube Income</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">Daily Earnings</div><div class="result-value" id="daily">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Monthly Earnings</div><div class="result-value" id="monthly">-</div></div>
+    <div class="col-6"><div class="result-label">Yearly Earnings</div><div class="result-value" id="yearly">-</div></div>
+    <div class="col-6"><div class="result-label">Effective RPM</div><div class="result-value" id="rpm">-</div></div>
+  </div>
+</div>
+</div>
+<div class="calc-box mt-3">
+<h3 style="font-size:1rem;font-weight:700">&#128161; YouTube Earning Tips</h3>
+<ul style="font-size:0.85rem;color:var(--text-secondary)">
+<li>Finance and business niches earn 3-5x more than entertainment</li>
+<li>US/UK/AU traffic earns significantly more than Asian/South American traffic</li>
+<li>Long-form videos (8+ min) allow mid-roll ads boosting RPM by 30-50%</li>
+<li>YouTube pays ~55% of ad revenue to creators (45% kept by YouTube)</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>What is a YouTube Money Calculator?</h2>
+<p>YouTube pays content creators through its YouTube Partner Program (YPP). Revenue is generated from ads shown on your videos, and the amount you earn depends on CPM (Cost Per Mille - what advertisers pay per 1,000 ad impressions) and your RPM (Revenue Per Mille - what you actually receive after YouTube's 45% cut).</p>
+<p>YouTube earnings vary dramatically based on content niche, audience geography, video length, ad formats, and seasonality. Finance and business channels earn 3-5x more than gaming or entertainment channels.</p>
+<h3>Formula</h3>
+<div class="formula-box">Daily Earnings = (Daily Views × Monetization Rate × CPM × 0.55) ÷ 1,000<br>Monthly Earnings = Daily Earnings × 30<br>RPM = (Monthly Earnings ÷ Monthly Views) × 1,000</div>
+<h3>How to Use This Calculator</h3>
+<ol>
+<li>Enter your average daily or monthly views</li>
+<li>Select your content niche (affects CPM rate)</li>
+<li>Enter monetized view percentage (typically 40-60%)</li>
+<li>Click Calculate to see daily, monthly, and yearly earnings</li>
+</ol>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>YouTube keeps 45% of ad revenue; you receive 55%</li>
+<li>Finance, tech, and education niches earn the highest CPM ($10-30+)</li>
+<li>Gaming and entertainment typically earn $1-4 CPM</li>
+<li>US, UK, Canadian and Australian viewers generate the highest ad revenue</li>
+<li>Mid-roll ads in videos 8+ minutes long significantly increase RPM</li>
+<li>December is typically the highest earning month (holiday ad spending)</li>
+</ul>
+<h3>YouTube CPM by Niche 2025</h3>
+<div class="table-responsive"><table class="table table-sm" style="font-size:0.83rem">
+<thead><tr><th>Niche</th><th>Avg CPM</th><th>Avg RPM</th></tr></thead>
+<tbody>
+<tr><td>Finance / Business</td><td>$15-$50</td><td>$8-$30</td></tr>
+<tr><td>Education / Tutorials</td><td>$8-$20</td><td>$5-$12</td></tr>
+<tr><td>Technology / Software</td><td>$8-$18</td><td>$4-$10</td></tr>
+<tr><td>Health / Fitness</td><td>$6-$12</td><td>$3-$7</td></tr>
+<tr><td>General / Lifestyle</td><td>$3-$8</td><td>$1.5-$4</td></tr>
+<tr><td>Gaming / Entertainment</td><td>$2-$5</td><td>$1-$3</td></tr>
+</tbody></table></div></div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How many views do I need to make $1,000/month on YouTube? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">This depends heavily on your niche. For a general/lifestyle channel with $2-3 RPM, you'd need approximately 330,000-500,000 monthly views. For a finance channel with $10 RPM, you'd need only 100,000 views. Most channels at 100K-500K monthly views earn between $300-$5,000/month depending on niche and audience location.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">When can I start monetizing my YouTube channel? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">To join the YouTube Partner Program (YPP), you need at least 1,000 subscribers AND 4,000 watch hours in the past 12 months, OR 1,000 subscribers and 10 million Shorts views in 90 days. Once approved, ads are enabled and you can earn AdSense revenue.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the difference between CPM and RPM on YouTube? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">CPM (Cost Per Mille) is what advertisers pay YouTube for 1,000 ad impressions. RPM (Revenue Per Mille) is what YOU earn per 1,000 total video views — after YouTube's 45% revenue share and including all monetization sources (ads, memberships, Super Chat, etc.). RPM is always lower than CPM.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Does YouTube Shorts pay as much as regular videos? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">No. YouTube Shorts typically earns $0.03-$0.06 per 1,000 views, which is significantly lower than long-form videos. However, Shorts are excellent for growing subscribers quickly. Most successful creators use Shorts for growth and long-form videos for revenue.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="youtube-cpm-calculator.html" class="related-item text-decoration-none">&#128200; YouTube CPM Calculator</a>
+<a href="youtube-rpm-calculator.html" class="related-item text-decoration-none">&#128200; YouTube RPM Calculator</a>
+<a href="youtube-shorts-earnings-calculator.html" class="related-item text-decoration-none">&#127909; YouTube Shorts Earnings</a>
+<a href="youtube-growth-rate-calculator.html" class="related-item text-decoration-none">&#128200; YouTube Growth Rate</a>
+<a href="adsense-rpm-calculator.html" class="related-item text-decoration-none">&#128176; AdSense RPM Calculator</a>
+<a href="influencer-earnings-per-post-calculator.html" class="related-item text-decoration-none">&#128176; Influencer Earnings Per Post</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){
+  var dv=parseFloat(document.getElementById('dailyViews').value)||0;
+  var cpm=parseFloat(document.getElementById('cpm').value)||4;
+  var ctr=parseFloat(document.getElementById('ctr').value)||45;
+  var n=parseFloat(document.getElementById('niche').value)||1;
+  if(!dv){alert('Enter daily views');return;}
+  var monetized=dv*(ctr/100);
+  var effectiveCPM=cpm*n;
+  var daily=(monetized/1000)*effectiveCPM*0.55;
+  var monthly=daily*30;
+  var yearly=daily*365;
+  var rpm=(daily/dv*1000).toFixed(2);
+  document.getElementById('daily').textContent='$'+daily.toFixed(2);
+  document.getElementById('monthly').textContent='$'+monthly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('yearly').textContent='$'+yearly.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('rpm').textContent='$'+rpm;
+  document.getElementById('resultBox').style.display='block';
+}
+</script>
+</body>
+</html>

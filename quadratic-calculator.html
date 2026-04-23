@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quadratic Equation Solver - ax² + bx + c = 0 | SuperCalc</title>
+  <meta name="description" content="Free quadratic equation solver. Solve ax² + bx + c = 0 with step-by-step solutions using the quadratic formula. Find real and complex roots, discriminant, and vertex.">
+  <meta name="keywords" content="quadratic equation solver, quadratic formula calculator, ax2 bx c calculator, roots of quadratic equation, discriminant calculator, vertex calculator">
+  <link rel="canonical" href="https://supercalc.online/quadratic-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#4a148c,#7b1fa2)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Quadratic Solver</span></nav>
+  <h1 class="calc-page-title">🔣 Quadratic Equation Solver</h1>
+  <p class="calc-page-subtitle">Solve ax² + bx + c = 0 with step-by-step solution</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap mb-4" style="font-size:1.1rem">
+          <input type="number" class="form-control" id="a" value="2" step="any" style="width:70px;text-align:center">
+          <span style="font-weight:700;color:var(--text)">x²  +</span>
+          <input type="number" class="form-control" id="b" value="-5" step="any" style="width:70px;text-align:center">
+          <span style="font-weight:700;color:var(--text)">x  +</span>
+          <input type="number" class="form-control" id="c" value="2" step="any" style="width:70px;text-align:center">
+          <span style="font-weight:700;color:var(--text)">= 0</span>
+        </div>
+        <div class="category-pills mb-4">
+          <button class="cat-pill active" onclick="setEq(1,-5,6,this)">x²-5x+6=0</button>
+          <button class="cat-pill" onclick="setEq(1,0,-4,this)">x²-4=0</button>
+          <button class="cat-pill" onclick="setEq(2,-3,1,this)">2x²-3x+1=0</button>
+          <button class="cat-pill" onclick="setEq(1,2,5,this)">x²+2x+5=0 (complex)</button>
+        </div>
+        <button class="btn-calculate mt-2" onclick="solveQuadratic()"><i class="bi bi-calculator me-2"></i>Solve Equation</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Roots of the Equation</div><div class="result-value" id="roots" style="font-size:1.4rem;font-family:monospace">—</div></div>
+          <div class="result-grid" id="resultGrid"></div>
+          <div id="steps" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Quadratic Formula</h2>
+        <div class="formula-box">x = (-b ± √(b² - 4ac)) / (2a)<br>Discriminant (Δ) = b² - 4ac<br>• Δ > 0: Two real roots<br>• Δ = 0: One repeated root<br>• Δ < 0: Two complex roots</div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function setEq(a,b,c,btn){document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('a').value=a;document.getElementById('b').value=b;document.getElementById('c').value=c;solveQuadratic();}
+function rd(n){return Math.round(n*10000)/10000;}
+function solveQuadratic(){
+  const a=+document.getElementById('a').value,b=+document.getElementById('b').value,c=+document.getElementById('c').value;
+  if(a===0){alert('Coefficient a cannot be 0 (would not be quadratic)');return;}
+  const disc=b*b-4*a*c;const vx=-b/(2*a),vy=c-b*b/(4*a);let rootsText,rootType;
+  if(disc>0){const r1=(-b+Math.sqrt(disc))/(2*a),r2=(-b-Math.sqrt(disc))/(2*a);rootsText=`x₁ = ${rd(r1)}, x₂ = ${rd(r2)}`;rootType='Two distinct real roots';}
+  else if(disc===0){rootsText=`x = ${rd(-b/(2*a))} (repeated)`;rootType='One repeated real root';}
+  else{const re=rd(-b/(2*a)),im=rd(Math.sqrt(-disc)/(2*a));rootsText=`x₁ = ${re} + ${im}i, x₂ = ${re} - ${im}i`;rootType='Two complex (imaginary) roots';}
+  document.getElementById('roots').textContent=rootsText;
+  document.getElementById('resultGrid').innerHTML=[{l:'Discriminant (Δ)',v:disc.toFixed(4)},{l:'Root Type',v:rootType},{l:'Vertex X (–b/2a)',v:rd(vx)},{l:'Vertex Y',v:rd(vy)},{l:'Sum of Roots (–b/a)',v:rd(-b/a)},{l:'Product of Roots (c/a)',v:rd(c/a)}].map(g=>`<div class="result-item"><div class="r-label">${g.l}</div><div class="r-value text-primary">${g.v}</div></div>`).join('');
+  const eqStr=`${a}x² ${b>=0?'+':''} ${b}x ${c>=0?'+':''} ${c} = 0`;document.getElementById('steps').innerHTML=`<div class="formula-box"><strong>Equation: ${eqStr}</strong><br>Discriminant: b² – 4ac = (${b})² – 4(${a})(${c}) = ${b*b} – ${4*a*c} = <strong>${disc}</strong><br>${disc>=0?`x = (–${b} ± √${disc}) / (2×${a}) = (${-b} ± ${Math.round(Math.sqrt(Math.abs(disc))*1000)/1000}) / ${2*a}`:'Complex roots (discriminant < 0)'}</div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Quadratic Solution:\n${document.getElementById('roots').textContent}`;}
+document.addEventListener('DOMContentLoaded',()=>solveQuadratic());
+</script>
+</body>
+</html>

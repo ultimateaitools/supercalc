@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Calculator 2025 - Daily Calorie Needs & TDEE | SuperCalc</title>
+  <meta name="description" content="Calculate your daily calorie needs and TDEE (Total Daily Energy Expenditure) based on age, weight, height and activity level. Free nutrition calculator.">
+  <meta name="keywords" content="calorie calculator, TDEE calculator, daily calorie needs calculator, how many calories should i eat, calorie intake calculator, calorie deficit calculator 2025">
+  <link rel="canonical" href="https://supercalc.online/calorie-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#EF4444,#F59E0B)">
+  <div class="container">
+    <nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#health">Health</a> <i class="bi bi-chevron-right"></i><span>Calorie Calculator</span></nav>
+    <h1 class="calc-page-title">🍎 Calorie Calculator (TDEE)</h1>
+    <p class="calc-page-subtitle">Calculate your daily calorie needs for weight loss, gain or maintenance</p>
+  </div>
+</div>
+
+<div class="container mt-3"><div class="ad-banner"><span class="ad-label">Advertisement</span><span>[ Ad Banner 728x90 ]</span></div></div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Age</label><div class="input-group"><input type="number" class="form-control" id="age" value="25" min="15" max="80"><span class="input-group-text">yrs</span></div></div>
+          <div class="col-md-4"><label class="form-label">Gender</label><select class="form-select" id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+          <div class="col-md-4"><label class="form-label">Height (cm)</label><div class="input-group"><input type="number" class="form-control" id="height" value="170"><span class="input-group-text">cm</span></div></div>
+          <div class="col-md-4"><label class="form-label">Weight (kg)</label><div class="input-group"><input type="number" class="form-control" id="weight" value="70" step="0.5"><span class="input-group-text">kg</span></div></div>
+          <div class="col-md-8">
+            <label class="form-label">Activity Level</label>
+            <select class="form-select" id="activity">
+              <option value="sedentary">🪑 Sedentary (little or no exercise)</option>
+              <option value="light">🚶 Lightly Active (1-3 days/week)</option>
+              <option value="moderate" selected>🏃 Moderately Active (3-5 days/week)</option>
+              <option value="active">💪 Very Active (6-7 days/week)</option>
+              <option value="veryActive">🏋️ Extra Active (athlete / physical job)</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Goal</label>
+            <select class="form-select" id="goal">
+              <option value="lose">🏃 Lose Weight (deficit -500 cal)</option>
+              <option value="maintain" selected>⚖️ Maintain Weight</option>
+              <option value="gain">💪 Gain Weight (surplus +500 cal)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-calculate mt-4" onclick="calculateCalories()"><i class="bi bi-calculator me-2"></i>Calculate Calories</button>
+
+        <div class="result-box" id="resultBox">
+          <div class="result-primary">
+            <div class="result-label" id="mainLabel">Daily Calorie Target</div>
+            <div class="result-value" id="mainCalories">0 kcal</div>
+          </div>
+
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">BMR</div><div class="r-value text-primary" id="bmrResult">0 kcal</div></div>
+            <div class="result-item"><div class="r-label">TDEE (Maintain)</div><div class="r-value" id="tdeeResult">0 kcal</div></div>
+            <div class="result-item"><div class="r-label">Weight Loss (-500)</div><div class="r-value" style="color:var(--danger)" id="lossResult">0 kcal</div></div>
+            <div class="result-item"><div class="r-label">Weight Gain (+500)</div><div class="r-value" style="color:var(--accent)" id="gainResult">0 kcal</div></div>
+          </div>
+
+          <!-- Macro Split -->
+          <div class="mt-3">
+            <h4 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem">🥗 Recommended Macro Split</h4>
+            <div class="result-grid">
+              <div class="result-item"><div class="r-label">Protein (30%)</div><div class="r-value" style="color:#EF4444" id="proteinMacro">0g</div></div>
+              <div class="result-item"><div class="r-label">Carbs (40%)</div><div class="r-value" style="color:#F59E0B" id="carbsMacro">0g</div></div>
+              <div class="result-item"><div class="r-label">Fat (30%)</div><div class="r-value" style="color:#8B5CF6" id="fatMacro">0g</div></div>
+              <div class="result-item"><div class="r-label">Water Intake</div><div class="r-value" style="color:#06B6D4" id="waterResult">0L</div></div>
+            </div>
+          </div>
+
+          <div class="chart-container mt-3"><canvas id="macroChart"></canvas></div>
+
+          <!-- Activity Levels -->
+          <div class="mt-3">
+            <h4 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem">⚡ Calories by Activity Level</h4>
+            <div class="table-responsive">
+              <table class="table table-sm" style="font-size:0.78rem;color:var(--text)">
+                <thead><tr style="background:var(--bg-input)"><th>Activity Level</th><th>Maintain</th><th>Lose Weight</th><th>Gain Weight</th></tr></thead>
+                <tbody id="activityTable"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="action-btns">
+            <button class="btn-action" onclick="copyResult(getCalText())"><i class="bi bi-clipboard"></i> Copy</button>
+            <button class="btn-action whatsapp" onclick="shareWhatsApp(getCalText())"><i class="bi bi-whatsapp"></i> Share</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>What is TDEE?</h2>
+        <p><strong>Total Daily Energy Expenditure (TDEE)</strong> is the total number of calories your body burns in a day, taking into account your Basal Metabolic Rate (BMR) and physical activity level. Knowing your TDEE is the foundation of any diet or fitness plan.</p>
+        <h3>Calorie Formula (Mifflin-St Jeor)</h3>
+        <div class="formula-box">
+          BMR (Men)   = 10W + 6.25H - 5A + 5<br>
+          BMR (Women) = 10W + 6.25H - 5A - 161<br><br>
+          TDEE = BMR × Activity Multiplier<br><br>
+          Where: W = weight (kg), H = height (cm), A = age (years)
+        </div>
+        <h3>Activity Multipliers</h3>
+        <ul>
+          <li><strong>Sedentary (1.2)</strong> — Desk job, little exercise</li>
+          <li><strong>Light (1.375)</strong> — Exercise 1-3 days/week</li>
+          <li><strong>Moderate (1.55)</strong> — Exercise 3-5 days/week</li>
+          <li><strong>Very Active (1.725)</strong> — Hard exercise 6-7 days/week</li>
+          <li><strong>Extra Active (1.9)</strong> — Athlete or physical labor job</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><button class="faq-question">How many calories should I eat to lose weight? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">To lose weight safely, create a calorie deficit of 300-500 calories per day. This leads to approximately 0.3-0.5 kg weight loss per week. Never go below 1,200 calories/day (women) or 1,500 calories/day (men) without medical supervision.</div></div></div>
+        <div class="faq-item"><button class="faq-question">What is the difference between BMR and TDEE? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">BMR (Basal Metabolic Rate) is the calories your body burns at complete rest — just to keep organs functioning. TDEE includes BMR plus all calories burned through physical activity. TDEE is what you should base your diet on.</div></div></div>
+        <div class="faq-item"><button class="faq-question">How many calories are in 1 kg of fat? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">1 kg of body fat contains approximately 7,700 calories. To lose 1 kg/week, you need a calorie deficit of about 1,100 calories/day. A more sustainable rate is 0.5 kg/week (deficit of ~550 calories/day).</div></div></div>
+      </div>
+
+      <div class="info-box"><h3 style="margin-top:0">Related Calculators</h3>
+        <div class="related-grid">
+          <a href="bmi-calculator.html" class="related-item text-decoration-none">⚖️ BMI Calculator</a>
+          <a href="bmr-calculator.html" class="related-item text-decoration-none">🔥 BMR Calculator</a>
+          <a href="macro-calculator.html" class="related-item text-decoration-none">🥗 Macro Calculator</a>
+          <a href="protein-calculator.html" class="related-item text-decoration-none">🥩 Protein Calculator</a>
+          <a href="water-intake-calculator.html" class="related-item text-decoration-none">💧 Water Intake</a>
+          <a href="ideal-weight-calculator.html" class="related-item text-decoration-none">🎯 Ideal Weight</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-4"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+      <div class="calc-box mb-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem">🍽️ Common Food Calories</h3>
+        <div style="font-size:0.82rem">
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Apple (medium)</span><strong>~95 kcal</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Rice (1 cup cooked)</span><strong>~206 kcal</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Chicken breast (100g)</span><strong>~165 kcal</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Egg (large)</span><strong>~78 kcal</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Banana (medium)</span><strong>~105 kcal</strong></div>
+          <div class="d-flex justify-content-between py-1"><span>Roti (1 piece)</span><strong>~80 kcal</strong></div>
+        </div>
+      </div>
+      <div class="sidebar-ad mt-3"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 supercalc.online — Free Calorie Calculator</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calc-engine.js"></script>
+<script>
+let macroChart = null;
+
+function calculateCalories() {
+  const age    = +document.getElementById('age').value;
+  const gender = document.getElementById('gender').value;
+  const height = +document.getElementById('height').value;
+  const weight = +document.getElementById('weight').value;
+  const act    = document.getElementById('activity').value;
+  const goal   = document.getElementById('goal').value;
+
+  const bmrRes = CalcEngine.bmr(weight, height, age, gender);
+  const tdeeRes = CalcEngine.tdee(bmrRes.bmr, act);
+  const bmr = bmrRes.bmr;
+  const tdee = tdeeRes.tdee;
+
+  const targets = { lose: tdee - 500, maintain: tdee, gain: tdee + 500 };
+  const target = targets[goal];
+
+  document.getElementById('mainCalories').textContent = Math.round(target) + ' kcal';
+  document.getElementById('bmrResult').textContent  = Math.round(bmr) + ' kcal';
+  document.getElementById('tdeeResult').textContent = Math.round(tdee) + ' kcal';
+  document.getElementById('lossResult').textContent = Math.round(tdee - 500) + ' kcal';
+  document.getElementById('gainResult').textContent = Math.round(tdee + 500) + ' kcal';
+
+  const protein = Math.round((target * 0.30) / 4);
+  const carbs   = Math.round((target * 0.40) / 4);
+  const fat     = Math.round((target * 0.30) / 9);
+  const water   = (weight * 35 / 1000).toFixed(1);
+
+  document.getElementById('proteinMacro').textContent = protein + 'g';
+  document.getElementById('carbsMacro').textContent   = carbs + 'g';
+  document.getElementById('fatMacro').textContent     = fat + 'g';
+  document.getElementById('waterResult').textContent  = water + 'L';
+
+  buildMacroChart(protein * 4, carbs * 4, fat * 9);
+
+  const acts = [
+    {name:'Sedentary', mult:1.2},
+    {name:'Light Active', mult:1.375},
+    {name:'Moderate Active', mult:1.55},
+    {name:'Very Active', mult:1.725},
+    {name:'Extra Active', mult:1.9}
+  ];
+  let rows = '';
+  acts.forEach(a => {
+    const t = bmr * a.mult;
+    rows += `<tr><td>${a.name}</td><td>${Math.round(t)}</td><td style="color:var(--danger)">${Math.round(t-500)}</td><td style="color:var(--accent)">${Math.round(t+500)}</td></tr>`;
+  });
+  document.getElementById('activityTable').innerHTML = rows;
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function buildMacroChart(protCal, carbCal, fatCal) {
+  const ctx = document.getElementById('macroChart').getContext('2d');
+  if (macroChart) macroChart.destroy();
+  macroChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: ['Protein', 'Carbohydrates', 'Fat'], datasets: [{ data: [protCal, carbCal, fatCal], backgroundColor: ['#EF4444','#F59E0B','#8B5CF6'], borderWidth: 0, hoverOffset: 8 }] },
+    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 12 } } } }, cutout: '65%' }
+  });
+}
+
+function getCalText() {
+  return `Calorie Calculator Result:\nDaily Target: ${document.getElementById('mainCalories').textContent}\nBMR: ${document.getElementById('bmrResult').textContent}\nTDEE: ${document.getElementById('tdeeResult').textContent}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(calculateCalories, 300));
+</script>
+</body>
+</html>
+
+

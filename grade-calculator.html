@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade Calculator - Calculate Final Grade & GPA | SuperCalc</title>
+  <meta name="description" content="Free grade calculator. Calculate your weighted average grade, final exam score needed, GPA from marks. Supports percentage, letter grades (A-F) and 10-point scale.">
+  <meta name="keywords" content="grade calculator, final grade calculator, weighted grade calculator, what grade do I need, GPA calculator, marks percentage calculator, CGPA calculator">
+  <link rel="canonical" href="https://supercalc.online/grade-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1565c0,#1e88e5)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Grade Calculator</span></nav>
+  <h1 class="calc-page-title">📝 Grade Calculator</h1>
+  <p class="calc-page-subtitle">Calculate weighted average, final grade needed and GPA</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('weighted',this)">📊 Weighted Average</button>
+        <button class="cat-pill" onclick="setMode('needed',this)">🎯 Grade Needed</button>
+        <button class="cat-pill" onclick="setMode('cgpa',this)">🏫 CGPA Calculator</button>
+      </div>
+
+      <!-- Weighted Mode -->
+      <div class="calc-box" id="weightedBox">
+        <div id="subjectRows">
+          <div class="row g-2 mb-2 subject-row"><div class="col-5"><input type="text" class="form-control form-control-sm" placeholder="Subject" value="Mathematics"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Marks" value="85" min="0" max="100" oninput="calcGrade()"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Max" value="100" min="1" oninput="calcGrade()"></div><div class="col-1"><button class="btn btn-sm btn-outline-danger" onclick="this.closest('.subject-row').remove();calcGrade()">×</button></div></div>
+          <div class="row g-2 mb-2 subject-row"><div class="col-5"><input type="text" class="form-control form-control-sm" placeholder="Subject" value="Physics"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Marks" value="78" oninput="calcGrade()"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Max" value="100" oninput="calcGrade()"></div><div class="col-1"><button class="btn btn-sm btn-outline-danger" onclick="this.closest('.subject-row').remove();calcGrade()">×</button></div></div>
+          <div class="row g-2 mb-2 subject-row"><div class="col-5"><input type="text" class="form-control form-control-sm" placeholder="Subject" value="Chemistry"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Marks" value="92" oninput="calcGrade()"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Max" value="100" oninput="calcGrade()"></div><div class="col-1"><button class="btn btn-sm btn-outline-danger" onclick="this.closest('.subject-row').remove();calcGrade()">×</button></div></div>
+          <div class="row g-2 mb-2 subject-row"><div class="col-5"><input type="text" class="form-control form-control-sm" placeholder="Subject" value="English"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Marks" value="70" oninput="calcGrade()"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Max" value="100" oninput="calcGrade()"></div><div class="col-1"><button class="btn btn-sm btn-outline-danger" onclick="this.closest('.subject-row').remove();calcGrade()">×</button></div></div>
+        </div>
+        <button class="btn btn-sm btn-outline-primary mt-2" onclick="addSubject()"><i class="bi bi-plus"></i> Add Subject</button>
+        <button class="btn-calculate mt-3" onclick="calcGrade()"><i class="bi bi-calculator me-2"></i>Calculate Grade</button>
+        <div class="result-box" id="gradeResult">
+          <div class="result-primary"><div class="result-label">Overall Percentage</div><div class="result-value" id="overallPct">0%</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Letter Grade</div><div class="r-value text-primary" id="letterGrade">—</div></div>
+            <div class="result-item"><div class="r-label">GPA (4.0 scale)</div><div class="r-value" id="gpa4">—</div></div>
+            <div class="result-item"><div class="r-label">CGPA (10 scale)</div><div class="r-value" style="color:var(--accent)" id="cgpa10">—</div></div>
+            <div class="result-item"><div class="r-label">Grade Status</div><div class="r-value" id="gradeStatus">—</div></div>
+          </div>
+          <div id="subjectBreakup" class="mt-3"></div>
+        </div>
+      </div>
+
+      <!-- Grade Needed -->
+      <div class="calc-box d-none" id="neededBox">
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Current Marks</label><input type="number" class="form-control" id="currMarks" value="75" oninput="calcNeeded()"></div>
+          <div class="col-md-4"><label class="form-label">Total Marks So Far</label><input type="number" class="form-control" id="marksSoFar" value="100" oninput="calcNeeded()"></div>
+          <div class="col-md-4"><label class="form-label">Weight So Far</label><div class="input-group"><input type="number" class="form-control" id="weightSoFar" value="70" oninput="calcNeeded()"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-4"><label class="form-label">Remaining Exam Total</label><input type="number" class="form-control" id="remainTotal" value="100" oninput="calcNeeded()"></div>
+          <div class="col-md-4"><label class="form-label">Remaining Weight</label><div class="input-group"><input type="number" class="form-control" id="weightRemain" value="30" oninput="calcNeeded()"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-4"><label class="form-label">Target Grade</label><select class="form-select" id="targetGrade" onchange="calcNeeded()"><option value="90">A+ (90%+)</option><option value="80">A (80%+)</option><option value="70" selected>B (70%+)</option><option value="60">C (60%+)</option><option value="50">Pass (50%+)</option></select></div>
+        </div>
+        <div class="result-box show mt-4" id="neededResult"><div class="result-primary"><div class="result-label">Score Needed in Remaining Exam</div><div class="result-value" id="neededScore">—</div></div></div>
+      </div>
+
+      <!-- CGPA -->
+      <div class="calc-box d-none" id="cgpaBox">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Convert: CGPA to Percentage</label><div class="input-group"><input type="number" class="form-control" id="cgpaIn" value="8.5" step="0.1" min="0" max="10" oninput="calcCGPA()"><span class="input-group-text">÷ 10</span></div></div>
+          <div class="col-md-6"><label class="form-label">University Formula</label><select class="form-select" id="uniFormula" onchange="calcCGPA()"><option value="anna">Anna University: ×10</option><option value="ggsipu">GGSIPU: (CGPA–0.75)×10</option><option value="vtu">VTU: (CGPA–0.75)×10</option><option value="mu">Mumbai: ×10</option><option value="custom">Custom: ×10</option></select></div>
+        </div>
+        <div class="result-box show mt-4" id="cgpaResult"><div class="result-primary"><div class="result-label">Percentage</div><div class="result-value" id="cgpaPct">—</div></div></div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Grade Scale Reference</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Percentage</th><th>Letter</th><th>GPA (4.0)</th><th>CGPA (10)</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>90-100%</td><td>A+</td><td>4.0</td><td>9-10</td><td>Outstanding</td></tr>
+            <tr><td>80-89%</td><td>A</td><td>3.7-4.0</td><td>8-9</td><td>Excellent</td></tr>
+            <tr><td>70-79%</td><td>B</td><td>3.0-3.7</td><td>7-8</td><td>Good</td></tr>
+            <tr><td>60-69%</td><td>C</td><td>2.0-3.0</td><td>6-7</td><td>Satisfactory</td></tr>
+            <tr><td>50-59%</td><td>D</td><td>1.0-2.0</td><td>5-6</td><td>Pass</td></tr>
+            <tr><td>Below 50%</td><td>F</td><td>0.0</td><td>Below 5</td><td>Fail</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function setMode(m,btn){document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');['weightedBox','neededBox','cgpaBox'].forEach((id,i)=>document.getElementById(id).classList.toggle('d-none',id!==m+'Box'));}
+function addSubject(){document.getElementById('subjectRows').insertAdjacentHTML('beforeend',`<div class="row g-2 mb-2 subject-row"><div class="col-5"><input type="text" class="form-control form-control-sm" placeholder="Subject"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Marks" oninput="calcGrade()"></div><div class="col-3"><input type="number" class="form-control form-control-sm" placeholder="Max" value="100" oninput="calcGrade()"></div><div class="col-1"><button class="btn btn-sm btn-outline-danger" onclick="this.closest('.subject-row').remove();calcGrade()">×</button></div></div>`);}
+function letterGradeFromPct(p){if(p>=90)return{l:'A+',g:4.0};if(p>=80)return{l:'A',g:3.7};if(p>=70)return{l:'B',g:3.0};if(p>=60)return{l:'C',g:2.0};if(p>=50)return{l:'D',g:1.0};return{l:'F',g:0};}
+function calcGrade(){
+  let tot=0,max=0;const rows=[];
+  document.querySelectorAll('.subject-row').forEach(r=>{const ins=r.querySelectorAll('input');const name=ins[0].value||'Subject';const m=+ins[1].value||0;const mx=+ins[2].value||100;tot+=m;max+=mx;const p=(m/mx*100).toFixed(1);rows.push({name,m,mx,p});});
+  if(max===0)return;const pct=(tot/max*100);const {l,g}=letterGradeFromPct(pct);
+  const cgpa10=(pct/10).toFixed(2);let status;
+  if(pct>=90)status='🏆 Outstanding';else if(pct>=80)status='✅ Excellent';else if(pct>=70)status='👍 Good';else if(pct>=60)status='📗 Satisfactory';else if(pct>=50)status='⚠️ Pass';else status='❌ Fail';
+  document.getElementById('overallPct').textContent=pct.toFixed(2)+'%';
+  document.getElementById('letterGrade').textContent=l;document.getElementById('gpa4').textContent=g.toFixed(1)+' / 4.0';
+  document.getElementById('cgpa10').textContent=cgpa10+' / 10.0';document.getElementById('gradeStatus').textContent=status;
+  document.getElementById('subjectBreakup').innerHTML=`<table class="table table-sm" style="font-size:0.78rem;color:var(--text)"><thead><tr style="background:var(--bg-input)"><th>Subject</th><th>Marks</th><th>Max</th><th>%</th><th>Grade</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${r.name}</td><td>${r.m}</td><td>${r.mx}</td><td>${r.p}%</td><td>${letterGradeFromPct(+r.p).l}</td></tr>`).join('')}</tbody></table>`;
+  document.getElementById('gradeResult').classList.add('show');
+}
+function calcNeeded(){
+  const cur=+document.getElementById('currMarks').value;const curMax=+document.getElementById('marksSoFar').value;const wSoFar=+document.getElementById('weightSoFar').value/100;const remMax=+document.getElementById('remainTotal').value;const wRem=+document.getElementById('weightRemain').value/100;const target=+document.getElementById('targetGrade').value;
+  const curPct=(cur/curMax*100);const needed=(target-curPct*wSoFar*100/100)/wRem;const neededMarks=needed/100*remMax;
+  document.getElementById('neededScore').textContent=`${neededMarks.toFixed(1)} / ${remMax} (${needed.toFixed(1)}%)`;
+  document.getElementById('neededScore').style.color=needed>100?'#ef5350':needed<50?'var(--accent)':'var(--text)';
+}
+function calcCGPA(){const cgpa=+document.getElementById('cgpaIn').value;const formula=document.getElementById('uniFormula').value;const pct=formula==='ggsipu'||formula==='vtu'?(cgpa-0.75)*10:cgpa*10;document.getElementById('cgpaPct').textContent=pct.toFixed(2)+'%';}
+document.addEventListener('DOMContentLoaded',()=>{calcGrade();calcNeeded();calcCGPA();});
+</script>
+</body>
+</html>

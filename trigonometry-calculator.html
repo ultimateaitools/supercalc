@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trigonometry Calculator | SuperCalc</title>
+<meta name="description" content="Calculate sin, cos, tan, cot, sec, csc for any angle in degrees or radians. Inverse trig functions included.">
+<meta name="keywords" content="trigonometry calculator, sin cos tan calculator, trig calculator, inverse trigonometry, sin calculator, cos calculator">
+<link rel="canonical" href="https://supercalc.online/trigonometry-calculator.html">
+<meta property="og:title" content="Trigonometry Calculator | SuperCalc">
+<meta property="og:description" content="Calculate sin, cos, tan, cot, sec, csc for any angle in degrees or radians. Inverse trig functions included.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Trigonometry Calculator","url":"https://supercalc.online/trigonometry-calculator.html","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0"}}</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Trigonometry Calculator</span></nav>
+  <h1 class="calc-page-title">&#128290; Trigonometry Calculator</h1>
+  <p class="calc-page-subtitle">Calculate sin, cos, tan, cot, sec, csc for any angle in degrees or radians. Inverse trig functions included.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box"><h2 class="calc-title">Trigonometry Calculator</h2><div class="row g-3">
+<div class="col-md-6"><label class="form-label">Angle Value</label><input type="number" class="form-control" id="f1" value="45" step="any"></div>
+<div class="col-md-6"><label class="form-label">Unit</label><select class="form-select" id="f2"><option value="deg" selected>Degrees</option><option value="rad">Radians</option></select></div>
+</div><button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate</button><div class="result-box" id="resultBox"><div class="row g-3 text-center"><div class="col-6"><div class="result-label">sin</div><div class="result-value" id="r1">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div><div class="col-6"><div class="result-label">cos</div><div class="result-value" id="r2">-</div></div><div class="col-6"><div class="result-label">tan</div><div class="result-value" id="r3">-</div></div><div class="col-6"><div class="result-label">cot / sec / csc</div><div class="result-value" id="r4">-</div></div></div></div></div>
+<div class="info-box">
+<h2>What is a Trigonometry Calculator?</h2>
+<p>Mathematical calculators provide instant, accurate solutions to complex calculations that would otherwise take significant time and effort. These tools are essential for students, engineers, scientists, and professionals.</p>
+<p>Whether you're solving equations, converting units, or performing statistical analysis, our calculators use verified mathematical formulas to deliver precise results.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Double-check inputs carefully — garbage in, garbage out applies to all calculators</li>
+<li>For complex calculations, break the problem into smaller steps</li>
+<li>Always verify results against known benchmarks when possible</li>
+<li>Understanding the formula behind the calculation helps you spot errors</li>
+<li>Use significant figures appropriate to your data's precision</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">Why do online calculators sometimes give different answers? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Differences can occur due to: rounding at different stages of calculation, different formula interpretations, significant figure handling, and edge case assumptions. For critical calculations, always cross-check with at least one other source or method.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the order of operations? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The order of operations is PEMDAS/BODMAS: Parentheses/Brackets, Exponents/Orders, Multiplication and Division (left to right), Addition and Subtraction (left to right). This universal rule ensures mathematical expressions have one correct interpretation.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I know if my calculation result is reasonable? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Use estimation to sanity-check results. Round numbers and do a quick mental calculation. If your precise answer is wildly different from your estimate, recheck the inputs. Dimensional analysis (checking that units work out correctly) is also very useful for catching errors.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Are there limitations to calculator accuracy? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Yes. Calculators use floating-point arithmetic which can introduce tiny rounding errors in complex calculations. For most practical purposes, these are negligible. However, for financial, scientific, or engineering calculations requiring high precision, specialized tools may be needed.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="percentage-calculator.html" class="related-item text-decoration-none">&#128290; Percentage Calculator</a>
+<a href="age-calculator.html" class="related-item text-decoration-none">&#127874; Age Calculator</a>
+<a href="scientific-calculator.html" class="related-item text-decoration-none">&#129518; Scientific Calculator</a>
+<a href="square-root-calculator.html" class="related-item text-decoration-none">&#8730; Square Root Calculator</a>
+<a href="statistics-calculator.html" class="related-item text-decoration-none">&#128202; Statistics Calculator</a>
+<a href="unit-converter.html" class="related-item text-decoration-none">&#128208; Unit Converter</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online &mdash; Free Online Calculators</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a> &bull; <a href="about.html">About</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){const v=+document.getElementById('f1').value,unit=document.getElementById('f2').value;const rad=unit==='deg'?v*Math.PI/180:v;const s=Math.sin(rad),c=Math.cos(rad),t=Math.tan(rad);document.getElementById('r1').textContent=s.toFixed(6);document.getElementById('r2').textContent=c.toFixed(6);document.getElementById('r3').textContent=Math.abs(t)>1e10?'undefined':t.toFixed(6);document.getElementById('r4').textContent='cot='+(!Math.abs(s)<1e-10?(c/s).toFixed(4):'undef')+' sec='+(Math.abs(c)>1e-10?(1/c).toFixed(4):'undef')+' csc='+(Math.abs(s)>1e-10?(1/s).toFixed(4):'undef');document.getElementById('resultBox').classList.add('show');}
+</script>
+</body>
+</html>

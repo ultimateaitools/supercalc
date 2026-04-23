@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paint Calculator - How Much Paint Do I Need? | SuperCalc</title>
+  <meta name="description" content="Free paint calculator. Calculate how many litres of paint for room walls, ceiling & doors. Works for interior & exterior painting with any room dimensions.">
+  <meta name="keywords" content="paint calculator, how much paint do I need, wall paint calculator, room painting calculator, litres of paint calculator, interior paint estimator">
+  <link rel="canonical" href="https://supercalc.online/paint-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#e91e63,#9c27b0)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#construction">Construction</a> <i class="bi bi-chevron-right"></i><span>Paint Calculator</span></nav>
+  <h1 class="calc-page-title">🎨 Paint Calculator</h1>
+  <p class="calc-page-subtitle">Calculate exact litres of paint needed for any room or surface</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Room Length (ft)</label><input type="number" class="form-control" id="length" value="15" step="0.5"></div>
+          <div class="col-md-4"><label class="form-label">Room Width (ft)</label><input type="number" class="form-control" id="width" value="12" step="0.5"></div>
+          <div class="col-md-4"><label class="form-label">Room Height (ft)</label><input type="number" class="form-control" id="height" value="10" step="0.5"></div>
+          <div class="col-md-4"><label class="form-label">Number of Doors</label><input type="number" class="form-control" id="doors" value="1" step="1" min="0"></div>
+          <div class="col-md-4"><label class="form-label">Number of Windows</label><input type="number" class="form-control" id="windows" value="2" step="1" min="0"></div>
+          <div class="col-md-4"><label class="form-label">Number of Coats</label><select class="form-select" id="coats"><option value="1">1 coat (light re-paint)</option><option value="2" selected>2 coats (standard)</option><option value="3">3 coats (dark/new)</option></select></div>
+          <div class="col-md-6"><label class="form-label">Paint Type</label>
+            <select class="form-select" id="paintType">
+              <option value="emulsion" selected>Interior Emulsion (12-14 sq.m/L)</option>
+              <option value="enamel">Enamel / Gloss (10-12 sq.m/L)</option>
+              <option value="exterior">Exterior Paint (10 sq.m/L)</option>
+              <option value="primer">Primer (10-12 sq.m/L)</option>
+              <option value="distemper">Distemper (16-18 sq.m/L)</option>
+            </select>
+          </div>
+          <div class="col-md-6"><label class="form-label">What to Paint</label>
+            <div class="d-flex gap-3">
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="paintWalls" checked><label class="form-check-label" style="font-size:0.85rem">Walls</label></div>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="paintCeiling"><label class="form-check-label" style="font-size:0.85rem">Ceiling</label></div>
+              <div class="form-check"><input class="form-check-input" type="checkbox" id="paintTrim"><label class="form-check-label" style="font-size:0.85rem">Trim/Skirting</label></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcPaint()"><i class="bi bi-palette me-2"></i>Calculate Paint Needed</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Total Paint Required</div><div class="result-value" id="totalPaint">0 L</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Total Area</div><div class="r-value text-primary" id="area">0 sq.ft</div></div>
+            <div class="result-item"><div class="r-label">4L Tins Needed</div><div class="r-value" id="tins4">0</div></div>
+            <div class="result-item"><div class="r-label">Estimated Cost</div><div class="r-value" style="color:var(--accent)" id="cost">₹0</div></div>
+          </div>
+          <div id="paintTable" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>How Paint is Calculated</h2>
+        <div class="formula-box">Paint (L) = Paintable Area (m²) × Coats / Coverage (m²/L)</div>
+        <h3>Coverage by Paint Type</h3>
+        <ul>
+          <li><strong>Interior Emulsion:</strong> ~130 sq.ft per litre (12-14 m²/L)</li>
+          <li><strong>Exterior Paint:</strong> ~100-110 sq.ft per litre (10 m²/L)</li>
+          <li><strong>Primer:</strong> 100-130 sq.ft per litre (1 coat essential)</li>
+          <li><strong>Distemper:</strong> 160-180 sq.ft per litre (low cost, not washable)</li>
+        </ul>
+        <p style="font-size:0.82rem"><strong>Pro tip:</strong> Always buy 10-15% extra paint to account for spillage, touch-ups, and batch variations.</p>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calcPaint(){
+  const L=+document.getElementById('length').value;const W=+document.getElementById('width').value;const H=+document.getElementById('height').value;
+  const doors=+document.getElementById('doors').value;const windows=+document.getElementById('windows').value;
+  const coats=+document.getElementById('coats').value;
+  const doWalls=document.getElementById('paintWalls').checked;
+  const doCeil=document.getElementById('paintCeiling').checked;
+  const doTrim=document.getElementById('paintTrim').checked;
+  const paintType=document.getElementById('paintType').value;
+  const coverageSqft={emulsion:130,enamel:110,exterior:105,primer:120,distemper:170};
+  const coverage=coverageSqft[paintType];
+  const doorArea=21;const windowArea=15; // sq.ft each
+  let paintableArea=0;
+  if(doWalls){const wallArea=2*(L+W)*H;const openings=doors*doorArea+windows*windowArea;paintableArea+=wallArea-openings;}
+  if(doCeil){paintableArea+=L*W;}
+  if(doTrim){paintableArea+=doors*8+windows*6+2*(L+W)*0.5;}
+  const areaM2=paintableArea*0.0929;
+  const paintNeeded=(areaM2*coats)/coverage*100; // litres
+  const tins4=Math.ceil(paintNeeded/4);const tins1=Math.ceil((paintNeeded-(tins4-1)*4));
+  const pricePerL={emulsion:350,enamel:300,exterior:400,primer:200,distemper:100};
+  const totalCost=paintNeeded*pricePerL[paintType];
+
+  document.getElementById('totalPaint').textContent=paintNeeded.toFixed(1)+' L';
+  document.getElementById('area').textContent=Math.round(paintableArea)+' sq.ft';
+  document.getElementById('tins4').textContent=tins4+' × 4L tins';
+  document.getElementById('cost').textContent='₹'+Math.round(totalCost).toLocaleString('en-IN');
+
+  document.getElementById('paintTable').innerHTML=`<div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+    <thead><tr style="background:var(--bg-input)"><th>Surface</th><th>Area (sq.ft)</th></tr></thead>
+    <tbody>
+      ${doWalls?`<tr><td>Walls (excl. openings)</td><td>${Math.round(2*(L+W)*H-(doors*doorArea+windows*windowArea))}</td></tr>`:''}
+      ${doCeil?`<tr><td>Ceiling</td><td>${Math.round(L*W)}</td></tr>`:''}
+      ${doTrim?`<tr><td>Trim/Skirting</td><td>${Math.round(doors*8+windows*6+2*(L+W)*0.5)}</td></tr>`:''}
+      <tr><td colspan="2" style="font-size:0.72rem;color:var(--text-muted)">Coverage rate: ${coverage} sq.ft/L | Coats: ${coats}</td></tr>
+    </tbody>
+  </table></div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Paint Needed: ${document.getElementById('totalPaint').textContent}\nArea: ${document.getElementById('area').textContent}\nEst. Cost: ${document.getElementById('cost').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcPaint);
+</script>
+</body>
+</html>

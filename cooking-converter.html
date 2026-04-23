@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cooking Measurement Converter - Cups, Tbsp, Grams | SuperCalc</title>
+  <meta name="description" content="Free cooking measurement converter. Convert cups to ml, tablespoons to grams, teaspoons to ml, and more. Includes ingredient-specific weight conversions.">
+  <meta name="keywords" content="cooking converter, cups to ml, tablespoons to grams, cooking measurement calculator, baking converter, recipe converter, teaspoon converter">
+  <link rel="canonical" href="https://supercalc.online/cooking-converter.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#bf360c,#f4511e)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Cooking Converter</span></nav>
+  <h1 class="calc-page-title">🍳 Cooking Measurement Converter</h1>
+  <p class="calc-page-subtitle">Convert cups, tablespoons, teaspoons, ml, and grams for cooking</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <!-- Volume converter -->
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:1rem">🥄 Volume Converter</h3>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4"><label class="form-label">From</label><select class="form-select" id="volFrom" onchange="convertVol()"><option value="1">1 Teaspoon (tsp)</option><option value="3">1 Tablespoon (tbsp = 3 tsp)</option><option value="48" selected>1 Cup (US) = 48 tsp</option><option value="24">½ Cup = 24 tsp</option></select></div>
+          <div class="col-md-4"><label class="form-label">Value</label><input type="number" class="form-control" id="volVal" value="1" step="0.25" oninput="convertVol()"></div>
+        </div>
+        <div id="volResult"></div>
+
+        <!-- Ingredient weight converter -->
+        <h3 style="font-size:0.95rem;font-weight:700;margin:1.5rem 0 1rem">⚖️ Ingredient to Grams Converter</h3>
+        <div class="row g-3">
+          <div class="col-md-5"><label class="form-label">Ingredient</label><select class="form-select" id="ingredient" onchange="convertIng()">
+            <option value="flour">All-Purpose Flour</option><option value="sugar" selected>White Sugar</option><option value="butter">Butter</option><option value="milk">Milk</option><option value="water">Water</option>
+            <option value="honey">Honey</option><option value="oil">Vegetable Oil</option><option value="salt">Salt</option><option value="cocoa">Cocoa Powder</option><option value="oats">Rolled Oats</option>
+            <option value="rice">Uncooked Rice</option><option value="ghee">Ghee</option>
+          </select></div>
+          <div class="col-md-3"><label class="form-label">Amount</label><input type="number" class="form-control" id="ingAmt" value="1" step="0.25" min="0.25" oninput="convertIng()"></div>
+          <div class="col-md-4"><label class="form-label">Unit</label><select class="form-select" id="ingUnit" onchange="convertIng()"><option value="cup">Cups</option><option value="tbsp">Tablespoons</option><option value="tsp">Teaspoons</option><option value="ml">Millilitres</option></select></div>
+        </div>
+        <div id="ingResult" class="mt-3"></div>
+        <div class="action-btns mt-3"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Quick Reference: 1 Cup in Common Units</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Measurement</th><th>Equivalent</th></tr></thead>
+          <tbody>
+            <tr><td>1 Cup (US)</td><td>= 16 tablespoons = 48 teaspoons = 237 ml</td></tr>
+            <tr><td>1 Tablespoon (tbsp)</td><td>= 3 teaspoons = 15 ml</td></tr>
+            <tr><td>1 Teaspoon (tsp)</td><td>= 5 ml</td></tr>
+            <tr><td>¼ Cup</td><td>= 4 tablespoons = 59 ml</td></tr>
+            <tr><td>⅓ Cup</td><td>= 5⅓ tablespoons = 79 ml</td></tr>
+            <tr><td>½ Cup</td><td>= 8 tablespoons = 118 ml</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+// g per cup for ingredients
+const ingGrams={flour:{cup:125,tbsp:7.8,tsp:2.6,ml:0.53},sugar:{cup:200,tbsp:12.5,tsp:4.2,ml:0.84},butter:{cup:227,tbsp:14.2,tsp:4.7,ml:0.96},milk:{cup:244,tbsp:15.3,tsp:5.1,ml:1.03},water:{cup:237,tbsp:14.8,tsp:4.9,ml:1.0},honey:{cup:340,tbsp:21.3,tsp:7.1,ml:1.43},oil:{cup:218,tbsp:13.6,tsp:4.5,ml:0.92},salt:{cup:292,tbsp:18.3,tsp:6.1,ml:1.23},cocoa:{cup:85,tbsp:5.3,tsp:1.8,ml:0.36},oats:{cup:90,tbsp:5.6,tsp:1.9,ml:0.38},rice:{cup:185,tbsp:11.6,tsp:3.9,ml:0.78},ghee:{cup:218,tbsp:13.6,tsp:4.5,ml:0.92}};
+function convertVol(){const tsp=+document.getElementById('volFrom').value*+document.getElementById('volVal').value;const ml=tsp*4.929;const tbsp=tsp/3;const cups=tsp/48;document.getElementById('volResult').innerHTML=`<div class="result-grid"><div class="result-item"><div class="r-label">Teaspoons</div><div class="r-value text-primary">${tsp.toFixed(2)}</div></div><div class="result-item"><div class="r-label">Tablespoons</div><div class="r-value">${tbsp.toFixed(2)}</div></div><div class="result-item"><div class="r-label">Cups</div><div class="r-value">${cups.toFixed(4)}</div></div><div class="result-item"><div class="r-label">Millilitres</div><div class="r-value" style="color:var(--accent)">${ml.toFixed(1)}</div></div><div class="result-item"><div class="r-label">Fluid Ounces</div><div class="r-value">${(ml/29.574).toFixed(2)}</div></div><div class="result-item"><div class="r-label">Litres</div><div class="r-value">${(ml/1000).toFixed(4)}</div></div></div>`;}
+function convertIng(){const ing=document.getElementById('ingredient').value;const amt=+document.getElementById('ingAmt').value;const unit=document.getElementById('ingUnit').value;const gPerUnit=ingGrams[ing][unit];const grams=(gPerUnit*amt).toFixed(1);const ingName=document.getElementById('ingredient').options[document.getElementById('ingredient').selectedIndex].text;document.getElementById('ingResult').innerHTML=`<div class="highlight-box"><strong>🍽️ ${amt} ${unit === 'cup'?'cup(s)':unit} of ${ingName} = <span style="color:var(--accent)">${grams}g</span></strong><div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem">Also: ${(grams/28.35).toFixed(2)} oz | ${(grams/453.59).toFixed(3)} lb</div></div>`;}
+function getText(){return `Cooking Conversion result from SuperCalc.online`;}
+document.addEventListener('DOMContentLoaded',()=>{convertVol();convertIng();});
+</script>
+</body>
+</html>

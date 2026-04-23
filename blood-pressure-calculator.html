@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Pressure Calculator - BP Category & Heart Rate Checker | SuperCalc</title>
+  <meta name="description" content="Free blood pressure calculator. Check if your BP reading is normal, elevated, or high. Get classification (Stage 1, Stage 2 hypertension) and heart rate zone analysis.">
+  <meta name="keywords" content="blood pressure calculator, BP calculator, blood pressure chart, normal blood pressure, hypertension calculator, heart rate calculator, systolic diastolic calculator">
+  <link rel="canonical" href="https://supercalc.online/blood-pressure-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#b71c1c,#e53935)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#health">Health</a> <i class="bi bi-chevron-right"></i><span>Blood Pressure</span></nav>
+  <h1 class="calc-page-title">❤️‍🔥 Blood Pressure Calculator</h1>
+  <p class="calc-page-subtitle">Check your BP category and get personalized heart health guidance</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Systolic (Upper Number)</label><div class="input-group"><input type="number" class="form-control" id="sys" value="120" min="60" max="250" placeholder="e.g. 120"><span class="input-group-text">mmHg</span></div></div>
+          <div class="col-md-4"><label class="form-label">Diastolic (Lower Number)</label><div class="input-group"><input type="number" class="form-control" id="dia" value="80" min="40" max="150" placeholder="e.g. 80"><span class="input-group-text">mmHg</span></div></div>
+          <div class="col-md-4"><label class="form-label">Pulse/Heart Rate</label><div class="input-group"><input type="number" class="form-control" id="pulse" value="72" min="30" max="220" placeholder="e.g. 72"><span class="input-group-text">bpm</span></div></div>
+          <div class="col-md-4"><label class="form-label">Age</label><input type="number" class="form-control" id="age" value="35" min="1" max="110"></div>
+          <div class="col-md-4"><label class="form-label">Gender</label><select class="form-select" id="gender"><option value="male">Male</option><option value="female">Female</option></select></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="checkBP()" style="background:linear-gradient(135deg,#b71c1c,#e53935)"><i class="bi bi-heart-pulse me-2"></i>Check Blood Pressure</button>
+        <div class="result-box" id="resultBox">
+          <div id="bpGauge" style="text-align:center;font-size:5rem;margin-bottom:0.5rem">❤️</div>
+          <div class="result-primary"><div class="result-label">BP Category</div><div class="result-value" id="bpCat">—</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">MAP (Mean Arterial Pressure)</div><div class="r-value text-primary" id="map">—</div></div>
+            <div class="result-item"><div class="r-label">Pulse Pressure</div><div class="r-value" id="pp">—</div></div>
+            <div class="result-item"><div class="r-label">Heart Rate Zone</div><div class="r-value" id="hrZone">—</div></div>
+            <div class="result-item"><div class="r-label">Resting HR Status</div><div class="r-value" id="hrStatus">—</div></div>
+          </div>
+          <div id="bpAdvice" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Blood Pressure Categories (AHA 2025)</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Category</th><th>Systolic (mmHg)</th><th>Diastolic (mmHg)</th><th>Action</th></tr></thead>
+          <tbody>
+            <tr style="color:#2e7d32"><td>✅ Normal</td><td>&lt; 120</td><td>&lt; 80</td><td>Maintain healthy lifestyle</td></tr>
+            <tr style="color:#f57c00"><td>⚠️ Elevated</td><td>120-129</td><td>&lt; 80</td><td>Lifestyle changes needed</td></tr>
+            <tr style="color:#e64a19"><td>🔴 High BP Stage 1</td><td>130-139</td><td>80-89</td><td>Doctor consultation</td></tr>
+            <tr style="color:#b71c1c"><td>🔴 High BP Stage 2</td><td>≥ 140</td><td>≥ 90</td><td>Medication + lifestyle</td></tr>
+            <tr style="color:#7b1fa2"><td>🚨 Hypertensive Crisis</td><td>&gt; 180</td><td>&gt; 120</td><td>Emergency — call doctor now!</td></tr>
+            <tr style="color:#0288d1"><td>⬇️ Low BP</td><td>&lt; 90</td><td>&lt; 60</td><td>Monitor, may need medical care</td></tr>
+          </tbody>
+        </table></div>
+        <p style="font-size:0.8rem;color:var(--text-muted)">⚠️ This tool is for educational purposes only. Always consult a qualified physician for medical advice.</p>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function checkBP(){
+  const sys=+document.getElementById('sys').value,dia=+document.getElementById('dia').value,pulse=+document.getElementById('pulse').value,age=+document.getElementById('age').value;
+  const map=Math.round(dia+((sys-dia)/3));const pp=sys-dia;
+  let cat,color,emoji,advice;
+  if(sys>180||dia>120){cat='🚨 Hypertensive Crisis';color='#7b1fa2';emoji='🚨';advice='<div class="highlight-box" style="border-color:#7b1fa2;background:rgba(123,31,162,0.1)">EMERGENCY: Blood pressure is dangerously high. Seek immediate medical attention. Do not wait.</div>';}
+  else if(sys>=140||dia>=90){cat='🔴 High BP — Stage 2';color='#b71c1c';emoji='🔴';advice='<div class="highlight-box" style="border-color:#b71c1c;background:rgba(183,28,28,0.1)">High BP Stage 2 requires both medication and lifestyle changes. Schedule an appointment with your doctor soon.</div>';}
+  else if(sys>=130||dia>=80){cat='🟠 High BP — Stage 1';color='#e64a19';emoji='🟠';advice='<div class="highlight-box" style="border-color:#e64a19;background:rgba(230,74,25,0.1)">Stage 1 Hypertension. Your doctor may recommend lifestyle changes or medication. Reduce sodium, exercise regularly.</div>';}
+  else if(sys>=120&&dia<80){cat='🟡 Elevated';color='#f57c00';emoji='🟡';advice='<div class="highlight-box" style="border-color:#f57c00;background:rgba(245,124,0,0.1)">Your BP is elevated. Without lifestyle changes, it may develop into high BP. Reduce salt, exercise 30 min/day.</div>';}
+  else if(sys<90||dia<60){cat='🔵 Low BP (Hypotension)';color='#0288d1';emoji='🔵';advice='<div class="highlight-box" style="border-color:#0288d1;background:rgba(2,136,209,0.1)">Low blood pressure detected. Stay hydrated, avoid standing up quickly. Consult doctor if you feel dizzy.</div>';}
+  else{cat='✅ Normal';color='#2e7d32';emoji='💚';advice='<div class="highlight-box" style="border-color:var(--accent);background:rgba(0,229,160,0.1)">Great! Your blood pressure is normal. Maintain healthy diet, regular exercise, and check BP periodically.</div>';}
+  
+  let hrZone,hrStatus;
+  if(pulse<60)hrStatus='Bradycardia (low HR)';else if(pulse<100)hrStatus='Normal Resting';else hrStatus='Tachycardia (elevated)';
+  const maxHR=220-age;const hrPct=(pulse/maxHR*100).toFixed(0);
+  if(hrPct<50)hrZone='Rest / Recovery';else if(hrPct<60)hrZone='Fat Burn (light)';else if(hrPct<70)hrZone='Aerobic (moderate)';else if(hrPct<85)hrZone='Cardio (vigorous)';else hrZone='Peak / VO2 Max';
+  
+  document.getElementById('bpGauge').textContent=emoji;
+  document.getElementById('bpCat').textContent=cat;document.getElementById('bpCat').style.color=color;
+  document.getElementById('map').textContent=map+' mmHg';
+  document.getElementById('pp').textContent=pp+' mmHg';
+  document.getElementById('hrZone').textContent=hrZone+' ('+hrPct+'% max HR)';
+  document.getElementById('hrStatus').textContent=hrStatus;
+  document.getElementById('bpAdvice').innerHTML=advice;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Blood Pressure: ${document.getElementById('sys').value}/${document.getElementById('dia').value} mmHg\nCategory: ${document.getElementById('bpCat').textContent}\nHeart Rate: ${document.getElementById('pulse').value} bpm`;}
+document.addEventListener('DOMContentLoaded',checkBP);
+</script>
+</body>
+</html>

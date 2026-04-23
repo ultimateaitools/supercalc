@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Count Calculator - Count Words, Characters & Reading Time | SuperCalc</title>
+  <meta name="description" content="Free word count calculator. Count words, characters, sentences, paragraphs, reading time & speaking time. Perfect for essays, articles, blogs & SEO content.">
+  <meta name="keywords" content="word count calculator, character count, word counter online, reading time calculator, words per minute calculator, essay word count, SEO word count">
+  <link rel="canonical" href="https://supercalc.online/word-count-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1abc9c,#16a085)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Word Count Calculator</span></nav>
+  <h1 class="calc-page-title">📝 Word Count Calculator</h1>
+  <p class="calc-page-subtitle">Count words, characters, reading time & more — instant results</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <label class="form-label" style="font-weight:600">Paste or type your text:</label>
+        <textarea class="form-control" id="textInput" rows="10" placeholder="Type or paste your text here... Word count will update automatically as you type." oninput="analyzeText()" style="resize:vertical;font-size:0.9rem;line-height:1.6"></textarea>
+        <div class="d-flex gap-2 mt-2">
+          <button class="btn btn-outline-secondary btn-sm" onclick="clearText()"><i class="bi bi-trash"></i> Clear</button>
+          <button class="btn btn-outline-primary btn-sm" onclick="copyResult(document.getElementById('textInput').value)"><i class="bi bi-clipboard"></i> Copy Text</button>
+          <span style="margin-left:auto;font-size:0.78rem;color:var(--text-muted)" id="charLimit"></span>
+        </div>
+
+        <!-- Live Stats Grid -->
+        <div class="result-grid mt-4" id="statsGrid">
+          <div class="result-item"><div class="r-label">Words</div><div class="r-value" style="color:var(--primary);font-size:1.5rem" id="wordCount">0</div></div>
+          <div class="result-item"><div class="r-label">Characters (with spaces)</div><div class="r-value" style="color:var(--secondary);font-size:1.5rem" id="charCount">0</div></div>
+          <div class="result-item"><div class="r-label">Characters (no spaces)</div><div class="r-value" id="charNoSpace">0</div></div>
+          <div class="result-item"><div class="r-label">Sentences</div><div class="r-value" id="sentences">0</div></div>
+          <div class="result-item"><div class="r-label">Paragraphs</div><div class="r-value" id="paragraphs">0</div></div>
+          <div class="result-item"><div class="r-label">Unique Words</div><div class="r-value" id="uniqueWords">0</div></div>
+          <div class="result-item"><div class="r-label">Reading Time</div><div class="r-value" style="color:var(--accent)" id="readTime">0 min</div></div>
+          <div class="result-item"><div class="r-label">Speaking Time</div><div class="r-value" id="speakTime">0 min</div></div>
+        </div>
+
+        <!-- Word frequency -->
+        <div id="wordFreq" class="mt-4"></div>
+      </div>
+
+      <!-- SEO Content Targets -->
+      <div class="calc-box mb-4">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:0.75rem">🎯 Content Length Recommendations</h3>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Content Type</th><th>Recommended Words</th><th>SEO Goal</th></tr></thead>
+          <tbody>
+            <tr><td>📱 Social Media Post</td><td>50-100 words</td><td>Engagement</td></tr>
+            <tr><td>📧 Email Newsletter</td><td>200-300 words</td><td>Conversion</td></tr>
+            <tr><td>📖 Blog Post (basic)</td><td>300-600 words</td><td>Informational</td></tr>
+            <tr><td>📰 News Article</td><td>400-800 words</td><td>Authority</td></tr>
+            <tr><td>📚 Long-form Article</td><td>1,500-2,500 words</td><td>SEO Ranking</td></tr>
+            <tr><td>🏆 Pillar Content / Guide</td><td>3,000-5,000+ words</td><td>#1 Google Ranking</td></tr>
+            <tr><td>📄 College Essay</td><td>650-1,000 words</td><td>Admission</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="info-box">
+        <h2>Reading Speed Reference</h2>
+        <ul>
+          <li><strong>Average adult reading speed:</strong> 238 words per minute</li>
+          <li><strong>Speed reader:</strong> 400-600 WPM</li>
+          <li><strong>Speaking speed (normal):</strong> 130-150 WPM</li>
+          <li><strong>Audiobook (standard):</strong> 150-160 WPM</li>
+          <li><strong>Twitter/X limit:</strong> 280 characters</li>
+          <li><strong>Google meta description:</strong> 150-160 characters (optimal SEO)</li>
+          <li><strong>LinkedIn post:</strong> Best under 1,300 characters</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function analyzeText(){
+  const text=document.getElementById('textInput').value;
+  const words=text.trim()===''?[]:text.trim().split(/\s+/);
+  const wordCount=words.length;
+  const charCount=text.length;
+  const charNoSpace=text.replace(/\s/g,'').length;
+  const sentences=(text.match(/[.!?]+/g)||[]).length;
+  const paragraphs=text.split(/\n\n+/).filter(p=>p.trim().length>0).length||Math.ceil(wordCount/150)||0;
+  const uniqueWords=new Set(words.map(w=>w.toLowerCase().replace(/[^a-z0-9]/g,''))).size;
+  const readTime=Math.ceil(wordCount/238);
+  const speakTime=Math.ceil(wordCount/130);
+
+  document.getElementById('wordCount').textContent=wordCount.toLocaleString();
+  document.getElementById('charCount').textContent=charCount.toLocaleString();
+  document.getElementById('charNoSpace').textContent=charNoSpace.toLocaleString();
+  document.getElementById('sentences').textContent=sentences;
+  document.getElementById('paragraphs').textContent=paragraphs;
+  document.getElementById('uniqueWords').textContent=uniqueWords.toLocaleString();
+  document.getElementById('readTime').textContent=readTime>0?readTime+' min':'< 1 min';
+  document.getElementById('speakTime').textContent=speakTime>0?speakTime+' min':'< 1 min';
+  document.getElementById('charLimit').textContent=charCount+' characters | Twitter: '+(280-charCount>=0?280-charCount+' left':'over by '+(charCount-280));
+
+  // Word frequency top 10
+  if(wordCount>5){
+    const freq={};words.forEach(w=>{const k=w.toLowerCase().replace(/[^a-z0-9]/g,'');if(k.length>2&&!['the','and','for','are','but','not','you','all','can','had','her','was','one','our','out','day','get','has','him','his','how','man','new','now','old','see','two','way','who','boy','did','its','let','put','say','she','too','use'].includes(k))freq[k]=(freq[k]||0)+1;});
+    const top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    if(top.length>0){document.getElementById('wordFreq').innerHTML=`<h4 style="font-size:0.88rem;font-weight:700;margin-bottom:0.5rem">📊 Top Keywords</h4><div style="display:flex;flex-wrap:wrap;gap:0.5rem">${top.map(([w,c])=>`<span style="background:var(--bg-input);border:1px solid var(--border);border-radius:20px;padding:0.25rem 0.75rem;font-size:0.78rem"><strong>${w}</strong> ×${c}</span>`).join('')}</div>`;}
+  } else {document.getElementById('wordFreq').innerHTML='';}
+}
+function clearText(){document.getElementById('textInput').value='';analyzeText();}
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirement Calculator India 2025 - Retirement Corpus Calculator | SuperCalc</title>
+  <meta name="description" content="Free retirement planning calculator India. Calculate how much you need to retire, monthly savings required, and retirement corpus based on current age, lifestyle & inflation.">
+  <meta name="keywords" content="retirement calculator India, retirement corpus calculator, how much to save for retirement, retirement planning calculator, NPS calculator, pension calculator India 2025">
+  <link rel="canonical" href="https://supercalc.online/retirement-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>Retirement Calculator</span></nav>
+  <h1 class="calc-page-title">🏖️ Retirement Calculator</h1>
+  <p class="calc-page-subtitle">Plan your retirement corpus — calculate exactly how much you need</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Current Age</label><input type="number" class="form-control" id="currentAge" value="30" min="20" max="60"><input type="range" class="form-range mt-2" id="cAgeSlider" min="20" max="60" value="30"></div>
+          <div class="col-md-4"><label class="form-label">Retirement Age</label><input type="number" class="form-control" id="retireAge" value="60" min="40" max="75"><input type="range" class="form-range mt-2" id="rAgeSlider" min="40" max="75" value="60"></div>
+          <div class="col-md-4"><label class="form-label">Life Expectancy</label><input type="number" class="form-control" id="lifeExpect" value="85" min="60" max="100"></div>
+          <div class="col-md-6"><label class="form-label">Current Monthly Expenses (₹)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="monthlyExp" value="40000" step="5000"></div></div>
+          <div class="col-md-6"><label class="form-label">Expected Inflation Rate</label><div class="input-group"><input type="number" class="form-control" id="inflation" value="6" step="0.5"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-6"><label class="form-label">Expected Returns on Investment</label><div class="input-group"><input type="number" class="form-control" id="returns" value="12" step="0.5"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-6"><label class="form-label">Post-Retirement Return Rate</label><div class="input-group"><input type="number" class="form-control" id="postReturn" value="7" step="0.5"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-6"><label class="form-label">Current Savings / Investments (₹)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="currentSavings" value="200000" step="50000"></div></div>
+          <div class="col-md-6"><label class="form-label">Lifestyle in Retirement</label><select class="form-select" id="lifestyle"><option value="0.7">🏠 Modest (70% of current)</option><option value="0.85">🌟 Comfortable (85%)</option><option value="1.0" selected>✨ Same standard (100%)</option><option value="1.2">🏰 Upgraded (120%)</option></select></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcRetirement()"><i class="bi bi-piggy-bank me-2"></i>Calculate Retirement Plan</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Required Retirement Corpus</div><div class="result-value" id="corpus">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Monthly SIP Needed</div><div class="r-value text-primary" id="sipNeeded">₹0</div></div>
+            <div class="result-item"><div class="r-label">Monthly Expense at Retirement</div><div class="r-value" style="color:var(--warning)" id="futureExp">₹0</div></div>
+            <div class="result-item"><div class="r-label">Years to Retirement</div><div class="r-value" id="yearsLeft">0</div></div>
+            <div class="result-item"><div class="r-label">Savings Shortfall</div><div class="r-value" style="color:var(--danger)" id="shortfall">₹0</div></div>
+          </div>
+          <div class="chart-container"><canvas id="retChart"></canvas></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>How Much Do You Need to Retire in India?</h2>
+        <p>The <strong>25× Rule</strong> is a popular retirement planning guideline: multiply your annual retirement expenses by 25 to get your target corpus. This ensures you can withdraw 4% per year indefinitely (the "4% safe withdrawal rate").</p>
+        <h3>Rule of 25 Example</h3>
+        <p>If you need ₹60,000/month at retirement = ₹7,20,000/year × 25 = <strong>₹1.8 Crore corpus needed</strong> (at today's value). Adjusted for inflation at 6% over 30 years, you'd need ~₹10.3 Crore at retirement age.</p>
+        <h3>Best Retirement Investment Options India</h3>
+        <ul>
+          <li><strong>NPS (National Pension System):</strong> Additional ₹50,000 deduction u/s 80CCD(1B), partial tax-free withdrawals</li>
+          <li><strong>EPF/VPF:</strong> Employer + employee contributions, 8.25% interest (tax-free)</li>
+          <li><strong>Equity Mutual Funds (SIP):</strong> Historical 12-15% CAGR over long term</li>
+          <li><strong>PPF:</strong> 7.1% tax-free, 15-year compounding, max ₹1.5L/year</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let retChart=null;
+['currentAge','cAgeSlider'].forEach((id,i)=>{document.getElementById(id).addEventListener('input',function(){document.getElementById(['cAgeSlider','currentAge'][i]).value=this.value;});});
+['retireAge','rAgeSlider'].forEach((id,i)=>{document.getElementById(id).addEventListener('input',function(){document.getElementById(['rAgeSlider','retireAge'][i]).value=this.value;});});
+
+function calcRetirement(){
+  const curAge=+document.getElementById('currentAge').value;
+  const retAge=+document.getElementById('retireAge').value;
+  const lifeExp=+document.getElementById('lifeExpect').value;
+  const monthExp=+document.getElementById('monthlyExp').value;
+  const inflation=+document.getElementById('inflation').value/100;
+  const returnRate=+document.getElementById('returns').value/100;
+  const postReturn=+document.getElementById('postReturn').value/100;
+  const curSavings=+document.getElementById('currentSavings').value;
+  const lifestyle=+document.getElementById('lifestyle').value;
+  const yearsToRetire=retAge-curAge;
+  const yearsInRetirement=lifeExp-retAge;
+
+  // Future monthly expense at retirement
+  const futureMonthlyExp=monthExp*lifestyle*Math.pow(1+inflation,yearsToRetire);
+  const futureAnnualExp=futureMonthlyExp*12;
+
+  // Required corpus (present value of annuity at post-retirement returns)
+  const realReturn=(postReturn-inflation)/(1+inflation);
+  let corpus;
+  if(Math.abs(realReturn)<0.001){corpus=futureAnnualExp*yearsInRetirement;}
+  else{corpus=futureAnnualExp*(1-Math.pow(1+realReturn,-yearsInRetirement))/realReturn;}
+
+  // Current savings future value
+  const curSavFV=curSavings*Math.pow(1+returnRate,yearsToRetire);
+  const shortfall=Math.max(0,corpus-curSavFV);
+
+  // Monthly SIP needed (future value of annuity)
+  const r=returnRate/12;const n=yearsToRetire*12;
+  const monthSIP=shortfall*r/(Math.pow(1+r,n)-1);
+
+  const fmt=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+  document.getElementById('corpus').textContent=fmt(corpus);
+  document.getElementById('sipNeeded').textContent=fmt(monthSIP);
+  document.getElementById('futureExp').textContent=fmt(futureMonthlyExp)+'/month';
+  document.getElementById('yearsLeft').textContent=yearsToRetire+' years';
+  document.getElementById('shortfall').textContent=fmt(shortfall);
+
+  const ctx=document.getElementById('retChart').getContext('2d');
+  if(retChart)retChart.destroy();
+  const labels=[];const savings=[];const goal=[];
+  for(let y=0;y<=yearsToRetire;y++){
+    labels.push(curAge+y+'');
+    savings.push(Math.round(curSavings*Math.pow(1+returnRate,y)+monthSIP*12*(Math.pow(1+returnRate,y)-1)/returnRate));
+    goal.push(Math.round(corpus));
+  }
+  retChart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:'Projected Savings',data:savings,borderColor:'#6C3BFF',backgroundColor:'rgba(108,59,255,0.1)',fill:true},{label:'Corpus Target',data:goal,borderColor:'#FF6B00',borderDash:[5,5]}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN',{notation:'compact'})}}}}});
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Retirement Corpus Needed: ${document.getElementById('corpus').textContent}\nMonthly SIP Required: ${document.getElementById('sipNeeded').textContent}`;}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(calcRetirement,300));
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Calculator - Best Wake Up & Bedtime Calculator | SuperCalc</title>
+  <meta name="description" content="Free sleep calculator. Find the best time to wake up or go to bed based on 90-minute sleep cycles. Wake up refreshed and avoid sleep inertia.">
+  <meta name="keywords" content="sleep calculator, wake up time calculator, bedtime calculator, sleep cycle calculator, how many hours of sleep, best time to wake up, REM sleep calculator">
+  <link rel="canonical" href="https://supercalc.online/sleep-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#health">Health</a> <i class="bi bi-chevron-right"></i><span>Sleep Calculator</span></nav>
+  <h1 class="calc-page-title">😴 Sleep Calculator</h1>
+  <p class="calc-page-subtitle">Wake up naturally at the end of a sleep cycle — feel refreshed</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('wakeup',this)">⏰ I need to wake up at...</button>
+        <button class="cat-pill" onclick="setMode('bedtime',this)">🌙 I'm going to bed now</button>
+        <button class="cat-pill" onclick="setMode('ideal',this)">💡 What's my ideal sleep?</button>
+      </div>
+
+      <div class="calc-box" id="wakeupBox">
+        <label class="form-label" style="font-size:1rem;font-weight:600">I need to wake up at:</label>
+        <input type="time" class="form-control mb-3" id="wakeTime" value="07:00" style="font-size:1.2rem;padding:0.75rem">
+        <div class="row g-2 mb-3">
+          <div class="col-6"><label class="form-label">Age Group</label><select class="form-select" id="ageGroup"><option value="school">School Age (6-13): 9-11 hrs</option><option value="teen">Teen (14-17): 8-10 hrs</option><option value="adult" selected>Adult (18-64): 7-9 hrs</option><option value="senior">Senior (65+): 7-8 hrs</option></select></div>
+          <div class="col-6"><label class="form-label">Time to Fall Asleep</label><select class="form-select" id="fallAsleep"><option value="10">~10 min (easy sleeper)</option><option value="14" selected>~14 min (average)</option><option value="20">~20 min (light sleeper)</option><option value="30">~30 min (delayed sleep)</option></select></div>
+        </div>
+        <button class="btn-calculate" onclick="calcSleepTimes()"><i class="bi bi-moon-stars me-2"></i>Show Best Bedtimes</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Best Bedtimes to Wake Fresh</div><div class="result-value" id="bestBedtime" style="font-size:1.6rem">—</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+          <div id="sleepTimes" class="mt-3"></div>
+        </div>
+      </div>
+
+      <div class="calc-box d-none" id="bedtimeBox">
+        <label class="form-label" style="font-size:1rem;font-weight:600">I'm going to bed right now — <strong id="bedNow"></strong></label>
+        <p style="color:var(--text-muted);font-size:0.85rem">Wake up at these times to complete full sleep cycles:</p>
+        <button class="btn-calculate" onclick="calcWakeTimes()"><i class="bi bi-alarm me-2"></i>Show Best Wake Times</button>
+        <div class="result-box" id="resultBox2">
+          <div id="wakeTimes" class="mt-3"></div>
+        </div>
+      </div>
+
+      <div class="calc-box d-none" id="idealBox">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Your Age</label><input type="number" class="form-control" id="idealAge" value="28" min="1" max="100"></div>
+          <div class="col-md-6"><label class="form-label">Your Lifestyle</label><select class="form-select" id="lifestyle"><option value="normal">Normal</option><option value="active">Active/Athletic</option><option value="stressed">High Stress</option><option value="sick">Recovering/Sick</option></select></div>
+        </div>
+        <button class="btn-calculate mt-3" onclick="calcIdeal()"><i class="bi bi-stars me-2"></i>Get My Sleep Recommendation</button>
+        <div class="result-box" id="resultBox3">
+          <div class="result-primary"><div class="result-label">Recommended Sleep Duration</div><div class="result-value" id="idealHours">0 hours</div></div>
+          <div id="idealDetails" class="mt-3"></div>
+        </div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Understanding Sleep Cycles</h2>
+        <p>The human sleep cycle lasts approximately <strong>90 minutes</strong>. Each cycle consists of 4 stages: N1 (light sleep), N2 (intermediate sleep), N3 (deep sleep/slow-wave), and REM (Rapid Eye Movement) sleep.</p>
+        <h3>Why Wake at End of a Cycle?</h3>
+        <p>Waking mid-cycle (especially during deep sleep N3) causes <strong>sleep inertia</strong> — that groggy, disoriented feeling. Waking at the end of a 90-minute cycle means you're in lighter sleep, making it much easier to feel alert immediately.</p>
+        <h3>Recommended Sleep by Age (WHO 2025)</h3>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Age Group</th><th>Recommended Hours</th><th>Cycles</th></tr></thead>
+          <tbody>
+            <tr><td>Newborn (0-3 mo)</td><td>14-17 hours</td><td>9-11 cycles</td></tr>
+            <tr><td>Infant (4-11 mo)</td><td>12-15 hours</td><td>8-10 cycles</td></tr>
+            <tr><td>Toddler (1-2 yrs)</td><td>11-14 hours</td><td>7-9 cycles</td></tr>
+            <tr><td>School Age (6-13)</td><td>9-11 hours</td><td>6-7 cycles</td></tr>
+            <tr><td>Teen (14-17)</td><td>8-10 hours</td><td>5-6 cycles</td></tr>
+            <tr><td>Adult (18-64)</td><td>7-9 hours</td><td>5-6 cycles</td></tr>
+            <tr><td>Senior (65+)</td><td>7-8 hours</td><td>4-5 cycles</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+const CYCLE=90; // minutes
+function setMode(m,btn){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');
+  ['wakeupBox','bedtimeBox','idealBox'].forEach(id=>document.getElementById(id).classList.add('d-none'));
+  document.getElementById(m==='wakeup'?'wakeupBox':m==='bedtime'?'bedtimeBox':'idealBox').classList.remove('d-none');
+  if(m==='bedtime'){const n=new Date();document.getElementById('bedNow').textContent=n.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});}
+}
+
+function calcSleepTimes(){
+  const [wh,wm]=document.getElementById('wakeTime').value.split(':').map(Number);
+  const fallMin=+document.getElementById('fallAsleep').value;
+  const wakeMs=wh*60+wm;
+  const times=[];
+  for(let c=6;c>=2;c--){
+    const sleepNeeded=c*CYCLE+fallMin;
+    let bedMin=wakeMs-sleepNeeded;
+    while(bedMin<0)bedMin+=24*60;
+    const h=Math.floor(bedMin/60)%24,m=bedMin%60;
+    const ampm=h>=12?'PM':'AM';const h12=h%12||12;
+    times.push({time:`${h12}:${String(m).padStart(2,'0')} ${ampm}`,cycles:c,hours:(c*CYCLE/60).toFixed(1),quality:c>=5?'😴 Excellent':c>=4?'👍 Good':c>=3?'😐 Fair':'😑 Poor'});
+  }
+  document.getElementById('bestBedtime').textContent=times[0].time;
+  document.getElementById('sleepTimes').innerHTML=`
+    <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+      <thead><tr style="background:var(--bg-input)"><th>Go to bed at</th><th>Cycles</th><th>Sleep</th><th>Quality</th></tr></thead>
+      <tbody>${times.map((t,i)=>`<tr${i===0?' style="background:rgba(108,59,255,0.1)"':''}><td><strong>${t.time}</strong></td><td>${t.cycles} cycles</td><td>${t.hours} hrs</td><td>${t.quality}</td></tr>`).join('')}</tbody>
+    </table></div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function calcWakeTimes(){
+  const n=new Date();const nowMin=n.getHours()*60+n.getMinutes();const fallMin=14;
+  const times=[];
+  for(let c=3;c<=7;c++){
+    const wakeMin=nowMin+fallMin+c*CYCLE;const wm=wakeMin%1440;const h=Math.floor(wm/60)%24,m=wm%60;
+    const ampm=h>=12?'PM':'AM';const h12=h%12||12;
+    times.push({time:`${h12}:${String(m).padStart(2,'0')} ${ampm}`,cycles:c,hours:(c*CYCLE/60).toFixed(1)});
+  }
+  document.getElementById('wakeTimes').innerHTML=`<div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)"><thead><tr style="background:var(--bg-input)"><th>Wake up at</th><th>Cycles</th><th>Sleep Duration</th></tr></thead><tbody>${times.map(t=>`<tr><td><strong>${t.time}</strong></td><td>${t.cycles}</td><td>${t.hours} hrs</td></tr>`).join('')}</tbody></table></div>`;
+  document.getElementById('resultBox2').classList.add('show');
+}
+
+function calcIdeal(){
+  const age=+document.getElementById('idealAge').value;
+  const life=document.getElementById('lifestyle').value;
+  let min,max;
+  if(age<=3){min=11;max=14;}else if(age<=5){min=10;max=13;}else if(age<=13){min=9;max=11;}else if(age<=17){min=8;max=10;}else if(age<=64){min=7;max=9;}else{min=7;max=8;}
+  if(life==='active'){min++;max++;}if(life==='sick'){min+=1;max+=2;}
+  document.getElementById('idealHours').textContent=`${min}–${max} hours`;
+  document.getElementById('idealDetails').innerHTML=`<div class="highlight-box"><strong>For a ${age}-year-old ${life} person:</strong><ul style="margin:0.5rem 0 0;padding-left:1.25rem;font-size:0.85rem"><li>Aim for <strong>${min*60/CYCLE|0}–${max*60/CYCLE|0} complete sleep cycles</strong></li><li>Best bedtime: 10:00–11:30 PM (aligns with natural circadian rhythm)</li><li>Avoid screens 1 hour before bed for 23% better sleep quality</li></ul></div>`;
+  document.getElementById('resultBox3').classList.add('show');
+}
+</script>
+</body>
+</html>

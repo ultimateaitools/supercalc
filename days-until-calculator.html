@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Days Until Calculator - Countdown to Any Event | SuperCalc</title>
+  <meta name="description" content="Free days until calculator. Count down days, hours, minutes and seconds to any future event — birthday, New Year, exam, wedding, vacation, or deadline.">
+  <meta name="keywords" content="days until calculator, countdown calculator, how many days until, days till calculator, event countdown, birthday countdown, days remaining calculator">
+  <link rel="canonical" href="https://supercalc.online/days-until-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#311b92,#512da8)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Days Until</span></nav>
+  <h1 class="calc-page-title">⏳ Days Until Calculator</h1>
+  <p class="calc-page-subtitle">Countdown days, hours & seconds to any upcoming event</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <!-- Quick events -->
+      <div class="category-pills mb-4" style="flex-wrap:wrap">
+        <button class="cat-pill" onclick="setEvent('New Year 2026','2026-01-01',this)">🎆 New Year 2026</button>
+        <button class="cat-pill" onclick="setEvent('Diwali 2025','2025-10-20',this)">🪔 Diwali 2025</button>
+        <button class="cat-pill" onclick="setEvent('Christmas 2025','2025-12-25',this)">🎄 Christmas</button>
+        <button class="cat-pill" onclick="setEvent('Holi 2026','2026-03-04',this)">🎨 Holi 2026</button>
+        <button class="cat-pill" onclick="setEvent('Custom','',this)">✏️ Custom</button>
+      </div>
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Event Name</label><input type="text" class="form-control" id="eventName" value="New Year 2026"></div>
+          <div class="col-md-6"><label class="form-label">Event Date</label><input type="date" class="form-control" id="eventDate"></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="startCountdown()"><i class="bi bi-hourglass me-2"></i>Start Countdown</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label" id="eventTitle">Countdown</div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;text-align:center;margin-top:0.5rem">
+              <div><div style="font-size:2.5rem;font-weight:900;color:var(--primary)" id="cntDays">0</div><div style="font-size:0.75rem;color:var(--text-muted)">DAYS</div></div>
+              <div><div style="font-size:2.5rem;font-weight:900;color:var(--accent)" id="cntHrs">0</div><div style="font-size:0.75rem;color:var(--text-muted)">HOURS</div></div>
+              <div><div style="font-size:2.5rem;font-weight:900;color:var(--warning)" id="cntMin">0</div><div style="font-size:0.75rem;color:var(--text-muted)">MINUTES</div></div>
+              <div><div style="font-size:2.5rem;font-weight:900;color:#ef5350" id="cntSec">0</div><div style="font-size:0.75rem;color:var(--text-muted)">SECONDS</div></div>
+            </div>
+          </div>
+          <div class="result-grid mt-3">
+            <div class="result-item"><div class="r-label">Total Days</div><div class="r-value text-primary" id="totalDays">0</div></div>
+            <div class="result-item"><div class="r-label">Total Hours</div><div class="r-value" id="totalHours">0</div></div>
+            <div class="result-item"><div class="r-label">Total Weeks</div><div class="r-value" id="totalWeeks">0</div></div>
+            <div class="result-item"><div class="r-label">Total Seconds</div><div class="r-value" style="color:var(--warning)" id="totalSecs">0</div></div>
+          </div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Days Until Calculator?</h2>
+<p>Date and time calculators help you compute the difference between dates, add or subtract time periods, and plan around specific dates. These tools are invaluable for project management, event planning, age calculation, and deadline tracking.</p>
+<p>All calculations account for leap years, varying month lengths, and timezone considerations for accurate results.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Leap years occur every 4 years (divisible by 4), except for years divisible by 100, unless also divisible by 400</li>
+<li>Time zone differences can shift event dates — always specify timezone for international planning</li>
+<li>Working days calculators exclude weekends; for accurate business deadlines, also subtract public holidays</li>
+<li>The ISO 8601 date format (YYYY-MM-DD) is the international standard and avoids DD/MM vs MM/DD confusion</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How do leap years affect date calculations? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Leap years add an extra day (February 29) every 4 years, making that year 366 days. This matters for anniversary calculations, age calculations around late February birthdays, and any calculation spanning multiple years. Years divisible by 100 skip leap year UNLESS also divisible by 400 (e.g., 2000 was a leap year, 1900 was not).</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the difference between calendar days and business days? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Calendar days count every day including weekends and holidays. Business days (also called working days) count only Monday-Friday, excluding weekends. Some countries also exclude national public holidays. For financial and legal deadlines, whether 'days' means calendar or business days is critically important.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How accurate are online date calculators? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Date calculators are extremely accurate for standard Gregorian calendar calculations. The main variable is whether to include/exclude the start and end dates in the count. Different contexts use different conventions — courts often use 'counting from the day after' while age calculations typically use 'from the birthday itself'.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is Unix timestamp? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">A Unix timestamp (also called POSIX time or Epoch time) counts the number of seconds elapsed since January 1, 1970, 00:00:00 UTC. It's the standard way computers store and transmit date/time information. Converting between Unix timestamps and human-readable dates is a common programming task.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="age-calculator.html" class="related-item text-decoration-none">&#127874; Age Calculator</a>
+<a href="date-calculator.html" class="related-item text-decoration-none">&#128197; Date Calculator</a>
+<a href="days-until-calculator.html" class="related-item text-decoration-none">&#128197; Days Until Calculator</a>
+<a href="working-days-calculator.html" class="related-item text-decoration-none">&#128197; Working Days Calculator</a>
+<a href="time-zone-converter.html" class="related-item text-decoration-none">&#127760; Time Zone Converter</a>
+<a href="add-days-calculator.html" class="related-item text-decoration-none">&#128197; Add Days Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let timer=null;
+document.addEventListener('DOMContentLoaded',()=>{const d=new Date(2026,0,1);document.getElementById('eventDate').value='2026-01-01';});
+function setEvent(name,date,btn){document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('eventName').value=name;if(date)document.getElementById('eventDate').value=date;}
+function startCountdown(){
+  if(timer)clearInterval(timer);
+  const target=new Date(document.getElementById('eventDate').value);if(isNaN(target)){alert('Invalid date');return;}target.setHours(23,59,59,0);
+  const name=document.getElementById('eventName').value;document.getElementById('eventTitle').textContent='⏳ Countdown to '+name;
+  document.getElementById('resultBox').classList.add('show');
+  function update(){
+    const now=new Date();const diff=target-now;
+    if(diff<=0){clearInterval(timer);document.getElementById('cntDays').textContent='🎉';['cntHrs','cntMin','cntSec'].forEach(id=>document.getElementById(id).textContent='0');return;}
+    const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    document.getElementById('cntDays').textContent=d;document.getElementById('cntHrs').textContent=String(h).padStart(2,'0');document.getElementById('cntMin').textContent=String(m).padStart(2,'0');document.getElementById('cntSec').textContent=String(s).padStart(2,'0');
+    document.getElementById('totalDays').textContent=d.toLocaleString();document.getElementById('totalHours').textContent=(d*24+h).toLocaleString();document.getElementById('totalWeeks').textContent=Math.floor(d/7).toLocaleString()+' weeks '+d%7+' days';document.getElementById('totalSecs').textContent=Math.floor(diff/1000).toLocaleString();
+  }
+  update();timer=setInterval(update,1000);
+}
+function getText(){return `Countdown to ${document.getElementById('eventName').value}\nDays: ${document.getElementById('cntDays').textContent}\nDate: ${document.getElementById('eventDate').value}`;}
+</script>
+</body>
+</html>

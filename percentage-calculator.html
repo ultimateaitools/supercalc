@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator 2025 - All Types of % Calculations | SuperCalc</title>
+  <meta name="description" content="Free percentage calculator online. Calculate what percent of a number, percentage increase/decrease, find original number before percentage. All % calculations in one place.">
+  <meta name="keywords" content="percentage calculator, percent calculator, calculate percentage, percentage increase calculator, percentage decrease, what percent of, percentage of a number">
+  <link rel="canonical" href="https://supercalc.online/percentage-calculator.html">
+  <meta property="og:title" content="Percentage Calculator - All % Calculations | SuperCalc">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto ms-3"><li><a class="nav-link" href="index.html#math">📐 Math</a></li></ul>
+      <div class="d-flex gap-2"><div class="search-wrapper d-none d-lg-block"><i class="bi bi-search search-icon"></i><input type="search" class="search-input" placeholder="Search..."><div class="search-dropdown"></div></div><button class="theme-toggle" id="themeToggle"><i class="bi bi-moon-fill" id="themeIcon"></i></button></div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#EC4899,#8B5CF6)">
+  <div class="container">
+    <nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#math">Math</a> <i class="bi bi-chevron-right"></i><span>Percentage Calculator</span></nav>
+    <h1 class="calc-page-title">🔢 Percentage Calculator</h1>
+    <p class="calc-page-subtitle">All types of percentage calculations — fast, accurate & free</p>
+  </div>
+</div>
+
+<div class="container mt-3"><div class="ad-banner"><span class="ad-label">Advertisement</span><span>[ Ad Banner 728x90 ]</span></div></div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+
+      <!-- Type 1: What is X% of Y -->
+      <div class="calc-box mb-4">
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;color:var(--primary)">📌 Type 1: What is X% of Y?</h2>
+        <div class="row g-3 align-items-end">
+          <div class="col"><label class="form-label">What is</label><div class="input-group"><input type="number" class="form-control" id="p1a" placeholder="e.g. 20"><span class="input-group-text">%</span></div></div>
+          <div class="col-auto"><span style="font-size:1.2rem;font-weight:700">of</span></div>
+          <div class="col"><label class="form-label">&nbsp;</label><input type="number" class="form-control" id="p1b" placeholder="e.g. 500"></div>
+          <div class="col-auto"><label class="form-label">&nbsp;</label><button class="btn-calculate px-4" onclick="calc1()">= ?</button></div>
+        </div>
+        <div class="result-box" id="r1"><div class="result-primary"><div class="result-label">Answer</div><div class="result-value" id="r1val">0</div></div><div class="action-btns"><button class="btn-action" onclick="copyResult(document.getElementById('r1val').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div></div>
+      </div>
+
+      <!-- Type 2: X is what % of Y -->
+      <div class="calc-box mb-4">
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;color:var(--accent)">📌 Type 2: X is what % of Y?</h2>
+        <div class="row g-3 align-items-end">
+          <div class="col"><label class="form-label">Value</label><input type="number" class="form-control" id="p2a" placeholder="e.g. 100"></div>
+          <div class="col-auto"><span style="font-size:1.2rem;font-weight:700">is what % of</span></div>
+          <div class="col"><label class="form-label">&nbsp;</label><input type="number" class="form-control" id="p2b" placeholder="e.g. 500"></div>
+          <div class="col-auto"><label class="form-label">&nbsp;</label><button class="btn-calculate px-4" style="background:linear-gradient(135deg,var(--accent),var(--secondary))" onclick="calc2()">= ?</button></div>
+        </div>
+        <div class="result-box" id="r2"><div class="result-primary"><div class="result-label">Answer</div><div class="result-value" id="r2val">0%</div></div><div class="action-btns"><button class="btn-action" onclick="copyResult(document.getElementById('r2val').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div></div>
+      </div>
+
+      <!-- Type 3: % Change -->
+      <div class="calc-box mb-4">
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;color:var(--warning)">📌 Type 3: % Increase / Decrease</h2>
+        <div class="row g-3">
+          <div class="col-md-5"><label class="form-label">From Value</label><input type="number" class="form-control" id="p3a" placeholder="e.g. 200"></div>
+          <div class="col-md-5"><label class="form-label">To Value</label><input type="number" class="form-control" id="p3b" placeholder="e.g. 250"></div>
+          <div class="col-md-2 d-flex align-items-end"><button class="btn-calculate w-100" style="background:linear-gradient(135deg,var(--warning),var(--danger))" onclick="calc3()">Go</button></div>
+        </div>
+        <div class="result-box" id="r3">
+          <div class="result-primary"><div class="result-label" id="r3label">% Change</div><div class="result-value" id="r3val">0%</div></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(document.getElementById('r3val').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <!-- Type 4: Add/Remove % -->
+      <div class="calc-box mb-4">
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;color:var(--secondary)">📌 Type 4: Add or Remove % from a Value</h2>
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Original Value</label><input type="number" class="form-control" id="p4a" placeholder="e.g. 1000"></div>
+          <div class="col-md-3"><label class="form-label">Percentage</label><div class="input-group"><input type="number" class="form-control" id="p4b" placeholder="e.g. 20"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-3"><label class="form-label">Operation</label><select class="form-select" id="p4op"><option value="add">Add</option><option value="sub">Subtract</option></select></div>
+          <div class="col-md-2 d-flex align-items-end"><button class="btn-calculate w-100" onclick="calc4()">Go</button></div>
+        </div>
+        <div class="result-box" id="r4">
+          <div class="result-primary"><div class="result-label">Result</div><div class="result-value" id="r4val">0</div></div>
+          <div class="result-grid"><div class="result-item"><div class="r-label">Change Amount</div><div class="r-value" id="r4change">0</div></div></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(document.getElementById('r4val').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <!-- Type 5: Original before % -->
+      <div class="calc-box mb-4">
+        <h2 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem;color:var(--danger)">📌 Type 5: Find Original Number Before % Change</h2>
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Final Value</label><input type="number" class="form-control" id="p5a" placeholder="e.g. 1200"></div>
+          <div class="col-md-4"><label class="form-label">Was increased/decreased by</label><div class="input-group"><input type="number" class="form-control" id="p5b" placeholder="e.g. 20"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-4"><label class="form-label">&nbsp;</label><select class="form-select" id="p5op"><option value="inc">Increased by</option><option value="dec">Decreased by</option></select></div>
+        </div>
+        <button class="btn-calculate mt-3" onclick="calc5()">Find Original</button>
+        <div class="result-box" id="r5"><div class="result-primary"><div class="result-label">Original Value</div><div class="result-value" id="r5val">0</div></div><div class="action-btns"><button class="btn-action" onclick="copyResult(document.getElementById('r5val').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div></div>
+      </div>
+
+      <div class="info-box">
+        <h2>Percentage Formulas</h2>
+        <div class="formula-box">
+          P% of X = (P / 100) × X<br><br>
+          X is what % of Y = (X / Y) × 100<br><br>
+          % Change = ((New - Old) / Old) × 100<br><br>
+          Original = Final / (1 + P/100)  [after % increase]<br>
+          Original = Final / (1 - P/100)  [after % decrease]
+        </div>
+        <h3>Common Percentage Calculations</h3>
+        <div class="table-responsive">
+          <table class="table table-sm" style="font-size:0.85rem;color:var(--text)">
+            <thead><tr style="background:var(--bg-input)"><th>Task</th><th>Formula</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Find % of number</td><td>(P/100) × N</td><td>20% of 500 = 100</td></tr>
+              <tr><td>What % is X of Y</td><td>(X/Y) × 100</td><td>100 is 20% of 500</td></tr>
+              <tr><td>% increase</td><td>((New-Old)/Old)×100</td><td>200→250 = 25% increase</td></tr>
+              <tr><td>% decrease</td><td>((Old-New)/Old)×100</td><td>500→400 = 20% decrease</td></tr>
+              <tr><td>Add % to price</td><td>Price × (1 + P/100)</td><td>₹100 + 18% = ₹118</td></tr>
+              <tr><td>Remove % from price</td><td>Price / (1 + P/100)</td><td>₹118 - 18% GST = ₹100</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><button class="faq-question">How do I calculate percentage? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">To calculate percentage: Divide the part by the whole, then multiply by 100. Example: If you scored 45 out of 60, your percentage = (45/60) × 100 = 75%.</div></div></div>
+        <div class="faq-item"><button class="faq-question">How to calculate percentage increase? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">% Increase = ((New Value - Old Value) / Old Value) × 100. Example: Price increased from ₹200 to ₹250. % Increase = ((250-200)/200) × 100 = 25%.</div></div></div>
+        <div class="faq-item"><button class="faq-question">What is 20% of 500? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">20% of 500 = (20/100) × 500 = 0.20 × 500 = 100. So 20% of 500 is 100.</div></div></div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-4"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+      <div class="calc-box mb-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem">⚡ Quick % Table</h3>
+        <p style="font-size:0.78rem;color:var(--text-muted)">Percentage of 1000:</p>
+        <div style="font-size:0.82rem">
+          <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--border)"><span>5%</span><strong>50</strong></div>
+          <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--border)"><span>10%</span><strong>100</strong></div>
+          <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--border)"><span>15%</span><strong>150</strong></div>
+          <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--border)"><span>20%</span><strong>200</strong></div>
+          <div class="d-flex justify-content-between py-1" style="border-bottom:1px solid var(--border)"><span>25%</span><strong>250</strong></div>
+          <div class="d-flex justify-content-between py-1"><span>50%</span><strong>500</strong></div>
+        </div>
+      </div>
+      <div class="sidebar-ad mt-3"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 supercalc.online — Free Percentage Calculator</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calc-engine.js"></script>
+<script>
+function fmt(n) { return isNaN(n) ? '0' : Number(n.toFixed(4)).toLocaleString('en-IN'); }
+
+function calc1() {
+  const p = +document.getElementById('p1a').value, n = +document.getElementById('p1b').value;
+  if (!p || !n) return;
+  const res = (p / 100) * n;
+  document.getElementById('r1val').textContent = fmt(res);
+  document.getElementById('r1').classList.add('show');
+}
+function calc2() {
+  const x = +document.getElementById('p2a').value, y = +document.getElementById('p2b').value;
+  if (!x || !y) return;
+  const res = (x / y) * 100;
+  document.getElementById('r2val').textContent = fmt(res) + '%';
+  document.getElementById('r2').classList.add('show');
+}
+function calc3() {
+  const a = +document.getElementById('p3a').value, b = +document.getElementById('p3b').value;
+  if (!a || !b) return;
+  const res = ((b - a) / a) * 100;
+  const label = res >= 0 ? '% Increase' : '% Decrease';
+  document.getElementById('r3label').textContent = label;
+  document.getElementById('r3val').textContent = (res >= 0 ? '+' : '') + fmt(res) + '%';
+  document.getElementById('r3val').style.color = res >= 0 ? 'var(--accent)' : 'var(--danger)';
+  document.getElementById('r3').classList.add('show');
+}
+function calc4() {
+  const a = +document.getElementById('p4a').value, p = +document.getElementById('p4b').value;
+  const op = document.getElementById('p4op').value;
+  if (!a || !p) return;
+  const change = (a * p) / 100;
+  const res = op === 'add' ? a + change : a - change;
+  document.getElementById('r4val').textContent = fmt(res);
+  document.getElementById('r4change').textContent = (op === 'add' ? '+' : '-') + fmt(change);
+  document.getElementById('r4').classList.add('show');
+}
+function calc5() {
+  const f = +document.getElementById('p5a').value, p = +document.getElementById('p5b').value;
+  const op = document.getElementById('p5op').value;
+  if (!f || !p) return;
+  const orig = op === 'inc' ? f / (1 + p/100) : f / (1 - p/100);
+  document.getElementById('r5val').textContent = fmt(orig);
+  document.getElementById('r5').classList.add('show');
+}
+</script>
+</body>
+</html>
+
+

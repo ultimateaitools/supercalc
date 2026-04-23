@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inflation Calculator India - Calculate Purchasing Power & Future Value | SuperCalc</title>
+  <meta name="description" content="Free inflation calculator India. Calculate how inflation erodes purchasing power. Find what ₹1 lakh today will be worth in future. Based on India CPI inflation data.">
+  <meta name="keywords" content="inflation calculator India, purchasing power calculator, CPI inflation calculator, what is ₹100 worth today, future value inflation, real value of money calculator 2025">
+  <link rel="canonical" href="https://supercalc.online/inflation-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#c0392b,#e74c3c)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>Inflation Calculator</span></nav>
+  <h1 class="calc-page-title">📉 Inflation Calculator</h1>
+  <p class="calc-page-subtitle">See how inflation erodes the value of money over time</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('future',this)">📈 Future Value</button>
+        <button class="cat-pill" onclick="setMode('past',this)">📉 Past Value</button>
+      </div>
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Amount (₹)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="amount" value="100000" step="10000"></div></div>
+          <div class="col-md-6"><label class="form-label">Average Inflation Rate</label><div class="input-group"><input type="number" class="form-control" id="inflationRate" value="6" step="0.5"><span class="input-group-text">%</span></div><p style="font-size:0.72rem;color:var(--text-muted);margin:0.25rem 0 0">India avg: ~5.5-6.5% | Ideal RBI target: 4%</p></div>
+          <div class="col-md-6"><label class="form-label">Number of Years</label><input type="number" class="form-control" id="inflYears" value="10" step="1" min="1" max="50"><input type="range" class="form-range mt-2" id="ySlider" min="1" max="50" value="10"><div style="text-align:center;font-size:0.72rem;color:var(--text-muted)" id="yDisplay">10 years</div></div>
+          <div class="col-md-6"><label class="form-label">Quick Presets (Inflation %)</label>
+            <div class="d-flex gap-2 flex-wrap mt-1">
+              <button onclick="setRate(4,this)" class="cat-pill" style="font-size:0.75rem;padding:0.25rem 0.75rem">4% (RBI target)</button>
+              <button onclick="setRate(6,this)" class="cat-pill active" style="font-size:0.75rem;padding:0.25rem 0.75rem">6% (India avg)</button>
+              <button onclick="setRate(8,this)" class="cat-pill" style="font-size:0.75rem;padding:0.25rem 0.75rem">8% (High)</button>
+            </div>
+          </div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcInflation()"><i class="bi bi-graph-down-arrow me-2"></i>Calculate Inflation Impact</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label" id="resultLabel">Future Equivalent Amount</div><div class="result-value" id="futureVal">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Purchasing Power Lost</div><div class="r-value" style="color:var(--danger)" id="powerLost">₹0</div></div>
+            <div class="result-item"><div class="r-label">% Value Retained</div><div class="r-value text-primary" id="retained">0%</div></div>
+            <div class="result-item"><div class="r-label">Equivalent Value Today</div><div class="r-value" id="todayVal">₹0</div></div>
+          </div>
+          <div class="chart-container"><canvas id="inflChart"></canvas></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>India Inflation History (CPI)</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Year</th><th>CPI Inflation</th><th>Key Event</th></tr></thead>
+          <tbody>
+            <tr><td>2020</td><td>6.2%</td><td>COVID-19 supply disruption</td></tr>
+            <tr><td>2021</td><td>5.1%</td><td>Recovery, fuel prices rise</td></tr>
+            <tr><td>2022</td><td>6.7%</td><td>Russia-Ukraine war, food prices</td></tr>
+            <tr><td>2023</td><td>5.4%</td><td>RBI rate hikes take effect</td></tr>
+            <tr><td>2024</td><td>5.1%</td><td>Moderating, food still elevated</td></tr>
+            <tr><td>2025 (est.)</td><td>4.5-5.5%</td><td>Target: 4% (RBI mandate)</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let inflChart=null;let mode='future';
+function setMode(m,btn){mode=m;document.querySelectorAll('.cat-pill:not([onclick*="setRate"])').forEach(p=>p.classList.remove('active'));if(btn)btn.classList.add('active');document.getElementById('resultLabel').textContent=m==='future'?'Future Equivalent Amount':'Past Value (in today\'s money)';calcInflation();}
+function setRate(r,btn){document.getElementById('inflationRate').value=r;document.querySelectorAll('[onclick^="setRate"]').forEach(p=>p.classList.remove('active'));if(btn)btn.classList.add('active');calcInflation();}
+['inflYears','ySlider'].forEach((id,i)=>{document.getElementById(id).addEventListener('input',function(){document.getElementById(['ySlider','inflYears'][i]).value=this.value;document.getElementById('yDisplay').textContent=this.value+' years';calcInflation();});});
+
+function calcInflation(){
+  const A=+document.getElementById('amount').value;const r=+document.getElementById('inflationRate').value/100;const y=+document.getElementById('inflYears').value;
+  const futureVal=mode==='future'?A*Math.pow(1+r,y):A;
+  const todayVal=mode==='future'?A:A/Math.pow(1+r,y);
+  const powerLost=mode==='future'?futureVal-A:A-todayVal;
+  const retained=mode==='future'?(A/futureVal)*100:(todayVal/A)*100;
+  const fmt=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+  document.getElementById('futureVal').textContent=mode==='future'?fmt(futureVal):fmt(todayVal);
+  document.getElementById('powerLost').textContent=fmt(Math.abs(powerLost));
+  document.getElementById('retained').textContent=retained.toFixed(1)+'%';
+  document.getElementById('todayVal').textContent=mode==='future'?`₹${A.toLocaleString('en-IN')} today = ${fmt(futureVal)} in ${y}yr`:fmt(todayVal);
+
+  // Chart
+  const labels=[],vals=[];
+  for(let i=0;i<=y;i++){labels.push('Y'+i);vals.push(Math.round(mode==='future'?A*Math.pow(1+r,i):A/Math.pow(1+r,i)));}
+  const ctx=document.getElementById('inflChart').getContext('2d');
+  if(inflChart)inflChart.destroy();
+  inflChart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:mode==='future'?'Equivalent Cost':'Real Value',data:vals,borderColor:mode==='future'?'#FF3B5C':'#6C3BFF',backgroundColor:mode==='future'?'rgba(255,59,92,0.1)':'rgba(108,59,255,0.1)',fill:true}]},options:{responsive:true,plugins:{legend:{position:'bottom'}},scales:{y:{ticks:{callback:v=>'₹'+v.toLocaleString('en-IN',{notation:'compact'})}}}}});
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Inflation Calculator:\n${document.getElementById('amount').value} → ${document.getElementById('futureVal').textContent} (${document.getElementById('inflYears').value} years at ${document.getElementById('inflationRate').value}%)`;}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(calcInflation,300));
+</script>
+</body>
+</html>

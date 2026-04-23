@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electricity Bill Calculator India 2025 - Units to Bill Amount | SuperCalc</title>
+  <meta name="description" content="Free electricity bill calculator India 2025. Calculate monthly electricity bill from units consumed. Supports all state electricity tariffs — MSEDCL, BESCOM, BSES, TANGEDCO, TNEB.">
+  <meta name="keywords" content="electricity bill calculator, electricity unit calculator, electricity cost calculator India, MSEDCL bill calculator, BESCOM bill calculator, per unit electricity rate India 2025">
+  <link rel="canonical" href="https://supercalc.online/electricity-bill-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#f39c12,#e67e22)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Electricity Bill Calculator</span></nav>
+  <h1 class="calc-page-title">💡 Electricity Bill Calculator</h1>
+  <p class="calc-page-subtitle">Calculate electricity bill by appliance usage or units consumed</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('units',this)">⚡ By Units (kWh)</button>
+        <button class="cat-pill" onclick="setMode('appliance',this)">🔌 By Appliance</button>
+      </div>
+
+      <!-- By Units Mode -->
+      <div class="calc-box" id="unitsBox">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Units Consumed (kWh/month)</label><input type="number" class="form-control" id="units" value="250" step="10"><input type="range" class="form-range mt-2" id="uSlider" min="10" max="1000" step="10" value="250"><div style="text-align:center;font-size:0.72rem;color:var(--text-muted)" id="uDisplay">250 units/month</div></div>
+          <div class="col-md-6"><label class="form-label">State / Utility</label>
+            <select class="form-select" id="state">
+              <option value="0">Custom Rate</option>
+              <option value="mumbai" selected>Mumbai (MSEDCL)</option>
+              <option value="delhi">Delhi (BSES/BYPL)</option>
+              <option value="bangalore">Bangalore (BESCOM)</option>
+              <option value="chennai">Chennai (TNEB/TANGEDCO)</option>
+              <option value="hyderabad">Hyderabad (TSSPDCL)</option>
+              <option value="kolkata">Kolkata (CESC)</option>
+              <option value="pune">Pune (MSEDCL)</option>
+              <option value="jaipur">Jaipur (AVVNL)</option>
+            </select>
+          </div>
+          <div class="col-md-6"><label class="form-label">Fixed Charges / Meter Rent (₹)</label><input type="number" class="form-control" id="fixedCharge" value="50" step="10"></div>
+          <div class="col-md-6"><label class="form-label">Custom Rate (₹/unit)</label><input type="number" class="form-control" id="customRate" value="7.50" step="0.10"></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcBill()"><i class="bi bi-lightning-charge me-2"></i>Calculate Bill</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Estimated Monthly Bill</div><div class="result-value" id="totalBill">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Energy Charges</div><div class="r-value text-primary" id="energyCharge">₹0</div></div>
+            <div class="result-item"><div class="r-label">Fixed Charges</div><div class="r-value" id="fixedOut">₹0</div></div>
+            <div class="result-item"><div class="r-label">Taxes/Surcharges (5%)</div><div class="r-value" style="color:var(--warning)" id="taxes">₹0</div></div>
+            <div class="result-item"><div class="r-label">Yearly Estimate</div><div class="r-value" style="color:var(--danger)" id="yearly">₹0</div></div>
+          </div>
+          <div id="slabDetails" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+
+      <!-- By Appliance Mode -->
+      <div class="calc-box d-none" id="applianceBox">
+        <p style="color:var(--text-muted);font-size:0.85rem">Add your appliances and their daily usage:</p>
+        <div class="table-responsive"><table class="table table-sm" id="appTable" style="font-size:0.85rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Appliance</th><th>Watt</th><th>Hours/Day</th><th>Qty</th><th>kWh/Mo</th><th></th></tr></thead>
+          <tbody id="appRows"></tbody>
+        </table></div>
+        <div class="d-flex gap-2 mt-2">
+          <select class="form-select" style="max-width:200px" id="appPreset">
+            <option value="">+ Add Appliance</option>
+            <option value="AC,1500,8">❄️ AC (1.5 Ton)</option>
+            <option value="Fridge,150,24">🧊 Refrigerator</option>
+            <option value="Washing Machine,500,1">🫧 Washing Machine</option>
+            <option value="TV (LED),100,6">📺 LED TV</option>
+            <option value="Fan,75,12">💨 Ceiling Fan</option>
+            <option value="LED Bulb,10,8">💡 LED Bulb</option>
+            <option value="Water Heater (Geyser),2000,0.5">🚿 Geyser</option>
+            <option value="Microwave,1200,0.25">📡 Microwave</option>
+            <option value="Computer,200,8">💻 Computer</option>
+            <option value="Iron,1000,0.5">👔 Iron</option>
+            <option value="Water Pump,750,2">🚰 Water Pump</option>
+          </select>
+          <button class="btn btn-outline-primary btn-sm" onclick="addAppliance()">Add</button>
+        </div>
+        <div class="row g-3 mt-3">
+          <div class="col-md-6"><label class="form-label">Rate per unit (₹/kWh)</label><input type="number" class="form-control" id="appRate" value="7.50" step="0.1"></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcAppliance()"><i class="bi bi-calculator me-2"></i>Calculate from Appliances</button>
+        <div class="result-box" id="resultBox2">
+          <div class="result-primary"><div class="result-label">Monthly Bill (Appliances)</div><div class="result-value" id="appTotal">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Total Units</div><div class="r-value text-primary" id="appUnits">0 kWh</div></div>
+            <div class="result-item"><div class="r-label">Daily Units</div><div class="r-value" id="appDaily">0 kWh</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Tips to Reduce Electricity Bill</h2>
+        <ul>
+          <li><strong>Switch to LED:</strong> LED bulbs use 80% less energy than incandescent bulbs</li>
+          <li><strong>5-Star rated AC:</strong> A 5-star AC uses 30-40% less power than 3-star</li>
+          <li><strong>Solar panels:</strong> 1 kW solar panel generates ~4 units/day, saving ₹1,000-2,000/month</li>
+          <li><strong>Peak hours:</strong> Avoid heavy usage between 6-10 PM (peak demand period)</li>
+          <li><strong>Inverter appliances:</strong> Inverter-type AC, fridge save 20-40% more energy</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let applianceRows=[];
+
+function setMode(m,btn){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');
+  document.getElementById('unitsBox').classList.toggle('d-none',m!=='units');
+  document.getElementById('applianceBox').classList.toggle('d-none',m!=='appliance');
+}
+
+const stateRates={mumbai:{slabs:[[0,100,3.17],[100,300,7.53],[300,500,10.07],[500,Infinity,12.50]],fixed:75},delhi:{slabs:[[0,200,3.00],[200,400,4.50],[400,Infinity,6.50]],fixed:125},bangalore:{slabs:[[0,30,0],[30,100,3.15],[100,200,5.25],[200,500,6.30],[500,Infinity,7.10]],fixed:60},chennai:{slabs:[[0,100,1.50],[100,200,3.50],[200,500,4.60],[500,Infinity,6.60]],fixed:40},hyderabad:{slabs:[[0,50,1.35],[50,100,2.50],[100,200,3.75],[200,300,5.85],[300,Infinity,7.00]],fixed:50},kolkata:{slabs:[[0,25,5.09],[25,75,6.27],[75,150,6.97],[150,Infinity,8.74]],fixed:56},default:{rate:7.50,fixed:50}};
+
+['units','uSlider'].forEach((id,i)=>{document.getElementById(id).addEventListener('input',function(){document.getElementById(['uSlider','units'][i]).value=this.value;document.getElementById('uDisplay').textContent=this.value+' units/month';calcBill();});});
+
+function calcBill(){
+  const u=+document.getElementById('units').value;
+  const state=document.getElementById('state').value;
+  const fixed=+document.getElementById('fixedCharge').value;
+  let energyCharge=0;
+  if(state&&stateRates[state]&&stateRates[state].slabs){
+    const slabs=stateRates[state].slabs;let rem=u;
+    for(const[lo,hi,rate]of slabs){const inSlab=Math.min(rem,hi-lo);if(inSlab<=0)break;energyCharge+=inSlab*rate;rem-=inSlab;}
+  } else {energyCharge=u*(+document.getElementById('customRate').value);}
+  const taxes=(energyCharge+fixed)*0.05;
+  const total=energyCharge+fixed+taxes;
+  document.getElementById('totalBill').textContent='₹'+total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('energyCharge').textContent='₹'+energyCharge.toFixed(0);
+  document.getElementById('fixedOut').textContent='₹'+fixed.toFixed(0);
+  document.getElementById('taxes').textContent='₹'+taxes.toFixed(0);
+  document.getElementById('yearly').textContent='₹'+(total*12).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function addAppliance(){
+  const sel=document.getElementById('appPreset');
+  if(!sel.value)return;
+  const [name,watt,hrs]=sel.value.split(',');
+  applianceRows.push({name,watt:+watt,hrs:+hrs,qty:1});
+  renderAppliances();sel.value='';
+}
+
+function renderAppliances(){
+  document.getElementById('appRows').innerHTML=applianceRows.map((r,i)=>`<tr><td>${r.name}</td><td><input type="number" value="${r.watt}" style="width:70px;background:var(--bg-input);border:1px solid var(--border);border-radius:4px;color:var(--text);padding:2px 4px" onchange="applianceRows[${i}].watt=+this.value"></td><td><input type="number" value="${r.hrs}" step="0.5" style="width:70px;background:var(--bg-input);border:1px solid var(--border);border-radius:4px;color:var(--text);padding:2px 4px" onchange="applianceRows[${i}].hrs=+this.value"></td><td><input type="number" value="${r.qty}" style="width:50px;background:var(--bg-input);border:1px solid var(--border);border-radius:4px;color:var(--text);padding:2px 4px" onchange="applianceRows[${i}].qty=+this.value"></td><td>${(r.watt*r.hrs*r.qty*30/1000).toFixed(1)}</td><td><button onclick="applianceRows.splice(${i},1);renderAppliances()" style="background:none;border:none;color:var(--danger);cursor:pointer">✕</button></td></tr>`).join('');
+}
+
+function calcAppliance(){
+  const rate=+document.getElementById('appRate').value;
+  const totalKwh=applianceRows.reduce((s,r)=>s+r.watt*r.hrs*r.qty*30/1000,0);
+  const total=totalKwh*rate;
+  document.getElementById('appTotal').textContent='₹'+total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('appUnits').textContent=totalKwh.toFixed(1)+' kWh';
+  document.getElementById('appDaily').textContent=(totalKwh/30).toFixed(2)+' kWh';
+  document.getElementById('resultBox2').classList.add('show');
+}
+
+function getText(){return `Electricity Bill: ${document.getElementById('totalBill').textContent}/month\nYearly: ${document.getElementById('yearly').textContent}`;}
+document.addEventListener('DOMContentLoaded',()=>{addAppliance.skip=true;calcBill();});
+</script>
+</body>
+</html>

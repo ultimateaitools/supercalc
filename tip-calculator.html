@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tip Calculator 2025 - Restaurant Bill Split Online | SuperCalc</title>
+  <meta name="description" content="Free tip calculator. Calculate restaurant tip amount, split bill between friends, calculate per person share. Works with any tip percentage. Fast & easy.">
+  <meta name="keywords" content="tip calculator, restaurant tip calculator, bill split calculator, how much to tip, tip percentage calculator, split bill calculator, per person calculator">
+  <link rel="canonical" href="https://supercalc.online/tip-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#10B981,#059669)">
+  <div class="container">
+    <nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>Tip Calculator</span></nav>
+    <h1 class="calc-page-title">💵 Tip Calculator</h1>
+    <p class="calc-page-subtitle">Calculate restaurant tip & split the bill with friends instantly</p>
+  </div>
+</div>
+
+<div class="container mt-3"><div class="ad-banner"><span class="ad-label">Advertisement</span><span>[ Ad Banner 728x90 ]</span></div></div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Bill Amount</label>
+            <div class="input-group"><span class="input-group-text">$</span><input type="number" class="form-control" id="billAmount" value="50" step="0.01"></div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Number of People</label>
+            <div class="input-group"><input type="number" class="form-control" id="people" value="2" min="1" max="100"><span class="input-group-text">persons</span></div>
+          </div>
+        </div>
+
+        <!-- Quick Tip Buttons -->
+        <div class="mt-3">
+          <label class="form-label">Select Tip %</label>
+          <div class="category-pills">
+            <button class="cat-pill" onclick="setTip(5,this)">5%<br><small>Low</small></button>
+            <button class="cat-pill" onclick="setTip(10,this)">10%<br><small>Fair</small></button>
+            <button class="cat-pill active" onclick="setTip(15,this)">15%<br><small>Good</small></button>
+            <button class="cat-pill" onclick="setTip(18,this)">18%<br><small>Great</small></button>
+            <button class="cat-pill" onclick="setTip(20,this)">20%<br><small>Excellent</small></button>
+            <button class="cat-pill" onclick="setTip(25,this)">25%<br><small>Amazing</small></button>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Or enter custom tip %</label>
+            <div class="input-group" style="max-width:200px"><input type="number" class="form-control" id="tipPercent" value="15" min="0" max="100"><span class="input-group-text">%</span></div>
+          </div>
+        </div>
+
+        <button class="btn-calculate mt-4" onclick="calculateTip()"><i class="bi bi-calculator me-2"></i>Calculate Tip</button>
+
+        <div class="result-box" id="resultBox">
+          <div class="result-primary">
+            <div class="result-label">Per Person</div>
+            <div class="result-value" id="perPerson">$0.00</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Bill Amount</div><div class="r-value" id="billRes">$0</div></div>
+            <div class="result-item"><div class="r-label">Tip Amount</div><div class="r-value" style="color:var(--accent)" id="tipAmount">$0</div></div>
+            <div class="result-item"><div class="r-label">Total Bill</div><div class="r-value" style="color:var(--primary)" id="totalBill">$0</div></div>
+            <div class="result-item"><div class="r-label">Tip Per Person</div><div class="r-value" id="tipPer">$0</div></div>
+          </div>
+
+          <!-- All Tips Comparison -->
+          <div class="mt-3">
+            <h4 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem">💡 Quick Tip Guide</h4>
+            <div id="tipGuide"></div>
+          </div>
+
+          <div class="action-btns">
+            <button class="btn-action" onclick="copyResult(getTipText())"><i class="bi bi-clipboard"></i> Copy</button>
+            <button class="btn-action whatsapp" onclick="shareWhatsApp(getTipText())"><i class="bi bi-whatsapp"></i> Share</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>How Much Should You Tip?</h2>
+        <div class="table-responsive">
+          <table class="table table-sm" style="font-size:0.85rem;color:var(--text)">
+            <thead><tr style="background:var(--bg-input)"><th>Service Quality</th><th>Tip %</th><th>Description</th></tr></thead>
+            <tbody>
+              <tr><td>Outstanding</td><td style="color:var(--accent)"><strong>20-25%</strong></td><td>Exceptional service, went above and beyond</td></tr>
+              <tr><td>Excellent</td><td style="color:var(--accent)"><strong>18-20%</strong></td><td>Great experience, attentive service</td></tr>
+              <tr><td>Good</td><td><strong>15-18%</strong></td><td>Standard expected tip for good service</td></tr>
+              <tr><td>Fair</td><td><strong>10-15%</strong></td><td>Service was okay but nothing special</td></tr>
+              <tr><td>Poor</td><td style="color:var(--danger)"><strong>5-10%</strong></td><td>Service was below expectations</td></tr>
+              <tr><td>No Tip</td><td style="color:var(--danger)"><strong>0%</strong></td><td>Only for truly terrible service</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Tipping by Service Type (USA)</h3>
+        <ul>
+          <li><strong>Restaurant servers:</strong> 15-20%</li>
+          <li><strong>Bartenders:</strong> $1-2 per drink or 15-20%</li>
+          <li><strong>Hotel housekeeping:</strong> $2-5 per night</li>
+          <li><strong>Taxi/Rideshare:</strong> 15-20%</li>
+          <li><strong>Hair salon:</strong> 15-20%</li>
+          <li><strong>Food delivery:</strong> 10-15% (min $2-3)</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>FAQ</h2>
+        <div class="faq-item"><button class="faq-question">Is 20% tip normal? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Yes, 20% has become the new standard tip in the USA for good restaurant service. It used to be 15%, but with inflation and the service industry's reliance on tips, 20% is now widely considered the baseline for good service.</div></div></div>
+        <div class="faq-item"><button class="faq-question">Do you tip before or after tax? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Traditionally, tips are calculated on the pre-tax amount. However, many people now calculate the tip on the total bill including tax, which is simpler and slightly more generous to servers. Both are acceptable.</div></div></div>
+        <div class="faq-item"><button class="faq-question">Should I tip on takeout orders? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Tipping on takeout is optional but appreciated. A tip of 10-15% for takeout orders is generous. For complex orders or during busy times, consider tipping higher. For coffee shops or quick service, $1-2 is standard.</div></div></div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-4"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+      <div class="calc-box mb-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem">⚡ Quick Tip on $50</h3>
+        <div style="font-size:0.82rem">
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>10%</span><strong>$5.00</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>15%</span><strong>$7.50</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>18%</span><strong>$9.00</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>20%</span><strong>$10.00</strong></div>
+          <div class="d-flex justify-content-between py-1"><span>25%</span><strong>$12.50</strong></div>
+        </div>
+      </div>
+      <div class="sidebar-ad mt-3"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 supercalc.online — Free Tip Calculator</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calc-engine.js"></script>
+<script>
+function setTip(pct, btn) {
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tipPercent').value = pct;
+  calculateTip();
+}
+
+document.getElementById('billAmount').addEventListener('input', calculateTip);
+document.getElementById('people').addEventListener('input', calculateTip);
+document.getElementById('tipPercent').addEventListener('input', calculateTip);
+
+function calculateTip() {
+  const bill = +document.getElementById('billAmount').value;
+  const pct  = +document.getElementById('tipPercent').value;
+  const ppl  = Math.max(1, +document.getElementById('people').value);
+
+  if (!bill) return;
+
+  const tipAmt = (bill * pct) / 100;
+  const total  = bill + tipAmt;
+  const perPerson = total / ppl;
+  const tipPerPerson = tipAmt / ppl;
+
+  document.getElementById('perPerson').textContent = '$' + perPerson.toFixed(2);
+  document.getElementById('billRes').textContent   = '$' + bill.toFixed(2);
+  document.getElementById('tipAmount').textContent  = '$' + tipAmt.toFixed(2);
+  document.getElementById('totalBill').textContent  = '$' + total.toFixed(2);
+  document.getElementById('tipPer').textContent     = '$' + tipPerPerson.toFixed(2);
+
+  // Tip guide
+  const tips = [5,10,15,18,20,25];
+  const labels = ['Low','Fair','Good','Great','Excellent','Amazing'];
+  let html = '<div class="table-responsive"><table class="table table-sm" style="font-size:0.78rem;color:var(--text)"><thead><tr style="background:var(--bg-input)"><th>%</th><th>Quality</th><th>Tip</th><th>Total</th><th>Per Person</th></tr></thead><tbody>';
+  tips.forEach((t,i) => {
+    const ta = (bill * t) / 100;
+    const tot = bill + ta;
+    const pp = tot / ppl;
+    const isSelected = t === pct;
+    html += `<tr${isSelected ? ' style="background:rgba(79,70,229,0.06);font-weight:600"' : ''}><td>${t}%</td><td>${labels[i]}</td><td>$${ta.toFixed(2)}</td><td>$${tot.toFixed(2)}</td><td>$${pp.toFixed(2)}</td></tr>`;
+  });
+  html += '</tbody></table></div>';
+  document.getElementById('tipGuide').innerHTML = html;
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function getTipText() { return `Tip Calculator:\nBill: $${document.getElementById('billAmount').value}\nTip (${document.getElementById('tipPercent').value}%): ${document.getElementById('tipAmount').textContent}\nTotal: ${document.getElementById('totalBill').textContent}\nPer Person: ${document.getElementById('perPerson').textContent}`; }
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(calculateTip, 300));
+</script>
+</body>
+</html>
+
+

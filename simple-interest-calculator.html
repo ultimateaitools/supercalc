@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Interest Calculator - SI Formula Online | SuperCalc</title>
+  <meta name="description" content="Free simple interest calculator. Calculate SI, total amount, interest rate or time using the SI formula: I = P×R×T/100. Instant results with examples.">
+  <meta name="keywords" content="simple interest calculator, SI calculator, P*R*T/100, simple interest formula, calculate simple interest online, interest rate calculator">
+  <link rel="canonical" href="https://supercalc.online/simple-interest-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1abc9c,#16a085)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Simple Interest Calculator</span></nav>
+  <h1 class="calc-page-title">📐 Simple Interest Calculator</h1>
+  <p class="calc-page-subtitle">Formula: SI = P × R × T / 100 — Calculate in seconds</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="category-pills mb-4">
+          <button class="cat-pill active" onclick="setCalcType('si',this)">Find SI & Amount</button>
+          <button class="cat-pill" onclick="setCalcType('rate',this)">Find Rate</button>
+          <button class="cat-pill" onclick="setCalcType('time',this)">Find Time</button>
+          <button class="cat-pill" onclick="setCalcType('principal',this)">Find Principal</button>
+        </div>
+        <div class="row g-3" id="inputs">
+          <div class="col-md-4"><label class="form-label">Principal (P)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="principal" value="10000"></div></div>
+          <div class="col-md-4"><label class="form-label">Rate (R) per annum</label><div class="input-group"><input type="number" class="form-control" id="rate" value="10" step="0.5"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-4"><label class="form-label">Time (T)</label><div class="input-group"><input type="number" class="form-control" id="time" value="2" step="0.5"><span class="input-group-text" id="timeUnit">Years</span></div></div>
+          <div class="col-md-4"><label class="form-label">Time Unit</label><select class="form-select" id="timeType" onchange="updateTimeUnit()"><option value="years">Years</option><option value="months">Months</option><option value="days">Days</option></select></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcSI()"><i class="bi bi-calculator me-2"></i>Calculate</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Simple Interest</div><div class="result-value" id="siResult">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Total Amount</div><div class="r-value text-primary" id="totalAmt">₹0</div></div>
+            <div class="result-item"><div class="r-label">Principal</div><div class="r-value" id="pResult">₹0</div></div>
+            <div class="result-item"><div class="r-label">Time</div><div class="r-value" id="tResult">0</div></div>
+            <div class="result-item"><div class="r-label">Rate</div><div class="r-value" id="rResult">0%</div></div>
+          </div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Simple Interest Formula</h2>
+        <div class="formula-box">SI = P × R × T / 100<br>A = P + SI = P(1 + RT/100)<br><br>Where: P = Principal, R = Rate%, T = Time (years)</div>
+        <h3>Examples</h3>
+        <ul>
+          <li>₹10,000 at 10% for 2 years → SI = 10000×10×2/100 = <strong>₹2,000</strong>, Amount = ₹12,000</li>
+          <li>₹50,000 at 8% for 18 months → T = 1.5 years → SI = 50000×8×1.5/100 = <strong>₹6,000</strong></li>
+        </ul>
+        <h3>SI vs Compound Interest</h3>
+        <p>Simple interest is calculated on the original principal only. Compound interest calculates on principal + accumulated interest, making it grow faster. Banks typically use compound interest for loans and deposits.</p>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let calcType='si';
+function setCalcType(t,btn){calcType=t;document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');}
+function updateTimeUnit(){document.getElementById('timeUnit').textContent=document.getElementById('timeType').value==='years'?'Yrs':document.getElementById('timeType').value==='months'?'Mo':'Days';}
+function calcSI(){
+  let P=+document.getElementById('principal').value,R=+document.getElementById('rate').value,T=+document.getElementById('time').value;
+  const tType=document.getElementById('timeType').value;
+  if(tType==='months')T/=12;if(tType==='days')T/=365;
+  const SI=P*R*T/100;const A=P+SI;
+  document.getElementById('siResult').textContent='₹'+SI.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('totalAmt').textContent='₹'+A.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('pResult').textContent='₹'+P.toLocaleString('en-IN');
+  document.getElementById('tResult').textContent=T.toFixed(2)+' yrs';
+  document.getElementById('rResult').textContent=R+'%';
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `SI = ${document.getElementById('siResult').textContent}\nTotal Amount = ${document.getElementById('totalAmt').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcSI);
+</script>
+</body>
+</html>

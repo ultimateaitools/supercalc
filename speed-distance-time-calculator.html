@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speed Distance Time Calculator | SuperCalc</title>
+  <meta name="description" content="Free speed, distance and time calculator. Calculate speed (km/h, mph), distance, or time for any trip. Includes pace calculator for running and cycling.">
+  <meta name="keywords" content="speed distance time calculator, speed calculator, distance calculator, time calculator, km/h calculator, mph calculator, pace calculator">
+  <link rel="canonical" href="https://supercalc.online/speed-distance-time-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1a237e,#3949ab)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Speed Distance Time</span></nav>
+  <h1 class="calc-page-title">🚀 Speed Distance Time Calculator</h1>
+  <p class="calc-page-subtitle">Calculate speed, distance or travel time for any journey</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('speed',this)">⚡ Calculate Speed</button>
+        <button class="cat-pill" onclick="setMode('distance',this)">📏 Calculate Distance</button>
+        <button class="cat-pill" onclick="setMode('time',this)">⏱️ Calculate Time</button>
+      </div>
+      <div class="calc-box">
+        <div class="row g-3" id="inputs">
+          <!-- dynamically filled -->
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcSDT()"><i class="bi bi-calculator me-2"></i>Calculate</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label" id="resultLabel">Speed</div><div class="result-value" id="resultValue">—</div></div>
+          <div class="result-grid" id="resultGrid"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(document.getElementById('resultValue').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <div class="calc-box mt-4">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem">🏃 Pace Calculator (Running/Cycling)</h3>
+        <div class="row g-3">
+          <div class="col-md-4"><label class="form-label">Distance</label><div class="input-group"><input type="number" class="form-control" id="pDist" value="10" step="0.1"><span class="input-group-text">km</span></div></div>
+          <div class="col-md-4"><label class="form-label">Hours</label><input type="number" class="form-control" id="pHrs" value="1" min="0"></div>
+          <div class="col-md-4"><label class="form-label">Minutes</label><input type="number" class="form-control" id="pMin" value="0" min="0" max="59"></div>
+        </div>
+        <button class="btn btn-outline-primary mt-3 btn-sm" onclick="calcPace()">Calculate Pace</button>
+        <div id="paceResult" class="mt-3"></div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Speed Distance Time Formula</h2>
+        <div class="formula-box">Speed = Distance / Time<br>Distance = Speed × Time<br>Time = Distance / Speed</div>
+        <h3>Common Speed References</h3>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Object/Vehicle</th><th>Speed (km/h)</th><th>Speed (mph)</th></tr></thead>
+          <tbody>
+            <tr><td>Walking (average)</td><td>5 km/h</td><td>3.1 mph</td></tr>
+            <tr><td>Cycling</td><td>15-25 km/h</td><td>9-16 mph</td></tr>
+            <tr><td>City traffic (car)</td><td>30-60 km/h</td><td>19-37 mph</td></tr>
+            <tr><td>Highway (car)</td><td>100-120 km/h</td><td>62-75 mph</td></tr>
+            <tr><td>Train (express)</td><td>160-200 km/h</td><td>99-124 mph</td></tr>
+            <tr><td>Sound (at sea level)</td><td>1,235 km/h</td><td>767 mph</td></tr>
+            <tr><td>Airplane</td><td>850-950 km/h</td><td>528-590 mph</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let currentMode='speed';
+function setMode(m,btn){currentMode=m;document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');buildInputs();}
+function buildInputs(){
+  const inp=document.getElementById('inputs');
+  const modeInputs={
+    speed:`<div class="col-md-6"><label class="form-label">Distance</label><div class="input-group"><input type="number" class="form-control" id="v1" value="100" step="any"><select class="form-select" id="v1u" style="max-width:100px"><option>km</option><option>mi</option><option>m</option></select></div></div><div class="col-md-6"><label class="form-label">Time</label><div class="input-group"><input type="number" class="form-control" id="v2h" value="1" min="0"><span class="input-group-text">hr</span><input type="number" class="form-control" id="v2m" value="30" min="0" max="59"><span class="input-group-text">min</span></div></div>`,
+    distance:`<div class="col-md-6"><label class="form-label">Speed</label><div class="input-group"><input type="number" class="form-control" id="v1" value="60" step="any"><select class="form-select" id="v1u" style="max-width:100px"><option>km/h</option><option>mph</option><option>m/s</option></select></div></div><div class="col-md-6"><label class="form-label">Time</label><div class="input-group"><input type="number" class="form-control" id="v2h" value="2" min="0"><span class="input-group-text">hr</span><input type="number" class="form-control" id="v2m" value="0" min="0" max="59"><span class="input-group-text">min</span></div></div>`,
+    time:`<div class="col-md-6"><label class="form-label">Distance</label><div class="input-group"><input type="number" class="form-control" id="v1" value="200" step="any"><select class="form-select" id="v1u" style="max-width:100px"><option>km</option><option>mi</option><option>m</option></select></div></div><div class="col-md-6"><label class="form-label">Speed</label><div class="input-group"><input type="number" class="form-control" id="v2" value="80" step="any"><select class="form-select" id="v2u" style="max-width:100px"><option>km/h</option><option>mph</option></select></div></div>`
+  };
+  inp.innerHTML=modeInputs[currentMode];
+}
+function getTimeVal(){const h=+(document.getElementById('v2h')?.value||0),m=+(document.getElementById('v2m')?.value||0);return h+m/60;}
+function calcSDT(){
+  const v1=+document.getElementById('v1').value;
+  const u1=document.getElementById('v1u')?.value||'km';
+  let result,label,conversions=[];
+  if(currentMode==='speed'){
+    const distKm=u1==='mi'?v1*1.60934:u1==='m'?v1/1000:v1;const timeHr=getTimeVal();
+    const spd=distKm/timeHr;
+    result=spd.toFixed(2)+' km/h';label='Speed';
+    conversions=[{l:'mph',v:(spd/1.60934).toFixed(2)},{l:'m/s',v:(spd/3.6).toFixed(2)},{l:'knots',v:(spd/1.852).toFixed(2)}];
+  } else if(currentMode==='distance'){
+    const v1u=document.getElementById('v1u').value;let spdKmh=v1;if(v1u==='mph')spdKmh=v1*1.60934;if(v1u==='m/s')spdKmh=v1*3.6;const timeHr=getTimeVal();
+    const dist=spdKmh*timeHr;result=dist.toFixed(2)+' km';label='Distance';
+    conversions=[{l:'miles',v:(dist/1.60934).toFixed(2)},{l:'metres',v:(dist*1000).toFixed(0)},{l:'feet',v:(dist*3280.84).toFixed(0)}];
+  } else {
+    const distKm=u1==='mi'?v1*1.60934:u1==='m'?v1/1000:v1;const v2u=document.getElementById('v2u').value;const spdKmh=v2u==='mph'?(+document.getElementById('v2').value)*1.60934:+document.getElementById('v2').value;
+    const timeHr=distKm/spdKmh;const hrs=Math.floor(timeHr);const mins=Math.round((timeHr-hrs)*60);
+    result=`${hrs}h ${mins}m`;label='Time';conversions=[{l:'Total minutes',v:Math.round(timeHr*60)},{l:'Total seconds',v:Math.round(timeHr*3600)}];
+  }
+  document.getElementById('resultLabel').textContent=label;document.getElementById('resultValue').textContent=result;
+  document.getElementById('resultGrid').innerHTML=conversions.map(c=>`<div class="result-item"><div class="r-label">${c.l}</div><div class="r-value">${c.v}</div></div>`).join('');
+  document.getElementById('resultBox').classList.add('show');
+}
+function calcPace(){
+  const dist=+document.getElementById('pDist').value;const hrs=+document.getElementById('pHrs').value;const mins=+document.getElementById('pMin').value;
+  const totalMin=hrs*60+mins;const paceMin=totalMin/dist;const paceSec=Math.round((paceMin%1)*60);const paceM=Math.floor(paceMin);
+  const speed=(dist/((hrs*60+mins)/60)).toFixed(2);
+  document.getElementById('paceResult').innerHTML=`<div class="result-grid"><div class="result-item"><div class="r-label">Pace (per km)</div><div class="r-value text-primary">${paceM}:${String(paceSec).padStart(2,'0')} min/km</div></div><div class="result-item"><div class="r-label">Speed</div><div class="r-value">${speed} km/h</div></div><div class="result-item"><div class="r-label">10km Time</div><div class="r-value">${Math.floor(paceMin*10)}:${String(Math.round(((paceMin*10)%1)*60)).padStart(2,'0')}</div></div><div class="result-item"><div class="r-label">Half Marathon (21.1km)</div><div class="r-value">${Math.floor(paceMin*21.1)}:${String(Math.round(((paceMin*21.1)%1)*60)).padStart(2,'0')}</div></div></div>`;
+}
+document.addEventListener('DOMContentLoaded',buildInputs);
+</script>
+</body>
+</html>

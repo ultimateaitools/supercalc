@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator Online - Free Advanced Calculator | SuperCalc</title>
+  <meta name="description" content="Free online scientific calculator. Supports trigonometry, logarithms, powers, roots, factorials, constants (π, e), memory functions, and more.">
+  <meta name="keywords" content="scientific calculator online, advanced calculator, sin cos tan calculator, log calculator, square root calculator, factorial calculator, free scientific calculator">
+  <link rel="canonical" href="https://supercalc.online/scientific-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .sci-calc{max-width:480px;margin:0 auto}
+    .sci-display{background:var(--bg-input);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:0.75rem}
+    .sci-expr{font-size:0.8rem;color:var(--text-muted);min-height:1.2rem;word-break:break-all}
+    .sci-result{font-size:2.2rem;font-weight:700;color:var(--text);text-align:right;word-break:break-all}
+    .calc-grid{display:grid;gap:0.4rem}
+    .calc-btn{border:1px solid var(--border);background:var(--bg-card);color:var(--text);border-radius:10px;padding:0.65rem 0;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.15s;-webkit-tap-highlight-color:transparent}
+    .calc-btn:hover{background:var(--primary);color:white;border-color:var(--primary)}
+    .calc-btn:active{transform:scale(0.95)}
+    .btn-op{background:rgba(108,59,255,0.08);color:var(--primary)}
+    .btn-eq{background:var(--primary);color:white;font-size:1.1rem}
+    .btn-eq:hover{background:var(--primary-dark)}
+    .btn-clear{background:rgba(255,59,92,0.1);color:var(--danger)}
+    .btn-fn{background:rgba(0,212,255,0.08);color:var(--secondary);font-size:0.78rem}
+    .mode-toggle{font-size:0.75rem;padding:0.25rem 0.75rem;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--text-muted);cursor:pointer;margin-bottom:0.5rem}
+    .mode-toggle.active{background:var(--primary);color:white;border-color:var(--primary)}
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#2c3e50,#8e44ad)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#math">Math</a> <i class="bi bi-chevron-right"></i><span>Scientific Calculator</span></nav>
+  <h1 class="calc-page-title">🔬 Scientific Calculator</h1>
+  <p class="calc-page-subtitle">Trig, log, powers, roots, factorials & more — free online</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="sci-calc">
+        <div class="d-flex gap-2 mb-3">
+          <button class="mode-toggle active" id="degBtn" onclick="setMode('DEG',this)">DEG</button>
+          <button class="mode-toggle" id="radBtn" onclick="setMode('RAD',this)">RAD</button>
+          <span style="margin-left:auto;font-size:0.8rem;color:var(--text-muted)" id="memDisplay">M: 0</span>
+        </div>
+        <div class="sci-display">
+          <div class="sci-expr" id="expr"></div>
+          <div class="sci-result" id="display">0</div>
+        </div>
+        <!-- Scientific functions row -->
+        <div class="calc-grid mb-2" style="grid-template-columns:repeat(5,1fr)">
+          <button class="calc-btn btn-fn" onclick="fn('sin')">sin</button>
+          <button class="calc-btn btn-fn" onclick="fn('cos')">cos</button>
+          <button class="calc-btn btn-fn" onclick="fn('tan')">tan</button>
+          <button class="calc-btn btn-fn" onclick="fn('log')">log</button>
+          <button class="calc-btn btn-fn" onclick="fn('ln')">ln</button>
+          <button class="calc-btn btn-fn" onclick="fn('asin')">sin⁻¹</button>
+          <button class="calc-btn btn-fn" onclick="fn('acos')">cos⁻¹</button>
+          <button class="calc-btn btn-fn" onclick="fn('atan')">tan⁻¹</button>
+          <button class="calc-btn btn-fn" onclick="fn('sqrt')">√</button>
+          <button class="calc-btn btn-fn" onclick="fn('cbrt')">∛</button>
+          <button class="calc-btn btn-fn" onclick="fn('sq')">x²</button>
+          <button class="calc-btn btn-fn" onclick="fn('cube')">x³</button>
+          <button class="calc-btn btn-fn" onclick="appendStr('^')">xʸ</button>
+          <button class="calc-btn btn-fn" onclick="fn('fact')">n!</button>
+          <button class="calc-btn btn-fn" onclick="fn('inv')">1/x</button>
+          <button class="calc-btn btn-fn" onclick="fn('abs')">|x|</button>
+          <button class="calc-btn btn-fn" onclick="appendConst(Math.PI)">π</button>
+          <button class="calc-btn btn-fn" onclick="appendConst(Math.E)">e</button>
+          <button class="calc-btn btn-fn" onclick="fn('exp')">eˣ</button>
+          <button class="calc-btn btn-fn" onclick="fn('10x')">10ˣ</button>
+        </div>
+        <!-- Main grid -->
+        <div class="calc-grid" style="grid-template-columns:repeat(4,1fr)">
+          <button class="calc-btn btn-clear" onclick="memStore()">MS</button>
+          <button class="calc-btn btn-fn" onclick="memRecall()">MR</button>
+          <button class="calc-btn btn-fn" onclick="memClear()">MC</button>
+          <button class="calc-btn btn-clear" onclick="clearAll()">AC</button>
+          <button class="calc-btn" onclick="appendStr('7')">7</button>
+          <button class="calc-btn" onclick="appendStr('8')">8</button>
+          <button class="calc-btn" onclick="appendStr('9')">9</button>
+          <button class="calc-btn btn-op" onclick="appendStr('/')">÷</button>
+          <button class="calc-btn" onclick="appendStr('4')">4</button>
+          <button class="calc-btn" onclick="appendStr('5')">5</button>
+          <button class="calc-btn" onclick="appendStr('6')">6</button>
+          <button class="calc-btn btn-op" onclick="appendStr('*')">×</button>
+          <button class="calc-btn" onclick="appendStr('1')">1</button>
+          <button class="calc-btn" onclick="appendStr('2')">2</button>
+          <button class="calc-btn" onclick="appendStr('3')">3</button>
+          <button class="calc-btn btn-op" onclick="appendStr('-')">−</button>
+          <button class="calc-btn" onclick="appendStr('0')">0</button>
+          <button class="calc-btn" onclick="appendStr('.')">.</button>
+          <button class="calc-btn btn-op" onclick="deleteLast()">⌫</button>
+          <button class="calc-btn btn-op" onclick="appendStr('+')">+</button>
+          <button class="calc-btn btn-op" onclick="appendStr('(')">  (</button>
+          <button class="calc-btn btn-op" onclick="appendStr(')')">)</button>
+          <button class="calc-btn btn-op" onclick="toggleSign()">+/-</button>
+          <button class="calc-btn btn-eq" onclick="calculate()">=</button>
+        </div>
+
+        <!-- History -->
+        <div class="mt-4">
+          <div style="font-size:0.82rem;font-weight:700;color:var(--text-muted);margin-bottom:0.5rem">Recent Calculations</div>
+          <div id="history" style="font-size:0.8rem;color:var(--text-secondary)"></div>
+        </div>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Scientific Calculator?</h2>
+<p>Mathematical calculators provide instant, accurate solutions to complex calculations that would otherwise take significant time and effort. These tools are essential for students, engineers, scientists, and professionals.</p>
+<p>Whether you're solving equations, converting units, or performing statistical analysis, our calculators use verified mathematical formulas to deliver precise results.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Double-check inputs carefully — garbage in, garbage out applies to all calculators</li>
+<li>For complex calculations, break the problem into smaller steps</li>
+<li>Always verify results against known benchmarks when possible</li>
+<li>Understanding the formula behind the calculation helps you spot errors</li>
+<li>Use significant figures appropriate to your data's precision</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">Why do online calculators sometimes give different answers? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Differences can occur due to: rounding at different stages of calculation, different formula interpretations, significant figure handling, and edge case assumptions. For critical calculations, always cross-check with at least one other source or method.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the order of operations? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The order of operations is PEMDAS/BODMAS: Parentheses/Brackets, Exponents/Orders, Multiplication and Division (left to right), Addition and Subtraction (left to right). This universal rule ensures mathematical expressions have one correct interpretation.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I know if my calculation result is reasonable? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Use estimation to sanity-check results. Round numbers and do a quick mental calculation. If your precise answer is wildly different from your estimate, recheck the inputs. Dimensional analysis (checking that units work out correctly) is also very useful for catching errors.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Are there limitations to calculator accuracy? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Yes. Calculators use floating-point arithmetic which can introduce tiny rounding errors in complex calculations. For most practical purposes, these are negligible. However, for financial, scientific, or engineering calculations requiring high precision, specialized tools may be needed.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="percentage-calculator.html" class="related-item text-decoration-none">&#128290; Percentage Calculator</a>
+<a href="age-calculator.html" class="related-item text-decoration-none">&#127874; Age Calculator</a>
+<a href="scientific-calculator.html" class="related-item text-decoration-none">&#129518; Scientific Calculator</a>
+<a href="square-root-calculator.html" class="related-item text-decoration-none">&#8730; Square Root Calculator</a>
+<a href="statistics-calculator.html" class="related-item text-decoration-none">&#128202; Statistics Calculator</a>
+<a href="unit-converter.html" class="related-item text-decoration-none">&#128208; Unit Converter</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div>
+      <div class="calc-box mt-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:0.75rem">📚 Quick Reference</h3>
+        <div style="font-size:0.78rem;color:var(--text)">
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important"><strong>π</strong> = 3.14159265...</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important"><strong>e</strong> = 2.71828182...</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">sin(90°) = 1</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">cos(0°) = 1</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">log(100) = 2</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">ln(e) = 1</div>
+          <div class="py-1">√2 ≈ 1.41421356</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let expr='',mode='DEG',mem=0,history=[];
+
+function setMode(m,btn){mode=m;document.querySelectorAll('.mode-toggle').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function toRad(d){return mode==='DEG'?d*(Math.PI/180):d;}
+function appendStr(s){expr+=s;updateDisplay();}
+function appendConst(c){expr+=c;updateDisplay();}
+function deleteLast(){expr=expr.slice(0,-1);updateDisplay();}
+function clearAll(){expr='';document.getElementById('display').textContent='0';document.getElementById('expr').textContent='';}
+function toggleSign(){if(expr&&!isNaN(expr)){expr=String(-parseFloat(expr));updateDisplay();}}
+function memStore(){mem=parseFloat(document.getElementById('display').textContent)||0;document.getElementById('memDisplay').textContent='M: '+mem;}
+function memRecall(){expr+=mem;updateDisplay();}
+function memClear(){mem=0;document.getElementById('memDisplay').textContent='M: 0';}
+
+function fn(f){
+  const val=parseFloat(document.getElementById('display').textContent)||0;
+  const results={sin:toRad(val),cos:toRad(val),tan:toRad(val),asin:val,acos:val,atan:val,sqrt:val,cbrt:val,sq:val,cube:val,fact:val,inv:val,abs:val,exp:val,'10x':val,log:val,ln:val};
+  let result;
+  const r=toRad(val);
+  switch(f){
+    case 'sin':result=Math.sin(r);break;case 'cos':result=Math.cos(r);break;case 'tan':result=Math.tan(r);break;
+    case 'asin':result=mode==='DEG'?Math.asin(val)*180/Math.PI:Math.asin(val);break;
+    case 'acos':result=mode==='DEG'?Math.acos(val)*180/Math.PI:Math.acos(val);break;
+    case 'atan':result=mode==='DEG'?Math.atan(val)*180/Math.PI:Math.atan(val);break;
+    case 'sqrt':result=Math.sqrt(val);break;case 'cbrt':result=Math.cbrt(val);break;
+    case 'sq':result=val*val;break;case 'cube':result=val*val*val;break;
+    case 'fact':let r2=1;for(let i=2;i<=Math.floor(val);i++)r2*=i;result=r2;break;
+    case 'inv':result=1/val;break;case 'abs':result=Math.abs(val);break;
+    case 'exp':result=Math.exp(val);break;case '10x':result=Math.pow(10,val);break;
+    case 'log':result=Math.log10(val);break;case 'ln':result=Math.log(val);break;
+    default:result=val;
+  }
+  addHistory(`${f}(${val}) = ${formatResult(result)}`);
+  expr=String(result);updateDisplay();
+}
+
+function calculate(){
+  try{
+    const safeExpr=expr.replace(/\^/g,'**');
+    const result=Function('"use strict";return('+safeExpr+')')();
+    const fmt=formatResult(result);
+    addHistory(expr+' = '+fmt);
+    document.getElementById('expr').textContent=expr+' =';
+    document.getElementById('display').textContent=fmt;
+    expr=String(result);
+  }catch(e){document.getElementById('display').textContent='Error';expr='';}
+}
+
+function formatResult(n){
+  if(isNaN(n)||!isFinite(n))return'Error';
+  if(Math.abs(n)>=1e12||Math.abs(n)<1e-10&&n!==0)return n.toExponential(6);
+  return parseFloat(n.toFixed(10)).toString();
+}
+
+function updateDisplay(){document.getElementById('display').textContent=expr||'0';document.getElementById('expr').textContent='';}
+function addHistory(h){history.unshift(h);if(history.length>5)history.pop();document.getElementById('history').innerHTML=history.map(i=>`<div style="padding:0.25rem 0;border-bottom:1px solid var(--border)">${i}</div>`).join('');}
+
+// Keyboard support
+document.addEventListener('keydown',e=>{
+  if('0123456789'.includes(e.key))appendStr(e.key);
+  else if('+-*/'.includes(e.key))appendStr(e.key);
+  else if(e.key==='.')appendStr('.');
+  else if(e.key==='Enter')calculate();
+  else if(e.key==='Backspace')deleteLast();
+  else if(e.key==='Escape')clearAll();
+  else if(e.key==='(')appendStr('(');
+  else if(e.key===')')appendStr(')');
+});
+</script>
+</body>
+</html>

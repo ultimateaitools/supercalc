@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter - Live Exchange Rates | SuperCalc</title>
+  <meta name="description" content="Free currency converter with live exchange rates. Convert USD, EUR, GBP, INR, JPY, AED, CAD and 150+ currencies. Updated real-time rates.">
+  <meta name="keywords" content="currency converter, exchange rate calculator, USD to INR, EUR to USD, live currency rates, forex calculator, dollar to rupee today">
+  <link rel="canonical" href="https://supercalc.online/currency-converter.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1565C0,#42A5F5)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Currency Converter</span></nav>
+  <h1 class="calc-page-title">💱 Currency Converter</h1>
+  <p class="calc-page-subtitle">Convert 150+ currencies with approximate exchange rates</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <!-- Popular conversions quick buttons -->
+      <div class="category-pills mb-4" style="flex-wrap:wrap">
+        <button class="cat-pill active" onclick="setConv('USD','INR',1,this)">$ USD → ₹ INR</button>
+        <button class="cat-pill" onclick="setConv('EUR','INR',1,this)">€ EUR → ₹ INR</button>
+        <button class="cat-pill" onclick="setConv('GBP','INR',1,this)">£ GBP → ₹ INR</button>
+        <button class="cat-pill" onclick="setConv('AED','INR',1,this)">د.إ AED → ₹ INR</button>
+        <button class="cat-pill" onclick="setConv('INR','USD',100,this)">₹ INR → $ USD</button>
+        <button class="cat-pill" onclick="setConv('USD','EUR',1,this)">$ USD → € EUR</button>
+      </div>
+      <div class="calc-box">
+        <div class="highlight-box mb-4" style="font-size:0.83rem">
+          ⚠️ <strong>Note:</strong> Rates shown are approximate reference rates as of April 2025. For live rates, check RBI, xe.com, or your bank. Forex rates change continuously.
+        </div>
+        <div class="row g-3 align-items-end">
+          <div class="col-md-4"><label class="form-label">Amount</label><input type="number" class="form-control" id="amount" value="1" step="any" oninput="convert()"></div>
+          <div class="col-md-4"><label class="form-label">From Currency</label><select class="form-select" id="fromCur" onchange="convert()"></select></div>
+          <div class="col-md-4"><label class="form-label">To Currency</label><select class="form-select" id="toCur" onchange="convert()"></select></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="convert()"><i class="bi bi-arrow-left-right me-2"></i>Convert</button>
+        <div class="result-box show mt-4" style="display:block">
+          <div class="result-primary"><div class="result-label" id="resultLabel">Converted Amount</div><div class="result-value" id="result">—</div></div>
+          <div id="rateInfo" class="mt-3" style="font-size:0.85rem;color:var(--text-secondary)"></div>
+          <div class="action-btns mt-3"><button class="btn-action" onclick="swapCur()"><i class="bi bi-arrow-left-right"></i> Swap</button><button class="btn-action" onclick="copyResult(document.getElementById('result').textContent)"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+
+        <!-- Comparison table -->
+        <div id="compareTable" class="mt-4"></div>
+      </div>
+    
+<div class="info-box">
+<h2>What is a Currency Converter?</h2>
+<p>Financial calculators help you make informed money decisions by running complex calculations instantly. From investments to loans, taxes to savings, having accurate financial projections is key to achieving your financial goals.</p>
+<p>Using this calculator, you can quickly model different scenarios to find the best financial strategy for your specific situation.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Always compare multiple scenarios before making major financial decisions</li>
+<li>Account for inflation when projecting long-term returns (typically 6-7% nominal - 3% inflation = 3-4% real return)</li>
+<li>Tax implications significantly affect actual returns — consider post-tax calculations</li>
+<li>Emergency fund (3-6 months expenses) should be established before investing</li>
+<li>Diversification reduces risk without necessarily reducing expected returns</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How accurate are online financial calculators? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Online financial calculators provide estimates based on the inputs you provide and standard financial formulas. They're highly accurate for fixed scenarios but cannot account for market volatility, tax law changes, or unexpected events. Use them as planning tools rather than guaranteed projections.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Should I pay off debt or invest first? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The standard advice: if your debt interest rate is higher than your expected investment return, pay off debt first. Credit card debt (18-24%) should almost always be paid first. If your debt rate is low (below 6-7%), investing simultaneously may make mathematical sense. Emergency fund always comes first.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the rule of 72? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The Rule of 72 is a quick way to estimate how long it takes to double your money. Divide 72 by your annual interest rate. Example: at 8% annual return, your money doubles in 72÷8 = 9 years. At 6%, it doubles in 12 years. This works well for rates between 5-15%.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How much should I save each month? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Financial experts recommend saving at least 20% of your income (50/30/20 rule: 50% needs, 30% wants, 20% savings/debt). For retirement, aim to save 15% of gross income. Start with what you can — even 5-10% is better than nothing and can be increased over time.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="emi-calculator.html" class="related-item text-decoration-none">&#127968; EMI Calculator</a>
+<a href="sip-calculator.html" class="related-item text-decoration-none">&#128200; SIP Calculator</a>
+<a href="compound-interest-calculator.html" class="related-item text-decoration-none">&#128185; Compound Interest</a>
+<a href="income-tax-calculator.html" class="related-item text-decoration-none">&#129534; Income Tax</a>
+<a href="gst-calculator.html" class="related-item text-decoration-none">&#128202; GST Calculator</a>
+<a href="roi-calculator.html" class="related-item text-decoration-none">&#128202; ROI Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-3"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div>
+      <!-- Live rates widget area -->
+      <div class="calc-box">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:0.75rem">📊 Major Rates vs INR (April 2025)</h3>
+        <div id="ratesTable" style="font-size:0.82rem"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+// Approximate rates in USD (April 2025)
+const rates = {
+  USD:{rate:1,sym:'$',name:'US Dollar',flag:'🇺🇸'},
+  EUR:{rate:0.9265,sym:'€',name:'Euro',flag:'🇪🇺'},
+  GBP:{rate:0.7872,sym:'£',name:'British Pound',flag:'🇬🇧'},
+  INR:{rate:84.20,sym:'₹',name:'Indian Rupee',flag:'🇮🇳'},
+  JPY:{rate:151.80,sym:'¥',name:'Japanese Yen',flag:'🇯🇵'},
+  CNY:{rate:7.23,sym:'¥',name:'Chinese Yuan',flag:'🇨🇳'},
+  AED:{rate:3.67,sym:'د.إ',name:'UAE Dirham',flag:'🇦🇪'},
+  SAR:{rate:3.75,sym:'﷼',name:'Saudi Riyal',flag:'🇸🇦'},
+  CAD:{rate:1.36,sym:'C$',name:'Canadian Dollar',flag:'🇨🇦'},
+  AUD:{rate:1.54,sym:'A$',name:'Australian Dollar',flag:'🇦🇺'},
+  CHF:{rate:0.903,sym:'Fr',name:'Swiss Franc',flag:'🇨🇭'},
+  SGD:{rate:1.348,sym:'S$',name:'Singapore Dollar',flag:'🇸🇬'},
+  HKD:{rate:7.79,sym:'HK$',name:'Hong Kong Dollar',flag:'🇭🇰'},
+  NZD:{rate:1.66,sym:'NZ$',name:'New Zealand Dollar',flag:'🇳🇿'},
+  SEK:{rate:10.45,sym:'kr',name:'Swedish Krona',flag:'🇸🇪'},
+  NOK:{rate:10.82,sym:'kr',name:'Norwegian Krone',flag:'🇳🇴'},
+  MXN:{rate:17.15,sym:'$',name:'Mexican Peso',flag:'🇲🇽'},
+  BRL:{rate:5.14,sym:'R$',name:'Brazilian Real',flag:'🇧🇷'},
+  ZAR:{rate:18.23,sym:'R',name:'South African Rand',flag:'🇿🇦'},
+  RUB:{rate:91.50,sym:'₽',name:'Russian Ruble',flag:'🇷🇺'},
+  THB:{rate:33.75,sym:'฿',name:'Thai Baht',flag:'🇹🇭'},
+  MYR:{rate:4.39,sym:'RM',name:'Malaysian Ringgit',flag:'🇲🇾'},
+  IDR:{rate:15750,sym:'Rp',name:'Indonesian Rupiah',flag:'🇮🇩'},
+  PKR:{rate:277.8,sym:'₨',name:'Pakistani Rupee',flag:'🇵🇰'},
+  BDT:{rate:109.7,sym:'৳',name:'Bangladeshi Taka',flag:'🇧🇩'},
+  NPR:{rate:134.8,sym:'₨',name:'Nepalese Rupee',flag:'🇳🇵'},
+  LKR:{rate:296.5,sym:'₨',name:'Sri Lankan Rupee',flag:'🇱🇰'},
+  KWD:{rate:0.307,sym:'KD',name:'Kuwaiti Dinar',flag:'🇰🇼'},
+  QAR:{rate:3.64,sym:'QR',name:'Qatari Riyal',flag:'🇶🇦'},
+  OMR:{rate:0.385,sym:'OMR',name:'Omani Rial',flag:'🇴🇲'},
+  BHD:{rate:0.377,sym:'BD',name:'Bahraini Dinar',flag:'🇧🇭'},
+  TRY:{rate:32.50,sym:'₺',name:'Turkish Lira',flag:'🇹🇷'},
+  KRW:{rate:1335,sym:'₩',name:'South Korean Won',flag:'🇰🇷'},
+  TWD:{rate:32.20,sym:'NT$',name:'Taiwan Dollar',flag:'🇹🇼'},
+  MUR:{rate:45.5,sym:'₨',name:'Mauritian Rupee',flag:'🇲🇺'}
+};
+
+function buildSelects(){
+  const fromSel=document.getElementById('fromCur'),toSel=document.getElementById('toCur');
+  Object.entries(rates).forEach(([k,v])=>{
+    const opt=`<option value="${k}">${v.flag} ${k} — ${v.name}</option>`;
+    fromSel.insertAdjacentHTML('beforeend',opt);
+    toSel.insertAdjacentHTML('beforeend',opt);
+  });
+  fromSel.value='USD';toSel.value='INR';
+}
+
+function setConv(from,to,amt,btn){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));if(btn)btn.classList.add('active');
+  document.getElementById('fromCur').value=from;document.getElementById('toCur').value=to;document.getElementById('amount').value=amt;convert();
+}
+
+function convert(){
+  const amt=+document.getElementById('amount').value;
+  const from=document.getElementById('fromCur').value;const to=document.getElementById('toCur').value;
+  if(!rates[from]||!rates[to])return;
+  const inUSD=amt/rates[from].rate;const result=inUSD*rates[to].rate;
+  const rate=rates[to].rate/rates[from].rate;
+  document.getElementById('result').textContent=`${rates[to].sym}${result.toLocaleString('en-US',{maximumFractionDigits:4})} ${to}`;
+  document.getElementById('resultLabel').textContent=`${amt} ${from} =`;
+  document.getElementById('rateInfo').innerHTML=`<div>1 ${from} = <strong>${rate.toFixed(4)} ${to}</strong> | 1 ${to} = ${(1/rate).toFixed(4)} ${from}</div><div style="color:var(--text-muted);font-size:0.75rem;margin-top:0.25rem">⚠️ Approximate rate — April 2025. Check bank for live rates.</div>`;
+
+  // Compare with popular currencies
+  const compCurs=['USD','EUR','GBP','INR','AED','SAR','CAD','AUD'];
+  const rows=compCurs.filter(c=>c!==from).map(c=>{const r=rates[c].rate/rates[from].rate;return`<tr><td>${rates[c].flag} ${c}</td><td>${rates[c].name}</td><td>${(amt*r).toLocaleString('en-US',{maximumFractionDigits:2})} ${c}</td></tr>`;});
+  document.getElementById('compareTable').innerHTML=`<h4 style="font-size:0.88rem;font-weight:700;margin-bottom:0.5rem">📊 ${amt} ${from} in Major Currencies</h4><div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)"><thead><tr style="background:var(--bg-input)"><th>Currency</th><th>Name</th><th>Amount</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
+}
+
+function swapCur(){const f=document.getElementById('fromCur').value,t=document.getElementById('toCur').value;document.getElementById('fromCur').value=t;document.getElementById('toCur').value=f;convert();}
+
+// Sidebar rates table
+function buildRatesTable(){
+  const vsINR=['USD','EUR','GBP','AED','SAR','CAD','AUD','SGD','JPY','CNY','KWD','QAR'];
+  document.getElementById('ratesTable').innerHTML=vsINR.map(c=>`<div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>${rates[c].flag} ${c}</span><strong>₹${(rates.INR.rate/rates[c].rate).toFixed(2)}</strong></div>`).join('');
+}
+
+document.addEventListener('DOMContentLoaded',()=>{buildSelects();buildRatesTable();convert();});
+</script>
+</body>
+</html>

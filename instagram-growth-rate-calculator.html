@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Growth Rate Calculator - Track Follower Growth | SuperCalc</title>
+<meta name="description" content="Track your Instagram follower growth rate month over month. Project when you'll reach 10K, 100K and 1 million followers. Free Instagram growth calculator.">
+<meta name="keywords" content="instagram growth rate calculator, instagram follower growth calculator, monthly growth rate instagram, how fast is my instagram growing, instagram account growth tracker">
+<link rel="canonical" href="https://supercalc.online/instagram-growth-rate-calculator.html">
+<meta property="og:title" content="Instagram Growth Rate Calculator - Track Follower Growth | SuperCalc">
+<meta property="og:description" content="Track your Instagram follower growth rate month over month. Project when you'll reach 10K, 100K and 1 million followers. Free Instagram growth calculator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/instagram-growth-rate-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Instagram Growth Rate Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Instagram Growth Rate Calculator","description":"Track your Instagram follower growth rate month over month. See if your account is growing fast enough to reach your goals.","url":"https://supercalc.online/instagram-growth-rate-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#405de6,#5851db)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">Social Media</a> <i class="bi bi-chevron-right"></i><span>Instagram Growth Rate Calculator</span></nav>
+  <h1 class="calc-page-title">&#128200; Instagram Growth Rate Calculator</h1>
+  <p class="calc-page-subtitle">Track your Instagram follower growth rate month over month. See if your account is growing fast enough to reach your goals.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#128200; Instagram Growth Rate Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">Followers at Start of Period</label><input type="number" class="form-control" id="startFollowers" placeholder="e.g. 8500"></div>
+  <div class="col-md-6"><label class="form-label">Followers at End of Period</label><input type="number" class="form-control" id="endFollowers" placeholder="e.g. 10000"></div>
+  <div class="col-md-6"><label class="form-label">Period (Days)</label><input type="number" class="form-control" id="days" placeholder="e.g. 30" value="30"></div>
+  <div class="col-md-6"><label class="form-label">New Followers Gained</label><input type="number" class="form-control" id="newFollowers" placeholder="Auto-calculated" id="newF" value="0"></div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate Growth</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">Growth Rate</div><div class="result-value" id="growthRate">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Daily Growth</div><div class="result-value" id="dailyGrowth">-</div></div>
+    <div class="col-6"><div class="result-label">Monthly Projection</div><div class="result-value" id="monthly">-</div></div>
+    <div class="col-6"><div class="result-label">Days to 100K</div><div class="result-value" id="to100k">-</div></div>
+  </div>
+</div>
+</div>
+<div class="info-box">
+<h2>What is a Instagram Growth Rate Calculator?</h2>
+<p>This Instagram calculator helps you track and improve key performance metrics for your Instagram account. Instagram's algorithm rewards accounts with strong, consistent engagement, making it essential to monitor these numbers regularly.</p>
+<p>Whether you're an influencer, brand, or content creator, understanding your Instagram metrics helps you grow your audience, attract sponsorships, and maximize your content's reach.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Post consistently — 3-7 times per week is ideal for feed posts</li>
+<li>Reels get 2-3x more organic reach than static feed posts in 2025</li>
+<li>Use 5-15 relevant hashtags (avoid generic ones with billions of posts)</li>
+<li>Post at peak times for your audience (check Instagram Insights)</li>
+<li>Engage with comments within the first 60 minutes after posting</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">What metrics matter most for Instagram growth? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The most important Instagram metrics are: engagement rate (likes + comments + saves + shares ÷ followers), reach rate, follower growth rate, and profile visits. Instagram's algorithm prioritizes Reels, so watch time and replay rate are increasingly important. Saves are weighted heavily as they signal long-term content value.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How often should I post on Instagram? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">For optimal growth, post 3-5 feed posts and 3-7 Reels per week. Stories should be posted daily (3-10 per day). Consistency matters more than frequency — a regular schedule trains the algorithm and your audience. Quality always trumps quantity.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Does follower count affect Instagram engagement rate? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Yes, generally as follower count increases, engagement rate decreases. Nano influencers (under 1K) see 5-10%+ ER, while mega influencers (1M+) often see 1-2%. This is why brands increasingly prefer micro and nano influencers for their higher authentic engagement despite smaller audiences.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I see my Instagram analytics? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Switch to a Creator or Business account to access Instagram Insights. You can view reach, impressions, engagement, follower demographics, and content performance. For deeper analytics, third-party tools like Sprout Social, Hootsuite, or Later provide more detailed reporting.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="instagram-engagement-rate-calculator.html" class="related-item text-decoration-none">&#128247; Instagram Engagement Rate</a>
+<a href="instagram-growth-rate-calculator.html" class="related-item text-decoration-none">&#128200; Instagram Growth Rate</a>
+<a href="instagram-influencer-earnings-calculator.html" class="related-item text-decoration-none">&#128176; Instagram Influencer Earnings</a>
+<a href="tiktok-engagement-rate-calculator.html" class="related-item text-decoration-none">&#127925; TikTok Engagement Rate</a>
+<a href="social-media-roi-calculator.html" class="related-item text-decoration-none">&#128200; Social Media ROI</a>
+<a href="virality-score-calculator.html" class="related-item text-decoration-none">&#128293; Virality Score</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){
+  var s=parseFloat(document.getElementById('startFollowers').value)||0;
+  var e=parseFloat(document.getElementById('endFollowers').value)||0;
+  var d=parseFloat(document.getElementById('days').value)||30;
+  if(!s||!e){alert('Enter start and end followers');return;}
+  var gained=e-s;
+  var rate=(gained/s)*100;
+  var daily=gained/d;
+  var monthly=daily*30;
+  var remaining=Math.max(0,100000-e);
+  var days100k=daily>0?Math.ceil(remaining/daily):999999;
+  document.getElementById('growthRate').textContent=rate.toFixed(2)+'%';
+  document.getElementById('dailyGrowth').textContent='+'+daily.toFixed(1)+'/day';
+  document.getElementById('monthly').textContent='+'+Math.round(monthly).toLocaleString();
+  document.getElementById('to100k').textContent=days100k>9999?'10+ yrs':days100k+' days';
+  document.getElementById('resultBox').style.display='block';
+}
+</script>
+</body>
+</html>

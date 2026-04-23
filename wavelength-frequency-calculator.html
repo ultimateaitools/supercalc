@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wavelength & Frequency Calculator | SuperCalc</title>
+<meta name="description" content="Calculate wavelength, frequency, and wave speed. Covers light, sound, radio waves, and electromagnetic spectrum.">
+<meta name="keywords" content="wavelength calculator, frequency calculator, wavelength frequency speed, electromagnetic spectrum, wave calculator">
+<link rel="canonical" href="https://supercalc.online/wavelength-frequency-calculator.html">
+<meta property="og:title" content="Wavelength & Frequency Calculator | SuperCalc">
+<meta property="og:description" content="Calculate wavelength, frequency, and wave speed. Covers light, sound, radio waves, and electromagnetic spectrum.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Wavelength & Frequency Calculator","url":"https://supercalc.online/wavelength-frequency-calculator.html","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0"}}</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Wavelength & Frequency Calculator</span></nav>
+  <h1 class="calc-page-title">&#127752; Wavelength & Frequency Calculator</h1>
+  <p class="calc-page-subtitle">Calculate wavelength, frequency, and wave speed. Covers light, sound, radio waves, and electromagnetic spectrum.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box"><h2 class="calc-title">Wavelength & Frequency Calculator</h2><div class="row g-3">
+<div class="col-md-6"><label class="form-label">Wave Speed (m/s)</label>
+<select class="form-select" id="f0" onchange="setSpeed()">
+<option value="299792458">Light in vacuum (c)</option>
+<option value="343">Sound in air (343 m/s)</option>
+<option value="1480">Sound in water</option>
+<option value="custom">Custom speed</option>
+</select></div>
+<div class="col-md-6"><label class="form-label">Speed (m/s)</label><input type="number" class="form-control" id="spd" value="299792458" step="any"></div>
+<div class="col-md-6"><label class="form-label">Frequency (Hz) - leave blank to solve</label><input type="number" class="form-control" id="f1" value="600e12" step="any" placeholder="e.g., 440 for A note"></div>
+<div class="col-md-6"><label class="form-label">Wavelength (m) - leave blank to solve</label><input type="number" class="form-control" id="f2" step="any" placeholder="Leave blank to solve"></div>
+</div><button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate</button><div class="result-box" id="resultBox"><div class="row g-3 text-center"><div class="col-6"><div class="result-label">Wavelength</div><div class="result-value" id="r1">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div><div class="col-6"><div class="result-label">Frequency</div><div class="result-value" id="r2">-</div></div><div class="col-6"><div class="result-label">Wave Speed</div><div class="result-value" id="r3">-</div></div><div class="col-6"><div class="result-label">Period (1/f)</div><div class="result-value" id="r4">-</div></div></div></div></div>
+<div class="info-box">
+<h2>What is a Frequency Calculator?</h2>
+<p>Unit converters help you quickly and accurately convert between different measurement systems used worldwide. Whether you need to convert metric to imperial, or between scientific units, accurate conversions are essential in science, engineering, cooking, and everyday life.</p>
+<p>These converters use exact conversion factors from international standards (SI units, ISO definitions) to ensure maximum accuracy.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>The metric system (SI units) is used by 95% of the world — learning key conversions helps in international contexts</li>
+<li>Temperature conversions: °C to °F: multiply by 9/5 then add 32</li>
+<li>For cooking: 1 cup = 240 mL, 1 tablespoon = 15 mL, 1 teaspoon = 5 mL</li>
+<li>1 mile = 1.60934 km, 1 kg = 2.20462 lbs, 1 inch = 2.54 cm</li>
+<li>When precision matters, use the exact conversion factor, not a rounded approximation</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">What is the metric system? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The metric system (International System of Units or SI) is the globally standard system of measurement. It's based on multiples of 10, making calculations straightforward. Used by scientists worldwide and by most countries for everyday measurements. The US is one of only three countries (with Myanmar and Liberia) not officially using metric.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I remember conversion factors? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Key tricks: 'King Henry Died By Drinking Cold Milk' for kilo-hecto-deca-base-deci-centi-milli. For temp: 'Multiply by 2 and add 30' gives a quick Celsius-to-Fahrenheit approximation (exact: ×1.8 + 32). For km to miles, multiply by 0.6 (exact: ×0.621371).</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Why does the US still use imperial units? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The US officially adopted the metric system in 1866 but never mandated its use in daily life. Switching would require updating infrastructure, education, and cultural habits at enormous cost. However, US science, medicine, military, and international trade widely use metric. The Metric Conversion Act of 1975 made metric the preferred system.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What's the most common conversion mistake? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The most common mistake is confusing mass and weight (kilograms vs. pounds), especially for international shipping. Also: confusing fluid ounces (volume) with ounces (weight), and using the wrong temperature scale (°C vs °F). Always specify units in international communications.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="unit-converter.html" class="related-item text-decoration-none">&#128208; Unit Converter</a>
+<a href="temperature-converter.html" class="related-item text-decoration-none">&#127777; Temperature Converter</a>
+<a href="length-converter.html" class="related-item text-decoration-none">&#128208; Length Converter</a>
+<a href="weight-converter.html" class="related-item text-decoration-none">&#9878; Weight Converter</a>
+<a href="speed-converter.html" class="related-item text-decoration-none">&#128663; Speed Converter</a>
+<a href="energy-converter.html" class="related-item text-decoration-none">&#9889; Energy Converter</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online &mdash; Free Online Calculators</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a> &bull; <a href="about.html">About</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function setSpeed(){const s=document.getElementById('f0').value;if(s!=='custom')document.getElementById('spd').value=s;}
+function calc(){let f=parseFloat(document.getElementById('f1').value),wl=parseFloat(document.getElementById('f2').value),spd=+document.getElementById('spd').value;const has=x=>!isNaN(x)&&x>0;if(has(f)&&!has(wl)){wl=spd/f;}else if(has(wl)&&!has(f)){f=spd/wl;}else if(!has(f)&&!has(wl)){return alert('Enter frequency or wavelength');}const T=1/f;document.getElementById('r1').textContent=wl.toExponential(4)+' m';document.getElementById('r2').textContent=f.toExponential(4)+' Hz';document.getElementById('r3').textContent=spd.toExponential(4)+' m/s';document.getElementById('r4').textContent=T.toExponential(4)+' s';document.getElementById('resultBox').classList.add('show');}
+</script>
+</body>
+</html>

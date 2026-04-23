@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Loan Calculator 2025 - Auto Loan EMI Calculator | SuperCalc</title>
+  <meta name="description" content="Free car loan calculator 2025. Calculate car loan EMI, total interest, down payment for any vehicle. Updated with latest SBI, HDFC, ICICI auto loan rates.">
+  <meta name="keywords" content="car loan calculator, auto loan EMI calculator, vehicle loan calculator, car loan interest rate 2025, two wheeler loan calculator, car EMI calculator India">
+  <link rel="canonical" href="https://supercalc.online/car-loan-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1c1c1c,#e74c3c)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#automotive">Automotive</a> <i class="bi bi-chevron-right"></i><span>Car Loan Calculator</span></nav>
+  <h1 class="calc-page-title">🚗 Car Loan Calculator 2025</h1>
+  <p class="calc-page-subtitle">Calculate EMI for car, bike & all vehicle loans — latest rates</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setVehicle('car',this)">🚗 Car Loan</button>
+        <button class="cat-pill" onclick="setVehicle('bike',this)">🏍️ Two Wheeler</button>
+        <button class="cat-pill" onclick="setVehicle('ev',this)">⚡ Electric Vehicle</button>
+        <button class="cat-pill" onclick="setVehicle('truck',this)">🚛 Commercial Vehicle</button>
+      </div>
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Vehicle On-Road Price (₹)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="price" value="1000000" step="50000"></div><input type="range" class="form-range mt-2" id="priceSlider" min="100000" max="10000000" step="50000" value="1000000"><div style="text-align:center;font-size:0.72rem;color:var(--text-muted)" id="priceDisplay">₹10.00 Lakh</div></div>
+          <div class="col-md-6"><label class="form-label">Down Payment</label><select class="form-select" id="downPct"><option value="0.10">10%</option><option value="0.15">15%</option><option value="0.20" selected>20% (Standard)</option><option value="0.25">25%</option><option value="0.30">30%</option></select></div>
+          <div class="col-md-6"><label class="form-label">Annual Interest Rate</label><div class="input-group"><input type="number" class="form-control" id="rate" value="9.25" step="0.05"><span class="input-group-text">%</span></div></div>
+          <div class="col-md-6"><label class="form-label">Loan Tenure</label><div class="input-group"><input type="number" class="form-control" id="tenure" value="5" step="1" min="1" max="8"><span class="input-group-text">Years</span></div></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcCarLoan()"><i class="bi bi-car-front me-2"></i>Calculate Car Loan</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Monthly EMI</div><div class="result-value" id="emi">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Loan Amount</div><div class="r-value text-primary" id="loanAmt">₹0</div></div>
+            <div class="result-item"><div class="r-label">Down Payment</div><div class="r-value" style="color:var(--accent)" id="downAmt">₹0</div></div>
+            <div class="result-item"><div class="r-label">Total Interest</div><div class="r-value" style="color:var(--danger)" id="totalInt">₹0</div></div>
+            <div class="result-item"><div class="r-label">Total Cost</div><div class="r-value" id="totalCost">₹0</div></div>
+          </div>
+          <div class="chart-container"><canvas id="carChart"></canvas></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Car Loan Interest Rates 2025</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Bank/NBFC</th><th>New Car</th><th>Used Car</th><th>EV</th></tr></thead>
+          <tbody>
+            <tr><td>SBI</td><td>8.75%</td><td>12-15%</td><td>8.65%</td></tr>
+            <tr><td>HDFC Bank</td><td>9.40%</td><td>13-16%</td><td>8.85%</td></tr>
+            <tr><td>ICICI Bank</td><td>9.00%</td><td>12-16%</td><td>8.90%</td></tr>
+            <tr><td>Axis Bank</td><td>9.10%</td><td>13-16%</td><td>8.75%</td></tr>
+            <tr><td>Kotak Mahindra</td><td>9.25%</td><td>14-17%</td><td>8.85%</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let carChart=null;
+function setVehicle(t,btn){
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');
+  const rates={car:9.25,bike:14.50,ev:8.75,truck:11.00};
+  document.getElementById('rate').value=rates[t];calcCarLoan();
+}
+['price','priceSlider'].forEach((id,i)=>{document.getElementById(id).addEventListener('input',function(){document.getElementById(['priceSlider','price'][i]).value=this.value;const v=+this.value;document.getElementById('priceDisplay').textContent=`₹${(v/100000).toFixed(2)} Lakh`;});});
+
+function calcCarLoan(){
+  const price=+document.getElementById('price').value;const down=price*+document.getElementById('downPct').value;
+  const P=price-down;const r=+document.getElementById('rate').value/100/12;const n=+document.getElementById('tenure').value*12;
+  const emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+  const totalPay=emi*n;const totalInt=totalPay-P;
+  const fmt=v=>'₹'+Math.round(v).toLocaleString('en-IN');
+  document.getElementById('emi').textContent=fmt(emi);document.getElementById('loanAmt').textContent=fmt(P);
+  document.getElementById('downAmt').textContent=fmt(down);document.getElementById('totalInt').textContent=fmt(totalInt);
+  document.getElementById('totalCost').textContent=fmt(totalPay+down);
+  const ctx=document.getElementById('carChart').getContext('2d');
+  if(carChart)carChart.destroy();
+  carChart=new Chart(ctx,{type:'doughnut',data:{labels:['Principal','Interest','Down Payment'],datasets:[{data:[Math.round(P),Math.round(totalInt),Math.round(down)],backgroundColor:['#6C3BFF','#FF3B5C','#00E5A0'],borderWidth:0}]},options:{responsive:true,cutout:'65%',plugins:{legend:{position:'bottom'}}}});
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Car Loan:\nEMI: ${document.getElementById('emi').textContent}/month\nTotal Interest: ${document.getElementById('totalInt').textContent}`;}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(calcCarLoan,300));
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok Earnings Calculator 2025 - Creator Fund + Brand Deals | SuperCalc</title>
+<meta name="description" content="Calculate how much money you can make on TikTok. Estimate Creator Fund payments, brand deal income, and total monthly TikTok earnings. The most accurate TikTok money calculator.">
+<meta name="keywords" content="tiktok earnings calculator, how much does tiktok pay, tiktok creator fund calculator, tiktok money calculator 2025, how much do tiktok creators make, tiktok income calculator, tiktok monetization calculator">
+<link rel="canonical" href="https://supercalc.online/tiktok-earnings-calculator.html">
+<meta property="og:title" content="TikTok Earnings Calculator 2025 - Creator Fund + Brand Deals | SuperCalc">
+<meta property="og:description" content="Calculate how much money you can make on TikTok. Estimate Creator Fund payments, brand deal income, and total monthly TikTok earnings. The most accurate TikTok money calculator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/tiktok-earnings-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TikTok Earnings Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"TikTok Earnings Calculator","description":"Calculate how much money you can earn from TikTok. Estimate TikTok Creator Fund payments, brand deals, and total monthly income.","url":"https://supercalc.online/tiktok-earnings-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#ff0050,#00f2ea)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">TikTok</a> <i class="bi bi-chevron-right"></i><span>TikTok Earnings Calculator</span></nav>
+  <h1 class="calc-page-title">&#128176; TikTok Earnings Calculator</h1>
+  <p class="calc-page-subtitle">Calculate how much money you can earn from TikTok. Estimate TikTok Creator Fund payments, brand deals, and total monthly income.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#128176; TikTok Earnings Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">Average Views per Video</label><input type="number" class="form-control" id="views" placeholder="e.g. 50000"></div>
+  <div class="col-md-6"><label class="form-label">Videos per Month</label><input type="number" class="form-control" id="videos" placeholder="e.g. 20" value="15"></div>
+  <div class="col-md-6"><label class="form-label">Total Followers</label><input type="number" class="form-control" id="followers" placeholder="e.g. 100000"></div>
+  <div class="col-md-6"><label class="form-label">Engagement Rate (%)</label><input type="number" class="form-control" id="engRate" placeholder="e.g. 5" step="0.1" value="5"></div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate TikTok Income</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">Creator Fund/Month</div><div class="result-value" id="fund">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Brand Deal/Post</div><div class="result-value" id="brand">-</div></div>
+    <div class="col-6"><div class="result-label">Total Monthly Income</div><div class="result-value" id="total">-</div></div>
+    <div class="col-6"><div class="result-label">Annual Projection</div><div class="result-value" id="annual">-</div></div>
+  </div>
+</div>
+</div>
+<p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px">TikTok Creator Fund pays approximately $0.02-$0.04 per 1,000 views. Brand deals are estimates based on follower count and engagement.</p>
+<div class="info-box">
+<h2>What is a TikTok Earnings Calculator?</h2>
+<p>TikTok creators can earn money through the TikTok Creator Fund, brand sponsorships, live gifts, and the TikTok Creativity Program (formerly Creator Next). The Creator Fund pays approximately $0.02-$0.04 per 1,000 views, while brand deals are typically far more lucrative.</p>
+<p>TikTok's monetization potential depends on your follower count, engagement rate, content niche, and audience demographics. Creators with 100K+ followers in niches like finance, beauty, and education typically earn the most from brand partnerships.</p>
+<h3>How to Use This Calculator</h3>
+<ol>
+<li>Enter your average views per TikTok video</li>
+<li>Enter how many videos you post per month</li>
+<li>Add your follower count and engagement rate</li>
+<li>Click Calculate to see Creator Fund income and brand deal estimates</li>
+</ol>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>TikTok Creator Fund pays less per view than YouTube ($0.02-$0.04 vs $2-10 per 1K views)</li>
+<li>Brand deals on TikTok are typically 3-10x more lucrative than Creator Fund income</li>
+<li>Live gifting can add significant income for creators with engaged communities</li>
+<li>US-based creators earn significantly more from the Creator Fund than international creators</li>
+<li>TikTok's Creativity Program (requires 10K+ followers, 100K+ views/month) pays better than Creator Fund</li>
+<li>Finance, business, and educational content earns the highest brand deal rates</li>
+</ul>
+<h3>TikTok Creator Earnings by Tier 2025</h3>
+<div class="table-responsive"><table class="table table-sm" style="font-size:0.83rem">
+<thead><tr><th>Followers</th><th>Creator Fund/Month</th><th>Brand Deal/Post</th><th>Total Est.</th></tr></thead>
+<tbody>
+<tr><td>10K - 50K</td><td>$5 - $50</td><td>$50 - $250</td><td>$100 - $500</td></tr>
+<tr><td>50K - 100K</td><td>$50 - $100</td><td>$250 - $800</td><td>$400 - $1,500</td></tr>
+<tr><td>100K - 500K</td><td>$100 - $500</td><td>$800 - $3,000</td><td>$1,000 - $6,000</td></tr>
+<tr><td>500K - 1M</td><td>$500 - $1,500</td><td>$3,000 - $10,000</td><td>$5,000 - $20,000</td></tr>
+<tr><td>1M+</td><td>$1,500+</td><td>$10,000+</td><td>$15,000+/month</td></tr>
+</tbody></table></div></div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How many TikTok views do I need to make money? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">To join the TikTok Creator Fund, you need at least 10,000 followers and 100,000 views in the past 30 days. However, making significant money from the Creator Fund alone requires millions of views. Most creators focus on brand deals, which can pay $50-$500 per post even with 10K-50K followers.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Does TikTok pay more than YouTube? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Generally, YouTube pays significantly more per view than TikTok. YouTube RPM averages $2-10+ per 1,000 views, while TikTok Creator Fund pays $0.02-$0.04 per 1,000 views — about 50-100x less. However, TikTok videos can go viral much faster, potentially generating more total views and better brand deal opportunities.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the TikTok Creativity Program? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The TikTok Creativity Program (launched 2023) replaced the original Creator Fund and offers higher per-view payouts. It requires at least 10,000 followers, 100,000+ video views in the last 30 days, videos must be 1+ minute long, and be in an eligible country. Rates are reportedly $0.40-$1.00 per 1,000 views — much higher than the original Creator Fund.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do TikTok brand deals work? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Brands pay TikTok creators to feature their products or services in videos. You can find brand deals through: TikTok Creator Marketplace, talent agencies, direct brand outreach, or influencer platforms like AspireIQ. Rates are negotiated based on your follower count, engagement rate, and niche. Most deals include usage rights and exclusivity clauses.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="tiktok-engagement-rate-calculator.html" class="related-item text-decoration-none">&#127925; TikTok Engagement Rate</a>
+<a href="tiktok-virality-score-calculator.html" class="related-item text-decoration-none">&#128293; TikTok Virality Score</a>
+<a href="instagram-influencer-earnings-calculator.html" class="related-item text-decoration-none">&#128176; Instagram Influencer Earnings</a>
+<a href="youtube-money-calculator.html" class="related-item text-decoration-none">&#128176; YouTube Money Calculator</a>
+<a href="brand-deal-rate-calculator.html" class="related-item text-decoration-none">&#129534; Brand Deal Rate Calculator</a>
+<a href="social-media-roi-calculator.html" class="related-item text-decoration-none">&#128200; Social Media ROI</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc(){
+  var views=parseFloat(document.getElementById('views').value)||0;
+  var videos=parseFloat(document.getElementById('videos').value)||15;
+  var followers=parseFloat(document.getElementById('followers').value)||1;
+  var eng=parseFloat(document.getElementById('engRate').value)||5;
+  var monthlyViews=views*videos;
+  var fund=(monthlyViews/1000)*0.03;
+  var brandDeal=(followers/1000)*8*(1+(eng-3)*0.05);
+  var brandDeals=Math.floor(videos/10);
+  var total=fund+(brandDeal*brandDeals);
+  document.getElementById('fund').textContent='$'+fund.toFixed(2);
+  document.getElementById('brand').textContent='$'+brandDeal.toFixed(0);
+  document.getElementById('total').textContent='$'+total.toFixed(0);
+  document.getElementById('annual').textContent='$'+(total*12).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('resultBox').style.display='block';
+}
+</script>
+</body>
+</html>

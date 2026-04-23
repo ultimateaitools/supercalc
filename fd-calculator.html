@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FD Calculator 2025 - Fixed Deposit Maturity Amount | SuperCalc</title>
+  <meta name="description" content="Free FD calculator online. Calculate fixed deposit maturity amount, interest earned for any bank in India. Supports monthly, quarterly, half-yearly & annual compounding.">
+  <meta name="keywords" content="FD calculator, fixed deposit calculator, FD maturity calculator, FD interest calculator, SBI FD calculator, HDFC FD calculator, bank FD rate 2025, fixed deposit interest 2025">
+  <link rel="canonical" href="https://supercalc.online/fd-calculator.html">
+  <meta property="og:title" content="FD Calculator 2025 - Fixed Deposit Maturity | SuperCalc">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"FD Calculator","url":"https://supercalc.online/fd-calculator.html","description":"Calculate fixed deposit maturity amount and interest","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0"}}</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1a5276,#2980b9)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>FD Calculator</span></nav>
+  <h1 class="calc-page-title">🏛️ FD Calculator 2025</h1>
+  <p class="calc-page-subtitle">Calculate fixed deposit maturity amount & interest for any bank</p></div>
+</div>
+
+<div class="container mt-3"><div class="ad-banner"><span class="ad-label">Advertisement</span><span>[ Ad Banner 728x90 ]</span></div></div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <!-- Bank presets -->
+        <div class="category-pills mb-4">
+          <button class="cat-pill active" onclick="setBank(7.10,'SBI',this)">🏛️ SBI</button>
+          <button class="cat-pill" onclick="setBank(7.25,'HDFC',this)">🏦 HDFC</button>
+          <button class="cat-pill" onclick="setBank(7.25,'ICICI',this)">💳 ICICI</button>
+          <button class="cat-pill" onclick="setBank(7.30,'Axis',this)">🔵 Axis</button>
+          <button class="cat-pill" onclick="setBank(7.50,'BOI',this)">🟡 BOI</button>
+          <button class="cat-pill" onclick="setBank(0,'Custom',this)">⚙️ Custom</button>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Principal Amount</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="principal" value="100000" step="5000"></div><input type="range" class="form-range mt-2" id="pSlider" min="5000" max="10000000" step="5000" value="100000"><div style="text-align:center;font-size:0.72rem;color:var(--text-muted)" id="pDisplay">₹1.00 Lakh</div></div>
+          <div class="col-md-6"><label class="form-label">Annual Interest Rate (%)</label><div class="input-group"><input type="number" class="form-control" id="rate" value="7.10" step="0.05"><span class="input-group-text">%</span></div><input type="range" class="form-range mt-2" id="rSlider" min="1" max="12" step="0.05" value="7.10"><div style="text-align:center;font-size:0.72rem;color:var(--text-muted)" id="rDisplay">7.10%</div></div>
+          <div class="col-md-6"><label class="form-label">Tenure</label><div class="input-group"><input type="number" class="form-control" id="tenure" value="1" step="0.25"><span class="input-group-text" id="tenureUnit">Years</span></div></div>
+          <div class="col-md-3"><label class="form-label">Tenure In</label><select class="form-select" id="tenureType" onchange="updateTenureUnit()"><option value="years">Years</option><option value="months">Months</option><option value="days">Days</option></select></div>
+          <div class="col-md-3"><label class="form-label">Compounding</label><select class="form-select" id="freq"><option value="1">Annually</option><option value="2">Half-yearly</option><option value="4" selected>Quarterly</option><option value="12">Monthly</option></select></div>
+          <div class="col-md-6"><label class="form-label">Customer Type</label><select class="form-select" id="custType"><option value="0">Regular (Standard Rate)</option><option value="0.5">Senior Citizen (+0.50%)</option><option value="0.25">Women Special (+0.25%)</option></select></div>
+        </div>
+
+        <button class="btn-calculate mt-4" onclick="calcFD()"><i class="bi bi-calculator me-2"></i>Calculate FD</button>
+
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Maturity Amount</div><div class="result-value" id="maturity">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Principal</div><div class="r-value text-primary" id="principalRes">₹0</div></div>
+            <div class="result-item"><div class="r-label">Interest Earned</div><div class="r-value" style="color:var(--accent)" id="interest">₹0</div></div>
+            <div class="result-item"><div class="r-label">Effective Rate</div><div class="r-value" id="effRate">0%</div></div>
+            <div class="result-item"><div class="r-label">Monthly Payout</div><div class="r-value" id="monthly">₹0</div></div>
+          </div>
+          <div class="chart-container"><canvas id="fdChart"></canvas></div>
+          <div class="action-btns">
+            <button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button>
+            <button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FD Rate Comparison Table -->
+      <div class="calc-box mb-4">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1rem">📊 FD Rates Comparison — Top Banks 2025</h3>
+        <div class="table-responsive">
+          <table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+            <thead><tr style="background:var(--bg-input)"><th>Bank</th><th>1 Year</th><th>2 Years</th><th>3 Years</th><th>5 Years</th><th>Senior Citizen</th></tr></thead>
+            <tbody>
+              <tr><td><strong>SBI</strong></td><td>6.80%</td><td>7.00%</td><td>6.75%</td><td>6.50%</td><td>+0.50%</td></tr>
+              <tr><td><strong>HDFC Bank</strong></td><td>7.10%</td><td>7.00%</td><td>7.00%</td><td>7.00%</td><td>+0.50%</td></tr>
+              <tr><td><strong>ICICI Bank</strong></td><td>6.70%</td><td>7.00%</td><td>7.00%</td><td>7.00%</td><td>+0.50%</td></tr>
+              <tr><td><strong>Axis Bank</strong></td><td>7.10%</td><td>7.10%</td><td>7.10%</td><td>7.00%</td><td>+0.75%</td></tr>
+              <tr><td><strong>Kotak Mahindra</strong></td><td>7.10%</td><td>7.10%</td><td>7.10%</td><td>6.20%</td><td>+0.50%</td></tr>
+              <tr><td><strong>IDFC First</strong></td><td>7.75%</td><td>7.75%</td><td>7.50%</td><td>7.00%</td><td>+0.50%</td></tr>
+              <tr><td><strong>Bajaj Finance</strong></td><td>7.48%</td><td>7.80%</td><td>8.05%</td><td>7.88%</td><td>+0.25%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.72rem;color:var(--text-muted)">*Rates as of April 2025. Always verify with bank before investing.</p>
+      </div>
+
+      <div class="info-box">
+        <h2>What is Fixed Deposit (FD)?</h2>
+        <p>A <strong>Fixed Deposit (FD)</strong> is a financial instrument where you deposit a lump sum amount with a bank or NBFC for a fixed tenure at a predetermined interest rate. FD is one of the safest investment options as deposits up to ₹5 lakh are insured by DICGC.</p>
+        <h3>FD Interest Formula</h3>
+        <div class="formula-box">A = P × (1 + r/n)^(n×t)<br><br>Where: A = Maturity amount, P = Principal, r = Annual rate (decimal), n = Compounding frequency per year, t = Time in years</div>
+        <h3>FD vs Other Investments</h3>
+        <ul>
+          <li><strong>FD vs Savings Account:</strong> FD gives 2-4% more returns than savings account</li>
+          <li><strong>FD vs Mutual Fund:</strong> FD is safer but mutual funds historically give higher returns over 5+ years</li>
+          <li><strong>FD vs PPF:</strong> PPF gives higher rate (7.1%) with 15-year lock-in but tax-free returns</li>
+          <li><strong>Tax on FD:</strong> Interest is added to your income and taxed as per your tax slab. TDS @ 10% if interest exceeds ₹40,000/year (₹50,000 for senior citizens)</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><button class="faq-question">What is the maximum FD insurance limit? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">DICGC (Deposit Insurance and Credit Guarantee Corporation) insures bank deposits up to ₹5 lakh per depositor per bank, including both principal and interest. This was increased from ₹1 lakh in February 2020.</div></div></div>
+        <div class="faq-item"><button class="faq-question">Can I break FD before maturity? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Yes, FDs can be broken prematurely but incur a penalty of 0.5% to 1% reduction in applicable interest rate. Some banks also have a lock-in period of 3 months for regular FDs (5 years for tax-saving FDs under 80C).</div></div></div>
+        <div class="faq-item"><button class="faq-question">Which FD gives highest interest rate in 2025? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Small finance banks like Unity Small Finance Bank (9%), Suryoday SFB (8.6%), and NBFCs like Bajaj Finance (8.05% for 3 years) offer higher rates. However, these may have higher risk compared to major scheduled banks.</div></div></div>
+      </div>
+
+      <div class="info-box"><h3 style="margin-top:0">Related Calculators</h3>
+        <div class="related-grid">
+          <a href="rd-calculator.html" class="related-item text-decoration-none">💳 RD Calculator</a>
+          <a href="ppf-calculator.html" class="related-item text-decoration-none">🔐 PPF Calculator</a>
+          <a href="sip-calculator.html" class="related-item text-decoration-none">📈 SIP Calculator</a>
+          <a href="compound-interest-calculator.html" class="related-item text-decoration-none">💹 Compound Interest</a>
+          <a href="emi-calculator.html" class="related-item text-decoration-none">🏦 EMI Calculator</a>
+          <a href="income-tax-calculator.html" class="related-item text-decoration-none">🧾 Income Tax Calc</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-4"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+      <div class="calc-box mb-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem">💡 ₹1 Lakh FD Returns</h3>
+        <p style="font-size:0.78rem;color:var(--text-muted)">At 7% interest (quarterly compounding):</p>
+        <div style="font-size:0.82rem">
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>1 Year</span><strong>₹1,07,186</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>2 Years</span><strong>₹1,14,888</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>3 Years</span><strong>₹1,23,144</strong></div>
+          <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>5 Years</span><strong>₹1,41,478</strong></div>
+          <div class="d-flex justify-content-between py-1"><span>10 Years</span><strong>₹2,00,160</strong></div>
+        </div>
+      </div>
+      <div class="sidebar-ad mt-3"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online — Free FD Calculator</p><p><a href="index.html">Home</a> | <a href="privacy.html">Privacy</a></p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calc-engine.js"></script>
+<script>
+let fdChart = null;
+
+function setBank(rate, name, btn) {
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  if(rate) document.getElementById('rate').value = rate;
+  document.getElementById('rSlider').value = rate||7;
+  document.getElementById('rDisplay').textContent = (rate||document.getElementById('rate').value)+'%';
+  calcFD();
+}
+
+function updateTenureUnit(){
+  const t = document.getElementById('tenureType').value;
+  document.getElementById('tenureUnit').textContent = t==='years'?'Yrs':t==='months'?'Mo':'Days';
+}
+
+// Sync sliders
+['principal','pSlider'].forEach((id,i)=>{const o=['pSlider','principal'][i];document.getElementById(id).addEventListener('input',function(){document.getElementById(o).value=this.value;const v=+this.value;document.getElementById('pDisplay').textContent=v>=10000000?`₹${(v/10000000).toFixed(2)} Cr`:`₹${(v/100000).toFixed(2)} Lakh`;});});
+['rate','rSlider'].forEach((id,i)=>{const o=['rSlider','rate'][i];document.getElementById(id).addEventListener('input',function(){document.getElementById(o).value=this.value;document.getElementById('rDisplay').textContent=this.value+'%';});});
+
+function calcFD(){
+  const P = +document.getElementById('principal').value;
+  let rate = +document.getElementById('rate').value;
+  const extra = +document.getElementById('custType').value;
+  rate += extra;
+  const tenType = document.getElementById('tenureType').value;
+  let tenureYears = +document.getElementById('tenure').value;
+  if(tenType==='months') tenureYears/=12;
+  if(tenType==='days') tenureYears/=365;
+  const n = +document.getElementById('freq').value;
+
+  const res = CalcEngine.fd(P, rate, tenureYears, ['annually','semiAnnually','quarterly','monthly'][Math.log2(n)||0]);
+  // Simpler direct calc
+  const matAmt = P * Math.pow(1 + rate/(100*n), n*tenureYears);
+  const intAmt = matAmt - P;
+  const effRate = (Math.pow(1+rate/(100*n), n)-1)*100;
+  const monthlyInt = intAmt/(tenureYears*12);
+
+  document.getElementById('maturity').textContent = fmt(matAmt);
+  document.getElementById('principalRes').textContent = fmt(P);
+  document.getElementById('interest').textContent = fmt(intAmt);
+  document.getElementById('effRate').textContent = effRate.toFixed(2)+'%';
+  document.getElementById('monthly').textContent = fmt(monthlyInt);
+
+  const ctx = document.getElementById('fdChart').getContext('2d');
+  if(fdChart) fdChart.destroy();
+  fdChart = new Chart(ctx, {type:'doughnut',data:{labels:['Principal','Interest'],datasets:[{data:[P,intAmt],backgroundColor:['#6C3BFF','#00E5A0'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:true,plugins:{legend:{position:'bottom'},tooltip:{callbacks:{label:c=>` ₹${c.parsed.toLocaleString('en-IN',{maximumFractionDigits:0})}`}}},cutout:'65%'}});
+
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function fmt(n){return '₹'+n.toLocaleString('en-IN',{maximumFractionDigits:0});}
+function getText(){return `FD Calculator Result:\nMaturity Amount: ${document.getElementById('maturity').textContent}\nInterest Earned: ${document.getElementById('interest').textContent}`;}
+
+document.addEventListener('DOMContentLoaded',()=>setTimeout(calcFD,300));
+</script>
+</body>
+</html>

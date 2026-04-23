@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Calculator India 2025-26 - New vs Old Tax Regime | SuperCalc</title>
+  <meta name="description" content="Calculate your income tax for FY 2025-26. Compare new tax regime vs old regime, find rebates and calculate net tax payable. Free India income tax calculator.">
+  <meta name="keywords" content="income tax calculator 2025, India income tax calculator, new tax regime calculator, old tax regime calculator, income tax slab 2025-26, salary tax calculator India">
+  <link rel="canonical" href="https://supercalc.online/income-tax-calculator.html">
+  <meta property="og:title" content="Income Tax Calculator India 2025-26 - New vs Old Tax Regime | SuperCalc">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav me-auto ms-3"><li><a class="nav-link" href="index.html#finance">💰 Finance</a></li></ul>
+      <div class="d-flex gap-2"><div class="search-wrapper d-none d-lg-block"><i class="bi bi-search search-icon"></i><input type="search" class="search-input" placeholder="Search..."><div class="search-dropdown"></div></div><button class="theme-toggle" id="themeToggle"><i class="bi bi-moon-fill" id="themeIcon"></i></button></div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">
+  <div class="container">
+    <nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>Income Tax Calculator</span></nav>
+    <h1 class="calc-page-title">🧾 Income Tax Calculator 2024-25</h1>
+    <p class="calc-page-subtitle">Calculate your income tax under New & Old regime — India FY 2024-25</p>
+  </div>
+</div>
+
+<div class="container mt-3"><div class="ad-banner"><span class="ad-label">Advertisement</span><span>[ Ad Banner 728x90 ]</span></div></div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="category-pills mb-4">
+          <button class="cat-pill active" onclick="setRegime('new',this)">🆕 New Regime (Default)</button>
+          <button class="cat-pill" onclick="setRegime('old',this)">📋 Old Regime</button>
+          <button class="cat-pill" onclick="setRegime('compare',this)">🔄 Compare Both</button>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Annual Gross Income</label>
+            <div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="grossIncome" value="1000000" step="10000"></div>
+            <input type="range" class="form-range mt-2" id="incomeSlider" min="100000" max="10000000" step="50000" value="1000000">
+            <div style="text-align:center;font-size:0.75rem;color:var(--text-muted)" id="incomeDisplay">₹10.00 Lakh</div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Age Group</label>
+            <select class="form-select" id="ageGroup">
+              <option value="general">Below 60 years</option>
+              <option value="senior">60-79 years (Senior Citizen)</option>
+              <option value="superSenior">80+ years (Super Senior)</option>
+            </select>
+          </div>
+
+          <!-- Old Regime Deductions (hidden by default) -->
+          <div id="oldRegimeFields" style="display:none">
+            <div class="row g-3">
+              <div class="col-12"><div class="highlight-box"><strong>📋 Old Regime Deductions</strong></div></div>
+              <div class="col-md-6"><label class="form-label">80C Investments (max ₹1.5L)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="sec80c" value="150000" max="150000"></div></div>
+              <div class="col-md-6"><label class="form-label">HRA Exemption</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="hra" value="0"></div></div>
+              <div class="col-md-6"><label class="form-label">Home Loan Interest (24b)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="homeLoanInt" value="0"></div></div>
+              <div class="col-md-6"><label class="form-label">80D Health Insurance</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="sec80d" value="25000" max="100000"></div></div>
+              <div class="col-md-6"><label class="form-label">NPS (80CCD 1B)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="nps80ccd" value="50000" max="50000"></div></div>
+              <div class="col-md-6"><label class="form-label">Other Deductions</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="otherDed" value="0"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-calculate mt-4" onclick="calculateTax()"><i class="bi bi-calculator me-2"></i>Calculate Tax</button>
+
+        <div class="result-box" id="resultBox">
+          <div id="singleResult">
+            <div class="result-primary">
+              <div class="result-label">Total Tax Payable</div>
+              <div class="result-value" id="totalTax">₹0</div>
+            </div>
+            <div class="result-grid">
+              <div class="result-item"><div class="r-label">Gross Income</div><div class="r-value" id="grossIncomeResult">₹0</div></div>
+              <div class="result-item"><div class="r-label">Taxable Income</div><div class="r-value" id="taxableIncome">₹0</div></div>
+              <div class="result-item"><div class="r-label">Income Tax</div><div class="r-value" style="color:var(--warning)" id="basicTax">₹0</div></div>
+              <div class="result-item"><div class="r-label">Education Cess (4%)</div><div class="r-value" id="cess">₹0</div></div>
+              <div class="result-item"><div class="r-label">Monthly Tax</div><div class="r-value" id="monthlyTax">₹0</div></div>
+              <div class="result-item"><div class="r-label">Effective Rate</div><div class="r-value" id="effectiveRate">0%</div></div>
+            </div>
+
+            <!-- Tax Slabs -->
+            <div class="mt-3">
+              <h4 style="font-size:0.875rem;font-weight:700;margin-bottom:0.75rem">📊 Tax Slab Breakdown</h4>
+              <div id="slabTable"></div>
+            </div>
+
+            <div class="chart-container"><canvas id="taxChart"></canvas></div>
+          </div>
+
+          <!-- Compare Mode -->
+          <div id="compareResult" style="display:none">
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="result-item">
+                  <div class="r-label" style="font-size:0.9rem;font-weight:700">New Regime Tax</div>
+                  <div class="r-value" style="font-size:1.5rem;color:var(--primary)" id="newTaxCompare">₹0</div>
+                  <div style="font-size:0.75rem;color:var(--text-muted)" id="newEff">0% effective</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="result-item">
+                  <div class="r-label" style="font-size:0.9rem;font-weight:700">Old Regime Tax</div>
+                  <div class="r-value" style="font-size:1.5rem;color:var(--warning)" id="oldTaxCompare">₹0</div>
+                  <div style="font-size:0.75rem;color:var(--text-muted)" id="oldEff">0% effective</div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="highlight-box" id="betterRegime" style="text-align:center;font-size:1rem;font-weight:700"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-btns">
+            <button class="btn-action" onclick="copyResult(getTaxText())"><i class="bi bi-clipboard"></i> Copy</button>
+            <button class="btn-action whatsapp" onclick="shareWhatsApp(getTaxText())"><i class="bi bi-whatsapp"></i> Share</button>
+            <button class="btn-action" onclick="printResult()"><i class="bi bi-printer"></i> Print</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Income Tax Slabs FY 2024-25</h2>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h3>New Tax Regime</h3>
+            <div class="table-responsive">
+              <table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+                <thead><tr style="background:var(--bg-input)"><th>Income Slab</th><th>Rate</th></tr></thead>
+                <tbody>
+                  <tr><td>Up to ₹3 Lakh</td><td>0%</td></tr>
+                  <tr><td>₹3L - ₹6L</td><td>5%</td></tr>
+                  <tr><td>₹6L - ₹9L</td><td>10%</td></tr>
+                  <tr><td>₹9L - ₹12L</td><td>15%</td></tr>
+                  <tr><td>₹12L - ₹15L</td><td>20%</td></tr>
+                  <tr><td>Above ₹15L</td><td>30%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted)">* Rebate u/s 87A: Full tax rebate up to ₹7 lakh income. Standard deduction: ₹75,000</p>
+          </div>
+          <div class="col-md-6">
+            <h3>Old Tax Regime</h3>
+            <div class="table-responsive">
+              <table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+                <thead><tr style="background:var(--bg-input)"><th>Income Slab</th><th>Rate</th></tr></thead>
+                <tbody>
+                  <tr><td>Up to ₹2.5 Lakh</td><td>0%</td></tr>
+                  <tr><td>₹2.5L - ₹5L</td><td>5%</td></tr>
+                  <tr><td>₹5L - ₹10L</td><td>20%</td></tr>
+                  <tr><td>Above ₹10L</td><td>30%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text-muted)">* Allows deductions: 80C (₹1.5L), HRA, 80D, home loan interest etc.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item"><button class="faq-question">Which tax regime is better - New or Old? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">New regime is better if your deductions are less than ~₹3.75 lakh. Old regime is better if you claim HRA, home loan interest, 80C (₹1.5L), 80D, etc. Use our "Compare Both" feature to find which saves more for your specific situation.</div></div></div>
+        <div class="faq-item"><button class="faq-question">What is Section 87A rebate? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Under the new tax regime for FY 2024-25, if your net taxable income is up to ₹7 lakh, you get a full tax rebate under Section 87A. This means zero tax if income ≤ ₹7 lakh. Under old regime, the rebate applies up to ₹5 lakh income.</div></div></div>
+        <div class="faq-item"><button class="faq-question">What is Education Cess? <i class="bi bi-chevron-down faq-icon"></i></button><div class="faq-answer"><div class="faq-answer-inner">Education Cess is an additional 4% charged on the total income tax computed. It goes towards funding education and health initiatives. For example, if your tax is ₹10,000, cess = ₹400, making total tax ₹10,400.</div></div></div>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="sidebar-ad mb-4"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+      <div class="calc-box mb-3">
+        <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:1rem">💡 Tax Saving Tips</h3>
+        <div style="font-size:0.82rem;color:var(--text-secondary)">
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">📌 80C: Invest ₹1.5L in ELSS, PPF, LIC</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">📌 80D: Pay health insurance premium</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">📌 NPS: Extra ₹50K deduction (80CCD 1B)</div>
+          <div class="py-1 border-bottom" style="border-color:var(--border)!important">📌 HRA: Claim rent if living in rented house</div>
+          <div class="py-1">📌 Home Loan: Interest deduction up to ₹2L</div>
+        </div>
+      </div>
+      <div class="sidebar-ad mt-3"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement<br>[ 300x250 Ad ]</span></div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 supercalc.online — Free Income Tax Calculator</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/calc-engine.js"></script>
+<script>
+let taxChart = null, regime = 'new';
+
+function setRegime(r, btn) {
+  regime = r;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('oldRegimeFields').style.display = (r === 'old' || r === 'compare') ? 'block' : 'none';
+}
+
+['grossIncome','incomeSlider'].forEach((id,i) => {
+  const other = ['incomeSlider','grossIncome'][i];
+  document.getElementById(id).addEventListener('input', function() {
+    document.getElementById(other).value = this.value;
+    const v = +this.value;
+    document.getElementById('incomeDisplay').textContent = v >= 10000000 ? `₹${(v/10000000).toFixed(2)} Cr` : `₹${(v/100000).toFixed(2)} Lakh`;
+  });
+});
+
+function calcNewTax(gross) {
+  const stdDed = 75000;
+  const taxable = Math.max(0, gross - stdDed);
+  const slabs = [{limit:300000,rate:0},{limit:600000,rate:5},{limit:900000,rate:10},{limit:1200000,rate:15},{limit:1500000,rate:20},{limit:Infinity,rate:30}];
+  let tax = 0, prev = 0;
+  for (const s of slabs) {
+    if (taxable > prev) { tax += (Math.min(taxable, s.limit) - prev) * s.rate / 100; prev = s.limit; }
+    if (taxable <= s.limit) break;
+  }
+  if (taxable <= 700000) tax = 0;
+  const cess = tax * 0.04;
+  return { tax, cess, total: tax + cess, taxable, stdDed };
+}
+
+function calcOldTax(gross) {
+  const d80c  = Math.min(+document.getElementById('sec80c').value || 0, 150000);
+  const dHra  = +document.getElementById('hra').value || 0;
+  const dHome = Math.min(+document.getElementById('homeLoanInt').value || 0, 200000);
+  const d80d  = Math.min(+document.getElementById('sec80d').value || 0, 100000);
+  const dNps  = Math.min(+document.getElementById('nps80ccd').value || 0, 50000);
+  const dOther = +document.getElementById('otherDed').value || 0;
+  const stdDed = 50000;
+  const totalDed = stdDed + d80c + dHra + dHome + d80d + dNps + dOther;
+  const taxable = Math.max(0, gross - totalDed);
+  const slabs = [{limit:250000,rate:0},{limit:500000,rate:5},{limit:1000000,rate:20},{limit:Infinity,rate:30}];
+  let tax = 0, prev = 0;
+  for (const s of slabs) {
+    if (taxable > prev) { tax += (Math.min(taxable, s.limit) - prev) * s.rate / 100; prev = s.limit; }
+    if (taxable <= s.limit) break;
+  }
+  if (taxable <= 500000) tax = 0;
+  const cess = tax * 0.04;
+  return { tax, cess, total: tax + cess, taxable, totalDed };
+}
+
+function calculateTax() {
+  const gross = +document.getElementById('grossIncome').value;
+
+  if (regime === 'compare') {
+    const newRes = calcNewTax(gross);
+    const oldRes = calcOldTax(gross);
+    document.getElementById('newTaxCompare').textContent = fmt(newRes.total);
+    document.getElementById('oldTaxCompare').textContent = fmt(oldRes.total);
+    document.getElementById('newEff').textContent = ((newRes.total/gross)*100).toFixed(2) + '% effective';
+    document.getElementById('oldEff').textContent = ((oldRes.total/gross)*100).toFixed(2) + '% effective';
+    const saving = Math.abs(newRes.total - oldRes.total);
+    const better = newRes.total <= oldRes.total ? `✅ New Regime saves ₹${formatNum(saving)}/year` : `✅ Old Regime saves ₹${formatNum(saving)}/year`;
+    document.getElementById('betterRegime').textContent = better;
+    document.getElementById('singleResult').style.display = 'none';
+    document.getElementById('compareResult').style.display = 'block';
+    document.getElementById('resultBox').classList.add('show');
+    return;
+  }
+
+  const res = regime === 'new' ? calcNewTax(gross) : calcOldTax(gross);
+  document.getElementById('singleResult').style.display = 'block';
+  document.getElementById('compareResult').style.display = 'none';
+
+  document.getElementById('totalTax').textContent        = fmt(res.total);
+  document.getElementById('grossIncomeResult').textContent = fmt(gross);
+  document.getElementById('taxableIncome').textContent    = fmt(res.taxable);
+  document.getElementById('basicTax').textContent         = fmt(res.tax);
+  document.getElementById('cess').textContent             = fmt(res.cess);
+  document.getElementById('monthlyTax').textContent       = fmt(res.total / 12);
+  document.getElementById('effectiveRate').textContent    = ((res.total/gross)*100).toFixed(2) + '%';
+
+  // Slab breakdown
+  const slabsNew = [{range:'Up to ₹3L',rate:0,limit:300000},{range:'₹3L-₹6L',rate:5,limit:600000},{range:'₹6L-₹9L',rate:10,limit:900000},{range:'₹9L-₹12L',rate:15,limit:1200000},{range:'₹12L-₹15L',rate:20,limit:1500000},{range:'Above ₹15L',rate:30,limit:Infinity}];
+  const slabsOld = [{range:'Up to ₹2.5L',rate:0,limit:250000},{range:'₹2.5L-₹5L',rate:5,limit:500000},{range:'₹5L-₹10L',rate:20,limit:1000000},{range:'Above ₹10L',rate:30,limit:Infinity}];
+  const slabs = regime === 'new' ? slabsNew : slabsOld;
+
+  let slabHTML = '<div class="table-responsive"><table class="table table-sm" style="font-size:0.78rem;color:var(--text)"><thead><tr style="background:var(--bg-input)"><th>Slab</th><th>Rate</th><th>Tax</th></tr></thead><tbody>';
+  let prev = 0;
+  for (const s of slabs) {
+    if (res.taxable > prev) {
+      const slabTax = (Math.min(res.taxable, s.limit) - prev) * s.rate / 100;
+      slabHTML += `<tr><td>${s.range}</td><td>${s.rate}%</td><td>₹${formatNum(slabTax)}</td></tr>`;
+      prev = s.limit;
+    }
+    if (res.taxable <= s.limit) break;
+  }
+  slabHTML += '</tbody></table></div>';
+  document.getElementById('slabTable').innerHTML = slabHTML;
+
+  buildTaxChart(gross, res.total);
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function buildTaxChart(gross, tax) {
+  const ctx = document.getElementById('taxChart').getContext('2d');
+  if (taxChart) taxChart.destroy();
+  taxChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: ['Take-Home Income', 'Total Tax'], datasets: [{ data: [gross - tax, tax], backgroundColor: ['#10B981','#EF4444'], borderWidth: 0, hoverOffset: 8 }] },
+    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 12 } } }, tooltip: { callbacks: { label: ctx => ` ₹${formatNum(ctx.parsed)}` } } }, cutout: '65%' }
+  });
+}
+
+function fmt(n) { return '₹' + n.toLocaleString('en-IN', {maximumFractionDigits:0}); }
+function formatNum(n) { return n.toLocaleString('en-IN', {maximumFractionDigits:0}); }
+function getTaxText() { return `Income Tax Result:\nTotal Tax: ${document.getElementById('totalTax').textContent}\nTaxable Income: ${document.getElementById('taxableIncome').textContent}\nEffective Rate: ${document.getElementById('effectiveRate').textContent}`; }
+
+document.addEventListener('DOMContentLoaded', () => setTimeout(calculateTax, 300));
+</script>
+</body>
+</html>
+
+

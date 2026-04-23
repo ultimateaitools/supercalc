@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Panel Calculator - Solar Energy & Savings Calculator India | SuperCalc</title>
+  <meta name="description" content="Free solar panel calculator for India. Calculate solar system size, number of panels needed, cost, payback period and monthly savings on electricity bill.">
+  <meta name="keywords" content="solar panel calculator, solar energy calculator India, rooftop solar calculator, solar savings calculator, solar payback period, solar panel size calculator, PM Surya Ghar">
+  <link rel="canonical" href="https://supercalc.online/solar-panel-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#f57f17,#fbc02d)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Solar Calculator</span></nav>
+  <h1 class="calc-page-title">☀️ Solar Panel Calculator</h1>
+  <p class="calc-page-subtitle">Calculate solar system size, cost, payback & monthly savings</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Monthly Electricity Consumption</label><div class="input-group"><input type="number" class="form-control" id="units" value="300" step="50"><span class="input-group-text">kWh/month</span></div></div>
+          <div class="col-md-6"><label class="form-label">Electricity Tariff</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="tariff" value="7.5" step="0.5"><span class="input-group-text">/unit</span></div></div>
+          <div class="col-md-6"><label class="form-label">Location / Solar Irradiance</label><select class="form-select" id="location" onchange="setSolar()">
+            <option value="5.5">Rajasthan / Gujarat (5.5 kWh/m²/day)</option>
+            <option value="5.0" selected>Delhi / Mumbai / Pune (5.0)</option>
+            <option value="4.5">Bangalore / Chennai / Hyderabad (4.5)</option>
+            <option value="4.0">Northeast India / Hills (4.0)</option>
+            <option value="custom">Custom</option>
+          </select></div>
+          <div class="col-md-3"><label class="form-label">Solar Hours/Day</label><input type="number" class="form-control" id="solarHrs" value="5.0" step="0.25" min="2" max="7" oninput="calcSolar()"></div>
+          <div class="col-md-3"><label class="form-label">Panel Wattage</label><select class="form-select" id="panelW" onchange="calcSolar()"><option value="300">300W (Budget)</option><option value="400" selected>400W (Standard)</option><option value="550">550W (Bifacial)</option></select></div>
+          <div class="col-md-4"><label class="form-label">System Cost (₹/kW)</label><input type="number" class="form-control" id="costPerKw" value="55000" step="5000" oninput="calcSolar()"></div>
+          <div class="col-md-4"><label class="form-label">Subsidy Available?</label><select class="form-select" id="subsidy" onchange="calcSolar()">
+            <option value="0">No Subsidy</option>
+            <option value="0.40" selected>40% (PM Surya Ghar ≤3kW)</option>
+            <option value="0.20">20% (3-10 kW)</option>
+            <option value="0.30">30% (Custom)</option>
+          </select></div>
+          <div class="col-md-4"><label class="form-label">Roof Area Available</label><div class="input-group"><input type="number" class="form-control" id="roofArea" value="100" step="10"><span class="input-group-text">sq ft</span></div></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcSolar()"><i class="bi bi-sun me-2"></i>Calculate Solar</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Recommended Solar System Size</div><div class="result-value" id="sysSize">0 kW</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Number of Panels</div><div class="r-value text-primary" id="numPanels">0</div></div>
+            <div class="result-item"><div class="r-label">System Cost (before subsidy)</div><div class="r-value" style="color:var(--warning)" id="grossCost">₹0</div></div>
+            <div class="result-item"><div class="r-label">After Subsidy</div><div class="r-value" style="color:var(--accent)" id="netCost">₹0</div></div>
+            <div class="result-item"><div class="r-label">Monthly Savings</div><div class="r-value" id="monthlySave">₹0</div></div>
+            <div class="result-item"><div class="r-label">Payback Period</div><div class="r-value text-primary" id="payback">0 years</div></div>
+            <div class="result-item"><div class="r-label">25-Year Savings</div><div class="r-value" style="color:var(--accent)" id="savings25">₹0</div></div>
+          </div>
+          <div id="solarAdvice" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>PM Surya Ghar Muft Bijli Yojana 2025</h2>
+        <ul>
+          <li><strong>Subsidy:</strong> 40% for up to 3 kW, 20% for 3-10 kW systems</li>
+          <li><strong>Free Electricity:</strong> 300 units/month free for beneficiaries</li>
+          <li><strong>Eligible:</strong> Residential households with net metering connection</li>
+          <li><strong>Apply at:</strong> pmsuryagarh.gov.in</li>
+          <li><strong>Solar panel lifespan:</strong> 25 years | Inverter: 10-15 years</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function setSolar(){const v=document.getElementById('location').value;if(v!=='custom')document.getElementById('solarHrs').value=v;calcSolar();}
+function calcSolar(){
+  const units=+document.getElementById('units').value;const tariff=+document.getElementById('tariff').value;
+  const hrs=+document.getElementById('solarHrs').value;const panelW=+document.getElementById('panelW').value/1000;
+  const costPerKw=+document.getElementById('costPerKw').value;const subsidyPct=+document.getElementById('subsidy').value;
+  const roofArea=+document.getElementById('roofArea').value;
+  const sysKw=units/(hrs*30);const panels=Math.ceil(sysKw/panelW);const grossCost=sysKw*costPerKw;const subsidyAmt=grossCost*subsidyPct;const netCost=grossCost-subsidyAmt;
+  const monthlyGen=sysKw*hrs*30;const monthlySave=monthlyGen*tariff;const payback=netCost/(monthlySave*12);
+  const savings25=(monthlySave*12*25)-netCost;
+  const panelArea=panels*2.0;// ~2 sq m per panel
+  const panelAreaSqFt=panelArea*10.764;
+  const fmt=v=>'₹'+Math.round(v).toLocaleString('en-IN');
+  document.getElementById('sysSize').textContent=sysKw.toFixed(2)+' kW';
+  document.getElementById('numPanels').textContent=panels+' panels ('+panelW*1000+'W each)';
+  document.getElementById('grossCost').textContent=fmt(grossCost);document.getElementById('netCost').textContent=fmt(netCost)+' (subsidy: '+fmt(subsidyAmt)+')';
+  document.getElementById('monthlySave').textContent=fmt(monthlySave)+'/month ('+monthlyGen.toFixed(0)+' kWh)';
+  document.getElementById('payback').textContent=payback.toFixed(1)+' years';document.getElementById('savings25').textContent=fmt(savings25);
+  let adv='';
+  if(panelAreaSqFt>roofArea){adv=`<div class="highlight-box" style="border-color:var(--warning);background:rgba(255,149,0,0.08)">⚠️ Required roof area (~${Math.round(panelAreaSqFt)} sq ft) exceeds available area. Consider a smaller system or high-efficiency panels.</div>`;}
+  else{adv=`<div class="highlight-box" style="border-color:var(--accent);background:rgba(0,229,160,0.08)">✅ Sufficient roof space available. System will fit with ~${Math.round(panelAreaSqFt)} sq ft of panels.</div>`;}
+  document.getElementById('solarAdvice').innerHTML=adv;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Solar Calculator\nSystem Size: ${document.getElementById('sysSize').textContent}\nNet Cost: ${document.getElementById('netCost').textContent}\nMonthly Savings: ${document.getElementById('monthlySave').textContent}\nPayback: ${document.getElementById('payback').textContent}`;}
+document.addEventListener('DOMContentLoaded',()=>calcSolar());
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Return Calculator - CAGR & Investment Returns | SuperCalc</title>
+  <meta name="description" content="Free stock return calculator. Calculate absolute returns, CAGR (compounded annual growth rate), and investment profit/loss for any stock or mutual fund.">
+  <meta name="keywords" content="stock return calculator, CAGR calculator, investment return calculator, stock profit calculator, share return calculator, absolute return calculator">
+  <link rel="canonical" href="https://supercalc.online/stock-return-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1b5e20,#43a047)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Stock Returns</span></nav>
+  <h1 class="calc-page-title">📈 Stock Return Calculator</h1>
+  <p class="calc-page-subtitle">Calculate absolute return, CAGR, profit/loss on any investment</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-4">
+        <button class="cat-pill active" onclick="setMode('inv',this)">💰 Investment Return</button>
+        <button class="cat-pill" onclick="setMode('price',this)">📊 Price Change</button>
+        <button class="cat-pill" onclick="setMode('div',this)">💲 With Dividends</button>
+      </div>
+      <div class="calc-box">
+        <div id="invMode">
+          <div class="row g-3">
+            <div class="col-md-6"><label class="form-label">Investment Amount</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="invest" value="100000" step="5000"></div></div>
+            <div class="col-md-6"><label class="form-label">Current Value</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="current" value="180000" step="5000"></div></div>
+            <div class="col-md-6"><label class="form-label">Investment Date</label><input type="date" class="form-control" id="startDate"></div>
+            <div class="col-md-6"><label class="form-label">Current Date / Exit Date</label><input type="date" class="form-control" id="endDate"></div>
+          </div>
+        </div>
+        <div class="d-none" id="priceMode">
+          <div class="row g-3">
+            <div class="col-md-4"><label class="form-label">Buy Price (₹)</label><input type="number" class="form-control" id="buyPrice" value="150" step="1"></div>
+            <div class="col-md-4"><label class="form-label">Sell Price (₹)</label><input type="number" class="form-control" id="sellPrice" value="220" step="1"></div>
+            <div class="col-md-4"><label class="form-label">Shares Quantity</label><input type="number" class="form-control" id="qty" value="100" step="1"></div>
+            <div class="col-md-6"><label class="form-label">Buy Date</label><input type="date" class="form-control" id="buyDate"></div>
+            <div class="col-md-6"><label class="form-label">Sell Date</label><input type="date" class="form-control" id="sellDate"></div>
+          </div>
+        </div>
+        <div class="d-none" id="divMode">
+          <div class="row g-3">
+            <div class="col-md-4"><label class="form-label">Initial Investment</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="dInvest" value="100000" step="5000"></div></div>
+            <div class="col-md-4"><label class="form-label">Current Value</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="dCurrent" value="150000" step="5000"></div></div>
+            <div class="col-md-4"><label class="form-label">Total Dividends Received</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="dDiv" value="8000" step="500"></div></div>
+            <div class="col-md-6"><label class="form-label">Years Held</label><input type="number" class="form-control" id="dYrs" value="3" step="0.5" min="0.1"></div>
+          </div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcReturn()"><i class="bi bi-graph-up me-2"></i>Calculate Returns</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label" id="mainLabel">CAGR</div><div class="result-value" id="mainValue">0%</div></div>
+          <div class="result-grid" id="retGrid"></div>
+          <div id="taxNote" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>CAGR Formula</h2>
+        <div class="formula-box">CAGR = (Final Value / Initial Value)^(1/Years) – 1 × 100%<br>Absolute Return = ((Current – Invested) / Invested) × 100%</div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+let mode='inv';
+document.addEventListener('DOMContentLoaded',()=>{const n=new Date();const p=new Date(n);p.setFullYear(p.getFullYear()-3);document.getElementById('startDate').value=p.toISOString().split('T')[0];document.getElementById('endDate').value=n.toISOString().split('T')[0];document.getElementById('buyDate').value=p.toISOString().split('T')[0];document.getElementById('sellDate').value=n.toISOString().split('T')[0];});
+function setMode(m,btn){mode=m;document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');['invMode','priceMode','divMode'].forEach(id=>document.getElementById(id).classList.add('d-none'));document.getElementById(m+'Mode').classList.remove('d-none');}
+function calcReturn(){
+  const fmt=v=>'₹'+Math.round(v).toLocaleString('en-IN');let cagr,abs,profit,invested,current,yrs;
+  if(mode==='inv'){
+    invested=+document.getElementById('invest').value;current=+document.getElementById('current').value;
+    const d1=new Date(document.getElementById('startDate').value),d2=new Date(document.getElementById('endDate').value);yrs=(d2-d1)/(365.25*86400000);
+    profit=current-invested;abs=(profit/invested*100);cagr=(Math.pow(current/invested,1/yrs)-1)*100;
+  } else if(mode==='price'){
+    const bp=+document.getElementById('buyPrice').value,sp=+document.getElementById('sellPrice').value,q=+document.getElementById('qty').value;
+    invested=bp*q;current=sp*q;profit=current-invested;abs=(sp-bp)/bp*100;const d1=new Date(document.getElementById('buyDate').value),d2=new Date(document.getElementById('sellDate').value);yrs=(d2-d1)/(365.25*86400000);cagr=(Math.pow(sp/bp,1/yrs)-1)*100;
+  } else {
+    invested=+document.getElementById('dInvest').value;current=+document.getElementById('dCurrent').value;const div=+document.getElementById('dDiv').value;yrs=+document.getElementById('dYrs').value;profit=current-invested+div;abs=(profit/invested*100);cagr=(Math.pow((current+div)/invested,1/yrs)-1)*100;current+=div;
+  }
+  const isGain=profit>=0;const heldTxt=yrs.toFixed(1)+' years';const taxNote=yrs>=1?'Long-term Capital Gains (LTCG): 12.5% above ₹1.25L gain':'Short-term Capital Gains (STCG): 20% flat';
+  document.getElementById('mainLabel').textContent='CAGR (Annualized Return)';document.getElementById('mainValue').textContent=(cagr>=0?'+':'')+cagr.toFixed(2)+'%';document.getElementById('mainValue').style.color=isGain?'var(--accent)':'#ef5350';
+  document.getElementById('retGrid').innerHTML=[{l:'Absolute Return',v:(abs>=0?'+':'')+abs.toFixed(2)+'%'},{l:'Profit / Loss',v:(isGain?'+':'')+fmt(profit)},{l:'Invested',v:fmt(invested)},{l:'Current Value',v:fmt(current)},{l:'Period',v:heldTxt},{l:'Multiplier',v:(current/invested).toFixed(2)+'x'}].map(r=>`<div class="result-item"><div class="r-label">${r.l}</div><div class="r-value${isGain?' text-success':' text-danger'}">${r.v}</div></div>`).join('');
+  document.getElementById('taxNote').innerHTML=`<div class="highlight-box" style="font-size:0.82rem"><strong>📋 Tax Note (India):</strong> ${taxNote} on equity investments held more than 1 year.</div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Stock Return: CAGR ${document.getElementById('mainValue').textContent}\nProfit/Loss: ${document.querySelectorAll('.result-item')[1]?.querySelector('.r-value')?.textContent}`;}
+</script>
+</body>
+</html>

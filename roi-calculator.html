@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROI Calculator - Return on Investment Calculator | SuperCalc</title>
+  <meta name="description" content="Free ROI calculator. Calculate return on investment percentage, net profit, and annualized ROI. Perfect for business, stocks, real estate & marketing investments.">
+  <meta name="keywords" content="ROI calculator, return on investment calculator, investment return calculator, annualized ROI calculator, business ROI, stock ROI calculator">
+  <link rel="canonical" href="https://supercalc.online/roi-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1e3c72,#2a5298)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>ROI Calculator</span></nav>
+  <h1 class="calc-page-title">📈 ROI Calculator</h1>
+  <p class="calc-page-subtitle">Calculate return on investment, annualized ROI & payback period</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Initial Investment</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="invest" value="100000" step="5000"></div></div>
+          <div class="col-md-6"><label class="form-label">Final Value / Return</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="finalVal" value="140000" step="5000"></div></div>
+          <div class="col-md-6"><label class="form-label">Investment Duration</label><div class="input-group"><input type="number" class="form-control" id="duration" value="2" step="0.5" min="0.1"><span class="input-group-text" id="durUnit">Years</span></div></div>
+          <div class="col-md-6"><label class="form-label">Duration Unit</label><select class="form-select" id="durType" onchange="updateDurUnit()"><option value="years">Years</option><option value="months">Months</option></select></div>
+          <div class="col-md-6"><label class="form-label">Additional Annual Costs</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="costs" value="0" step="100"></div><p style="font-size:0.72rem;color:var(--text-muted);margin:0.25rem 0 0">Maintenance, fees, taxes etc.</p></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcROI()"><i class="bi bi-graph-up-arrow me-2"></i>Calculate ROI</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">ROI</div><div class="result-value" id="roi">0%</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Net Profit</div><div class="r-value" style="color:var(--accent)" id="netProfit">₹0</div></div>
+            <div class="result-item"><div class="r-label">Annualized ROI (CAGR)</div><div class="r-value text-primary" id="cagr">0%</div></div>
+            <div class="result-item"><div class="r-label">Payback Period</div><div class="r-value" id="payback">—</div></div>
+            <div class="result-item"><div class="r-label">Investment Rating</div><div class="r-value" id="rating">—</div></div>
+          </div>
+          <div id="roiDetails" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share</button></div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>How to Calculate ROI</h2>
+        <div class="formula-box">ROI = (Net Profit / Investment) × 100<br>Net Profit = Final Value – Initial Investment<br>Annualized ROI (CAGR) = [(Final/Initial)^(1/Years) – 1] × 100</div>
+        <h3>Benchmark ROI by Asset Class (India 2025)</h3>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Asset Class</th><th>Expected CAGR</th><th>Risk</th></tr></thead>
+          <tbody>
+            <tr><td>Fixed Deposit</td><td>6.5-7.5%</td><td>Very Low</td></tr>
+            <tr><td>PPF / Small Savings</td><td>7.1-8%</td><td>Very Low</td></tr>
+            <tr><td>Gold</td><td>8-12% (historical)</td><td>Low-Medium</td></tr>
+            <tr><td>Nifty 50 Index</td><td>12-15% (long term)</td><td>Medium-High</td></tr>
+            <tr><td>Real Estate</td><td>8-12% (metro cities)</td><td>Medium</td></tr>
+            <tr><td>Equity MF (diversified)</td><td>12-18%</td><td>High</td></tr>
+            <tr><td>Crypto (Bitcoin)</td><td>Highly variable</td><td>Very High</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function updateDurUnit(){document.getElementById('durUnit').textContent=document.getElementById('durType').value==='years'?'Yrs':'Mo';}
+function calcROI(){
+  const I=+document.getElementById('invest').value;
+  const F=+document.getElementById('finalVal').value;
+  const costs=+document.getElementById('costs').value;
+  let t=+document.getElementById('duration').value;
+  if(document.getElementById('durType').value==='months')t/=12;
+  const totalCosts=costs*t;
+  const netProfit=F-I-totalCosts;
+  const roi=(netProfit/I)*100;
+  const cagr=(Math.pow(F/I,1/t)-1)*100;
+  const payback=roi>0?(100/roi).toFixed(1)+' years':'N/A';
+  let rating,ratingColor;
+  if(cagr>=15){rating='🚀 Excellent';ratingColor='var(--accent)';}
+  else if(cagr>=10){rating='✅ Good';ratingColor='var(--primary)';}
+  else if(cagr>=7){rating='👍 Fair';ratingColor='var(--secondary)';}
+  else if(cagr>0){rating='⚠️ Below Average';ratingColor='var(--warning)';}
+  else{rating='❌ Loss';ratingColor='var(--danger)';}
+
+  document.getElementById('roi').textContent=roi.toFixed(2)+'%';
+  document.getElementById('netProfit').textContent=(netProfit>=0?'₹':'–₹')+Math.abs(netProfit).toLocaleString('en-IN',{maximumFractionDigits:0});
+  document.getElementById('cagr').textContent=cagr.toFixed(2)+'%';
+  document.getElementById('payback').textContent=payback;
+  document.getElementById('rating').textContent=rating;document.getElementById('rating').style.color=ratingColor;
+  document.getElementById('roiDetails').innerHTML=`<div class="highlight-box" style="font-size:0.82rem">₹${I.toLocaleString('en-IN')} invested → ₹${F.toLocaleString('en-IN')} in ${t.toFixed(1)} years = <strong style="color:${ratingColor}">${roi.toFixed(1)}% ROI</strong> (${cagr.toFixed(1)}% CAGR). ${rating}.</div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `ROI: ${document.getElementById('roi').textContent}\nNet Profit: ${document.getElementById('netProfit').textContent}\nCAGR: ${document.getElementById('cagr').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcROI);
+</script>
+</body>
+</html>

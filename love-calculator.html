@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Calculator - Check Love Compatibility % | SuperCalc</title>
+  <meta name="description" content="Free love calculator for fun! Enter two names and discover your love compatibility percentage. Share the result with your partner on WhatsApp!">
+  <meta name="keywords" content="love calculator, love percentage calculator, love compatibility test, name love calculator, relationship compatibility calculator, love match calculator">
+  <link rel="canonical" href="https://supercalc.online/love-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#c62828,#e53935,#f06292)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Love Calculator</span></nav>
+  <h1 class="calc-page-title">💕 Love Calculator</h1>
+  <p class="calc-page-subtitle">Discover your love compatibility — just for fun!</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4 justify-content-center">
+    <div class="col-lg-7">
+      <div class="calc-box">
+        <div class="highlight-box mb-4" style="border-color:#e91e63;background:rgba(233,30,99,0.08)">💫 <strong>Just for fun!</strong> This is an entertainment calculator. Real love compatibility depends on communication, shared values, and mutual respect.</div>
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Your Name ❤️</label><input type="text" class="form-control" id="name1" value="Romeo" placeholder="Enter your name" oninput="resetHeart()"></div>
+          <div class="col-md-6"><label class="form-label">Partner's Name 💙</label><input type="text" class="form-control" id="name2" value="Juliet" placeholder="Enter partner's name" oninput="resetHeart()"></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcLove()" style="background:linear-gradient(135deg,#c62828,#e91e63)"><i class="bi bi-heart-fill me-2"></i>Calculate Love %</button>
+        <div class="result-box" id="resultBox" style="text-align:center">
+          <div id="heartAnim" style="font-size:4rem;margin-bottom:1rem;animation:pulse 0.5s ease">💖</div>
+          <div class="result-primary" style="margin-bottom:1rem">
+            <div class="result-label" id="coupleNames">Romeo & Juliet</div>
+            <div class="result-value" id="lovePct" style="font-size:4rem;color:#e91e63">0%</div>
+          </div>
+          <div class="progress mb-3" style="height:24px;border-radius:12px">
+            <div class="progress-bar" id="loveBar" role="progressbar" style="background:linear-gradient(90deg,#e91e63,#f48fb1);width:0%;font-size:0.75rem;transition:width 1s ease">0%</div>
+          </div>
+          <div id="loveMsg" class="mt-3" style="font-size:1.1rem;font-weight:600"></div>
+          <div class="action-btns mt-3"><button class="btn-action whatsapp" onclick="shareWhatsApp(getText())"><i class="bi bi-whatsapp"></i> Share Result</button><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+      <div class="info-box mt-4">
+        <h2>Love Percentage Guide</h2>
+        <div class="table-responsive"><table class="table table-sm" style="font-size:0.82rem;color:var(--text)">
+          <thead><tr style="background:var(--bg-input)"><th>Percentage</th><th>Compatibility Level</th><th>Message</th></tr></thead>
+          <tbody>
+            <tr><td>90-100%</td><td>💯 Soulmates</td><td>Made for each other!</td></tr>
+            <tr><td>70-89%</td><td>❤️ Strong Love</td><td>Great compatibility</td></tr>
+            <tr><td>50-69%</td><td>💛 Good Match</td><td>Good foundation for love</td></tr>
+            <tr><td>30-49%</td><td>💚 Friendly</td><td>Worth exploring!</td></tr>
+            <tr><td>Below 30%</td><td>💙 Just Friends</td><td>Better as friends maybe?</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function hashStr(s){let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h;}
+function resetHeart(){document.getElementById('resultBox').classList.remove('show');}
+function calcLove(){
+  const n1=document.getElementById('name1').value.trim().toLowerCase();
+  const n2=document.getElementById('name2').value.trim().toLowerCase();
+  if(!n1||!n2){alert('Please enter both names!');return;}
+  const combined=([...n1,...n2].sort().join(''))+n1.length+n2.length;
+  const hash=hashStr(combined);
+  let pct=(hash%45)+55;// Always 55-99 for fun!
+  if((n1+n2).length<5)pct=Math.max(40,(hash%60)+30);
+  // Ensure consistent result for same names
+  const hearts=['💖','💗','💘','💝','💓','💞','💕'];
+  const heartEmoji=hearts[hash%hearts.length];
+  document.getElementById('heartAnim').textContent=heartEmoji;
+  document.getElementById('coupleNames').textContent=`${document.getElementById('name1').value} ❤️ ${document.getElementById('name2').value}`;
+  document.getElementById('lovePct').textContent=pct+'%';
+  document.getElementById('loveBar').style.width=pct+'%';
+  document.getElementById('loveBar').textContent=pct+'%';
+  let msg='';
+  if(pct>=90)msg='💯 Soulmates! You two are made for each other! True love found! 🌟';
+  else if(pct>=75)msg='❤️ Strong love compatibility! You two make a wonderful couple!';
+  else if(pct>=60)msg='💛 Good match! With understanding, this can be a beautiful relationship!';
+  else if(pct>=45)msg='💚 Decent compatibility! Communication will make this work!';
+  else msg='💙 Friendship first! Sometimes the best love stories start as friendships!';
+  document.getElementById('loveMsg').textContent=msg;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `💕 Love Calculator Result\n${document.getElementById('name1').value} ❤️ ${document.getElementById('name2').value}\nLove Score: ${document.getElementById('lovePct').textContent}\n${document.getElementById('loveMsg').textContent}\n\nCalculate yours at supercalc.online/love-calculator`;}
+</script>
+</body>
+</html>

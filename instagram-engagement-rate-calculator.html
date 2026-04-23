@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Engagement Rate Calculator 2025 - Free IG Analytics Tool | SuperCalc</title>
+<meta name="description" content="Calculate your Instagram engagement rate instantly. Free tool for influencers and brands. Check if your IG engagement is good, average, or poor. Used by 50,000+ creators worldwide.">
+<meta name="keywords" content="instagram engagement rate calculator, instagram engagement rate, how to calculate instagram engagement rate, ig engagement calculator, instagram analytics tool, influencer engagement rate, what is a good instagram engagement rate 2025">
+<link rel="canonical" href="https://supercalc.online/instagram-engagement-rate-calculator.html">
+<meta property="og:title" content="Instagram Engagement Rate Calculator 2025 - Free IG Analytics Tool | SuperCalc">
+<meta property="og:description" content="Calculate your Instagram engagement rate instantly. Free tool for influencers and brands. Check if your IG engagement is good, average, or poor. Used by 50,000+ creators worldwide.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/instagram-engagement-rate-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Instagram Engagement Rate Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Instagram Engagement Rate Calculator","description":"Calculate your Instagram engagement rate instantly. Find out if your engagement is good, average, or poor. Used by brands and influencers worldwide.","url":"https://supercalc.online/instagram-engagement-rate-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#833ab4,#fd1d1d)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">Social Media</a> <i class="bi bi-chevron-right"></i><span>Instagram Engagement Rate Calculator</span></nav>
+  <h1 class="calc-page-title">&#128247; Instagram Engagement Rate Calculator</h1>
+  <p class="calc-page-subtitle">Calculate your Instagram engagement rate instantly. Find out if your engagement is good, average, or poor. Used by brands and influencers worldwide.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#128247; Instagram Engagement Rate Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6">
+    <label class="form-label">Total Followers</label>
+    <input type="number" class="form-control" id="followers" placeholder="e.g. 10000" min="1">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Total Likes (per post)</label>
+    <input type="number" class="form-control" id="likes" placeholder="e.g. 350" min="0">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Total Comments (per post)</label>
+    <input type="number" class="form-control" id="comments" placeholder="e.g. 25" min="0">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Number of Posts Averaged</label>
+    <input type="number" class="form-control" id="posts" placeholder="e.g. 10" min="1" value="1">
+  </div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate Engagement Rate</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">Engagement Rate</div><div class="result-value" id="engRate">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Quality Rating</div><div class="result-value" id="quality">-</div></div>
+    <div class="col-6"><div class="result-label">Avg Interactions/Post</div><div class="result-value" id="avgInter">-</div></div>
+    <div class="col-6"><div class="result-label">Tier</div><div class="result-value" id="tier">-</div></div>
+  </div>
+</div>
+</div>
+<div class="calc-box mt-3">
+<h3 style="font-size:1.1rem;font-weight:700;margin-bottom:12px">&#128200; Instagram Engagement Rate Benchmarks 2025</h3>
+<div class="table-responsive">
+<table class="table table-sm" style="font-size:0.85rem">
+<thead><tr><th>Engagement Rate</th><th>Rating</th><th>Industry Standard</th></tr></thead>
+<tbody>
+<tr><td>&lt; 1%</td><td style="color:#ef4444">Poor</td><td>Below average, review content strategy</td></tr>
+<tr><td>1% - 3%</td><td style="color:#f59e0b">Average</td><td>Typical for large accounts (100K+)</td></tr>
+<tr><td>3% - 6%</td><td style="color:#10b981">Good</td><td>Strong for mid-tier influencers</td></tr>
+<tr><td>6% - 10%</td><td style="color:#6366f1">Excellent</td><td>Micro-influencer sweet spot</td></tr>
+<tr><td>&gt; 10%</td><td style="color:#8b5cf6">Outstanding</td><td>Nano-influencer or viral content</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="info-box">
+<h2>What is a Instagram Engagement Rate Calculator?</h2>
+<p>Instagram Engagement Rate (ER) measures how actively your audience interacts with your content relative to your total followers. It is one of the most important metrics for brands and influencers to evaluate the effectiveness of their content strategy.</p>
+<p>A high engagement rate signals that your content resonates with your audience, which makes you more attractive to brand partnerships and increases your organic reach on the Instagram algorithm.</p>
+<h3>How to Use This Calculator</h3>
+<ol>
+<li>Enter your total Instagram follower count</li>
+<li>Enter average likes and comments per post</li>
+<li>Select number of posts being averaged</li>
+<li>Click Calculate to get your engagement rate and quality rating</li>
+</ol>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>Micro-influencers (1K-100K) typically have higher ER (3-8%) than mega influencers (1-2%)</li>
+<li>Instagram's algorithm rewards high engagement by showing your content to more users</li>
+<li>Saves and shares are weighted more heavily than likes in the algorithm</li>
+<li>A consistent posting schedule helps maintain and grow your engagement rate</li>
+<li>Respond to comments within the first hour to boost algorithmic reach</li>
+</ul>
+<h3>Instagram Engagement Rate Benchmarks 2025</h3>
+<div class="table-responsive"><table class="table table-sm" style="font-size:0.83rem">
+<thead><tr><th>ER Range</th><th>Rating</th><th>Account Type</th></tr></thead>
+<tbody>
+<tr><td>&lt;1%</td><td style="color:#ef4444">Poor</td><td>Mega influencer or inactive audience</td></tr>
+<tr><td>1-3%</td><td style="color:#f59e0b">Average</td><td>Large accounts (100K+ followers)</td></tr>
+<tr><td>3-6%</td><td style="color:#10b981">Good</td><td>Mid-tier influencers (10K-100K)</td></tr>
+<tr><td>6-10%</td><td style="color:#6366f1">Excellent</td><td>Micro-influencers (1K-10K)</td></tr>
+<tr><td>&gt;10%</td><td style="color:#8b5cf6">Outstanding</td><td>Nano influencers or viral content</td></tr>
+</tbody></table></div></div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">What is a good Instagram engagement rate in 2025? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">A good Instagram engagement rate depends on your account size. For nano-influencers (under 1K), 5-10%+ is excellent. Micro-influencers (1K-100K) should aim for 3-6%. Mid-tier accounts (100K-500K) average 1-3%. Mega influencers (1M+) often see 1-2% or below, which is still considered normal.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Why is my Instagram engagement rate dropping? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Common reasons include: posting inconsistently, a shift in Instagram's algorithm, content not resonating with your current audience, increase in followers without a corresponding increase in engagement (sometimes from inactive accounts), or changes in the type of content you're posting.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Does Instagram count Story views in engagement rate? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Standard engagement rate calculations use feed post data (likes + comments ÷ followers). Story views are separate metrics. However, if you're calculating engagement for Reels, views, likes, comments, and shares are all factored in.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I improve my Instagram engagement rate? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Post at optimal times when your audience is most active, use relevant hashtags (5-15 targeted ones), ask questions in captions, respond to every comment quickly, use polls and interactive stickers in Stories, and create content that encourages saves and shares.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="instagram-growth-rate-calculator.html" class="related-item text-decoration-none">&#128200; Instagram Growth Rate</a>
+<a href="instagram-influencer-earnings-calculator.html" class="related-item text-decoration-none">&#128176; Instagram Influencer Earnings</a>
+<a href="tiktok-engagement-rate-calculator.html" class="related-item text-decoration-none">&#127925; TikTok Engagement Rate</a>
+<a href="youtube-engagement-rate-calculator.html" class="related-item text-decoration-none">&#127909; YouTube Engagement Rate</a>
+<a href="social-media-roi-calculator.html" class="related-item text-decoration-none">&#128200; Social Media ROI</a>
+<a href="virality-score-calculator.html" class="related-item text-decoration-none">&#128293; Virality Score Calculator</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calc() {
+  var followers = parseFloat(document.getElementById('followers').value)||0;
+  var likes = parseFloat(document.getElementById('likes').value)||0;
+  var comments = parseFloat(document.getElementById('comments').value)||0;
+  var posts = parseFloat(document.getElementById('posts').value)||1;
+  if(!followers){alert('Enter follower count');return;}
+  var totalInter = (likes + comments) / posts;
+  var rate = (totalInter / followers) * 100;
+  var quality = rate < 1 ? 'Poor' : rate < 3 ? 'Average' : rate < 6 ? 'Good' : rate < 10 ? 'Excellent' : 'Outstanding';
+  var tier = followers < 1000 ? 'Nano' : followers < 10000 ? 'Micro' : followers < 100000 ? 'Mid-Tier' : followers < 1000000 ? 'Macro' : 'Mega';
+  document.getElementById('engRate').textContent = rate.toFixed(2) + '%';
+  document.getElementById('quality').textContent = quality;
+  document.getElementById('avgInter').textContent = Math.round(totalInter).toLocaleString();
+  document.getElementById('tier').textContent = tier;
+  document.getElementById('resultBox').style.display = 'block';
+}
+</script>
+</body>
+</html>

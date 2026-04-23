@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Force Unit Converter | SuperCalc</title>
+<meta name="description" content="Convert between force units: Newton, pound-force, kilogram-force, dyne, and more.">
+<meta name="keywords" content="force converter, newton to pound force, force unit converter, kg-force calculator, dyne converter, N to lbf">
+<link rel="canonical" href="https://supercalc.online/force-converter.html">
+<meta property="og:title" content="Force Unit Converter | SuperCalc">
+<meta property="og:description" content="Convert between force units: Newton, pound-force, kilogram-force, dyne, and more.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Force Unit Converter","url":"https://supercalc.online/force-converter.html","applicationCategory":"UtilitiesApplication","offers":{"@type":"Offer","price":"0"}}</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Force Unit Converter</span></nav>
+  <h1 class="calc-page-title">&#128165; Force Unit Converter</h1>
+  <p class="calc-page-subtitle">Convert between force units: Newton, pound-force, kilogram-force, dyne, and more.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">Force Unit Converter</h2>
+<div class="row g-3">
+<div class="col-md-6"><label class="form-label">Value</label><input type="number" class="form-control" id="fval" value="1" step="any"></div>
+<div class="col-md-6"><label class="form-label">From Unit</label>
+<select class="form-select" id="ffrom">
+<option value="1" selected>Newton (N)</option>
+<option value="1000">Kilonewton (kN)</option>
+<option value="0.00001">Dyne</option>
+<option value="9.80665">Kilogram-force (kgf)</option>
+<option value="4.44822">Pound-force (lbf)</option>
+<option value="0.138255">Poundal</option>
+</select></div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-arrow-left-right me-2"></i>Convert All</button>
+<div class="result-box" id="resultBox"><div id="fResults" style="font-size:0.9rem"></div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div></div>
+<div class="info-box">
+<h2>What is a Force Unit Converter?</h2>
+<p>Unit converters help you quickly and accurately convert between different measurement systems used worldwide. Whether you need to convert metric to imperial, or between scientific units, accurate conversions are essential in science, engineering, cooking, and everyday life.</p>
+<p>These converters use exact conversion factors from international standards (SI units, ISO definitions) to ensure maximum accuracy.</p>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>The metric system (SI units) is used by 95% of the world — learning key conversions helps in international contexts</li>
+<li>Temperature conversions: °C to °F: multiply by 9/5 then add 32</li>
+<li>For cooking: 1 cup = 240 mL, 1 tablespoon = 15 mL, 1 teaspoon = 5 mL</li>
+<li>1 mile = 1.60934 km, 1 kg = 2.20462 lbs, 1 inch = 2.54 cm</li>
+<li>When precision matters, use the exact conversion factor, not a rounded approximation</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">What is the metric system? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The metric system (International System of Units or SI) is the globally standard system of measurement. It's based on multiples of 10, making calculations straightforward. Used by scientists worldwide and by most countries for everyday measurements. The US is one of only three countries (with Myanmar and Liberia) not officially using metric.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How do I remember conversion factors? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Key tricks: 'King Henry Died By Drinking Cold Milk' for kilo-hecto-deca-base-deci-centi-milli. For temp: 'Multiply by 2 and add 30' gives a quick Celsius-to-Fahrenheit approximation (exact: ×1.8 + 32). For km to miles, multiply by 0.6 (exact: ×0.621371).</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Why does the US still use imperial units? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The US officially adopted the metric system in 1866 but never mandated its use in daily life. Switching would require updating infrastructure, education, and cultural habits at enormous cost. However, US science, medicine, military, and international trade widely use metric. The Metric Conversion Act of 1975 made metric the preferred system.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What's the most common conversion mistake? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">The most common mistake is confusing mass and weight (kilograms vs. pounds), especially for international shipping. Also: confusing fluid ounces (volume) with ounces (weight), and using the wrong temperature scale (°C vs °F). Always specify units in international communications.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="unit-converter.html" class="related-item text-decoration-none">&#128208; Unit Converter</a>
+<a href="temperature-converter.html" class="related-item text-decoration-none">&#127777; Temperature Converter</a>
+<a href="length-converter.html" class="related-item text-decoration-none">&#128208; Length Converter</a>
+<a href="weight-converter.html" class="related-item text-decoration-none">&#9878; Weight Converter</a>
+<a href="speed-converter.html" class="related-item text-decoration-none">&#128663; Speed Converter</a>
+<a href="energy-converter.html" class="related-item text-decoration-none">&#9889; Energy Converter</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online &mdash; Free Online Calculators</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a> &bull; <a href="about.html">About</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+const fu=[['Newton (N)',1],['Kilonewton (kN)',1000],['Dyne',0.00001],['Kilogram-force (kgf)',9.80665],['Pound-force (lbf)',4.44822],['Poundal',0.138255]];
+function calc(){const v=+document.getElementById('fval').value,f=+document.getElementById('ffrom').value,n=v*f;const rows=fu.map(([nm,fac])=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border)"><span>${nm}</span><strong>${(n/fac).toPrecision(6)}</strong></div>`).join('');document.getElementById('fResults').innerHTML=rows;document.getElementById('resultBox').classList.add('show');}
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Change Calculator - Increase & Decrease % | SuperCalc</title>
+  <meta name="description" content="Free percentage change calculator. Calculate percentage increase, decrease, and difference between two numbers. Find what is X% of Y or what % is X of Y.">
+  <meta name="keywords" content="percentage change calculator, percentage increase calculator, percentage decrease calculator, percentage difference, what percent of, percent change formula">
+  <link rel="canonical" href="https://supercalc.online/percentage-change-calculator.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#00695c,#00bfa5)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Percentage Change</span></nav>
+  <h1 class="calc-page-title">% Percentage Change Calculator</h1>
+  <p class="calc-page-subtitle">Calculate increase, decrease, and all types of percentage problems</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <!-- Tab navigation -->
+      <ul class="nav nav-tabs mb-4" id="pctTabs">
+        <li class="nav-item"><a class="nav-link active" onclick="showTab(0,this)">% Change</a></li>
+        <li class="nav-item"><a class="nav-link" onclick="showTab(1,this)">X% of Y</a></li>
+        <li class="nav-item"><a class="nav-link" onclick="showTab(2,this)">X is ?% of Y</a></li>
+        <li class="nav-item"><a class="nav-link" onclick="showTab(3,this)">Add/Remove %</a></li>
+      </ul>
+
+      <!-- Tab 0: Percentage Change -->
+      <div class="calc-box" id="tab0">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">From (Original Value)</label><input type="number" class="form-control" id="t0v1" value="100" oninput="calcChange()"></div>
+          <div class="col-md-6"><label class="form-label">To (New Value)</label><input type="number" class="form-control" id="t0v2" value="125" oninput="calcChange()"></div>
+        </div>
+        <div class="result-box show mt-4" id="t0result"><div class="result-primary"><div class="result-label" id="t0label">Change</div><div class="result-value" id="t0val">—</div></div><div id="t0extra" class="mt-3"></div></div>
+      </div>
+      <div class="calc-box d-none" id="tab1">
+        <div class="row g-3"><div class="col-md-6"><label class="form-label">Percentage (%)</label><input type="number" class="form-control" id="t1pct" value="25" oninput="calcXofY()"></div><div class="col-md-6"><label class="form-label">Of Number</label><input type="number" class="form-control" id="t1num" value="200" oninput="calcXofY()"></div></div>
+        <div class="result-box show mt-4" id="t1result"><div class="result-primary"><div class="result-label">Result</div><div class="result-value" id="t1val">—</div></div></div>
+      </div>
+      <div class="calc-box d-none" id="tab2">
+        <div class="row g-3"><div class="col-md-6"><label class="form-label">Value (X)</label><input type="number" class="form-control" id="t2x" value="50" oninput="calcXisofY()"></div><div class="col-md-6"><label class="form-label">Of (Y)</label><input type="number" class="form-control" id="t2y" value="200" oninput="calcXisofY()"></div></div>
+        <div class="result-box show mt-4" id="t2result"><div class="result-primary"><div class="result-label">Result</div><div class="result-value" id="t2val">—</div></div></div>
+      </div>
+      <div class="calc-box d-none" id="tab3">
+        <div class="row g-3"><div class="col-md-4"><label class="form-label">Number</label><input type="number" class="form-control" id="t3num" value="1000" oninput="calcAddRemove()"></div><div class="col-md-4"><label class="form-label">Percentage</label><input type="number" class="form-control" id="t3pct" value="18" oninput="calcAddRemove()"></div></div>
+        <div class="result-box show mt-4" id="t3result"><div class="result-primary"><div class="result-label">Results</div></div><div id="t3extra"></div></div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Percentage Formulas</h2>
+        <div class="formula-box">% Change = ((New – Old) / Old) × 100<br>X% of Y = (X/100) × Y<br>X is ?% of Y = (X/Y) × 100</div>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function showTab(n,btn){[0,1,2,3].forEach(i=>{document.getElementById('tab'+i).classList.toggle('d-none',i!==n);});document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));btn.classList.add('active');[calcChange,calcXofY,calcXisofY,calcAddRemove][n]();}
+function calcChange(){const a=+document.getElementById('t0v1').value,b=+document.getElementById('t0v2').value;if(a===0)return;const c=((b-a)/Math.abs(a)*100);const isInc=c>=0;document.getElementById('t0label').textContent=isInc?'Percentage Increase':'Percentage Decrease';document.getElementById('t0val').textContent=Math.abs(c).toFixed(2)+'%';document.getElementById('t0val').style.color=isInc?'var(--accent)':'#ef5350';document.getElementById('t0extra').innerHTML=`<div class="result-grid"><div class="result-item"><div class="r-label">Change Amount</div><div class="r-value">${(b-a)>0?'+':''+(b-a)}</div></div><div class="result-item"><div class="r-label">Original</div><div class="r-value">${a}</div></div><div class="result-item"><div class="r-label">New Value</div><div class="r-value">${b}</div></div><div class="result-item"><div class="r-label">Ratio</div><div class="r-value">${(b/a).toFixed(4)}x</div></div></div>`;}
+function calcXofY(){const p=+document.getElementById('t1pct').value,n=+document.getElementById('t1num').value;document.getElementById('t1val').textContent=(p/100*n).toLocaleString();}
+function calcXisofY(){const x=+document.getElementById('t2x').value,y=+document.getElementById('t2y').value;document.getElementById('t2val').textContent=y>0?(x/y*100).toFixed(4)+'%':'—';}
+function calcAddRemove(){const n=+document.getElementById('t3num').value,p=+document.getElementById('t3pct').value;const added=n*(1+p/100),removed=n*(1-p/100),pctAmt=n*p/100;document.getElementById('t3extra').innerHTML=`<div class="result-grid"><div class="result-item"><div class="r-label">Add ${p}% (e.g. GST, markup)</div><div class="r-value text-primary">${added.toLocaleString()}</div></div><div class="result-item"><div class="r-label">Remove ${p}% (e.g. discount)</div><div class="r-value" style="color:var(--accent)">${removed.toLocaleString()}</div></div><div class="result-item"><div class="r-label">${p}% Amount</div><div class="r-value">${pctAmt.toLocaleString()}</div></div></div>`;}
+document.addEventListener('DOMContentLoaded',()=>{calcChange();calcXofY();calcXisofY();calcAddRemove();});
+</script>
+</body>
+</html>

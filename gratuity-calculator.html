@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gratuity Calculator India 2025 - Gratuity Formula & Tax | SuperCalc</title>
+  <meta name="description" content="Free gratuity calculator India 2025. Calculate gratuity amount using the official formula. Eligibility, tax exemption limit ₹20 lakh, and Payment of Gratuity Act 1972 rules.">
+  <meta name="keywords" content="gratuity calculator India, gratuity formula calculator, gratuity calculation 2025, gratuity eligibility, gratuity tax exemption, Payment of Gratuity Act">
+  <link rel="canonical" href="https://supercalc.online/gratuity-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#d35400,#e67e22)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><a href="index.html#finance">Finance</a> <i class="bi bi-chevron-right"></i><span>Gratuity Calculator</span></nav>
+  <h1 class="calc-page-title">🎁 Gratuity Calculator 2025</h1>
+  <p class="calc-page-subtitle">Official formula under Payment of Gratuity Act 1972</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="calc-box">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Monthly Basic Salary + DA (₹)</label><div class="input-group"><span class="input-group-text">₹</span><input type="number" class="form-control" id="basicDA" value="50000" step="1000"></div></div>
+          <div class="col-md-6"><label class="form-label">Years of Service</label><input type="number" class="form-control" id="years" value="10" step="0.5" min="1"></div>
+          <div class="col-md-6"><label class="form-label">Employer Type</label>
+            <select class="form-select" id="empType">
+              <option value="covered" selected>✅ Covered under Gratuity Act (10+ employees)</option>
+              <option value="uncovered">⚠️ Not covered under Gratuity Act</option>
+            </select>
+          </div>
+          <div class="col-md-6"><label class="form-label">Extra Months (if any)</label>
+            <select class="form-select" id="extraMonths">
+              <option value="0">No extra months</option>
+              <option value="6">≥6 months (rounds up)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcGratuity()"><i class="bi bi-gift me-2"></i>Calculate Gratuity</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Gratuity Amount</div><div class="result-value" id="gratuity">₹0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Tax-Free Limit</div><div class="r-value text-primary">₹20 Lakh</div></div>
+            <div class="result-item"><div class="r-label">Taxable Gratuity</div><div class="r-value" style="color:var(--danger)" id="taxable">₹0</div></div>
+            <div class="result-item"><div class="r-label">Years Considered</div><div class="r-value" id="yearsConsidered">0</div></div>
+          </div>
+          <div id="gratBreakup" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <h2>Gratuity Formula (Payment of Gratuity Act 1972)</h2>
+        <div class="formula-box">
+          <strong>For Covered Employees:</strong><br>
+          Gratuity = (Last drawn salary × 15 × Years of service) / 26<br><br>
+          <strong>For Not-Covered Employees:</strong><br>
+          Gratuity = (Last drawn salary × 15 × Years of service) / 30
+        </div>
+        <h3>Key Rules</h3>
+        <ul>
+          <li><strong>Eligibility:</strong> Minimum 5 years of continuous service (4 years 240 days in some rulings)</li>
+          <li><strong>Tax Exemption:</strong> ₹20 lakh tax-free for private sector employees</li>
+          <li><strong>Government Employees:</strong> Fully tax-exempt without limit</li>
+          <li><strong>26 days:</strong> Monthly days used (excluding 4 Sundays) for "covered" calculation</li>
+          <li><strong>Rounds up:</strong> Service of ≥6 months in last year rounds up to full year</li>
+          <li><strong>10+ employees:</strong> Companies with 10+ employees must pay gratuity</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div></div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function calcGratuity(){
+  const salary=+document.getElementById('basicDA').value;
+  let yrs=+document.getElementById('years').value;
+  const extra=+document.getElementById('extraMonths').value;
+  const type=document.getElementById('empType').value;
+  if(extra>=6)yrs=Math.ceil(yrs);else yrs=Math.floor(yrs);
+  const denom=type==='covered'?26:30;
+  const gratuity=(salary*15*yrs)/denom;
+  const taxable=Math.max(0,gratuity-2000000);
+  document.getElementById('gratuity').textContent='₹'+Math.round(gratuity).toLocaleString('en-IN');
+  document.getElementById('taxable').textContent=taxable>0?'₹'+Math.round(taxable).toLocaleString('en-IN'):'₹0 (Fully Exempt)';
+  document.getElementById('yearsConsidered').textContent=yrs+' years';
+  document.getElementById('gratBreakup').innerHTML=`<div class="highlight-box" style="font-size:0.82rem">
+    <strong>Calculation:</strong> ₹${salary.toLocaleString('en-IN')} × 15 × ${yrs} ÷ ${denom} = <strong>₹${Math.round(gratuity).toLocaleString('en-IN')}</strong><br>
+    ${gratuity<=2000000?'✅ Fully tax-free (within ₹20L limit)':'⚠️ Taxable amount: ₹'+Math.round(taxable).toLocaleString('en-IN')+' (above ₹20L limit)'}
+  </div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+function getText(){return `Gratuity Amount: ${document.getElementById('gratuity').textContent}`;}
+document.addEventListener('DOMContentLoaded',calcGratuity);
+</script>
+</body>
+</html>

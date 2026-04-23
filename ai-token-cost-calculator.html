@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Token Cost Calculator 2025 - ChatGPT Claude Gemini API Cost | SuperCalc</title>
+<meta name="description" content="Calculate the cost of AI API tokens for ChatGPT (GPT-4o), Claude, Gemini and other LLMs. Estimate daily, monthly and annual AI API spending based on your usage.">
+<meta name="keywords" content="AI token cost calculator, ChatGPT API cost calculator, OpenAI token price calculator, Claude API cost, Gemini API cost, LLM token calculator 2025, GPT-4o cost per request, AI API pricing calculator">
+<link rel="canonical" href="https://supercalc.online/ai-token-cost-calculator.html">
+<meta property="og:title" content="AI Token Cost Calculator 2025 - ChatGPT Claude Gemini API Cost | SuperCalc">
+<meta property="og:description" content="Calculate the cost of AI API tokens for ChatGPT (GPT-4o), Claude, Gemini and other LLMs. Estimate daily, monthly and annual AI API spending based on your usage.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://supercalc.online/ai-token-cost-calculator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Token Cost Calculator | SuperCalc">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"AI Token Cost Calculator","description":"Calculate the cost of AI API tokens for ChatGPT, Claude, Gemini, and other LLMs. Estimate monthly AI spending based on usage.","url":"https://supercalc.online/ai-token-cost-calculator.html","publisher":{"@type":"Organization","name":"SuperCalc","url":"https://supercalc.online"}}
+</script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="calc-page-header" style="background:linear-gradient(135deg,#10b981,#3b82f6)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i> <a href="index.html#social">AI Tools</a> <i class="bi bi-chevron-right"></i><span>AI Token Cost Calculator</span></nav>
+  <h1 class="calc-page-title">&#129302; AI Token Cost Calculator</h1>
+  <p class="calc-page-subtitle">Calculate the cost of AI API tokens for ChatGPT, Claude, Gemini, and other LLMs. Estimate monthly AI spending based on usage.</p></div>
+</div>
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8"><div class="calc-box">
+<h2 class="calc-title">&#129302; AI Token Cost Calculator</h2>
+<div class="row g-3">
+  <div class="col-md-6"><label class="form-label">AI Model</label>
+    <select class="form-control" id="model" onchange="updatePrices()">
+      <option value="0.005,0.015">GPT-4o ($5/M input, $15/M output)</option>
+      <option value="0.00015,0.0006">GPT-4o mini ($0.15/M input, $0.6/M output)</option>
+      <option value="0.003,0.015">Claude 3.5 Sonnet ($3/M input, $15/M output)</option>
+      <option value="0.00025,0.00125">Claude 3 Haiku ($0.25/M in, $1.25/M out)</option>
+      <option value="0.00035,0.00105">Gemini 1.5 Flash ($0.35/M in, $1.05/M out)</option>
+      <option value="0.0035,0.0105">Gemini 1.5 Pro ($3.5/M in, $10.5/M out)</option>
+      <option value="custom,custom">Custom pricing</option>
+    </select>
+  </div>
+  <div class="col-md-6"><label class="form-label">Daily API Requests</label><input type="number" class="form-control" id="requests" placeholder="e.g. 1000"></div>
+  <div class="col-md-6"><label class="form-label">Avg Input Tokens per Request</label><input type="number" class="form-control" id="inputTokens" placeholder="e.g. 500" value="500"></div>
+  <div class="col-md-6"><label class="form-label">Avg Output Tokens per Request</label><input type="number" class="form-control" id="outputTokens" placeholder="e.g. 200" value="200"></div>
+  <div class="col-md-6"><label class="form-label">Custom Input Price (per 1M tokens $)</label><input type="number" class="form-control" id="customInput" placeholder="e.g. 5.00" step="0.001" value="0"></div>
+  <div class="col-md-6"><label class="form-label">Custom Output Price (per 1M tokens $)</label><input type="number" class="form-control" id="customOutput" placeholder="e.g. 15.00" step="0.001" value="0"></div>
+</div>
+<button class="btn-calculate mt-4" onclick="calc()"><i class="bi bi-calculator me-2"></i>Calculate AI Cost</button>
+<div class="result-box" id="resultBox">
+  <div class="row g-3 text-center">
+    <div class="col-6"><div class="result-label">Daily Cost</div><div class="result-value" id="daily">-</div>
+<div class="action-btns mt-3">
+  <button class="btn-action" onclick="copyResult(document.getElementById('resultBox').innerText)"><i class="bi bi-clipboard"></i> Copy Result</button>
+  <button class="btn-action whatsapp" onclick="shareWhatsApp(document.getElementById('resultBox').innerText)"><i class="bi bi-whatsapp"></i> Share</button>
+</div></div>
+    <div class="col-6"><div class="result-label">Monthly Cost</div><div class="result-value" id="monthly">-</div></div>
+    <div class="col-6"><div class="result-label">Cost per Request</div><div class="result-value" id="perReq">-</div></div>
+    <div class="col-6"><div class="result-label">Annual Cost</div><div class="result-value" id="annual">-</div></div>
+  </div>
+</div>
+</div>
+<div class="calc-box mt-3">
+<h3 style="font-size:1rem;font-weight:700">&#128161; Token Usage Tips</h3>
+<ul style="font-size:0.85rem;color:var(--text-secondary)">
+<li>1 token &#8776; 4 characters or 0.75 words in English</li>
+<li>1,000 tokens &#8776; 750 words or ~1.5 pages of text</li>
+<li>Use smaller models for simple tasks to reduce costs by 90%+</li>
+<li>Implement caching for repeated prompts to save significantly</li>
+</ul>
+</div>
+<div class="info-box">
+<h2>What is a AI Token Cost Calculator?</h2>
+<p>AI tokens are the basic units of text that large language models (LLMs) like GPT-4o, Claude, and Gemini process. One token is approximately 4 characters or 0.75 words in English. Understanding token costs is critical for businesses and developers building AI-powered applications.</p>
+<p>API pricing for AI models is charged per 1 million tokens (input and output separately). Input tokens (your prompts) are typically cheaper than output tokens (the AI's responses). Costs vary significantly between models — from $0.00015/1M tokens for budget models to $15+/1M for premium ones.</p>
+<h3>Formula</h3>
+<div class="formula-box">Daily Cost = Requests × (Input Tokens × Input Price/1M + Output Tokens × Output Price/1M)<br>Monthly Cost = Daily Cost × 30<br>Cost per Request = Daily Cost ÷ Daily Requests</div>
+<h3>How to Use This Calculator</h3>
+<ol>
+<li>Select your AI model from the dropdown (pre-filled with 2025 pricing)</li>
+<li>Enter your daily API request volume</li>
+<li>Set average input and output tokens per request</li>
+<li>Click Calculate to see daily, monthly, and annual costs</li>
+</ol>
+<h3>Key Facts &amp; Tips</h3>
+<ul>
+<li>1,000 tokens ≈ 750 words ≈ 1.5 pages of text</li>
+<li>Use smaller/cheaper models for simple tasks (GPT-4o mini vs GPT-4o = 30x cost difference)</li>
+<li>Implement prompt caching to reduce costs by up to 90% for repeated system prompts</li>
+<li>Batch processing can reduce costs by 50% on many platforms</li>
+<li>Output tokens are typically 2-5x more expensive than input tokens</li>
+<li>Always set max_tokens limits to prevent runaway costs</li>
+</ul>
+<h3>AI Model Pricing Comparison (2025)</h3>
+<div class="table-responsive"><table class="table table-sm" style="font-size:0.83rem">
+<thead><tr><th>Model</th><th>Input (per 1M)</th><th>Output (per 1M)</th><th>Best For</th></tr></thead>
+<tbody>
+<tr><td>GPT-4o mini</td><td>$0.15</td><td>$0.60</td><td>Simple tasks, high volume</td></tr>
+<tr><td>GPT-4o</td><td>$5.00</td><td>$15.00</td><td>Complex reasoning, code</td></tr>
+<tr><td>Claude 3.5 Sonnet</td><td>$3.00</td><td>$15.00</td><td>Long context, analysis</td></tr>
+<tr><td>Claude 3 Haiku</td><td>$0.25</td><td>$1.25</td><td>Fast, affordable tasks</td></tr>
+<tr><td>Gemini 1.5 Flash</td><td>$0.35</td><td>$1.05</td><td>Multimodal, speed</td></tr>
+<tr><td>Gemini 1.5 Pro</td><td>$3.50</td><td>$10.50</td><td>2M context window</td></tr>
+</tbody></table></div></div>
+<div class="info-box">
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<button class="faq-question">How do I reduce my AI API costs? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Key strategies to reduce AI costs: (1) Use smaller models (GPT-4o mini is 30x cheaper than GPT-4o) for simple tasks, (2) Implement prompt caching for repeated system prompts, (3) Set strict max_token limits, (4) Use streaming to stop early when needed, (5) Batch your requests during off-peak hours, (6) Cache responses for identical queries, (7) Compress prompts by removing unnecessary whitespace and instructions.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">What is the difference between input and output tokens? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">Input tokens are the tokens in your prompt/message that you send to the AI. Output tokens are the tokens in the AI's generated response. Output tokens are typically 2-5x more expensive because they require more computation to generate. For cost optimization, design prompts that elicit concise responses and use structured output formats.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">How many tokens are in 1,000 words? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">As a rule of thumb: 1,000 English words ≈ 1,333 tokens (words × 1.33). Code typically uses more tokens than plain text. Non-English languages (Chinese, Japanese, Korean) often use more tokens per word. OpenAI's Tokenizer tool can help you count exact tokens for your specific use case.</div></div>
+</div>
+<div class="faq-item">
+<button class="faq-question">Which AI model gives the best value for money? <i class="bi bi-chevron-down faq-icon"></i></button>
+<div class="faq-answer"><div class="faq-answer-inner">For most production applications, GPT-4o mini or Claude 3 Haiku offer the best value — they're 10-30x cheaper than premium models while handling 80-90% of use cases effectively. Use premium models (GPT-4o, Claude 3.5 Sonnet) only for complex reasoning, legal/medical analysis, or code generation. Start cheap and upgrade only if quality is insufficient.</div></div>
+</div>
+</div>
+<div class="info-box">
+<h3 style="margin-top:0">Related Calculators</h3>
+<div class="related-grid">
+<a href="api-cost-calculator.html" class="related-item text-decoration-none">&#128187; API Cost Calculator</a>
+<a href="saas-pricing-calculator.html" class="related-item text-decoration-none">&#128200; SaaS Pricing Calculator</a>
+<a href="content-generation-cost-calculator.html" class="related-item text-decoration-none">&#128221; Content Generation Cost</a>
+<a href="website-traffic-to-revenue-calculator.html" class="related-item text-decoration-none">&#128200; Website Traffic to Revenue</a>
+<a href="social-media-roi-calculator.html" class="related-item text-decoration-none">&#128200; Social Media ROI</a>
+<a href="affiliate-earnings-calculator.html" class="related-item text-decoration-none">&#128200; Affiliate Earnings</a>
+</div>
+</div>
+</div>
+    <div class="col-lg-4">
+      <div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Advertisement [300x250]</span></div>
+      <div class="calc-box mt-3" style="padding:16px">
+        <h6 style="font-weight:700;margin-bottom:12px">&#128279; Related Calculators</h6>
+        <ul style="list-style:none;padding:0;margin:0;font-size:0.85rem">
+          <li><a href="instagram-engagement-rate-calculator.html" style="color:var(--primary);text-decoration:none">&#128247; Instagram Engagement Rate</a></li>
+          <li class="mt-1"><a href="youtube-money-calculator.html" style="color:var(--primary);text-decoration:none">&#127909; YouTube Money Calculator</a></li>
+          <li class="mt-1"><a href="tiktok-earnings-calculator.html" style="color:var(--primary);text-decoration:none">&#127925; TikTok Earnings</a></li>
+          <li class="mt-1"><a href="influencer-earnings-per-post-calculator.html" style="color:var(--primary);text-decoration:none">&#128176; Influencer Earnings</a></li>
+          <li class="mt-1"><a href="adsense-rpm-calculator.html" style="color:var(--primary);text-decoration:none">&#128200; AdSense RPM Calculator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<footer><div class="container"><div class="footer-bottom"><p>&copy; 2025 SuperCalc.online</p><div><a href="privacy.html">Privacy</a> &bull; <a href="terms.html">Terms</a></div></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+function updatePrices(){
+  var val=document.getElementById('model').value;
+  var parts=val.split(',');
+  if(parts[0]!='custom'){
+    document.getElementById('customInput').value=parts[0];
+    document.getElementById('customOutput').value=parts[1];
+  }
+}
+updatePrices();
+function calc(){
+  var req=parseFloat(document.getElementById('requests').value)||0;
+  var inp=parseFloat(document.getElementById('inputTokens').value)||500;
+  var out=parseFloat(document.getElementById('outputTokens').value)||200;
+  var inPrice=parseFloat(document.getElementById('customInput').value)||0;
+  var outPrice=parseFloat(document.getElementById('customOutput').value)||0;
+  var dailyInput=(req*inp/1000000)*inPrice;
+  var dailyOutput=(req*out/1000000)*outPrice;
+  var daily=dailyInput+dailyOutput;
+  var perReq=req>0?(daily/req).toFixed(5):0;
+  document.getElementById('daily').textContent='$'+daily.toFixed(4);
+  document.getElementById('monthly').textContent='$'+(daily*30).toFixed(2);
+  document.getElementById('perReq').textContent='$'+perReq;
+  document.getElementById('annual').textContent='$'+(daily*365).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  document.getElementById('resultBox').style.display='block';
+}
+</script>
+</body>
+</html>

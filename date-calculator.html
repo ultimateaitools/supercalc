@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Calculator - Days Between Dates & Date Difference | SuperCalc</title>
+  <meta name="description" content="Free date calculator. Find days, weeks, months between two dates. Add or subtract days from a date. Calculate age, deadline, due date online instantly.">
+  <meta name="keywords" content="date calculator, days between dates, date difference calculator, add days to date, how many days until, date duration calculator">
+  <link rel="canonical" href="https://supercalc.online/date-calculator.html">
+  <meta name="robots" content="index, follow">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">&#9889; Super<span>Calc</span></a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav me-auto ms-3 gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html#finance">&#128176; Finance</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#health">&#10084; Health</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#math">&#128290; Math</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#social">&#128247; Social</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ai-tools">&#129302; AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html">More &#9662;</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="bi bi-moon-fill" id="themeIcon"></i></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="calc-page-header" style="background:linear-gradient(135deg,#2c3e50,#3498db)">
+  <div class="container"><nav class="breadcrumb-nav"><a href="index.html">Home</a> <i class="bi bi-chevron-right"></i><span>Date Calculator</span></nav>
+  <h1 class="calc-page-title">📅 Date Calculator</h1>
+  <p class="calc-page-subtitle">Calculate date differences, add/subtract days, find deadlines</p></div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-pills mb-3">
+        <button class="cat-pill active" onclick="setMode('diff',this)">📏 Date Difference</button>
+        <button class="cat-pill" onclick="setMode('add',this)">➕ Add Days to Date</button>
+        <button class="cat-pill" onclick="setMode('countdown',this)">⏳ Countdown Timer</button>
+      </div>
+
+      <!-- Date Difference -->
+      <div class="calc-box" id="diffBox">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Start Date</label><input type="date" class="form-control" id="startDate"></div>
+          <div class="col-md-6"><label class="form-label">End Date</label><input type="date" class="form-control" id="endDate"></div>
+          <div class="col-md-12"><label class="form-label">Include/Exclude</label><div class="d-flex gap-3 flex-wrap"><div class="form-check"><input class="form-check-input" type="checkbox" id="includeEnd"><label class="form-check-label" style="font-size:0.85rem">Include end date</label></div><div class="form-check"><input class="form-check-input" type="checkbox" id="excludeWeekend"><label class="form-check-label" style="font-size:0.85rem">Weekdays only (exclude Sat/Sun)</label></div></div></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcDiff()"><i class="bi bi-calendar-check me-2"></i>Calculate Difference</button>
+        <div class="result-box" id="resultBox">
+          <div class="result-primary"><div class="result-label">Total Days</div><div class="result-value" id="totalDays">0</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Weeks</div><div class="r-value text-primary" id="weeks">0</div></div>
+            <div class="result-item"><div class="r-label">Months (approx)</div><div class="r-value" id="months">0</div></div>
+            <div class="result-item"><div class="r-label">Years</div><div class="r-value" id="years">0</div></div>
+            <div class="result-item"><div class="r-label">Weekdays Only</div><div class="r-value" id="weekdays">0</div></div>
+          </div>
+          <div id="dateDetails" class="mt-3"></div>
+          <div class="action-btns"><button class="btn-action" onclick="copyResult(getText())"><i class="bi bi-clipboard"></i> Copy</button></div>
+        </div>
+      </div>
+
+      <!-- Add Days -->
+      <div class="calc-box d-none" id="addBox">
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label">Start Date</label><input type="date" class="form-control" id="addStartDate"></div>
+          <div class="col-md-4"><label class="form-label">Days to Add/Subtract</label><input type="number" class="form-control" id="addDays" value="30" step="1"></div>
+          <div class="col-md-2"><label class="form-label">Operation</label><select class="form-select" id="addOp"><option value="add">+ Add</option><option value="sub">- Subtract</option></select></div>
+        </div>
+        <button class="btn-calculate mt-4" onclick="calcAdd()"><i class="bi bi-calendar-plus me-2"></i>Calculate Date</button>
+        <div class="result-box" id="resultBox2">
+          <div class="result-primary"><div class="result-label">Result Date</div><div class="result-value" id="resultDate">—</div></div>
+          <div class="result-grid">
+            <div class="result-item"><div class="r-label">Day of Week</div><div class="r-value text-primary" id="dayOfWeek">—</div></div>
+            <div class="result-item"><div class="r-label">Week Number</div><div class="r-value" id="weekNum">—</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Countdown -->
+      <div class="calc-box d-none" id="countdownBox">
+        <label class="form-label">Target Date & Time</label>
+        <input type="datetime-local" class="form-control mb-3" id="targetDate">
+        <button class="btn-calculate" onclick="startCountdown()"><i class="bi bi-alarm me-2"></i>Start Countdown</button>
+        <div class="result-box" id="resultBox3">
+          <div class="result-primary"><div class="result-label">Time Remaining</div><div class="result-value" id="countdownDisplay" style="font-size:1.8rem">—</div></div>
+        </div>
+      </div>
+
+      <div class="info-box mt-4">
+        <h2>Date Calculation Tips</h2>
+        <ul>
+          <li>Use <strong>weekdays only</strong> option for business deadline calculations</li>
+          <li>For project timelines, add buffer of 10-20% to your calculated duration</li>
+          <li>Public holidays are NOT automatically excluded — calculate them manually</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4"><div class="sidebar-ad"><span style="font-size:0.7rem;color:var(--text-muted)">Ad [ 300x250 ]</span></div>
+
+    <!-- Upcoming Indian Holidays 2025 -->
+    <div class="calc-box mt-3">
+      <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:0.75rem">🇮🇳 Indian Holidays 2025</h3>
+      <div style="font-size:0.78rem;color:var(--text)">
+        <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Republic Day</span><span>Jan 26</span></div>
+        <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Holi</span><span>Mar 14</span></div>
+        <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Good Friday</span><span>Apr 18</span></div>
+        <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Independence Day</span><span>Aug 15</span></div>
+        <div class="d-flex justify-content-between py-1 border-bottom" style="border-color:var(--border)!important"><span>Gandhi Jayanti</span><span>Oct 2</span></div>
+        <div class="d-flex justify-content-between py-1"><span>Diwali</span><span>Oct 20</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<footer><div class="container"><div class="footer-bottom"><p>© 2025 SuperCalc.online</p></div></div></footer>
+<button class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+// Set today & +30 days as defaults
+const today=new Date(),later=new Date();later.setDate(today.getDate()+30);
+document.getElementById('startDate').value=today.toISOString().split('T')[0];
+document.getElementById('endDate').value=later.toISOString().split('T')[0];
+document.getElementById('addStartDate').value=today.toISOString().split('T')[0];
+const dt=new Date();dt.setMonth(dt.getMonth()+3);
+document.getElementById('targetDate').value=dt.toISOString().slice(0,16);
+
+let currentMode='diff';
+function setMode(m,btn){
+  currentMode=m;
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');
+  document.getElementById('diffBox').classList.toggle('d-none',m!=='diff');
+  document.getElementById('addBox').classList.toggle('d-none',m!=='add');
+  document.getElementById('countdownBox').classList.toggle('d-none',m!=='countdown');
+}
+
+function calcDiff(){
+  const s=new Date(document.getElementById('startDate').value);
+  const e=new Date(document.getElementById('endDate').value);
+  const incEnd=document.getElementById('includeEnd').checked?1:0;
+  const diff=Math.round((e-s)/(1000*60*60*24))+incEnd;
+  const weeks=Math.floor(diff/7);
+  const months=(e.getMonth()-s.getMonth()+(e.getFullYear()-s.getFullYear())*12)+incEnd/30;
+  const yrs=diff/365;
+  // Count weekdays
+  let wd=0,cur=new Date(s);
+  while(cur<=e){const d=cur.getDay();if(d!==0&&d!==6)wd++;cur.setDate(cur.getDate()+1);}
+  if(!document.getElementById('excludeWeekend').checked){}
+
+  document.getElementById('totalDays').textContent=diff.toLocaleString();
+  document.getElementById('weeks').textContent=weeks.toFixed(1);
+  document.getElementById('months').textContent=months.toFixed(1);
+  document.getElementById('years').textContent=yrs.toFixed(2);
+  document.getElementById('weekdays').textContent=wd;
+
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  document.getElementById('dateDetails').innerHTML=`
+    <div style="font-size:0.82rem;padding:0.75rem;background:var(--bg-input);border-radius:8px">
+      <div>📅 Start: <strong>${s.toDateString()}</strong> (${days[s.getDay()]})</div>
+      <div>📅 End: <strong>${e.toDateString()}</strong> (${days[e.getDay()]})</div>
+    </div>`;
+  document.getElementById('resultBox').classList.add('show');
+}
+
+function calcAdd(){
+  const s=new Date(document.getElementById('addStartDate').value);
+  const days=+document.getElementById('addDays').value;
+  const op=document.getElementById('addOp').value;
+  const res=new Date(s);
+  res.setDate(res.getDate()+(op==='add'?days:-days));
+  const ds=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const wn=getWeekNum(res);
+  document.getElementById('resultDate').textContent=res.toDateString();
+  document.getElementById('dayOfWeek').textContent=ds[res.getDay()];
+  document.getElementById('weekNum').textContent='Week '+wn;
+  document.getElementById('resultBox2').classList.add('show');
+}
+
+function getWeekNum(d){const s=new Date(d.getFullYear(),0,1);return Math.ceil((((d-s)/86400000)+s.getDay()+1)/7);}
+
+let countdownInterval;
+function startCountdown(){
+  if(countdownInterval)clearInterval(countdownInterval);
+  countdownInterval=setInterval(()=>{
+    const target=new Date(document.getElementById('targetDate').value);
+    const now=new Date();const diff=target-now;
+    if(diff<=0){document.getElementById('countdownDisplay').textContent='🎉 Time is up!';clearInterval(countdownInterval);return;}
+    const d=Math.floor(diff/(1000*60*60*24));const h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));const m=Math.floor((diff%(1000*60*60))/(1000*60));const s=Math.floor((diff%1000*60)/1000);
+    document.getElementById('countdownDisplay').textContent=`${d}d ${h}h ${m}m ${s}s`;
+    document.getElementById('resultBox3').classList.add('show');
+  },1000);
+}
+
+function getText(){return `Date Difference:\n${document.getElementById('totalDays').textContent} days\n${document.getElementById('weeks').textContent} weeks\n${document.getElementById('months').textContent} months`;}
+document.addEventListener('DOMContentLoaded',calcDiff);
+</script>
+</body>
+</html>
